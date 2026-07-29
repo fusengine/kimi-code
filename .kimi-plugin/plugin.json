@@ -1,0 +1,390 @@
+{
+  "name": "fusengine",
+  "version": "1.0.1",
+  "description": "Fusengine agentic suite for Kimi Code (K3): 24 plugins, 196 skills, APEX workflow, harness-powered hooks",
+  "author": {
+    "name": "Fusengine",
+    "url": "https://github.com/fusengine"
+  },
+  "homepage": "https://github.com/fusengine/kimi-code",
+  "repository": "https://github.com/fusengine/kimi-code",
+  "license": "MIT",
+  "keywords": [
+    "agents",
+    "apex",
+    "solid",
+    "design",
+    "hooks",
+    "fusengine"
+  ],
+  "skills": [
+    "./plugins/ai-pilot/skills/",
+    "./plugins/astro-expert/skills/",
+    "./plugins/cartographer/skills/",
+    "./plugins/changelog-watcher/skills/",
+    "./plugins/commit-pro/skills/",
+    "./plugins/design-expert/skills/",
+    "./plugins/go-expert/skills/",
+    "./plugins/laravel-expert/skills/",
+    "./plugins/nextjs-expert/skills/",
+    "./plugins/php-expert/skills/",
+    "./plugins/prompt-engineer/skills/",
+    "./plugins/react-expert/skills/",
+    "./plugins/rust-expert/skills/",
+    "./plugins/security-expert/skills/",
+    "./plugins/seo/skills/",
+    "./plugins/shadcn-expert/skills/",
+    "./plugins/solid/skills/",
+    "./plugins/swift-apple-expert/skills/",
+    "./plugins/tailwindcss/skills/",
+    "./plugins/tanstack-start-expert/skills/",
+    "./plugins/typescript-expert/skills/"
+  ],
+  "commands": [
+    "./plugins/ai-pilot/commands/",
+    "./plugins/cartographer/commands/",
+    "./plugins/changelog-watcher/commands/",
+    "./plugins/commit-pro/commands/",
+    "./plugins/design-expert/commands/",
+    "./plugins/fuse-lessons/commands/",
+    "./plugins/prompt-engineer/commands/",
+    "./plugins/security-expert/commands/"
+  ],
+  "hooks": [
+    {
+      "event": "SubagentStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Agent",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
+      "event": "SubagentStop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
+      "event": "SessionEnd",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "TaskCreate|TaskUpdate|Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
+      "event": "SessionStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" carto"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Edit|Write",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" carto"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "mcp__.*exa|FetchURL|WebSearch",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" changelog"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|Bash|FetchURL|mcp__context7__query-docs|mcp__exa__web_search_exa|mcp__exa__get_code_context_exa",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SessionStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "UserPromptSubmit",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SubagentStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SubagentStop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SubagentStop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "Notification",
+      "matcher": "task\\.completed",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUseFailure",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "Stop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core --sound stop"
+    },
+    {
+      "event": "PermissionRequest",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core --sound permission"
+    },
+    {
+      "event": "PreCompact",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SessionEnd",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SessionStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "Notification",
+      "matcher": "permission_prompt",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core --sound permission"
+    },
+    {
+      "event": "Notification",
+      "matcher": "idle_prompt",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core --sound human"
+    },
+    {
+      "event": "Notification",
+      "matcher": "elicitation_dialog",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core --sound human"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|mcp__fuse-browser__browser_navigate|mcp__fuse-browser__browser_screenshot|mcp__gemini-design__create_frontend",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SubagentStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SubagentStop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "UserPromptSubmit",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "SessionStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "SubagentStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "Stop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SessionStart",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" rules",
+      "timeout": 10
+    },
+    {
+      "event": "SubagentStart",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" rules",
+      "timeout": 10
+    },
+    {
+      "event": "UserPromptSubmit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" rules",
+      "timeout": 10
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" security"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Read|mcp__.*context7|mcp__.*exa",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" security"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" seo"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SessionStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" solid",
+      "timeout": 5
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" solid",
+      "timeout": 10
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" solid",
+      "timeout": 10
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" tailwindcss"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" tailwindcss"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    }
+  ],
+  "skillInstructions": "Kimi Code tool mapping for Fusengine skills and agents:\n- Task tool → Agent tool; TeamCreate → AgentSwarm (min 4 subagents).\n- WebFetch → FetchURL; TodoWrite → TodoList.\n- Skill tool references map to Kimi Code's native Skill tool.\n- Read/Write/Edit/Bash/Grep/Glob/WebSearch keep their native names.",
+  "interface": {
+    "displayName": "Fusengine Suite",
+    "shortDescription": "APEX workflow, domain experts, design pipeline, harness-enforced SOLID/DRY guards",
+    "developerName": "Fusengine",
+    "websiteURL": "https://github.com/fusengine/kimi-code"
+  }
+}

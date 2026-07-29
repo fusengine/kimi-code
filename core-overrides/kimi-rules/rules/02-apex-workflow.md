@@ -4,7 +4,7 @@
 **SKIP APEX:** questions, trivial fix (1-3 lines), read-only, simple git
 **Debug/Investigation:** "why", "not working", "bug", "crash", "doesn't load" → ALWAYS use Analyze (explore-codebase + research-expert + domain-expert)
 
-**Shortcuts:** `/fuse-ai-pilot:apex-quick` command (single-expert fast path — skips Brainstorm+Analyze+swarm, linter-only verify) | `--skip-elicit` (skip eLicit, straight to eXamine) — eXamine/sniper itself is NEVER skippable (00-critical-rules)
+**Shortcuts:** `/fusengine:apex-quick` command (single-expert fast path — skips Brainstorm+Analyze+swarm, linter-only verify) | `--skip-elicit` (skip eLicit, straight to eXamine) — eXamine/sniper itself is NEVER skippable (00-critical-rules)
 
 ## Full APEX Flow
 

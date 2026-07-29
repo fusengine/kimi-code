@@ -83,7 +83,7 @@ Writing style (ALWAYS): clear, concise, precise. Lead with the answer, then only
 - SOLID/DRY → **consult SOLID skills** (`solid-*` / rule `04-solid-dry-rules.md`).
 - Full rule detail → rules `00-08`, injected at SessionStart and SubagentStart — don't restate them here.
 - Commit/release → delegate to the **`commit`** agent (it owns the whole flow: security, version bump, CI-wait before merge, post-merge tag). NEVER hand-roll a commit.
-- **Memory hygiene**: when `MEMORY/LESSON.md` grows or accumulates near-duplicate lessons → run `/lessons-compact` — never let it bloat.
+- **Memory hygiene**: when `MEMORY/LESSON.md` grows or accumulates near-duplicate lessons → run `/fusengine:lessons-compact` — never let it bloat.
 - Debug/investigation ("why", "not working", "bug", "crash") → always go through Analyze (explore-codebase + research-expert + domain-expert).
 - `sniper` runs AFTER all teammates finish — never during.
 

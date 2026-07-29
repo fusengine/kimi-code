@@ -8,7 +8,8 @@
     "migrate": "bun run scripts/migrate.ts",
     "scrub": "bun run scripts/scrub-claude-refs.ts",
     "validate": "bun run scripts/validate.ts",
-    "install": "bun run scripts/install-kimi.ts"
+    "install": "bun run scripts/install-kimi.ts",
+    "build:manifest": "bun run scripts/build-root-manifest.ts"
   },
   "engines": {
     "bun": ">=1.1.0"

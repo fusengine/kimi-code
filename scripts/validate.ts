@@ -9,6 +9,7 @@ import { join } from "node:path";
 import { readdir } from "node:fs/promises";
 import { exists } from "./lib/fs-exists";
 import { checkManifest, checkMarkdown } from "./lib/validate-checks";
+import { checkRootManifest } from "./lib/validate-root";
 
 const ROOT = join(import.meta.dir, "..", "plugins");
 
@@ -77,7 +78,11 @@ async function main(): Promise<void> {
 	}
 	const failed = rows.filter((r) => r.issues.length > 0);
 	console.log(`\n${rows.length - failed.length}/${rows.length} plugins valid.`);
-	if (failed.length > 0) process.exit(1);
+	const hookTotal = rows.reduce((sum, r) => sum + r.hooks, 0);
+	const rootIssues = await checkRootManifest(join(ROOT, ".."), hookTotal);
+	for (const issue of rootIssues) console.log(`  ✖ root: ${issue}`);
+	console.log(rootIssues.length === 0 ? "root manifest valid." : "root manifest INVALID.");
+	if (failed.length > 0 || rootIssues.length > 0) process.exit(1);
 }
 
 if (import.meta.main) await main();
