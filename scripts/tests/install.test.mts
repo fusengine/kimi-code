@@ -5,7 +5,7 @@
  * idempotently. The last test guards the real repo's marketplace.json.
  */
 import { beforeAll, describe, expect, test } from "bun:test";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import { INSTALLER, makeHarness, makeRepo, runInstaller, tmp, write } from "./install-fixtures.mts";
@@ -34,6 +34,7 @@ describe("install-kimi", () => {
 
 	test("--yes installs AGENTS.md fences, harness, agents, resolved MCP", () => {
 		write(join(home, ".env"), "FAKE_TOKEN=tok123\n");
+		write(join(home, "config.toml"), '[[hooks]]\nevent = "Stop"\ncommand = "echo mine"\n');
 		const r = runInstaller(home, repo, harness, ["--yes"]);
 		expect(r.code).toBe(0);
 		expect(r.out).toContain("Installed state verified");
@@ -50,6 +51,15 @@ describe("install-kimi", () => {
 		expect(servers["catalog-stdio"]._description).toBeUndefined();
 		expect(servers["fake-http"].url).toBe("https://example.com/mcp?key=tok123");
 		expect(servers["fake-http"].type).toBeUndefined();
+		// harness config: FUSE_HARNESS_REFS wired to the solid refs dir
+		const dotenv = readFileSync(join(home, ".env"), "utf8");
+		expect(dotenv).toContain("FUSE_HARNESS_REFS=");
+		expect(dotenv).toContain("solid-generic/references");
+		// global hooks: fusengine block added, user hook preserved
+		const cfg = readFileSync(join(home, "config.toml"), "utf8");
+		expect(cfg).toContain("# >>> fusengine hooks >>>");
+		expect(cfg).toContain('command = "echo mine"');
+		expect(existsSync(join(home, "hooks", "fusengine-hook-shim.mjs"))).toBe(true);
 		const market = JSON.parse(readFileSync(join(repo, "marketplace.json"), "utf8"));
 		expect(market.version).toBe("2");
 		expect(market.plugins.map((p: { id: string }) => p.id)).toEqual(["fuse-fake-one", "kimi-rules"]);
@@ -62,6 +72,17 @@ describe("install-kimi", () => {
 		expect(Object.keys(mcpServers(home)).sort()).toEqual(["catalog-stdio", "fake-http", "fake-stdio"]);
 		expect(agentsMd().match(/<!-- fusengine:kimi-rules:start -->/g)).toHaveLength(1);
 		expect(agentsMd().match(/<!-- fusengine:kimi-rules:end -->/g)).toHaveLength(1);
+		const cfg = readFileSync(join(home, "config.toml"), "utf8");
+		expect(cfg.match(/# >>> fusengine hooks >>>/g)).toHaveLength(1);
+	});
+
+	test("global hooks block is removed once the managed plugin owns hooks", () => {
+		mkdirSync(join(home, "plugins", "managed", "fusengine"), { recursive: true });
+		const r = runInstaller(home, repo, harness, ["--yes"]);
+		expect(r.code).toBe(0);
+		const cfg = readFileSync(join(home, "config.toml"), "utf8");
+		expect(cfg).not.toContain("# >>> fusengine hooks >>>");
+		expect(cfg).toContain('command = "echo mine"');
 	});
 
 	test("server whose required API key is missing is skipped with a warning", () => {

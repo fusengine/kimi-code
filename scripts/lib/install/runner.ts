@@ -10,6 +10,8 @@ import { installRuntimeDeps } from "./runtime-deps";
 import { installAgentsMd, mergeKimiRules } from "./agents-md";
 import { mergeMcp } from "./mcp-merge";
 import { promptMcpKeys } from "./mcp-key-prompt";
+import { configureHarness } from "./harness-config";
+import { installHooks } from "./hooks-config";
 import { installAgents } from "./agents-install";
 import { writeMarketplace } from "./marketplace";
 import { warn } from "./ui";
@@ -40,6 +42,8 @@ export async function runInstaller(ctx: InstallContext): Promise<RunOutcome> {
 	await runStep(results, "mergeKimiRules", () => mergeKimiRules(ctx));
 	await runStep(results, "promptMcpKeys", () => promptMcpKeys(ctx));
 	await runStep(results, "mergeMcp", () => mergeMcp(ctx));
+	await runStep(results, "configureHarness", () => configureHarness(ctx));
+	await runStep(results, "installHooks", () => installHooks(ctx));
 	await runStep(results, "installAgents", () => installAgents(ctx));
 	console.log("▸ writeMarketplace");
 	let marketplace: MarketplaceFile = { version: "2", plugins: [] };
