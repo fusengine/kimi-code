@@ -54,8 +54,10 @@ export function makeRepo(dir: string): void {
 	write(join(dir, "plugins", "fake-one", "kimi.plugin.json"), manifest("fuse-fake-one", "Fake One"));
 	write(join(dir, "plugins", "fake-one", "mcp.json.bak"), FAKE_MCP);
 	write(join(dir, "plugins", "fake-one", "agents", "fake-agent.md"), "# Fake Agent\n");
+	write(join(dir, "plugins", "fake-one", "skills", "solid-generic", "references", "ref.md"), "# Refs\n");
 	write(join(dir, "plugins", "kimi-rules", "kimi.plugin.json"), manifest("kimi-rules", "Kimi Rules"));
 	write(join(dir, "plugins", "kimi-rules", "rules", "00-test-rule.md"), "# Test Rule\n\nAlways test.");
+	write(join(dir, "plugins", "fake-one", "scripts", "kimi-hook-shim.mjs"), "// fake shim\n");
 }
 
 /** Run the installer; FAKE_TOKEN is scrubbed unless passed in extraEnv. */

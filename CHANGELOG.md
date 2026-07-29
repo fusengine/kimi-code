@@ -7,6 +7,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versio
 
 
 
+
+## [1.0.6] - 2026-07-29
+
+### Added
+- Harness configuration step (`configureHarness`): FUSE_HARNESS_REFS wired to every solid-STAR references dir; opt-in interactive tuning knobs (SOLID max lines, enforcement TTL, cache TTLs) persisted to `~/.kimi-code/.env`.
+- Global hook activation (`installHooks`): 5 bootstrap `[[hooks]]` in `~/.kimi-code/config.toml` (rules + core guards, TOML-literal commands) between idempotent markers — auto-removed once the managed plugin owns hooks.
+- Shared non-TTY stdin buffer for piped prompts (fixes "Premature close" across prompt steps).
+
 ## [1.0.5] - 2026-07-29
 
 ### Added

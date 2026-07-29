@@ -9,6 +9,7 @@ import { join } from "node:path";
 import { createInterface } from "node:readline/promises";
 import type { InstallContext, InstallStepResult, McpServerConfig } from "../../../src/interfaces/index.ts";
 import { resolutionEnv } from "./env-file";
+import { nextPipedLine } from "./stdin-lines";
 import { collectRawServers } from "./mcp-resolve";
 import { info, plan, warn } from "./ui";
 
@@ -73,18 +74,14 @@ export async function promptMcpKeys(ctx: InstallContext): Promise<InstallStepRes
 	return res;
 }
 
-/** TTY: sequential readline questions. Piped: all lines read once, served in order. */
+/** TTY: sequential readline questions. Piped: shared stdin buffer in order. */
 async function makeAsker(): Promise<(q: string) => Promise<string>> {
 	if (process.stdin.isTTY) {
 		const rl = createInterface({ input: process.stdin, output: process.stdout });
 		return async (q) => rl.question(q);
 	}
-	let data = "";
-	for await (const chunk of process.stdin) data += chunk;
-	const lines = data.split("\n");
-	let i = 0;
 	return async (q) => {
 		process.stdout.write(q);
-		return lines[i++] ?? "";
+		return nextPipedLine();
 	};
 }
