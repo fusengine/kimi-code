@@ -44,6 +44,23 @@ function keyMissing(cfg: McpServerConfig, env: Record<string, string>): boolean 
 	return cfg.requiresApiKey === true && typeof cfg.apiKeyEnv === "string" && !env[cfg.apiKeyEnv as string];
 }
 
+/** All raw MCP entries from the central catalog then every plugin .bak. */
+export async function collectRawServers(
+	ctx: InstallContext,
+): Promise<Array<{ name: string; cfg: McpServerConfig; origin: string }>> {
+	const out: Array<{ name: string; cfg: McpServerConfig; origin: string }> = [];
+	const push = (file: BakFile | null, origin: string) => {
+		for (const [name, cfg] of Object.entries(file?.mcpServers ?? {})) {
+			if (!name.startsWith("_")) out.push({ name, cfg, origin });
+		}
+	};
+	push(await readJsonSafe<BakFile>(join(ctx.repoRoot, "scripts", "mcp", "mcp.json")), "catalog");
+	for (const plugin of await listPlugins(ctx.pluginsRoot)) {
+		push(await readJsonSafe<BakFile>(join(ctx.pluginsRoot, plugin.dir, "mcp.json.bak")), plugin.dir);
+	}
+	return out;
+}
+
 /** Scan catalog + plugin .bak files; returns resolved, normalized servers. */
 export async function scanMcpServers(
 	ctx: InstallContext,
@@ -52,29 +69,15 @@ export async function scanMcpServers(
 	const servers = new Map<string, McpServerConfig>();
 	const warnings: string[] = [];
 
-	const sources: Array<{ origin: string; file: BakFile | null }> = [];
-	sources.push({
-		origin: "catalog",
-		file: await readJsonSafe<BakFile>(join(ctx.repoRoot, "scripts", "mcp", "mcp.json")),
-	});
-	for (const plugin of await listPlugins(ctx.pluginsRoot)) {
-		sources.push({
-			origin: plugin.dir,
-			file: await readJsonSafe<BakFile>(join(ctx.pluginsRoot, plugin.dir, "mcp.json.bak")),
-		});
-	}
-
-	for (const { origin, file } of sources) {
-		for (const [name, cfg] of Object.entries(file?.mcpServers ?? {})) {
-			if (name.startsWith("_") || servers.has(name)) continue;
-			if (keyMissing(cfg, env)) {
-				warnings.push(`skip MCP '${name}' (${origin}): missing ${cfg.apiKeyEnv} — get it at ${cfg.apiKeyUrl ?? "the provider"}`);
-				continue;
-			}
-			const resolved = resolveDeep(cfg, env) as McpServerConfig;
-			for (const k of Object.keys(resolved)) if (META_KEYS.has(k)) delete resolved[k];
-			servers.set(name, toKimiServer(resolved));
+	for (const { name, cfg, origin } of await collectRawServers(ctx)) {
+		if (servers.has(name)) continue;
+		if (keyMissing(cfg, env)) {
+			warnings.push(`skip MCP '${name}' (${origin}): missing ${cfg.apiKeyEnv} — get it at ${cfg.apiKeyUrl ?? "the provider"}`);
+			continue;
 		}
+		const resolved = resolveDeep(cfg, env) as McpServerConfig;
+		for (const k of Object.keys(resolved)) if (META_KEYS.has(k)) delete resolved[k];
+		servers.set(name, toKimiServer(resolved));
 	}
 	return { servers, warnings };
 }

@@ -30,7 +30,7 @@ async function main(): Promise<number> {
 		for (const f of assertFailures) console.error(`  ✖ ${f}`);
 		if (assertFailures.length === 0) console.log("\nInstalled state verified ✔");
 	}
-	printNextSteps(outcome.marketplacePath, outcome.marketplace);
+	printNextSteps(ctx.repoRoot, ctx.kimiHome);
 	return clean && assertFailures.length === 0 ? 0 : 1;
 }
 

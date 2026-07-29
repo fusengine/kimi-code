@@ -73,6 +73,16 @@ describe("install-kimi", () => {
 		expect(Object.keys(mcpServers(home2))).toEqual(["catalog-stdio", "fake-stdio"]);
 	});
 
+	test("interactive prompt saves the key to .env and installs the server", () => {
+		const home3 = tmp("kimi-install-home3-");
+		const r = runInstaller(home3, repo, harness, ["--yes"], { FUSENGINE_FORCE_PROMPT: "1" }, "tok999\n");
+		expect(r.code).toBe(0);
+		expect(r.out).toContain("1 API key(s) required");
+		const dotenv = readFileSync(join(home3, ".env"), "utf8");
+		expect(dotenv).toContain("FAKE_TOKEN=tok999");
+		expect(mcpServers(home3)["fake-http"].url).toBe("https://example.com/mcp?key=tok999");
+	});
+
 	test("real repo dry-run regenerates marketplace.json with 24 entries", () => {
 		const proc = spawnSync("bun", [INSTALLER], { encoding: "utf8" });
 		expect(proc.status).toBe(0);
