@@ -8,6 +8,7 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { makeHarness, makeRepo, runInstaller, tmp } from "./install-fixtures.mts";
+import { defaultMcpSelection } from "../lib/install/mcp-select.ts";
 
 function fixture() {
 	const root = tmp("kimi-mcp-select-");
@@ -54,5 +55,27 @@ describe("install-kimi MCP selection", () => {
 		expect(r.code).toBe(0);
 		expect(r.out).toContain("unknown server 'nope'");
 		expect(Object.keys(servers(home))).toEqual(["fake-stdio"]);
+	});
+});
+
+describe("defaultMcpSelection (Claude parity)", () => {
+	const servers = [
+		{ name: "no-key", cfg: {}, origin: "catalog" },
+		{ name: "key-missing", cfg: { requiresApiKey: true, apiKeyEnv: "MISSING_TOKEN" }, origin: "catalog" },
+		{ name: "key-present", cfg: { requiresApiKey: true, apiKeyEnv: "PRESENT_TOKEN" }, origin: "catalog" },
+		{ name: "default-on", cfg: { default: true, requiresApiKey: true, apiKeyEnv: "MISSING_TOKEN" }, origin: "catalog" },
+		{ name: "default-off", cfg: { default: false }, origin: "catalog" },
+	];
+
+	test("no-key + configured-key servers are preselected, key-missing is not", () => {
+		const picked = defaultMcpSelection(servers, { PRESENT_TOKEN: "tok" });
+		expect(picked).toEqual(["no-key", "key-present", "default-on"]);
+	});
+
+	test("explicit default=false always loses, default=true always wins", () => {
+		const picked = defaultMcpSelection(servers, {});
+		expect(picked).not.toContain("default-off");
+		expect(picked).toContain("default-on");
+		expect(picked).not.toContain("key-present");
 	});
 });

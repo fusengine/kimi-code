@@ -3,6 +3,15 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.8] - 2026-07-29
+
+### Added
+- `configurePermissionMode` step: TTY select (YOLO ON/OFF, seeded with the current value) persists `default_permission_mode` in `~/.kimi-code/config.toml` via a surgical line edit; `FUSENGINE_PERMISSION_MODE` env override for non-interactive runs.
+- `configureExperimentalFlag` step: proposes `KIMI_CODE_EXPERIMENTAL_FLAG=1` in the detected shell rc (default YES, guarded idempotent block, zsh/bash/fish) so custom agents are discovered by the v2 engine while the v1 backport (upstream #2232) is unreleased.
+
+### Changed
+- MCP preselection parity with the Claude installer: explicit `default` wins, otherwise no-key servers plus key-required ones whose `apiKeyEnv` is already set; key-required entries are labelled ✓ / ⚠ key missing in the multiselect.
+
 
 
 
