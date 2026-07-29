@@ -28,6 +28,16 @@ kimi-code/
     └── BENCHMARK.md          # Protocol + measured results
 ```
 
+## Install remotely (no clone)
+
+In the Kimi TUI:
+
+```
+/plugins marketplace https://raw.githubusercontent.com/fusengine/kimi-code/main/marketplace.remote.json
+```
+
+The catalog lists 24 plugins; install the ones you want (`Enter`), then `/reload`. Each plugin installs from its release zip. The harness, AGENTS.md, rules and MCP servers still require the local installer (Setup below) — plugin zips carry skills/commands/hooks only.
+
 ## Setup (hooks + API keys + MCP servers)
 
 ```bash
