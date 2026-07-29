@@ -3,6 +3,20 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+
+## [1.0.2] - 2026-07-29
+
+### Added
+- Root `.kimi-plugin/plugin.json`: the repo installs as ONE plugin (`fusengine` namespace) via `/plugins install https://github.com/fusengine/kimi-code` — 196 skills, 34 commands, 68 hook rules.
+- `scripts/build-root-manifest.ts` regenerates the root manifest (version read from package.json).
+- `setup.sh` / `setup.ps1` one-liner at repo root.
+
+### Changed
+- Slash-command references remapped to `/fusengine:*` across rules, agents, skills and docs.
+
+### Removed
+- Zip-based remote marketplace (superseded by the root manifest).
+
 ## [1.0.1] - 2026-07-29
 
 ### Added
