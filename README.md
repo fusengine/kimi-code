@@ -33,10 +33,10 @@ kimi-code/
 ```bash
 git clone https://github.com/fusengine/kimi-code.git
 cd kimi-code
-
-bun run scripts/install-kimi.ts          # dry-run: prints the plan, touches nothing
-bun run scripts/install-kimi.ts --yes    # applies → ~/.kimi-code
+./setup.sh        # bootstraps Bun if needed, then installs → ~/.kimi-code
 ```
+
+Windows: `.\setup.ps1`. Manual alternative: `bun run scripts/install-kimi.ts` (dry-run) then `--yes` to apply.
 
 The installer: backs up existing config, stages `@fusengine/harness` **from npm**, copies `AGENTS.md`, merges the rules corpus between idempotent fences, merges MCP servers into `~/.kimi-code/mcp.json`, and materializes the 37 agents into `~/.kimi-code/agents/`.
 
