@@ -61,6 +61,16 @@ Every step is intercepted — same harness, same enforcement as the Claude Code 
 - Bun ≥ 1.1 · Kimi Code CLI ≥ 0.29
 - Le harness `@fusengine/harness` est installé depuis **npm** (registre officiel) par l'installateur — aucune dépendance envers une autre CLI
 
+## Statusline (terminal daemon)
+
+Kimi exposes no user statusline surface, so the port renders outside the TUI — terminal title + `~/.kimi-code/statusline.txt` (tmux-ready):
+
+```bash
+bun run plugins/core-guards/statusline/src/daemon.ts start   # stop | status
+```
+
+Shows `⎇ branch*dirty · model · effort · ctx % · edits · age · dir`, read from the live session's `state.json`/`wire.jsonl`. Details: `plugins/core-guards/statusline/README.md`.
+
 ## Regenerating
 
 ```bash
