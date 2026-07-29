@@ -3,6 +3,15 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.10] - 2026-07-29
+
+### Fixed
+- `permission-mode`: TOML upsert/read scoped to the root table — a section-scoped `default_permission_mode` no longer swallows the write, and replacements preserve trailing comments (typescript-expert review finding, toml.io semantics).
+- `experimental-flag`: `writeFlagBlock` self-idempotent and no leading blank line on fresh rc files.
+
+### Added
+- `assertInstalledState` guard: `FUSE_HARNESS_REFS` must be present in `.env` with all refs dirs on disk, else an explicit "rerun install-kimi.ts" failure (prevents silent SOLID-gate fallback to other harnesses).
+
 ## [1.0.9] - 2026-07-29
 
 ### Added

@@ -26,12 +26,14 @@ export function shellTarget(shell: string, home: string): { path: string; line: 
 	return null;
 }
 
-/** Append the guarded export block to the rc file (creates it when missing). */
+/** Append the guarded export block to the rc file (self-idempotent, creates it when missing). */
 export async function writeFlagBlock(path: string, line: string): Promise<void> {
 	const current = await Bun.file(path)
 		.text()
 		.catch(() => "");
-	await Bun.write(path, `${current.replace(/\n*$/, "\n")}${BEGIN}\n${line}\n${END}\n`);
+	if (current.includes(BEGIN)) return;
+	const body = current ? current.replace(/\n*$/, "\n") : "";
+	await Bun.write(path, `${body}${BEGIN}\n${line}\n${END}\n`);
 }
 
 /** Propose/apply the default-on v2 engine flag in the user's shell rc. */
