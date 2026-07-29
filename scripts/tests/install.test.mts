@@ -45,7 +45,11 @@ describe("install-kimi", () => {
 		expect(existsSync(join(home, "agents", "fake-agent.md"))).toBe(true);
 		const servers = mcpServers(home);
 		expect(servers["fake-stdio"].command).toBe("npx");
+		expect(servers["fake-stdio"].type).toBeUndefined();
+		expect(servers["catalog-stdio"].command).toBe("npx");
+		expect(servers["catalog-stdio"]._description).toBeUndefined();
 		expect(servers["fake-http"].url).toBe("https://example.com/mcp?key=tok123");
+		expect(servers["fake-http"].type).toBeUndefined();
 		const market = JSON.parse(readFileSync(join(repo, "marketplace.json"), "utf8"));
 		expect(market.version).toBe("2");
 		expect(market.plugins.map((p: { id: string }) => p.id)).toEqual(["fuse-fake-one", "kimi-rules"]);
@@ -55,17 +59,18 @@ describe("install-kimi", () => {
 	test("second --yes run is idempotent (no duplicate servers or fences)", () => {
 		const r = runInstaller(home, repo, harness, ["--yes"]);
 		expect(r.code).toBe(0);
-		expect(Object.keys(mcpServers(home)).sort()).toEqual(["fake-http", "fake-stdio"]);
+		expect(Object.keys(mcpServers(home)).sort()).toEqual(["catalog-stdio", "fake-http", "fake-stdio"]);
 		expect(agentsMd().match(/<!-- fusengine:kimi-rules:start -->/g)).toHaveLength(1);
 		expect(agentsMd().match(/<!-- fusengine:kimi-rules:end -->/g)).toHaveLength(1);
 	});
 
-	test("server with unresolved url placeholder is skipped with a warning", () => {
+	test("server whose required API key is missing is skipped with a warning", () => {
 		const home2 = tmp("kimi-install-home2-");
 		const r = runInstaller(home2, repo, harness, ["--yes"]);
 		expect(r.code).toBe(0);
-		expect(r.out).toContain("unresolved FAKE_TOKEN");
-		expect(Object.keys(mcpServers(home2))).toEqual(["fake-stdio"]);
+		expect(r.out).toContain("missing FAKE_TOKEN");
+		expect(r.out).toContain("https://example.com/key");
+		expect(Object.keys(mcpServers(home2))).toEqual(["catalog-stdio", "fake-stdio"]);
 	});
 
 	test("real repo dry-run regenerates marketplace.json with 24 entries", () => {

@@ -28,13 +28,27 @@ export function makeHarness(dir: string): void {
 const FAKE_MCP = JSON.stringify({
 	mcpServers: {
 		"fake-stdio": { command: "npx", args: ["-y", "fake-mcp"] },
-		"fake-http": { type: "http", url: "https://example.com/mcp?key=${FAKE_TOKEN}" },
+		"fake-http": {
+			type: "http",
+			url: "https://example.com/mcp?key=${FAKE_TOKEN}",
+			requiresApiKey: true,
+			apiKeyEnv: "FAKE_TOKEN",
+			apiKeyUrl: "https://example.com/key",
+		},
+	},
+});
+
+const FAKE_CATALOG = JSON.stringify({
+	mcpServers: {
+		_comment: "catalog fixture",
+		"catalog-stdio": { _description: "d", command: "npx", args: ["-y", "catalog-mcp"], type: "stdio" },
 	},
 });
 
 /** Synthetic repo: AGENTS.md, one plugin (manifest+mcp+agent), kimi-rules. */
 export function makeRepo(dir: string): void {
 	write(join(dir, "AGENTS.md"), "# Fake Repo Instructions\n");
+	write(join(dir, "scripts", "mcp", "mcp.json"), FAKE_CATALOG);
 	const manifest = (name: string, display: string) =>
 		JSON.stringify({ name, version: "0.0.1", description: "t", interface: { displayName: display } });
 	write(join(dir, "plugins", "fake-one", "kimi.plugin.json"), manifest("fuse-fake-one", "Fake One"));
