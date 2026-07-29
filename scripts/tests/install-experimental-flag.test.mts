@@ -8,7 +8,7 @@ import { describe, expect, test } from "bun:test";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { makeHarness, makeRepo, runInstaller, tmp } from "./install-fixtures.mts";
-import { shellTarget } from "../lib/install/experimental-flag.ts";
+import { shellTarget, writeFlagBlock } from "../lib/install/experimental-flag.ts";
 
 function fixture() {
 	const root = tmp("kimi-exp-flag-");
@@ -69,5 +69,17 @@ describe("shellTarget", () => {
 			line: "set -gx KIMI_CODE_EXPERIMENTAL_FLAG 1",
 		});
 		expect(shellTarget("/bin/tcsh", "/h")).toBeNull();
+	});
+});
+
+describe("writeFlagBlock", () => {
+	test("self-idempotent and no leading blank line on a fresh file", async () => {
+		const p = join(tmp("kimi-flag-unit-"), ".zshrc");
+		await writeFlagBlock(p, "export KIMI_CODE_EXPERIMENTAL_FLAG=1");
+		await writeFlagBlock(p, "export KIMI_CODE_EXPERIMENTAL_FLAG=1");
+		const rc = readFileSync(p, "utf8");
+		expect(rc.split(">>> fusengine kimi").length - 1).toBe(1);
+		expect(rc.startsWith("\n")).toBe(false);
+		expect(rc).toContain("export KIMI_CODE_EXPERIMENTAL_FLAG=1");
 	});
 });

@@ -8,6 +8,7 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { makeHarness, makeRepo, runInstaller, tmp, write } from "./install-fixtures.mts";
+import { currentPermissionMode, withPermissionMode } from "../lib/install/permission-mode.ts";
 
 function fixture() {
 	const root = tmp("kimi-perm-mode-");
@@ -55,6 +56,33 @@ describe("install-kimi permission mode", () => {
 		expect(r.code).toBe(0);
 		expect(r.out).toContain("invalid 'yeet'");
 		expect(configToml(home)).not.toContain("default_permission_mode");
+	});
+});
+
+describe("withPermissionMode (root-table scoping)", () => {
+	test("a section-scoped key is untouched; the top-level key is written", () => {
+		const toml = '[[hooks]]\nevent = "Stop"\ndefault_permission_mode = "manual"\n';
+		const out = withPermissionMode(toml, "yolo");
+		expect(out.startsWith('default_permission_mode = "yolo"\n')).toBe(true);
+		expect(out).toContain('[[hooks]]\nevent = "Stop"\ndefault_permission_mode = "manual"');
+	});
+
+	test("a top-level replace keeps trailing comments and sections", () => {
+		const toml = 'default_permission_mode = "manual" # user note\ntelemetry = false\n[thinking]\nenabled = true\n';
+		const out = withPermissionMode(toml, "yolo");
+		expect(out).toContain('default_permission_mode = "yolo" # user note');
+		expect(out).toContain("telemetry = false");
+		expect(out).toContain("[thinking]");
+		expect(out).not.toContain('"manual"');
+	});
+
+	test("currentPermissionMode reads the root table only", async () => {
+		const dir = tmp("kimi-perm-unit-");
+		const p = join(dir, "config.toml");
+		write(p, '[[hooks]]\ndefault_permission_mode = "yolo"\n');
+		expect(await currentPermissionMode(p)).toBeUndefined();
+		write(p, 'default_permission_mode = "auto"\n[[hooks]]\nevent = "Stop"\n');
+		expect(await currentPermissionMode(p)).toBe("auto");
 	});
 });
 

@@ -13,24 +13,33 @@ import { initUi, info, plan, warn } from "./ui";
 
 const MODES = ["manual", "yolo", "auto"] as const;
 type PermissionMode = (typeof MODES)[number];
-const KEY_RE = /^default_permission_mode\s*=.*$/m;
-const VALUE_RE = /^default_permission_mode\s*=\s*"([a-z]+)"\s*$/m;
+// Scoped to the root table: a same-named key under a [table]/[[hooks]] header
+// belongs to that table — kimi reads default_permission_mode at the root only
+// (toml.io: the root table ends at the first table header).
+const KEY_RE = /^(default_permission_mode\s*=\s*)"[^"]*"(.*)$/m;
+const VALUE_RE = /^default_permission_mode\s*=\s*"([a-z]+)"/;
+
+/** Split at the first table header; top-level keys live in `head` only. */
+function topLevel(toml: string): { head: string; rest: string } {
+	const m = toml.match(/^\[/m);
+	return m?.index !== undefined ? { head: toml.slice(0, m.index), rest: toml.slice(m.index) } : { head: toml, rest: "" };
+}
 
 /** Current top-level default_permission_mode, or undefined when unset/unreadable. */
 export async function currentPermissionMode(path: string): Promise<string | undefined> {
 	try {
-		return (await Bun.file(path).text()).match(VALUE_RE)?.[1];
+		return topLevel(await Bun.file(path).text()).head.match(VALUE_RE)?.[1];
 	} catch {
 		return undefined;
 	}
 }
 
-/** Upsert the top-level key, preserving every other line verbatim. */
+/** Upsert the top-level key, preserving every other line and trailing comments. */
 export function withPermissionMode(toml: string, mode: PermissionMode): string {
-	const line = `default_permission_mode = "${mode}"`;
-	if (KEY_RE.test(toml)) return toml.replace(KEY_RE, line);
-	// Top-level keys must precede any [table] header: prepend at the very top.
-	return `${line}\n${toml}`;
+	const { head, rest } = topLevel(toml);
+	if (KEY_RE.test(head)) return head.replace(KEY_RE, `$1"${mode}"$2`) + rest;
+	// Top-level keys must precede any [table] header: prepend in the head.
+	return `default_permission_mode = "${mode}"\n${head}${rest}`;
 }
 
 /** Non-interactive mode from FUSENGINE_PERMISSION_MODE; undefined when unset/invalid. */
