@@ -28,20 +28,46 @@ kimi-code/
     └── BENCHMARK.md          # Protocol + measured results
 ```
 
-## Install
+## Setup (hooks + API keys + MCP servers)
 
 ```bash
+git clone https://github.com/fusengine/kimi-code.git
 cd kimi-code
-bun run scripts/install-kimi.ts          # dry-run: prints the plan
-bun run scripts/install-kimi.ts --yes    # applies to ~/.kimi-code
+
+bun run scripts/install-kimi.ts          # dry-run: prints the plan, touches nothing
+bun run scripts/install-kimi.ts --yes    # applies → ~/.kimi-code
 ```
 
-The installer: backs up existing config, installs the harness runtime, copies `AGENTS.md`, merges the rules corpus between idempotent fences, merges MCP servers into `~/.kimi-code/mcp.json`, materializes agents into `~/.kimi-code/agents/`, and writes `marketplace.json`. It then prints the two interactive commands to finish plugin activation:
+The installer: backs up existing config, stages `@fusengine/harness` **from npm**, copies `AGENTS.md`, merges the rules corpus between idempotent fences, merges MCP servers into `~/.kimi-code/mcp.json`, and materializes the 37 agents into `~/.kimi-code/agents/`.
+
+**API keys (MCP servers):**
+
+```bash
+cp .env.example ~/.kimi-code/.env        # fill in your keys (Context7, Exa, …)
+bun run scripts/install-kimi.ts --yes    # re-run: the MCP merge is idempotent
+```
+
+Kimi Code does NOT auto-load `.env` — the installer reads it when resolving `${VAR}` placeholders into `mcp.json`, and the harness reads it at runtime.
+
+**Plugin activation (interactive, once):**
 
 ```
 /plugins marketplace <absolute path to kimi-code/marketplace.json>
-/plugins install <plugin id>     # per plugin, then /reload
+/plugins install <plugin id>     # the installer prints all 24 ids
+/reload                          # or start a new session
 ```
+
+**How it works:**
+
+```
+User prompt → Hook detects project type → Expert agent activated
+            → Hook loads SOLID references → Agent reads docs via MCP
+            → Hook blocks if DRY violation → Agent writes code
+            → Hook checks file size → Agent runs Sniper validation
+            → Commit gate blocks on lint/type errors → Commit with version bump
+```
+
+Every step is intercepted — same harness, same enforcement as the Claude Code version.
 
 ## Requirements
 
