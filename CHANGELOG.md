@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
 
+
+## [1.0.3] - 2026-07-29
+
+### Changed
+- README: single install flow in the Claude block format — `/plugins install https://github.com/fusengine/kimi-code` then `~/.kimi-code/plugins/managed/fusengine/setup.sh`.
+
 ## [1.0.2] - 2026-07-29
 
 ### Added
