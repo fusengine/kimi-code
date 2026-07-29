@@ -3,6 +3,11 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.11] - 2026-07-29
+
+### Fixed
+- Plugin manifest version: `build:manifest` now runs as part of the release flow — the version shown by `/plugins` (from `.kimi-plugin/plugin.json`) matches the release (was stuck at 1.0.7 since 1.0.8).
+
 ## [1.0.10] - 2026-07-29
 
 ### Fixed
