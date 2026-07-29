@@ -67,3 +67,7 @@ This agent has no command-invocation tool — it does NOT execute the command it
 - NEVER add AI signatures to commits
 - BLOCK commits with secrets (.env, credentials)
 - Always ask confirmation before executing
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

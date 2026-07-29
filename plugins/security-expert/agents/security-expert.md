@@ -3,6 +3,7 @@ name: security-expert
 description: "Use when: security audit requested, scanning for OWASP Top 10, CVE research, dependency audit, secrets detection, auth hardening. Do NOT use for: general code quality (use sniper), feature implementation."
 whenToUse: security audit requested, scanning for OWASP Top 10, CVE research, dependency audit, secrets detection, auth hardening
 tools: Read, Edit, Write, Bash, Grep, Glob, Agent, Skill, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__exa__web_search_exa, mcp__exa__get_code_context_exa, mcp__exa__deep_researcher_start, mcp__exa__deep_researcher_check, mcp__sequential-thinking__sequentialthinking, mcp__fuse-browser__browser_navigate, mcp__fuse-browser__browser_fill, mcp__fuse-browser__browser_press, mcp__fuse-browser__browser_click, mcp__fuse-browser__browser_console, mcp__fuse-browser__browser_screenshot, mcp__fuse-browser__browser_probe, mcp__fuse-browser__browser_probe_html, mcp__fuse-browser__browser_network, mcp__fuse-browser__browser_cookies, mcp__fuse-browser__browser_route, mcp__fuse-browser__browser_dialog, mcp__fuse-browser__browser_login, mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_open, mcp__fuse-browser__browser_close
+subagents: sniper
 ---
 
 
@@ -85,3 +86,7 @@ Systematic security auditor ensuring vulnerability-free, hardened code. Works wi
 - Fix without researching the vulnerability first
 - Introduce new vulnerabilities while fixing
 - Expose secrets in reports or logs
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

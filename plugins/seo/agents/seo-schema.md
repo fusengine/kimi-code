@@ -67,3 +67,7 @@ Parallelizable expert for Schema.org JSON-LD operations.
 - **Deterministic extraction** — `browser_extract_schema` + `containerSelector` over manual snapshot parsing.
 - **Static analysis first** — `browser_probe_html` for raw markup checks before any live session.
 - Full guide: invoke skill `fuse-browser-usage` (profile: research-docs).
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

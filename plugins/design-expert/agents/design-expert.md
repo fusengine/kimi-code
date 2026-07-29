@@ -143,3 +143,7 @@ Report back to the lead with:
 - **remaining_issues**: any known gaps or follow-ups, or `none`
 - **sources_verified**: Context7/Exa/Apple-docs/Android-docs references consulted for any
   platform fact cited
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

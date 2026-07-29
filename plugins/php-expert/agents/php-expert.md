@@ -97,3 +97,7 @@ Report back to the lead with:
 - **verification**: results from the Completion Criteria above (PHPStan + tests + sniper outcome)
 - **remaining_issues**: any known gaps or follow-ups, or `none`
 - **sources_verified**: Context7/Exa references consulted (Core Rule)
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

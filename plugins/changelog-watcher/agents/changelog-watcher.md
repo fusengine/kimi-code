@@ -79,3 +79,7 @@ Additional steps when `--pulse` is active:
 - Skip the DIFF phase against api-surface.md
 - Report without source URLs
 - Ignore BREAKING changes
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

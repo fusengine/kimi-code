@@ -72,3 +72,7 @@ Parallelizable expert for Generative Engine Optimization.
 - **Batch, don't loop** — `screenshot {viewports, colorScheme}` in one call.
 - **Deterministic extraction** — `browser_extract` over manual snapshot parsing.
 - Full guide: invoke skill `fuse-browser-usage` (profile: research-docs).
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

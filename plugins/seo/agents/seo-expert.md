@@ -142,3 +142,7 @@ Complete search optimization including:
 - ❌ Outdated references (pre-2025)
 - ❌ Missing FAQ schema on Q&A content
 - ❌ No quick answer in first 100 words
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.
