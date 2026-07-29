@@ -24,6 +24,8 @@ const RULES: Rule[] = [
 	// Agents and skills are flat global names under Kimi; only slash commands
 	// keep the plugin prefix (`/fuse-commit-pro:commit` is valid Kimi syntax).
 	{ pattern: /(?<!\/)\bfuse-[a-z0-9-]+:(?=[a-z0-9][a-z0-9-]*)/g, replacement: "" },
+	// Claude Teams → Kimi swarm semantics.
+	{ pattern: /\bTeamCreate\b/g, replacement: "AgentSwarm" },
 ];
 
 /**

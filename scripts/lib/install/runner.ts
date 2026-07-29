@@ -9,12 +9,13 @@ import { backupExisting } from "./backup";
 import { installRuntimeDeps } from "./runtime-deps";
 import { installAgentsMd, mergeKimiRules } from "./agents-md";
 import { mergeMcp } from "./mcp-merge";
+import { selectMcpServers } from "./mcp-select";
 import { promptMcpKeys } from "./mcp-key-prompt";
 import { configureHarness } from "./harness-config";
 import { installHooks } from "./hooks-config";
 import { installAgents } from "./agents-install";
 import { writeMarketplace } from "./marketplace";
-import { warn } from "./ui";
+import { step, warn } from "./ui";
 
 /** Run one step, converting a throw into a FAIL result. */
 async function runStep(
@@ -22,7 +23,7 @@ async function runStep(
 	name: string,
 	fn: () => Promise<InstallStepResult>,
 ): Promise<void> {
-	console.log(`▸ ${name}`);
+	step(name);
 	try {
 		results.push(await fn());
 	} catch (e) {
@@ -40,12 +41,14 @@ export async function runInstaller(ctx: InstallContext): Promise<RunOutcome> {
 	// After installAgentsMd, never before: the copy can overwrite AGENTS.md
 	// wholesale, which would wipe a rules block merged earlier.
 	await runStep(results, "mergeKimiRules", () => mergeKimiRules(ctx));
+	// Selection BEFORE keys: prompts only cover the servers actually enabled.
+	await runStep(results, "selectMcpServers", () => selectMcpServers(ctx));
 	await runStep(results, "promptMcpKeys", () => promptMcpKeys(ctx));
 	await runStep(results, "mergeMcp", () => mergeMcp(ctx));
 	await runStep(results, "configureHarness", () => configureHarness(ctx));
 	await runStep(results, "installHooks", () => installHooks(ctx));
 	await runStep(results, "installAgents", () => installAgents(ctx));
-	console.log("▸ writeMarketplace");
+	step("writeMarketplace");
 	let marketplace: MarketplaceFile = { version: "2", plugins: [] };
 	let marketplacePath = "";
 	try {

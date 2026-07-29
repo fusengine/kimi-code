@@ -8,6 +8,23 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versio
 
 
 
+
+## [1.0.7] - 2026-07-29
+
+### Added
+- Clack UI for the installer (TTY): intro/notes/outro, per-key text prompts, multiselect MCP server selection; plain output preserved on non-TTY.
+- `selectMcpServers` step: server selection first, key prompts filtered to the selection (Claude installer parity); `FUSENGINE_MCP_SERVERS` env allowlist for non-interactive runs.
+- Agents materialize as SYMLINKS to the managed plugin copy (live-updated by /plugins install); copies from plain clones; dangling entries cleaned.
+- Native statusline command for Kimi >= 0.30.0 (`[status_line]` in tui.toml) + terminal daemon kept for older CLIs.
+
+### Changed
+- Hook shim: confirmation-class denies ([CONFIRM]) are suppressed so Kimi's permission system prompts interactively; hard blocks ([BLOCKED], APEX, SOLID, COMMIT) are forwarded unchanged.
+- Scrub maps TeamCreate -> AgentSwarm; solid-generic skill updated accordingly.
+
+### Fixed
+- bun-types pre-commit failure (repo now installs @clack/prompts).
+- hooks-config.ts split under the 90-line rule (hooks-block.ts extracted).
+
 ## [1.0.6] - 2026-07-29
 
 ### Added

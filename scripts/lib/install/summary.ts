@@ -1,33 +1,45 @@
 /**
  * summary.ts — Final report: per-step OK/SKIP/FAIL table, then post-install
  * guidance adapted to where the installer ran from (managed copy vs clone).
+ * TTY: clack p.note panels. Non-TTY: the original plain output, byte-for-byte.
  */
 import { join } from "node:path";
 import type { InstallStepResult } from "../../../src/interfaces/index.ts";
+import { initUi } from "./ui";
 
 const STATUS_LABEL = { ok: "OK", skip: "SKIP", fail: "FAIL" } as const;
 
-/** Print the per-step outcome table; returns true when every step passed. */
-export function printSummary(results: InstallStepResult[], dryRun: boolean): boolean {
-	console.log(`\n=== Install summary${dryRun ? " (DRY-RUN — nothing outside the repo was written)" : ""} ===`);
-	for (const r of results) {
+/** One summary row per step, in run order. */
+function summaryRows(results: InstallStepResult[]): string[] {
+	return results.map((r) => {
 		const notes = r.notes.length > 0 ? ` (${r.notes.join("; ")})` : "";
-		console.log(`${r.name.padEnd(22)} ${STATUS_LABEL[r.status]}${notes}`);
-	}
+		return `${r.name.padEnd(22)} ${STATUS_LABEL[r.status]}${notes}`;
+	});
+}
+
+/** Print the per-step outcome table; returns true when every step passed. */
+export async function printSummary(results: InstallStepResult[], dryRun: boolean): Promise<boolean> {
+	const title = `Install summary${dryRun ? " (DRY-RUN — nothing outside the repo was written)" : ""}`;
+	const p = await initUi();
+	if (p) p.note(summaryRows(results).join("\n"), title);
+	else console.log(`\n=== ${title} ===\n${summaryRows(results).join("\n")}`);
 	return results.every((r) => r.status !== "fail");
 }
 
 /** Print the post-install guidance, adapted to where the installer ran from. */
-export function printNextSteps(repoRoot: string, kimiHome: string): void {
-	console.log("\n=== Next steps (in the Kimi Code TUI) ===");
+export async function printNextSteps(repoRoot: string, kimiHome: string): Promise<void> {
+	const lines: string[] = [];
 	const managed = join(kimiHome, "plugins", "managed");
 	if (repoRoot.startsWith(managed)) {
-		console.log("The fusengine plugin is already installed (you ran setup from its managed copy).");
-		console.log("Just run: /reload   (or start a new session)");
+		lines.push("The fusengine plugin is already installed (you ran setup from its managed copy).");
+		lines.push("Just run: /reload   (or start a new session)");
 	} else {
-		console.log("Install the plugin, then reload:");
-		console.log(`  /plugins install ${repoRoot}`);
-		console.log("  (or from anywhere: /plugins install https://github.com/fusengine/kimi-code)");
-		console.log("Then run /reload (or start a new session) to apply.");
+		lines.push("Install the plugin, then reload:");
+		lines.push(`  /plugins install ${repoRoot}`);
+		lines.push("  (or from anywhere: /plugins install https://github.com/fusengine/kimi-code)");
+		lines.push("Then run /reload (or start a new session) to apply.");
 	}
+	const p = await initUi();
+	if (p) p.note(lines.join("\n"), "Next steps (in the Kimi Code TUI)");
+	else console.log(`\n=== Next steps (in the Kimi Code TUI) ===\n${lines.join("\n")}`);
 }

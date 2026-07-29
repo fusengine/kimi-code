@@ -14,7 +14,7 @@ Before writing any new code it requires a DRY check across `modules/cores/lib`, 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, dispatch 3 subagents in ONE message (Agent tool, or AgentSwarm for independent batches):
 
 1. **explore-codebase** - Analyze project structure and existing patterns
 2. **research-expert** - Verify latest TypeScript/Bun docs via Context7
