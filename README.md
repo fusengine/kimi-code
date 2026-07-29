@@ -41,36 +41,9 @@ kimi-code/
 
 Then `/reload` (or start a new session). One plugin, one namespace: 196 skills, 34 commands (`/fusengine:<cmd>`), 68 harness-backed hook rules. API keys for MCP servers: `cp ~/.kimi-code/plugins/managed/fusengine/.env.example ~/.kimi-code/.env`, fill in, re-run `setup.sh`.
 
-## Setup (hooks + API keys + MCP servers)
+## How it works
 
-```bash
-git clone https://github.com/fusengine/kimi-code.git
-cd kimi-code
-./setup.sh        # bootstraps Bun if needed, then installs → ~/.kimi-code
-```
-
-Windows: `.\setup.ps1`. Manual alternative: `bun run scripts/install-kimi.ts` (dry-run) then `--yes` to apply.
-
-The installer: backs up existing config, stages `@fusengine/harness` **from npm**, copies `AGENTS.md`, merges the rules corpus between idempotent fences, merges MCP servers into `~/.kimi-code/mcp.json`, and materializes the 37 agents into `~/.kimi-code/agents/`.
-
-**API keys (MCP servers):**
-
-```bash
-cp .env.example ~/.kimi-code/.env        # fill in your keys (Context7, Exa, …)
-bun run scripts/install-kimi.ts --yes    # re-run: the MCP merge is idempotent
-```
-
-Kimi Code does NOT auto-load `.env` — the installer reads it when resolving `${VAR}` placeholders into `mcp.json`, and the harness reads it at runtime.
-
-**Plugin activation (interactive, once):**
-
-```
-/plugins marketplace <absolute path to kimi-code/marketplace.json>
-/plugins install <plugin id>     # the installer prints all 24 ids
-/reload                          # or start a new session
-```
-
-**How it works:**
+The installer (run by `setup.sh`): backs up existing config, stages `@fusengine/harness` **from npm**, copies `AGENTS.md`, merges the rules corpus between idempotent fences, merges MCP servers into `~/.kimi-code/mcp.json`, and materializes the 37 agents into `~/.kimi-code/agents/`. Kimi Code does NOT auto-load `.env` — the installer reads it when resolving `${VAR}` placeholders into `mcp.json`, and the harness reads it at runtime.
 
 ```
 User prompt → Hook detects project type → Expert agent activated
@@ -81,6 +54,7 @@ User prompt → Hook detects project type → Expert agent activated
 ```
 
 Every step is intercepted — same harness, same enforcement as the Claude Code version.
+
 
 ## Requirements
 
