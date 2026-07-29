@@ -4,15 +4,18 @@
  *
  * Steps: backup → installRuntimeDeps (harness) → installAgentsMd →
  * mergeKimiRules (fences) → selectMcpServers → promptMcpKeys → mergeMcp →
- * configureHarness → installHooks → installAgents → writeMarketplace →
- * summary → assertInstalledState (--yes only).
+ * configureHarness → configurePermissionMode (YOLO) →
+ * configureExperimentalFlag (v2 engine, shell rc) → installHooks →
+ * installAgents → writeMarketplace → summary → assertInstalledState (--yes only).
  *
  * Flags: --yes (write; default is --dry-run) · --skip-env (ignore
  * $KIMI_HOME/.env for ${VAR} resolution) · --skip-mcp · --verbose.
  * Env overrides: KIMI_CODE_HOME (target, default ~/.kimi-code),
  * KIMI_PLUGINS_ROOT (plugins dir; tests point it at a synthetic repo),
  * FUSENGINE_HARNESS_SRC (harness source dir override),
- * FUSENGINE_MCP_SERVERS (non-TTY MCP allowlist, comma-separated).
+ * FUSENGINE_MCP_SERVERS (non-TTY MCP allowlist, comma-separated),
+ * FUSENGINE_PERMISSION_MODE (non-TTY permission mode: manual|yolo|auto),
+ * FUSENGINE_EXPERIMENTAL_FLAG=1 (non-TTY opt-in: v2 engine export → shell rc).
  * Dry-run writes nothing outside the repo except marketplace.json (in-repo).
  * TTY runs use @clack/prompts; non-TTY keeps the plain console output.
  */

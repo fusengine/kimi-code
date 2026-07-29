@@ -12,6 +12,8 @@ import { mergeMcp } from "./mcp-merge";
 import { selectMcpServers } from "./mcp-select";
 import { promptMcpKeys } from "./mcp-key-prompt";
 import { configureHarness } from "./harness-config";
+import { configurePermissionMode } from "./permission-mode";
+import { configureExperimentalFlag } from "./experimental-flag";
 import { installHooks } from "./hooks-config";
 import { installAgents } from "./agents-install";
 import { writeMarketplace } from "./marketplace";
@@ -46,6 +48,8 @@ export async function runInstaller(ctx: InstallContext): Promise<RunOutcome> {
 	await runStep(results, "promptMcpKeys", () => promptMcpKeys(ctx));
 	await runStep(results, "mergeMcp", () => mergeMcp(ctx));
 	await runStep(results, "configureHarness", () => configureHarness(ctx));
+	await runStep(results, "configurePermissionMode", () => configurePermissionMode(ctx));
+	await runStep(results, "configureExperimentalFlag", () => configureExperimentalFlag(ctx));
 	await runStep(results, "installHooks", () => installHooks(ctx));
 	await runStep(results, "installAgents", () => installAgents(ctx));
 	step("writeMarketplace");
