@@ -9,6 +9,7 @@ import { backupExisting } from "./backup";
 import { installRuntimeDeps } from "./runtime-deps";
 import { installAgentsMd, mergeKimiRules } from "./agents-md";
 import { mergeMcp } from "./mcp-merge";
+import { promptMcpKeys } from "./mcp-key-prompt";
 import { installAgents } from "./agents-install";
 import { writeMarketplace } from "./marketplace";
 import { warn } from "./ui";
@@ -37,6 +38,7 @@ export async function runInstaller(ctx: InstallContext): Promise<RunOutcome> {
 	// After installAgentsMd, never before: the copy can overwrite AGENTS.md
 	// wholesale, which would wipe a rules block merged earlier.
 	await runStep(results, "mergeKimiRules", () => mergeKimiRules(ctx));
+	await runStep(results, "promptMcpKeys", () => promptMcpKeys(ctx));
 	await runStep(results, "mergeMcp", () => mergeMcp(ctx));
 	await runStep(results, "installAgents", () => installAgents(ctx));
 	console.log("▸ writeMarketplace");

@@ -59,11 +59,12 @@ export function makeRepo(dir: string): void {
 }
 
 /** Run the installer; FAKE_TOKEN is scrubbed unless passed in extraEnv. */
-export function runInstaller(home: string, repo: string, harness: string, args: string[], extraEnv: Record<string, string> = {}) {
+export function runInstaller(home: string, repo: string, harness: string, args: string[], extraEnv: Record<string, string> = {}, input = "") {
 	const env: Record<string, string> = { ...(process.env as Record<string, string>) };
 	delete env.FAKE_TOKEN;
 	const proc = spawnSync("bun", [INSTALLER, ...args], {
 		env: { ...env, KIMI_CODE_HOME: home, KIMI_PLUGINS_ROOT: join(repo, "plugins"), FUSENGINE_HARNESS_SRC: harness, ...extraEnv },
+		input,
 		encoding: "utf8",
 	});
 	return { code: proc.status, out: `${proc.stdout}\n${proc.stderr}` };

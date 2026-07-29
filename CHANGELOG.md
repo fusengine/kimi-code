@@ -5,6 +5,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versio
 
 
 
+
+## [1.0.4] - 2026-07-29
+
+### Added
+- Interactive MCP API-key prompting at install time (parity with the Claude installer): missing keys are asked, saved to `~/.kimi-code/.env`, and used for the same run's MCP merge. Piped stdin is supported (non-TTY safe).
+
+### Fixed
+- Installer summary no longer prints the obsolete 24-command granular flow; next steps adapt to where setup ran from (managed plugin copy vs repo clone).
+- Silent exit when prompting with piped stdin (readline EOF mid-await).
+
 ## [1.0.3] - 2026-07-29
 
 ### Changed
