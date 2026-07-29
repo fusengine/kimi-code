@@ -28,17 +28,18 @@ kimi-code/
     └── BENCHMARK.md          # Protocol + measured results
 ```
 
-## Install remotely (no clone)
-
-The repo root carries `.kimi-plugin/plugin.json` — the whole suite is ONE plugin under the `fusengine` namespace. In the Kimi TUI:
+## Install
 
 ```
+# Install the plugin
 /plugins install https://github.com/fusengine/kimi-code
+
+# Setup (hooks + API keys + MCP servers)
+~/.kimi-code/plugins/managed/fusengine/setup.sh        # macOS / Linux
+~\.kimi-code\plugins\managed\fusengine\setup.ps1       # Windows
 ```
 
-Then `/reload` (or start a new session). You get all 196 skills, 34 commands (`/fusengine:<cmd>`) and 68 harness-backed hook rules in one shot. The harness binary, `AGENTS.md`, rules merge and MCP servers still require the local installer (Setup below) — the plugin carries skills/commands/hooks only.
-
-Granular alternative: `/plugins marketplace <local path>/kimi-code/marketplace.json` installs the 24 plugins individually (namespaces `fuse-*:<cmd>`). Pick ONE mode — installing both duplicates skills and hooks.
+Then `/reload` (or start a new session). One plugin, one namespace: 196 skills, 34 commands (`/fusengine:<cmd>`), 68 harness-backed hook rules. API keys for MCP servers: `cp ~/.kimi-code/plugins/managed/fusengine/.env.example ~/.kimi-code/.env`, fill in, re-run `setup.sh`.
 
 ## Setup (hooks + API keys + MCP servers)
 
