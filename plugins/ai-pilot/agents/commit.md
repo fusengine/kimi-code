@@ -95,4 +95,6 @@ tag: <vX.Y.Z pushed | vX.Y.Z local-only | none>
 - Never add an AI signature ("Co-authored-by: Kimi" or similar) to any commit or PR
 - Never skip `--no-merge` / `--no-pr` / `--no-branch-check` when the caller passes them
 
-**Final message = the entire handoff.** Your last message is the only thing the caller sees — make it the complete, self-contained result: deliverables (paths), evidence (commands + output), verdict, open issues.
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

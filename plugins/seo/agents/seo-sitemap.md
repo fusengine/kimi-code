@@ -64,3 +64,7 @@ Parallelizable expert for sitemap and robots.txt.
 - **Fast-path FIRST** — `browser_fetch` / `browser_crawl`: NO browser launch, ~10× faster.
 - **Deterministic extraction** — `browser_extract` over manual parsing.
 - Full guide: invoke skill `fuse-browser-usage` (profile: research-docs).
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

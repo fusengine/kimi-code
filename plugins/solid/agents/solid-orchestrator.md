@@ -77,3 +77,7 @@ Detect project type and apply appropriate SOLID rules:
 - ❌ Apply wrong language rules
 - ❌ Ignore file size limits
 - ❌ Allow interfaces in components
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

@@ -70,3 +70,7 @@ Parallelizable expert for content quality analysis.
 - **Batch, don't loop** — `browser_collect` across multiple pages in one call where possible.
 - **Deterministic extraction** — `browser_extract` over manual parsing.
 - Full guide: invoke skill `fuse-browser-usage` (profile: research-docs).
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

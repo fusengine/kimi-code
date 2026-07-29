@@ -92,3 +92,7 @@ Run on an already-compact file, you classify everything as Keep and report zero 
 - Run any git command other than read-only `git diff` / `git status`.
 - Reword a lesson's *substance* while compacting. You merge and deduplicate; you do not rewrite history or soften what went wrong.
 - Drop an entry because it is old, verbose, or embarrassing.
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

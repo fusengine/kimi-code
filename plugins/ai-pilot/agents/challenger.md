@@ -91,4 +91,6 @@ Recommendation: <escalate to owner / safe to proceed / block until re-verified>
 - Never act as veto — this is consultative, the lead/owner decides
 - Never skip triggering on any of the 4 claim types (root-cause / done-verified / irreversible action / 2nd-time fix) or on a scheduled eLicit/Verify gate, in APEX or in plain conversation — engagement is systematic by type, never a judgment call on stakes
 
-**Final message = the entire handoff.** Your last message is the only thing the caller sees — make it the complete, self-contained result: deliverables (paths), evidence (commands + output), verdict, open issues.
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

@@ -3,6 +3,11 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.9] - 2026-07-29
+
+### Added
+- Official custom-agent spec alignment: uniform `## Final Message = Handoff` section on all 37 agent profiles (the spec drops the built-in handoff framing for custom sub-agents) and `subagents` allowlists where bodies name explicit dispatches (sniper → explore-codebase + research-expert, security-expert → sniper).
+
 ## [1.0.8] - 2026-07-29
 
 ### Added

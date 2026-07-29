@@ -72,3 +72,7 @@ Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestr
 - **Fast-path FIRST** — `browser_fetch` / `browser_crawl`: NO browser launch, ~10× faster.
 - **Batch, don't loop** — `browser_crawl` across multiple URLs in one call rather than looping fetches.
 - Full guide: invoke skill `fuse-browser-usage` (profile: research-docs).
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

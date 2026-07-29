@@ -62,3 +62,7 @@ When another agent or user asks "where is X?":
 - NEVER run install commands
 - NEVER create files outside .cartographer/ directories
 - NEVER assume — always read actual files
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

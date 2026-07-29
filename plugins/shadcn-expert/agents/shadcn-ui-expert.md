@@ -107,3 +107,7 @@ Report back to the lead with:
 - **verification**: result of the final sniper validation (Quick Start step 4)
 - **remaining_issues**: any known gaps or follow-ups, or `none`
 - **sources_verified**: Context7/Exa/shadcn MCP references consulted (Core Rule)
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

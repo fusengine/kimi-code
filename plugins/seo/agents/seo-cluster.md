@@ -59,3 +59,7 @@ Parallelizable expert for semantic keyword clustering.
 - **Batch, don't loop** — `serp_batch` (N queries) in one call.
 - **Deterministic extraction** — `browser_extract` over manual snapshot parsing.
 - Full guide: invoke skill `fuse-browser-usage` (profile: research-docs).
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

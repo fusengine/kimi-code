@@ -97,4 +97,6 @@ If the hook-injected context contains "EXPLORATION CACHE INSTRUCTIONS":
 - No assumptions without code evidence
 - No skipping config files, dependencies, or entry points
 
-**Final message = the entire handoff.** Your last message is the only thing the caller sees — make it the complete, self-contained result: deliverables (paths), evidence (commands + output), verdict, open issues.
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

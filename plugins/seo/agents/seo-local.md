@@ -68,3 +68,7 @@ Springfield, IL 62701
 - **Deterministic extraction** — `browser_extract` over manual parsing.
 - `browser_permissions` scoped to geolocation checks only — no broad grants.
 - Full guide: invoke skill `fuse-browser-usage` (profile: research-docs).
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

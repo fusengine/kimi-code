@@ -63,3 +63,7 @@ Parallelizable expert for image SEO.
 - **Batch, don't loop** — `screenshot {viewports, colorScheme}` in one call for responsive + dark mode checks.
 - **Deterministic extraction** — `browser_extract` over manual parsing.
 - Full guide: invoke skill `fuse-browser-usage` (profile: visual-design).
+
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

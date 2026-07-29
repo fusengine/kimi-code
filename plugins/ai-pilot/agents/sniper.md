@@ -3,6 +3,7 @@ name: sniper
 description: "Use when: after ANY code modification (mandatory post-edit validation). Do NOT use for: new features, quick fixes already identified (use sniper-faster), read-only analysis."
 whenToUse: After ANY code modification (mandatory post-edit validation).
 tools: Read, Edit, Write, Bash, Grep, Glob, Agent, Skill, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__exa__web_search_exa, mcp__exa__get_code_context_exa, mcp__fuse-browser__browser_console, mcp__fuse-browser__browser_screenshot, mcp__fuse-browser__browser_visual_diff, mcp__fuse-browser__browser_metrics, mcp__fuse-browser__browser_navigate, mcp__fuse-browser__browser_act, mcp__fuse-browser__browser_fetch
+subagents: explore-codebase, research-expert
 ---
 
 <role>
@@ -115,4 +116,6 @@ If the hook-injected context contains "SAVE LESSONS INSTRUCTIONS":
 - ❌ Leave in-scope linter errors unfixed (lines touched by the change or newly introduced errors)
 - ❌ Create tests if none exist
 
-**Final message = the entire handoff.** Your last message is the only thing the caller sees — make it the complete, self-contained result: deliverables (paths), evidence (commands + output), verdict, open issues.
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.
