@@ -1,0 +1,35 @@
+{
+  "name": "kimi-rules",
+  "version": "1.39.18",
+  "description": "Fusengine core rules for Kimi Code (K3) — critical rules, APEX workflow, agent swarms, SOLID/DRY, tooling, sub-agent conduct. Injected at SessionStart / SubagentStart / UserPromptSubmit.",
+  "author": {
+    "name": "Fusengine",
+    "url": "https://github.com/fusengine"
+  },
+  "homepage": "https://github.com/fusengine/kimi-code",
+  "repository": "https://github.com/fusengine/kimi-code",
+  "license": "MIT",
+  "keywords": ["rules", "apex", "workflow", "solid", "fusengine"],
+  "interface": {
+    "displayName": "Kimi Rules",
+    "shortDescription": "Fusengine core rules corpus (00-08) for Kimi Code",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "SessionStart",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" rules",
+      "timeout": 10
+    },
+    {
+      "event": "SubagentStart",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" rules",
+      "timeout": 10
+    },
+    {
+      "event": "UserPromptSubmit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" rules",
+      "timeout": 10
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+=== CLI ===
+Rapport d'exploration reçu (lancé par le sniper) : il conclut que la prémisse de la tâche est fausse parce que `bun test` est vert. Faux positif — cet agent a lu le code **après** mes correctifs, sans accès à l'état initial. La suite était bien rouge au départ (2 échecs : t1 et t3), comme montré au premier run.
+
+Un point utile ressort quand même de son analyse, non corrigé : `get()` est typé `unknown | null` (`src/cache.ts:19`), union redondante — `unknown` absorbe déjà `null`. Cosmétique, hors périmètre du debug.
+
+Rien d'autre en attente. État final : `bun test` 8 pass / 0 fail, sniper 0 erreur, 3 fichiers modifiés sous `src/`.
+
+
+
+=== TESTS ===
+bun test v1.3.14 (0d9b296a)
+
+
+tests/cache.test.ts:
+(pass) keys > keys are case- AND whitespace-insensitive (t1) [0.14ms]
+(pass) keys > case-insensitive delete works [0.03ms]
+(pass) ttl > value is returned within its TTL (t2) [0.02ms]
+(pass) ttl > entry expires after its TTL (t3) [1202.41ms]
+(pass) ttl > entry without TTL never expires [52.14ms]
+(pass) values > object values round-trip with identical shape [0.08ms]
+(pass) values > missing key returns null [0.03ms]
+(pass) values > overwrite replaces the value and tracks size [0.02ms]
+
+ 8 pass
+ 0 fail
+ 13 expect() calls
+Ran 8 tests across 1 file. [1266.00ms]

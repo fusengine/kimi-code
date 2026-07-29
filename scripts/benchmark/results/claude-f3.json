@@ -1,0 +1,28 @@
+{
+  "cli": "claude",
+  "fixture": "3-debug",
+  "startedAt": "2026-07-27T19:45:18.939Z",
+  "durationMs": 236121,
+  "exitCode": 0,
+  "timedOut": false,
+  "testsPass": 8,
+  "testsFail": 0,
+  "success": true,
+  "testsModified": false,
+  "filesChanged": [
+    "src/cache.ts",
+    "src/keys.ts",
+    "src/serde.ts"
+  ],
+  "newFiles": [
+    ".cartographer/project/index.md",
+    ".cartographer/project/src/index.md",
+    ".cartographer/project/src/interfaces/index.md",
+    ".cartographer/project/tests/index.md",
+    ".harness/cache/53baba7c00000057.md",
+    ".harness/cache/9b448df000000077.md",
+    ".harness/cache/a0eeb7f60000005d.md",
+    ".harness/cache/index.json"
+  ],
+  "violations": []
+}

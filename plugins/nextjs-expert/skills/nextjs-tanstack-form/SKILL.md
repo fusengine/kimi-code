@@ -1,0 +1,145 @@
+---
+name: nextjs-tanstack-form
+description: Use when building forms in Next.js 16 with TanStack Form v1 — Server Actions, Zod validation, multi-step wizards, field arrays.
+---
+
+
+<objective>
+Implements TanStack Form v1 in Next.js 16 with native Server Actions integration: shared `formOptions` (single source of truth for client and server), Zod schemas for both instant client feedback and `onServerValidate` database checks, `useActionState` for the React 19 form-submission hook, and `mergeForm` to combine server-returned errors with client state.
+
+Covers the Field API (state + handlers), validation timing (onChange/onBlur/onSubmit/onServer), dynamic field arrays and multi-step wizards, debounced async validation, and shadcn/ui field composition. Also documents SOLID file organization for forms (`form-options.ts`, `FormComponent.tsx`, `form.action.ts`) and a comparison against React Hook Form. This is the Next.js Server Actions variant of TanStack Form — for a plain React app without Next.js see the react-forms skill.
+</objective>
+
+# TanStack Form for Next.js 16
+
+Type-safe, performant forms with Server Actions and signal-based reactivity.
+
+## Agent Workflow (MANDATORY)
+
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+
+1. **explore-codebase** - Analyze existing forms and validation patterns
+2. **research-expert** - Verify latest TanStack Form docs via Context7/Exa
+3. **mcp__context7__query-docs** - Check form options and field API
+
+After implementation, run **sniper** for validation.
+
+---
+
+## Overview
+
+### When to Use
+
+- Building forms with complex validation requirements
+- Need Server Actions integration for form submission
+- Implementing multi-step wizards or dynamic field arrays
+- Require real-time async validation (username availability)
+- Want type-safe forms with full TypeScript inference
+
+### Why TanStack Form
+
+| Feature | Benefit |
+|---------|---------|
+| Signal-based state | Minimal re-renders, optimal performance |
+| Full TypeScript | DeepKeys, DeepValue inference |
+| Server Actions native | Built-in Next.js 16 integration |
+| Zod adapter | Schema-first validation |
+| Framework agnostic | Same API for React, Vue, Solid |
+| Headless | Works with any UI library (shadcn/ui) |
+
+---
+
+## Critical Rules
+
+1. **formOptions shared** - Define once, use in client and server
+2. **Server validation** - DB checks in `onServerValidate`, not client
+3. **Zod schemas** - Client-side instant feedback
+4. **useActionState** - React 19 hook for Server Actions
+5. **mergeForm** - Combine server errors with client state
+6. **SOLID paths** - Forms in `modules/[feature]/src/components/forms/`
+
+---
+
+## SOLID Architecture
+
+### Module Structure
+
+Forms organized by feature module:
+
+- `modules/auth/src/components/forms/` - Auth forms (login, signup)
+- `modules/auth/src/interfaces/` - Form types and schemas
+- `modules/auth/src/actions/` - Server Actions for form submission
+- `modules/cores/lib/forms/` - Shared form utilities
+
+### File Organization
+
+| File | Purpose | Max Lines |
+|------|---------|-----------|
+| `form-options.ts` | Shared formOptions + Zod schema | 50 |
+| `FormComponent.tsx` | Client form UI with fields | 80 |
+| `form.action.ts` | Server Action with validation | 30 |
+| `form.interface.ts` | Types for form values | 30 |
+
+---
+
+## Key Concepts
+
+### Form Options Pattern
+
+Define form configuration once, share between client and server. Ensures type safety and consistency.
+
+### Field API
+
+Each field has state (value, errors, touched, validating) and handlers (handleChange, handleBlur).
+
+### Validation Levels
+
+- **onChange** - Real-time as user types
+- **onBlur** - When field loses focus
+- **onSubmit** - Before form submission
+- **onServer** - Server-side in action
+
+### Error Management
+
+Errors exist at field-level and form-level. Use `field.state.meta.errors` for field errors, `form.state.errorMap` for form errors.
+
+---
+
+## Reference Guide
+
+| Need | Reference |
+|------|-----------|
+| Initial setup | [installation.md](references/installation.md) |
+| Basic patterns | [basic-usage.md](references/basic-usage.md), [field-api.md](references/field-api.md) |
+| Validation | [validation-zod.md](references/validation-zod.md), [async-validation.md](references/async-validation.md) |
+| Server Actions | [server-actions.md](references/server-actions.md) |
+| Dynamic forms | [array-fields.md](references/array-fields.md), [multi-step-form.md](references/multi-step-form.md) |
+| UI integration | [shadcn-integration.md](references/shadcn-integration.md) |
+| TypeScript | [typescript.md](references/typescript.md) |
+| Migration | [migration-rhf.md](references/migration-rhf.md) |
+| Client-side form component | [client-form.md](references/client-form.md) — load when wiring `useActionState` + `mergeForm` in a `'use client'` form component |
+| Server-side validation | [server-validation.md](references/server-validation.md) — load when writing `createServerValidate` + `ServerValidateError` in a Server Action |
+
+---
+
+## Best Practices
+
+1. **Define schemas first** - Zod schemas drive both validation and types
+2. **Shared formOptions** - Single source of truth for client/server
+3. **Debounce async validation** - Use `asyncDebounceMs` for API calls
+4. **form.Subscribe** - Selective re-renders for submit state
+5. **Field composition** - Reusable field components with shadcn/ui
+6. **Server errors merge** - Use `mergeForm` to show server validation errors
+
+---
+
+## Comparison vs React Hook Form
+
+| Aspect | TanStack Form | React Hook Form |
+|--------|---------------|-----------------|
+| Type Safety | 100% (DeepKeys) | Manual typing |
+| Performance | Signals (minimal) | Refs (good) |
+| Server Actions | Native support | Manual integration |
+| Bundle Size | ~12KB | ~9KB |
+| Learning Curve | Medium | Low |
+| Use Case | Complex apps | Standard forms |

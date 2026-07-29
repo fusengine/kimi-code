@@ -1,0 +1,36 @@
+=== CLI ===
+**Terminé.** `src/pool.ts` — 8/8 tests passent, sniper verdict CLEAN (aucune correction nécessaire).
+
+Implémentation :
+- **Concurrence** — `limit = min(concurrency, tasks.length)` workers lancés ; chaque worker prend l'index suivant à la complétion (`src/pool.ts:83`), donc jamais plus de `concurrency` en vol.
+- **Ordre** — écriture indexée `results[index] = value`, indépendante de l'ordre de complétion.
+- **Retries** — `attempt <= retries` → `retries + 1` tentatives ; la dernière erreur est propagée telle quelle (le pool rejette avec l'erreur d'origine).
+- **Timeout** — `Promise.race` contre un timer, `clearTimeout` dans le `finally` (pas de timer résiduel qui polluerait les runs `bun test`). Message : `Task timeout after Xms`. Un timeout compte comme un échec normal → retryable.
+- **Early-reject** — flag `settled` : le premier échec définitif rejette, les tâches encore en vol ne peuvent plus résoudre ni provoquer d'`unhandledRejection`.
+
+Vérifs additionnelles du sniper : `tsc --strict --noUncheckedIndexedAccess --useUnknownInCatchVariables` → 0 erreur ; jscpd → 0 % duplication.
+
+Deux points à signaler :
+- Contrainte mono-fichier respectée — donc `PoolOptions` reste dans le fichier d'implémentation et les helpers ne sont pas splittés, ce qui s'écarte des règles SOLID du projet (interfaces séparées). Écart assumé, imposé par la consigne.
+- Je n'ai pas écrit `MEMORY/LESSON.md` malgré la demande du hook Stop, pour la même raison.
+
+
+
+=== TESTS ===
+bun test v1.3.14 (0d9b296a)
+
+
+tests/pool.test.ts:
+(pass) pool: concurrency cap > never exceeds the concurrency limit [86.73ms]
+(pass) pool: concurrency cap > results preserve input order even when tasks finish out of order [31.18ms]
+(pass) pool: retries > retries a failing task up to `retries` times, then resolves [0.19ms]
+(pass) pool: retries > rejects when a task exhausts its retries [0.09ms]
+(pass) pool: timeout > rejects a task that exceeds its timeout [30.99ms]
+(pass) pool: timeout > does not affect tasks within their timeout [11.33ms]
+(pass) pool: edge cases > empty input resolves to an empty array [0.04ms]
+(pass) pool: edge cases > concurrency larger than task count works [0.05ms]
+
+ 8 pass
+ 0 fail
+ 10 expect() calls
+Ran 8 tests across 1 file. [173.00ms]

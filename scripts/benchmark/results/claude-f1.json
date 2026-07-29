@@ -1,0 +1,23 @@
+{
+  "cli": "claude",
+  "fixture": "1-codegen",
+  "startedAt": "2026-07-27T19:35:32.176Z",
+  "durationMs": 228739,
+  "exitCode": 0,
+  "timedOut": false,
+  "testsPass": 8,
+  "testsFail": 0,
+  "success": true,
+  "testsModified": false,
+  "filesChanged": [],
+  "newFiles": [
+    ".cartographer/project/index.md",
+    ".cartographer/project/tests/index.md",
+    ".harness/cache/3171b0360000008e.md",
+    ".harness/cache/8511cc550000007c.md",
+    ".harness/cache/b8a96bd70000009a.md",
+    ".harness/cache/index.json",
+    "src/pool.ts"
+  ],
+  "violations": []
+}

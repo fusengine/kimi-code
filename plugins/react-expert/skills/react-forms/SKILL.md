@@ -1,0 +1,165 @@
+---
+name: react-forms
+description: Use when building type-safe forms in React with TanStack Form v1 — Zod/Yup/Valibot validation, async validation, field arrays.
+---
+
+
+<objective>
+Implements TanStack Form v1 in React: core hooks (`useForm()`, `useField()`, `form.Field`, `form.Subscribe`), validation adapters (Zod ~12KB, Yup ~40KB, Valibot ~6KB, plus Standard Schema support for ArkType/Effect Schema), debounced async validation, and React 19 Server Actions integration via `useActionState`.
+
+Also covers array/nested fields with dot notation, listeners for side effects (onMount/onChange/onBlur with debouncing), linked/cross-field validation, reactivity via `useStore` selectors, the Reset API, SSR/hydration (TanStack Start), devtools, and React Native patterns. This is the React skill for TanStack Form — for the Next.js Server Actions-specific variant see nextjs-tanstack-form, and for SOLID file-organization rules see solid-react.
+</objective>
+
+# TanStack Form v1 Core Features
+
+## Agent Workflow (MANDATORY)
+
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+
+1. **explore-codebase** - Analyze existing form components and validation patterns
+2. **research-expert** - Verify latest TanStack Form v1 docs via Context7/Exa
+3. **mcp__context7__query-docs** - Check Zod validation and React 19 Server Actions patterns
+
+After implementation, run **sniper** for validation.
+
+---
+
+## MANDATORY: SOLID Principles
+
+**ALWAYS apply SOLID principles from `solid-react` skill.**
+
+→ See `../solid-react/SKILL.md` for complete rules
+
+**Key Rules:**
+- Files < 100 lines (split at 90)
+- Interfaces in `modules/[feature]/src/interfaces/`
+- JSDoc mandatory on all exports
+- No business logic in components
+
+---
+
+## Core Hooks
+
+| Hook | Purpose | Guide |
+|------|---------|-------|
+| `useForm()` | Initialize form with validation | `references/tanstack-form-basics.md` |
+| `useField()` | Subscribe to individual field | `references/tanstack-form-basics.md` |
+| `form.Field` | Render prop component for fields | `references/tanstack-form-basics.md` |
+| `form.Subscribe` | Watch form state changes | `references/tanstack-form-basics.md` |
+
+→ See `references/tanstack-form-basics.md` for detailed usage
+
+---
+
+## Validation Adapters
+
+| Library | Adapter | Bundle Size |
+|---------|---------|-------------|
+| **Zod** | `zodValidator()` | ~12KB |
+| **Yup** | `yupValidator()` | ~40KB |
+| **Valibot** | `valibotValidator()` | ~6KB |
+
+→ See `references/zod-validation.md` for Zod patterns
+→ See `references/yup-valibot.md` for alternatives
+
+---
+
+## Key Features
+
+### Async Validation
+Server-side checks with debouncing and loading states.
+→ See `references/async-validation.md`
+
+### Server Actions (React 19)
+Integration with useActionState and progressive enhancement.
+→ See `references/server-actions.md`
+
+### Arrays & Nested Fields
+Dynamic field arrays and dot notation for nested objects.
+→ See `references/arrays-nested.md`
+
+### TypeScript Integration
+Full type inference from Zod schemas and defaultValues.
+→ See `references/typescript.md`
+
+### shadcn/ui Integration
+Field wrapper components with shadcn styling.
+→ See `references/shadcn-integration.md`
+
+### Listeners (Side Effects)
+onMount, onChange, onBlur, onSubmit with debouncing.
+→ See `references/listeners.md`
+
+### Linked Fields
+Cross-field validation and dependent dropdowns.
+→ See `references/linked-fields.md`
+
+### Reactivity & Performance
+useStore selectors and granular subscriptions.
+→ See `references/reactivity.md`
+
+### Reset API
+Form and field reset with custom values.
+→ See `references/reset-api.md`
+
+### SSR & Hydration
+TanStack Start integration and server state merge.
+→ See `references/ssr-hydration.md`
+
+### Devtools
+Debug form state with @tanstack/react-form-devtools.
+→ See `references/devtools.md`
+
+### React Native
+Mobile-specific patterns with TextInput.
+→ See `references/react-native.md`
+
+### Standard Schema
+ArkType and Effect Schema support.
+→ See `references/standard-schema.md`
+
+---
+
+## Templates
+
+| Template | Use Case |
+|----------|----------|
+| `templates/basic-form.md` | Login/signup with Zod |
+| `templates/multi-step-form.md` | Wizard with step validation |
+| `templates/dynamic-fields.md` | Add/remove field arrays |
+| `templates/file-upload-form.md` | File input with preview |
+| `templates/server-action-form.md` | React 19 Server Actions |
+| `templates/optimistic-form.md` | useOptimistic integration |
+| `templates/nested-form.md` | Dot notation nested fields |
+| `templates/search-form.md` | Debounced search |
+| `templates/conditional-fields.md` | Show/hide based on values |
+| `templates/form-composition.md` | Reusable field components |
+| `templates/listeners-form.md` | Side effects & auto-save |
+| `templates/linked-fields-form.md` | Cross-field validation |
+| `templates/reactivity-form.md` | Performance optimization |
+| `templates/reset-form.md` | Form/field reset patterns |
+| `templates/ssr-form.md` | SSR & hydration |
+| `templates/devtools-form.md` | Devtools integration |
+| `templates/react-native-form.md` | React Native forms |
+
+---
+
+## Best Practices
+
+1. **Validation**: Use Zod/Yup/Valibot, NOT custom regex
+2. **Async**: Debounce server validation (300-500ms)
+3. **Errors**: Display `field.state.meta.errors`
+4. **Nested**: Use dot notation (`address.street`)
+5. **Arrays**: Use `mode="array"` with pushValue/removeValue
+6. **TypeScript**: Infer types with `z.infer<typeof schema>`
+
+---
+
+## Forbidden (Anti-Patterns)
+
+- ❌ `useState` for form state → use `useForm()`
+- ❌ Regex validation → use Zod/Yup/Valibot
+- ❌ No debounce on async → use `onChangeAsyncDebounceMs`
+- ❌ Validation in components → move to schema
+- ❌ Direct `onChange` → use `field.handleChange`
+- ❌ No TypeScript types → use `z.infer<typeof schema>`

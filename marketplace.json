@@ -1,0 +1,125 @@
+{
+  "version": "2",
+  "plugins": [
+    {
+      "id": "core-guards",
+      "displayName": "Core Guards",
+      "source": "./plugins/core-guards"
+    },
+    {
+      "id": "fuse-ai-pilot",
+      "displayName": "Ai Pilot",
+      "source": "./plugins/ai-pilot"
+    },
+    {
+      "id": "fuse-astro",
+      "displayName": "Astro",
+      "source": "./plugins/astro-expert"
+    },
+    {
+      "id": "fuse-cartographer",
+      "displayName": "Cartographer",
+      "source": "./plugins/cartographer"
+    },
+    {
+      "id": "fuse-changelog",
+      "displayName": "Changelog",
+      "source": "./plugins/changelog-watcher"
+    },
+    {
+      "id": "fuse-commit-pro",
+      "displayName": "Commit Pro",
+      "source": "./plugins/commit-pro"
+    },
+    {
+      "id": "fuse-design",
+      "displayName": "Design",
+      "source": "./plugins/design-expert"
+    },
+    {
+      "id": "fuse-go",
+      "displayName": "Go",
+      "source": "./plugins/go-expert"
+    },
+    {
+      "id": "fuse-laravel",
+      "displayName": "Laravel",
+      "source": "./plugins/laravel-expert"
+    },
+    {
+      "id": "fuse-lessons",
+      "displayName": "Lessons",
+      "source": "./plugins/fuse-lessons"
+    },
+    {
+      "id": "fuse-nextjs",
+      "displayName": "Nextjs",
+      "source": "./plugins/nextjs-expert"
+    },
+    {
+      "id": "fuse-php",
+      "displayName": "Php",
+      "source": "./plugins/php-expert"
+    },
+    {
+      "id": "fuse-prompt-engineer",
+      "displayName": "Prompt Engineer",
+      "source": "./plugins/prompt-engineer"
+    },
+    {
+      "id": "fuse-react",
+      "displayName": "React",
+      "source": "./plugins/react-expert"
+    },
+    {
+      "id": "fuse-rust",
+      "displayName": "Rust",
+      "source": "./plugins/rust-expert"
+    },
+    {
+      "id": "fuse-security",
+      "displayName": "Security",
+      "source": "./plugins/security-expert"
+    },
+    {
+      "id": "fuse-seo",
+      "displayName": "Seo",
+      "source": "./plugins/seo"
+    },
+    {
+      "id": "fuse-shadcn-ui",
+      "displayName": "Shadcn Ui",
+      "source": "./plugins/shadcn-expert"
+    },
+    {
+      "id": "fuse-solid",
+      "displayName": "Solid",
+      "source": "./plugins/solid"
+    },
+    {
+      "id": "fuse-swift-apple-expert",
+      "displayName": "Swift Apple Expert",
+      "source": "./plugins/swift-apple-expert"
+    },
+    {
+      "id": "fuse-tailwindcss",
+      "displayName": "Tailwindcss",
+      "source": "./plugins/tailwindcss"
+    },
+    {
+      "id": "fuse-tanstack-start",
+      "displayName": "Tanstack Start",
+      "source": "./plugins/tanstack-start-expert"
+    },
+    {
+      "id": "fuse-typescript",
+      "displayName": "Typescript",
+      "source": "./plugins/typescript-expert"
+    },
+    {
+      "id": "kimi-rules",
+      "displayName": "Kimi Rules",
+      "source": "./plugins/kimi-rules"
+    }
+  ]
+}

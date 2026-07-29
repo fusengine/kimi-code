@@ -1,0 +1,35 @@
+{
+  "name": "fuse-changelog",
+  "version": "1.0.12",
+  "description": "Kimi Code update watcher: changelog tracking, breaking changes detection, community pulse via Exa, plugin compatibility analysis",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "changelog",
+    "updates",
+    "breaking-changes",
+    "community",
+    "pulse",
+    "watcher"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "interface": {
+    "displayName": "Changelog",
+    "shortDescription": "Kimi Code update watcher: changelog tracking, breaking changes detection, community pulse via Exa, plugin compatibi...",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "PostToolUse",
+      "matcher": "mcp__.*exa|FetchURL|WebSearch",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" changelog"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "fuse-nextjs",
+  "version": "1.1.20",
+  "description": "Expert Next.js 16 + React 19 with App Router, Server Components, Prisma 7, and Better Auth",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "nextjs",
+    "react",
+    "prisma",
+    "better-auth",
+    "app-router",
+    "server-components"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Nextjs",
+    "shortDescription": "Expert Next.js 16 + React 19 with App Router, Server Components, Prisma 7, and Better Auth",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    }
+  ]
+}

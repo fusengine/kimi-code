@@ -1,0 +1,46 @@
+=== CLI ===
+• Extracting pricing into `src/pricing.ts` and shrinking `Cart` to storage + delegation.
+
+• Refactor done, all 6 tests green, `tests/` untouched.
+
+  - **`src/pricing.ts`** (new): pure functions `subtotalCents(lines)`, `discountCents(lines, discount)`, `taxCents(lines, discount)`, `totalCents(lines, discount)`. Tax rates live in one exported `TAX_RATES` map keyed by category — the single obvious place.
+  - **`src/cart.ts`**: `Cart` now only stores lines/discount (including the duplicate-sku merge) and delegates the four pricing methods. Public API and signatures unchanged.
+
+  Behavior preserved exactly: percentage discount still rounds with `Math.round`, fixed discount still caps at subtotal, and tax prorating keeps the same per-line accumulation with a single `Math.round` at the end (verified by the 127.5 → 128 test case).
+
+
+• Let me read the files.Straightforward refactor. Write pricing.ts, rewrite cart.ts, run bun test.
+
+bun test v1.3.14 (0d9b296a)
+
+tests/cart.test.ts:
+(pass) Cart pricing > subtotal sums lines and merges duplicate skus [0.20ms]
+(pass) Cart pricing > percentage discount rounds to nearest cent [0.09ms]
+(pass) Cart pricing > fixed discount is capped at subtotal [0.02ms]
+(pass) Cart pricing > tax is prorated after discount, per category [0.07ms]
+(pass) Cart pricing > total = subtotal - discount + tax [0.03ms]
+(pass) Cart pricing > empty cart totals zero [0.02ms]
+
+ 6 pass
+ 0 fail
+ 9 expect() calls
+Ran 6 tests across 1 file. [12.00ms]
+To resume this session: kimi -r session_f6ffc0e7-5b41-4ddb-8a38-5fd83fa6dc0a
+
+
+=== TESTS ===
+bun test v1.3.14 (0d9b296a)
+
+
+tests/cart.test.ts:
+(pass) Cart pricing > subtotal sums lines and merges duplicate skus [0.17ms]
+(pass) Cart pricing > percentage discount rounds to nearest cent [0.08ms]
+(pass) Cart pricing > fixed discount is capped at subtotal [0.03ms]
+(pass) Cart pricing > tax is prorated after discount, per category [0.06ms]
+(pass) Cart pricing > total = subtotal - discount + tax [0.03ms]
+(pass) Cart pricing > empty cart totals zero [0.02ms]
+
+ 6 pass
+ 0 fail
+ 9 expect() calls
+Ran 6 tests across 1 file. [11.00ms]

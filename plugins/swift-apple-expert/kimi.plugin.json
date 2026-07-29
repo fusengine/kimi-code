@@ -1,0 +1,44 @@
+{
+  "name": "fuse-swift-apple-expert",
+  "version": "1.1.16",
+  "description": "Expert Swift 6.2 + SwiftUI for iOS 26, macOS 26, iPadOS 26, watchOS 26, visionOS 26, tvOS 26 with Liquid Glass, @Observable, actors, SwiftData inheritance",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "swift",
+    "swiftui",
+    "ios",
+    "macos",
+    "ipados",
+    "watchos",
+    "visionos",
+    "tvos",
+    "apple",
+    "concurrency",
+    "liquid-glass"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Swift Apple Expert",
+    "shortDescription": "Expert Swift 6.2 + SwiftUI for iOS 26, macOS 26, iPadOS 26, watchOS 26, visionOS 26, tvOS 26 with Liquid Glass, @Obse...",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    }
+  ]
+}

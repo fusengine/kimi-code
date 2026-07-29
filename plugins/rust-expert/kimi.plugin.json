@@ -1,0 +1,43 @@
+{
+  "name": "fuse-rust",
+  "version": "1.0.3",
+  "description": "Expert Rust 1.96+ (2024 edition) — ownership, error handling, async/tokio, axum backends, cargo tooling, with SOLID principles",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "rust",
+    "rust-1-96",
+    "edition-2024",
+    "tokio",
+    "axum",
+    "cargo",
+    "async",
+    "ownership",
+    "backend",
+    "solid"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Rust",
+    "shortDescription": "Expert Rust 1.96+ (2024 edition) — ownership, error handling, async/tokio, axum backends, cargo tooling, with SOLID p...",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    }
+  ]
+}

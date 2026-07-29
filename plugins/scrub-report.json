@@ -1,0 +1,712 @@
+{
+  "touched": [
+    {
+      "path": "tanstack-start-expert/agents/tanstack-start-expert.md",
+      "replacements": 6
+    },
+    {
+      "path": "tanstack-start-expert/skills/start-server-routes/SKILL.md",
+      "replacements": 1
+    },
+    {
+      "path": "tanstack-start-expert/skills/start-execution-model/SKILL.md",
+      "replacements": 1
+    },
+    {
+      "path": "tanstack-start-expert/skills/start-core/SKILL.md",
+      "replacements": 1
+    },
+    {
+      "path": "tanstack-start-expert/skills/start-deployment/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "tanstack-start-expert/skills/start-auth/SKILL.md",
+      "replacements": 4
+    },
+    {
+      "path": "tanstack-start-expert/skills/start-routing-data/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "tanstack-start-expert/skills/start-server-functions/SKILL.md",
+      "replacements": 1
+    },
+    {
+      "path": "tanstack-start-expert/skills/start-middleware/SKILL.md",
+      "replacements": 1
+    },
+    {
+      "path": "go-expert/agents/go-expert.md",
+      "replacements": 7
+    },
+    {
+      "path": "go-expert/README.md",
+      "replacements": 1
+    },
+    {
+      "path": "go-expert/skills/go-concurrency/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "go-expert/skills/go-core-idioms/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "go-expert/skills/go-testing-quality/SKILL.md",
+      "replacements": 1
+    },
+    {
+      "path": "go-expert/skills/go-tooling-security/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "go-expert/skills/go-architecture/references/dependency-injection.md",
+      "replacements": 1
+    },
+    {
+      "path": "go-expert/skills/go-architecture/references/templates/rest-service.md",
+      "replacements": 1
+    },
+    {
+      "path": "go-expert/skills/go-architecture/SKILL.md",
+      "replacements": 2
+    },
+    {
+      "path": "php-expert/agents/php-expert.md",
+      "replacements": 7
+    },
+    {
+      "path": "php-expert/README.md",
+      "replacements": 1
+    },
+    {
+      "path": "php-expert/skills/php-standards/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "php-expert/skills/php-testing/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "php-expert/skills/php-ecosystem-reference/SKILL.md",
+      "replacements": 2
+    },
+    {
+      "path": "php-expert/skills/php-http-psr/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "php-expert/skills/php-language-modern/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "php-expert/skills/php-quality-tooling/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "changelog-watcher/agents/changelog-watcher.md",
+      "replacements": 1
+    },
+    {
+      "path": "ai-pilot/skills/modularize/SKILL.md",
+      "replacements": 6
+    },
+    {
+      "path": "ai-pilot/skills/fuse-browser-usage/references/visual-design.md",
+      "replacements": 2
+    },
+    {
+      "path": "ai-pilot/skills/fuse-browser-usage/SKILL.md",
+      "replacements": 4
+    },
+    {
+      "path": "ai-pilot/skills/agent-creator/references/required-sections.md",
+      "replacements": 4
+    },
+    {
+      "path": "ai-pilot/skills/agent-creator/references/templates/agent-template.md",
+      "replacements": 4
+    },
+    {
+      "path": "ai-pilot/skills/agent-creator/SKILL.md",
+      "replacements": 4
+    },
+    {
+      "path": "ai-pilot/skills/skill-creator/references/workflow.md",
+      "replacements": 3
+    },
+    {
+      "path": "ai-pilot/skills/skill-creator/references/templates/SKILL-template.md",
+      "replacements": 3
+    },
+    {
+      "path": "ai-pilot/skills/skill-creator/SKILL.md",
+      "replacements": 4
+    },
+    {
+      "path": "ai-pilot/skills/brainstorming/SKILL.md",
+      "replacements": 2
+    },
+    {
+      "path": "ai-pilot/skills/code-quality/SKILL.md",
+      "replacements": 2
+    },
+    {
+      "path": "ai-pilot/skills/react-effects-audit/references/anti-patterns.md",
+      "replacements": 2
+    },
+    {
+      "path": "ai-pilot/skills/react-effects-audit/SKILL.md",
+      "replacements": 2
+    },
+    {
+      "path": "nextjs-expert/agents/nextjs-expert.md",
+      "replacements": 5
+    },
+    {
+      "path": "nextjs-expert/skills/prisma-7/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "nextjs-expert/skills/solid-nextjs/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "nextjs-expert/skills/nextjs-i18n/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "nextjs-expert/skills/nextjs-server-components/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "nextjs-expert/skills/nextjs-stack/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "nextjs-expert/skills/better-auth/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "nextjs-expert/skills/nextjs-16/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "nextjs-expert/skills/nextjs-shadcn/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "nextjs-expert/skills/nextjs-zustand/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "nextjs-expert/skills/nextjs-tanstack-form/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "nextjs-expert/skills/nextjs-tanstack-query/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/agents/astro-expert.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-content/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-islands/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-db/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-i18n/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/solid-astro/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-assets/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-starlight/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-integrations/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-security/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-7/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-deployment/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-actions/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-seo/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "astro-expert/skills/astro-styling/references/tailwind.md",
+      "replacements": 2
+    },
+    {
+      "path": "astro-expert/skills/astro-styling/references/templates/tailwind-setup.md",
+      "replacements": 1
+    },
+    {
+      "path": "astro-expert/skills/astro-styling/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "typescript-expert/agents/typescript-expert.md",
+      "replacements": 7
+    },
+    {
+      "path": "typescript-expert/README.md",
+      "replacements": 1
+    },
+    {
+      "path": "typescript-expert/skills/ts-runtime-node/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "typescript-expert/skills/ts-config/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "typescript-expert/skills/ts-language-patterns/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "typescript-expert/skills/ts-runtime-bun/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "typescript-expert/skills/ts-lint-format/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "typescript-expert/skills/ts-testing/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "typescript-expert/skills/ts-packaging/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "solid/skills/solid-csharp/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "solid/skills/solid-go/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "solid/skills/solid-ruby/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "solid/skills/solid-generic/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "solid/skills/solid-python/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "solid/skills/solid-java/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "solid/skills/solid-rust/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "fuse-lessons/commands/lessons-compact.md",
+      "replacements": 1
+    },
+    {
+      "path": "security-expert/agents/security-expert.md",
+      "replacements": 1
+    },
+    {
+      "path": "security-expert/skills/security-scan/SKILL.md",
+      "replacements": 1
+    },
+    {
+      "path": "laravel-expert/agents/laravel-expert.md",
+      "replacements": 4
+    },
+    {
+      "path": "laravel-expert/skills/laravel-upgrade-v13/references/checklist.md",
+      "replacements": 1
+    },
+    {
+      "path": "laravel-expert/skills/laravel-upgrade-v13/SKILL.md",
+      "replacements": 4
+    },
+    {
+      "path": "laravel-expert/skills/fusecore/SKILL.md",
+      "replacements": 4
+    },
+    {
+      "path": "laravel-expert/skills/laravel-i18n/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-migrations/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-blade/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-jsonapi/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-vite/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-ai-sdk/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-scout/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-attributes/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-auth/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-eloquent/references/legacy-properties.md",
+      "replacements": 1
+    },
+    {
+      "path": "laravel-expert/skills/laravel-eloquent/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-billing/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-vector-search/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-livewire/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-testing/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-api/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-reverb/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/solid-php/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-queues/references/legacy-properties.md",
+      "replacements": 1
+    },
+    {
+      "path": "laravel-expert/skills/laravel-queues/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-permission/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-stripe-connect/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "laravel-expert/skills/laravel-architecture/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "design-expert/agents/design-expert.md",
+      "replacements": 6
+    },
+    {
+      "path": "design-expert/rules/framework-integration.md",
+      "replacements": 10
+    },
+    {
+      "path": "design-expert/skills/design-motion/references/layered-backgrounds-ref.md",
+      "replacements": 3
+    },
+    {
+      "path": "design-expert/skills/design-motion/references/glassmorphism-advanced-ref.md",
+      "replacements": 3
+    },
+    {
+      "path": "design-expert/skills/design-motion/references/interactive-states-ref.md",
+      "replacements": 3
+    },
+    {
+      "path": "design-expert/skills/ux-copy/SKILL.md",
+      "replacements": 1
+    },
+    {
+      "path": "design-expert/skills/design-method/references/moves/critique.md",
+      "replacements": 1
+    },
+    {
+      "path": "design-expert/skills/design-method/references/moves/generate.md",
+      "replacements": 1
+    },
+    {
+      "path": "design-expert/skills/design-method/SKILL.md",
+      "replacements": 1
+    },
+    {
+      "path": "design-expert/skills/design-review/references/elicitation-visual.md",
+      "replacements": 1
+    },
+    {
+      "path": "design-expert/skills/design-review/references/review-procedure.md",
+      "replacements": 1
+    },
+    {
+      "path": "design-expert/skills/design-review/SKILL.md",
+      "replacements": 1
+    },
+    {
+      "path": "design-expert/skills/design-web/references/component-variants-ref.md",
+      "replacements": 3
+    },
+    {
+      "path": "design-expert/skills/design-web/references/component-composition-ref.md",
+      "replacements": 3
+    },
+    {
+      "path": "shadcn-expert/agents/shadcn-ui-expert.md",
+      "replacements": 1
+    },
+    {
+      "path": "shadcn-expert/skills/shadcn-components/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "shadcn-expert/skills/shadcn-migration/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "shadcn-expert/skills/shadcn-detection/SKILL.md",
+      "replacements": 2
+    },
+    {
+      "path": "shadcn-expert/skills/shadcn-registries/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "shadcn-expert/skills/shadcn-theming/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "react-expert/agents/react-expert.md",
+      "replacements": 5
+    },
+    {
+      "path": "react-expert/skills/react-19/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "react-expert/skills/solid-react/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "react-expert/skills/react-shadcn/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "react-expert/skills/react-tanstack-router/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "react-expert/skills/react-state/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "react-expert/skills/react-testing/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "react-expert/skills/react-forms/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "react-expert/skills/react-i18n/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "commit-pro/skills/git-flow/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "seo/agents/seo-sitemap.md",
+      "replacements": 1
+    },
+    {
+      "path": "seo/agents/seo-expert.md",
+      "replacements": 1
+    },
+    {
+      "path": "seo/agents/seo-schema.md",
+      "replacements": 1
+    },
+    {
+      "path": "seo/agents/seo-geo.md",
+      "replacements": 1
+    },
+    {
+      "path": "seo/agents/seo-technical.md",
+      "replacements": 1
+    },
+    {
+      "path": "seo/agents/seo-images.md",
+      "replacements": 1
+    },
+    {
+      "path": "seo/agents/seo-local.md",
+      "replacements": 1
+    },
+    {
+      "path": "seo/agents/seo-cluster.md",
+      "replacements": 1
+    },
+    {
+      "path": "seo/agents/seo-content.md",
+      "replacements": 1
+    },
+    {
+      "path": "seo/skills/seo/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "tailwindcss/agents/tailwindcss-expert.md",
+      "replacements": 4
+    },
+    {
+      "path": "tailwindcss/skills/tailwindcss-accessibility/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "swift-apple-expert/agents/swift-expert.md",
+      "replacements": 4
+    },
+    {
+      "path": "swift-apple-expert/skills/solid-swift/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "swift-apple-expert/skills/macos/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "swift-apple-expert/skills/watchos/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "swift-apple-expert/skills/ios/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "swift-apple-expert/skills/visionos/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "swift-apple-expert/skills/tvos/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "swift-apple-expert/skills/swift-core/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "swift-apple-expert/skills/build-distribution/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "swift-apple-expert/skills/swiftui-core/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "swift-apple-expert/skills/ipados/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "rust-expert/agents/rust-expert.md",
+      "replacements": 7
+    },
+    {
+      "path": "rust-expert/README.md",
+      "replacements": 1
+    },
+    {
+      "path": "rust-expert/skills/rust-testing-quality/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "rust-expert/skills/rust-web-backend/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "rust-expert/skills/rust-error-handling/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "rust-expert/skills/rust-tooling-cicd/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "rust-expert/skills/rust-core-language/SKILL.md",
+      "replacements": 4
+    },
+    {
+      "path": "rust-expert/skills/rust-async-concurrency/SKILL.md",
+      "replacements": 3
+    },
+    {
+      "path": "rust-expert/skills/rust-ecosystem-crates/SKILL.md",
+      "replacements": 3
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "fuse-ai-pilot",
+  "version": "1.2.38",
+  "description": "AI Pilot workflow agents: sniper (code quality), research-expert, explore-codebase, websearch",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "ai-pilot",
+    "workflow",
+    "apex",
+    "code-quality",
+    "research",
+    "seo"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "interface": {
+    "displayName": "Ai Pilot",
+    "shortDescription": "AI Pilot workflow agents: sniper (code quality), research-expert, explore-codebase, websearch",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "SubagentStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Agent",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
+      "event": "SubagentStop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
+      "event": "SessionEnd",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "TaskCreate|TaskUpdate|Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" aipilot"
+    }
+  ]
+}

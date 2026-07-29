@@ -1,0 +1,8 @@
+# OS / tooling noise
+.DS_Store
+
+# Dependencies (installed via bun / install-kimi.ts)
+node_modules/
+
+# Runtime artifacts (harness cartography maps, regenerated on the fly)
+.cartographer/

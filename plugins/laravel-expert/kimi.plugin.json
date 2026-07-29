@@ -1,0 +1,39 @@
+{
+  "name": "fuse-laravel",
+  "version": "1.2.4",
+  "description": "Expert Laravel 13 + PHP 8.3+ with SOLID principles, first-class PHP Attributes, Laravel AI SDK, JSON:API Resources, native vector search (pgvector), Eloquent, Livewire, queues with routing, and comprehensive documentation",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "php",
+    "eloquent",
+    "livewire",
+    "blade",
+    "solid"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Laravel",
+    "shortDescription": "Expert Laravel 13 + PHP 8.3+ with SOLID principles, first-class PHP Attributes, Laravel AI SDK, JSON:API Resources, n...",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    }
+  ]
+}

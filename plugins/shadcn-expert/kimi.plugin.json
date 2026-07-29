@@ -1,0 +1,41 @@
+{
+  "name": "fuse-shadcn-ui",
+  "version": "1.0.14",
+  "description": "Expert shadcn/ui with Radix UI and Base UI detection, component patterns, registries, theming, and migration",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "shadcn-ui",
+    "radix-ui",
+    "base-ui",
+    "components",
+    "theming",
+    "migration",
+    "registries",
+    "detection"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Shadcn Ui",
+    "shortDescription": "Expert shadcn/ui with Radix UI and Base UI detection, component patterns, registries, theming, and migration",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    }
+  ]
+}

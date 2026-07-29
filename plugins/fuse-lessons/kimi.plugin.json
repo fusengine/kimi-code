@@ -1,0 +1,50 @@
+{
+  "name": "fuse-lessons",
+  "version": "1.0.4",
+  "description": "Project memory: writes compact 'never reproduce' lessons to MEMORY/LESSON.md on finish, force-reads them at session/subagent start.",
+  "author": {
+    "name": "Fusengine",
+    "url": "https://github.com/fusengine"
+  },
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "lessons",
+    "hooks",
+    "postmortem"
+  ],
+  "commands": "./commands/",
+  "interface": {
+    "displayName": "Lessons",
+    "shortDescription": "Project memory: writes compact 'never reproduce' lessons to MEMORY/LESSON.md on finish, force-reads them at session/s...",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "UserPromptSubmit",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "SessionStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "SubagentStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "Stop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" lessons"
+    }
+  ]
+}

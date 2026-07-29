@@ -1,0 +1,39 @@
+{
+  "name": "fuse-cartographer",
+  "version": "1.0.9",
+  "description": "Generates indented markdown maps of the plugin ecosystem for agent navigation",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "cartographer",
+    "map",
+    "ecosystem",
+    "navigation",
+    "plugins"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "interface": {
+    "displayName": "Cartographer",
+    "shortDescription": "Generates indented markdown maps of the plugin ecosystem for agent navigation",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "SessionStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" carto"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Edit|Write",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" carto"
+    }
+  ]
+}

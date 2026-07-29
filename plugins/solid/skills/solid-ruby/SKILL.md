@@ -1,0 +1,98 @@
+---
+name: solid-ruby
+description: Use when writing or refactoring Ruby/Rails code, structuring app/modules/[feature]/ layers, or defining contracts/ modules (SOLID, files < 100 lines).
+---
+
+
+<objective>
+SOLID Ruby enforces a modular architecture for Ruby 3.3+/Rails 8: every feature lives under `app/modules/[feature]/` (controllers, services, repositories, contracts, models) with shared code in `app/modules/core/`, contracts (duck-typing modules) live only in `contracts/` directories, `# frozen_string_literal: true` is required in every file, and every public method carries YARD documentation.
+
+Before writing any new code it requires a DRY check against `app/modules/core/services` and `app/modules/core/contracts`. See `solid-principles.md` for the overview, the per-principle references for SRP/OCP/LSP/ISP/DIP detail, and the templates for module/service/contract/model/error/test scaffolding.
+</objective>
+
+# SOLID Ruby - Modular Architecture
+
+## Agent Workflow (MANDATORY)
+
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+
+1. **explore-codebase** - Analyze existing architecture
+2. **research-expert** - Verify Ruby/Rails docs via Context7
+3. **sniper** - Post-implementation validation
+
+---
+
+## DRY - Reuse Before Creating (MANDATORY)
+
+**Before writing ANY new code:**
+1. **Grep the codebase** for similar modules, services, or logic
+2. Check shared locations: `app/modules/core/services/`, `app/modules/core/contracts/`
+3. If similar code exists -> extend/reuse instead of duplicate
+4. If code will be used by 2+ features -> create it in `app/modules/core/`
+
+---
+
+## Architecture (Modules MANDATORY)
+
+| Layer | Location | Max Lines |
+|-------|----------|-----------|
+| Controllers | `app/modules/[feature]/controllers/` | 50 |
+| Services | `app/modules/[feature]/services/` | 100 |
+| Repositories | `app/modules/[feature]/repositories/` | 100 |
+| Contracts | `app/modules/[feature]/contracts/` | 30 |
+| Models | `app/modules/[feature]/models/` | 50 |
+| Shared | `app/modules/core/{services,contracts,concerns}/` | - |
+
+**NEVER use flat `app/` structure - always `app/modules/[feature]/`**
+
+---
+
+## Critical Rules (MANDATORY)
+
+| Rule | Value |
+|------|-------|
+| File limit | 100 lines (split at 90) |
+| Controllers | < 50 lines, delegate to services |
+| Contracts | `contracts/` directory ONLY (duck typing modules) |
+| YARD doc | Every public method documented |
+| Frozen string | `# frozen_string_literal: true` in every file |
+| Concerns | Use for shared behavior (like interfaces) |
+
+---
+
+## Reference Guide
+
+### Concepts
+
+| Topic | Reference | When to consult |
+|-------|-----------|-----------------|
+| **SOLID Overview** | [solid-principles.md](references/solid-principles.md) | Quick reference |
+| **SRP** | [single-responsibility.md](references/single-responsibility.md) | Fat classes |
+| **OCP** | [open-closed.md](references/open-closed.md) | Adding strategies |
+| **LSP** | [liskov-substitution.md](references/liskov-substitution.md) | Contracts |
+| **ISP** | [interface-segregation.md](references/interface-segregation.md) | Fat modules |
+| **DIP** | [dependency-inversion.md](references/dependency-inversion.md) | Injection |
+| **Architecture** | [architecture-patterns.md](references/architecture-patterns.md) | Modular Rails |
+
+### Templates
+
+| Template | When to use |
+|----------|-------------|
+| [module.md](references/templates/module.md) | Feature module structure |
+| [service.md](references/templates/service.md) | Business logic service |
+| [contract.md](references/templates/contract.md) | Duck typing contracts |
+| [model.md](references/templates/model.md) | Active Record model |
+| [error.md](references/templates/error.md) | Custom exceptions |
+| [test.md](references/templates/test.md) | RSpec tests |
+
+---
+
+## Forbidden
+
+| Anti-Pattern | Fix |
+|--------------|-----|
+| Files > 100 lines | Split at 90 |
+| Business logic in models | Extract to service |
+| Fat controllers | Delegate to services |
+| Flat `app/` structure | Use `app/modules/[feature]/` |
+| God classes | Split by responsibility |

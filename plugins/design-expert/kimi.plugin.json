@@ -1,0 +1,64 @@
+{
+  "name": "fuse-design",
+  "version": "2.2.2",
+  "description": "Design Director for websites, web apps, iOS, and Android. Generates HTML/CSS directly (Gemini Design MCP, Magic/21st.dev, and shadcn MCP are optional). iOS/Android produce tokens + a device-framed mockup + a handoff spec, never SwiftUI/Compose. Design method, design system tokens, motion, UX copy, and a deterministic design-review gate. Anti-AI-Slop, WCAG 2.2.",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "ui-ux",
+    "design-director",
+    "design-system",
+    "multi-stack",
+    "react",
+    "nextjs",
+    "laravel",
+    "swift",
+    "ios",
+    "android",
+    "material-design",
+    "tailwind",
+    "shadcn",
+    "accessibility",
+    "wcag",
+    "framer-motion",
+    "oklch",
+    "page-layouts",
+    "audit-design"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "interface": {
+    "displayName": "Design",
+    "shortDescription": "Design Director for websites, web apps, iOS, and Android.",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|mcp__fuse-browser__browser_navigate|mcp__fuse-browser__browser_screenshot|mcp__gemini-design__create_frontend",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SubagentStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "SubagentStop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "tool": "mcp__context7__resolve-library-id",
+    "query": "statusline JSON input schema cost context_window",
+    "hash": "7d493516",
+    "ts": "2026-07-25T03:37:27Z"
+  },
+  {
+    "tool": "mcp__exa__web_search_exa",
+    "query": "Kimi Code statusline JSON schema cost.total_cost_usd optional context_window autocompact buffer",
+    "hash": "0a5c6c8d",
+    "ts": "2026-07-25T03:37:27Z"
+  },
+  {
+    "tool": "mcp__exa__web_search_exa",
+    "query": "Kimi Code auto-compact threshold percentage of context window triggers automatically",
+    "hash": "33b0b4ba",
+    "ts": "2026-07-25T03:52:47Z"
+  },
+  {
+    "tool": "mcp__context7__resolve-library-id",
+    "query": "control flow analysis narrowing aliased conditions optional chaining TS 4.4 strict mode",
+    "hash": "8e7dc632",
+    "ts": "2026-07-25T04:19:02Z"
+  },
+  {
+    "tool": "mcp__exa__web_search_exa",
+    "query": "TypeScript CFA aliased conditions optional chains narrowing input.cost?.total_cost_usd !== undefined strict mode tsc noEmit",
+    "hash": "afb5558a",
+    "ts": "2026-07-25T04:19:03Z"
+  },
+  {
+    "tool": "mcp__context7__query-docs",
+    "query": "control flow analysis narrowing optional chaining comparison to undefined not equal, narrows entire chain input.cost?.total_cost_usd !== undefined",
+    "hash": "26e0136c",
+    "ts": "2026-07-25T04:19:13Z"
+  },
+  {
+    "tool": "mcp__context7__resolve-library-id",
+    "query": "optional chaining strict undefined checks exactOptionalPropertyTypes null vs undefined",
+    "hash": "dffec8ca",
+    "ts": "2026-07-25T04:24:38Z"
+  },
+  {
+    "tool": "mcp__context7__resolve-library-id",
+    "query": "Bun.stdin.json() reading stdin JSON in CLI script",
+    "hash": "4fdbc556",
+    "ts": "2026-07-25T04:24:41Z"
+  },
+  {
+    "tool": "mcp__context7__query-docs",
+    "query": "distinguishing undefined absent field vs zero present strict optional properties, exactOptionalPropertyTypes, optional chaining with explicit undefined check pattern",
+    "hash": "8d87129c",
+    "ts": "2026-07-25T04:24:47Z"
+  },
+  {
+    "tool": "mcp__context7__query-docs",
+    "query": "Bun.stdin.json() read JSON from stdin CLI",
+    "hash": "c67d3bfc",
+    "ts": "2026-07-25T04:24:49Z"
+  },
+  {
+    "tool": "mcp__exa__get_code_context_exa",
+    "query": "Bun.stdin.json() CLI read stdin JSON example TypeScript",
+    "hash": "2c7676d3",
+    "ts": "2026-07-25T04:24:55Z"
+  },
+  {
+    "tool": "mcp__exa__web_search_exa",
+    "query": "Intl.NumberFormat notation compact vs manual toFixed K M abbreviation number formatting best practice",
+    "hash": "557cf73b",
+    "ts": "2026-07-25T04:24:56Z"
+  },
+  {
+    "tool": "mcp__exa__web_search_exa",
+    "query": "ECMA-262 spec Number.prototype.toFixed RangeError digits argument non-finite this value Infinity",
+    "hash": "5cfa83d0",
+    "ts": "2026-07-25T04:29:39Z"
+  }
+]

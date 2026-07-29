@@ -1,0 +1,43 @@
+{
+  "name": "fuse-typescript",
+  "version": "1.0.3",
+  "description": "Expert TypeScript 6.0 for pure TS projects — CLI tools, libraries, scripts, and backends on Node 24 LTS or Bun 1.3, with SOLID principles",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "typescript-6",
+    "node",
+    "node-24-lts",
+    "bun",
+    "cli",
+    "library",
+    "backend",
+    "tsconfig",
+    "solid"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Typescript",
+    "shortDescription": "Expert TypeScript 6.0 for pure TS projects — CLI tools, libraries, scripts, and backends on Node 24 LTS or Bun 1.3, w...",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
+    }
+  ]
+}

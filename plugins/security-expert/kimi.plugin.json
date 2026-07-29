@@ -1,0 +1,41 @@
+{
+  "name": "fuse-security",
+  "version": "1.0.15",
+  "description": "Security vulnerability detection and remediation: OWASP Top 10, SAST scanning, CVE research, dependency audit, secrets detection",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "owasp",
+    "cve",
+    "sast",
+    "vulnerability",
+    "audit",
+    "secrets"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "interface": {
+    "displayName": "Security",
+    "shortDescription": "Security vulnerability detection and remediation: OWASP Top 10, SAST scanning, CVE research, dependency audit, secret...",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" security"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Read|mcp__.*context7|mcp__.*exa",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" security"
+    }
+  ]
+}

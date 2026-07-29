@@ -1,0 +1,42 @@
+{
+  "name": "fuse-seo",
+  "version": "1.0.8",
+  "description": "SEO/GEO 2026 plugin for Kimi Code. Local-first, framework-aware, zero third-party APIs. Covers technical SEO, schema markup, E-E-A-T, AI Overviews optimization, local SEO, sitemaps, hreflang, internal linking, content briefs, semantic clustering, and search experience optimization.",
+  "author": {
+    "name": "Fusengine",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "geo",
+    "ai-overviews",
+    "schema-org",
+    "e-e-a-t",
+    "core-web-vitals",
+    "local-seo",
+    "hreflang",
+    "sitemap",
+    "internal-linking",
+    "semantic-clustering",
+    "sxo",
+    "featured-snippets",
+    "entity-seo",
+    "knowledge-graph"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Seo",
+    "shortDescription": "SEO/GEO 2026 plugin for Kimi Code.",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "PostToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" seo"
+    }
+  ]
+}

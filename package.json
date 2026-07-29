@@ -1,0 +1,16 @@
+{
+	"name": "@fusengine/kimi-code",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"description": "Fusengine plugin ecosystem migrated to Kimi Code CLI",
+	"scripts": {
+		"migrate": "bun run scripts/migrate.ts",
+		"scrub": "bun run scripts/scrub-claude-refs.ts",
+		"validate": "bun run scripts/validate.ts",
+		"install": "bun run scripts/install-kimi.ts"
+	},
+	"engines": {
+		"bun": ">=1.1.0"
+	}
+}

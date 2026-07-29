@@ -1,0 +1,19 @@
+{
+  "cli": "kimi",
+  "fixture": "3-debug",
+  "startedAt": "2026-07-27T19:33:30.601Z",
+  "durationMs": 66285,
+  "exitCode": 0,
+  "timedOut": false,
+  "testsPass": 8,
+  "testsFail": 0,
+  "success": true,
+  "testsModified": false,
+  "filesChanged": [
+    "src/cache.ts",
+    "src/keys.ts",
+    "src/serde.ts"
+  ],
+  "newFiles": [],
+  "violations": []
+}

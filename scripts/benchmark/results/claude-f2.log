@@ -1,0 +1,35 @@
+=== CLI ===
+Refactor terminé, `bun test` : **6 pass / 0 fail**, `tests/` intact (non listé dans `git status`).
+
+**`src/pricing.ts`** (70 l.) — fonctions pures sur données brutes :
+- `TAX_RATES: Record<CartLine["category"], number>` — seul endroit où vivent les taux (remplace les 3 constantes éparses)
+- `subtotalCents(lines)`, `discountCents(lines, discount)`, `taxCents(lines, discount)`, `totalCents(lines, discount)`, avec `readonly CartLine[]` et `Discount | null`
+
+**`src/cart.ts`** (53 l.) — stockage (`add` avec merge par sku, `applyDiscount`) + délégation. API publique inchangée.
+
+Points d'iso-comportement vérifiés explicitement :
+- expression flottante recopiée à l'identique (`unitPriceCents * quantity * ratio`, puis `* rate`) avec un **unique** `Math.round` sur l'agrégat — pas d'arrondi par ligne
+- garde `subtotal === 0` portée telle quelle (sinon `ratio = NaN` sur lignes à prix 0, cas non couvert par les tests)
+- cap `Math.min` du discount fixe, arrondi du pourcentage, `discount === null → 0` : copiés littéralement
+- `?? TAX_RATES.other` sur le lookup : restaure le fallback implicite du ternaire original pour une catégorie hors-types à l'exécution (sans lui, `undefined` propageait un `NaN` à tout l'agrégat)
+
+Deux fichiers hors périmètre ont été créés par les hooks de la session : `MEMORY/LESSON.md` et les caches `.cartographer/` / `.harness/`.
+
+
+
+=== TESTS ===
+bun test v1.3.14 (0d9b296a)
+
+
+tests/cart.test.ts:
+(pass) Cart pricing > subtotal sums lines and merges duplicate skus [0.19ms]
+(pass) Cart pricing > percentage discount rounds to nearest cent [0.10ms]
+(pass) Cart pricing > fixed discount is capped at subtotal [0.02ms]
+(pass) Cart pricing > tax is prorated after discount, per category [0.06ms]
+(pass) Cart pricing > total = subtotal - discount + tax [0.03ms]
+(pass) Cart pricing > empty cart totals zero [0.02ms]
+
+ 6 pass
+ 0 fail
+ 9 expect() calls
+Ran 6 tests across 1 file. [11.00ms]

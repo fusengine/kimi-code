@@ -1,0 +1,32 @@
+{
+  "cli": "claude",
+  "fixture": "2-refactor",
+  "startedAt": "2026-07-27T19:39:21.350Z",
+  "durationMs": 357470,
+  "exitCode": 0,
+  "timedOut": false,
+  "testsPass": 6,
+  "testsFail": 0,
+  "success": true,
+  "testsModified": false,
+  "filesChanged": [
+    "src/cart.ts"
+  ],
+  "newFiles": [
+    ".cartographer/project/index.md",
+    ".cartographer/project/src/index.md",
+    ".cartographer/project/src/interfaces/index.md",
+    ".cartographer/project/tests/index.md",
+    ".harness/cache/0879cbc00000008e.md",
+    ".harness/cache/754f93330000007a.md",
+    ".harness/cache/7ebfcada0000007f.md",
+    ".harness/cache/7fb865fc000000c0.md",
+    ".harness/cache/9565a9580000007f.md",
+    ".harness/cache/ab274b9b0000006c.md",
+    ".harness/cache/eb84f61a0000008c.md",
+    ".harness/cache/index.json",
+    "MEMORY/LESSON.md",
+    "src/pricing.ts"
+  ],
+  "violations": []
+}

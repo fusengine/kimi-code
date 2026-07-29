@@ -1,0 +1,19 @@
+{
+  "cli": "kimi",
+  "fixture": "2-refactor",
+  "startedAt": "2026-07-27T19:32:33.904Z",
+  "durationMs": 56587,
+  "exitCode": 0,
+  "timedOut": false,
+  "testsPass": 6,
+  "testsFail": 0,
+  "success": true,
+  "testsModified": false,
+  "filesChanged": [
+    "src/cart.ts"
+  ],
+  "newFiles": [
+    "src/pricing.ts"
+  ],
+  "violations": []
+}

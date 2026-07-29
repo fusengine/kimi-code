@@ -1,0 +1,18 @@
+{
+  "cli": "kimi",
+  "fixture": "1-codegen",
+  "startedAt": "2026-07-27T19:31:31.898Z",
+  "durationMs": 61567,
+  "exitCode": 0,
+  "timedOut": false,
+  "testsPass": 8,
+  "testsFail": 0,
+  "success": true,
+  "testsModified": false,
+  "filesChanged": [],
+  "newFiles": [
+    "src/interfaces/pool.ts",
+    "src/pool.ts"
+  ],
+  "violations": []
+}

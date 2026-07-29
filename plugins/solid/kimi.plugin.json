@@ -1,0 +1,46 @@
+{
+  "name": "fuse-solid",
+  "version": "1.0.15",
+  "description": "SOLID principles enforcement with automatic project detection and validation for all languages",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "solid",
+    "architecture",
+    "code-quality",
+    "validation",
+    "multi-language"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Solid",
+    "shortDescription": "SOLID principles enforcement with automatic project detection and validation for all languages",
+    "developerName": "Fusengine"
+  },
+  "hooks": [
+    {
+      "event": "SessionStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" solid",
+      "timeout": 5
+    },
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" solid",
+      "timeout": 10
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" solid",
+      "timeout": 10
+    }
+  ]
+}
