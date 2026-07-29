@@ -6,6 +6,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versio
 
 
 
+
+## [1.0.5] - 2026-07-29
+
+### Added
+- Kimi statusline port (`plugins/core-guards/statusline/`): terminal-title daemon + `~/.kimi-code/statusline.txt` (tmux-ready). Segments from the live session: git, model, thinking effort, context %, edits, age, workDir. 3 unit tests, live-verified.
+
 ## [1.0.4] - 2026-07-29
 
 ### Added

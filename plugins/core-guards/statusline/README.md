@@ -1,123 +1,34 @@
-# Kimi Code Statusline
+# Kimi Statusline (terminal daemon)
 
-Modular SOLID statusline for Kimi Code.
+Port of the Claude Code statusline to Kimi Code — adapted to Kimi's reality: the CLI has an internal status renderer but no user-configurable statusline surface (`tui.toml` exposes none), so the daemon renders **outside** the TUI: terminal title (OSC escape) + a plain-text file any bar can read (tmux, SketchyBar, …).
 
-## Architecture
-
-```
-src/
-├── index.ts                 # Entry point
-├── interfaces/              # Interfaces (ISP)
-│   ├── hook-input.interface.ts
-│   ├── usage.interface.ts
-│   ├── git.interface.ts
-│   ├── segment.interface.ts
-│   └── context.interface.ts
-├── constants/               # Centralized constants
-│   ├── colors.constant.ts
-│   ├── icons.constant.ts
-│   ├── progress-bar.constant.ts
-│   └── limits.constant.ts
-├── config/                  # Configuration (SRP)
-│   ├── schema.ts
-│   └── manager.ts
-├── segments/                # Modular segments (OCP, LSP)
-│   ├── kimi.segment.ts
-│   ├── directory.segment.ts
-│   ├── model.segment.ts
-│   ├── context.segment.ts
-│   ├── cost.segment.ts
-│   ├── five-hour.segment.ts
-│   ├── weekly.segment.ts
-│   ├── daily-spend.segment.ts
-│   ├── node.segment.ts
-│   └── edits.segment.ts
-├── services/                # Business services (SRP)
-│   ├── context.service.ts
-│   ├── usage.service.ts
-│   ├── weekly.service.ts
-│   └── daily.service.ts
-├── utils/                   # Utilities (SRP)
-│   ├── colors.ts
-│   ├── progress-bar.ts
-│   ├── formatters.ts
-│   └── git.ts
-└── renderer/                # Main renderer (DIP)
-    └── statusline.renderer.ts
-```
-
-## SOLID Principles
-
-- **SRP**: Each module = one responsibility
-- **OCP**: Add segments without modifying existing code
-- **LSP**: All segments implement ISegment
-- **ISP**: Small and specific interfaces
-- **DIP**: Depend on abstractions (ISegment)
-
-## Installation
-
-**Automatic installation (recommended):**
+## Usage
 
 ```bash
-~/.kimi-code/plugins/marketplaces/fusengine-plugins/setup.sh
+bun run plugins/core-guards/statusline/src/daemon.ts start    # detached loop (5s; STATUSLINE_MS to tune)
+bun run plugins/core-guards/statusline/src/daemon.ts stop
+bun run plugins/core-guards/statusline/src/daemon.ts status   # one-shot print
 ```
 
-This script automatically installs hooks AND statusline.
+- Terminal/tab title shows: `⎇ main*3 · kimi-code/k3 · max · ctx 37% · edits 12 · 2h05 · Kimi`
+- The same line lands in `~/.kimi-code/statusline.txt` — tmux: `set -g status-right '#(cat ~/.kimi-code/statusline.txt)'`
 
-**Manual installation:**
+## Segments (data sources, all local)
 
-```bash
-cd ~/.kimi-code/plugins/marketplaces/fusengine-plugins/plugins/core-guards/statusline
-bun install
-```
+| Segment | Source |
+|---|---|
+| `⎇ branch*dirty` | `git` in the session's `workDir` |
+| model | `modelAlias` in `wire.jsonl` |
+| thinking effort | `thinkingEffort` in `wire.jsonl` |
+| `ctx N%` | latest `usage.record` total input / 1 048 576 (K3 window) |
+| `edits N` | `Write`/`Edit` tool calls in `wire.jsonl` |
+| age | `state.json` `createdAt` |
+| directory | `state.json` `workDir` |
 
-Then add to `~/.kimi-code/settings.json`:
+The active session is the newest `state.json` under `~/.kimi-code/sessions/`. Everything is read-only; the daemon never touches session data.
 
-```json
-{
-  "statusLine": {
-    "type": "command",
-    "command": "bun ~/.kimi-code/plugins/marketplaces/fusengine-plugins/plugins/core-guards/statusline/src/index.ts",
-    "padding": 0
-  }
-}
-```
+## What is NOT ported (and why)
 
-## Segment Configuration
-
-Edit `config.json` to enable/disable segments:
-
-```bash
-bun run config        # Web configurator
-bun run config:term   # Terminal configurator
-```
-
-## Adding a Segment
-
-1. Create `src/segments/my-segment.segment.ts`
-2. Implement `ISegment`
-3. Add to `src/segments/index.ts`
-
-```typescript
-import type { ISegment, SegmentContext } from "../interfaces";
-import type { StatuslineConfig } from "../config/schema";
-
-export class MySegment implements ISegment {
-  readonly name = "my-segment";
-  readonly priority = 55; // Position in statusline
-
-  isEnabled(config: StatuslineConfig): boolean {
-    return true;
-  }
-
-  async render(context: SegmentContext, config: StatuslineConfig): Promise<string> {
-    return "My segment";
-  }
-}
-```
-
-## Sources
-
-- [Starship](https://starship.rs/) - Modular architecture
-- [SOLID TypeScript](https://blog.logrocket.com/applying-solid-principles-typescript/)
-- [Picocolors](https://github.com/alexeyraspopov/picocolors)
+- **Quota segments** (5h/weekly/daily spend): the Claude version reads Anthropic's OAuth usage API. Kimi exposes no documented local quota feed; adding a fake number would be worse than none. If a quota endpoint becomes available, a segment plugs into `wire.ts`/`render.ts`.
+- **Cost in $**: same reason.
+- **In-TUI line**: no user surface in Kimi 0.29.x — hence the terminal-title approach.
