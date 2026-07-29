@@ -70,6 +70,7 @@ export async function scanMcpServers(
 	const warnings: string[] = [];
 
 	for (const { name, cfg, origin } of await collectRawServers(ctx)) {
+		if (ctx.mcpSelection && !ctx.mcpSelection.has(name)) continue;
 		if (servers.has(name)) continue;
 		if (keyMissing(cfg, env)) {
 			warnings.push(`skip MCP '${name}' (${origin}): missing ${cfg.apiKeyEnv} — get it at ${cfg.apiKeyUrl ?? "the provider"}`);

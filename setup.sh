@@ -37,5 +37,5 @@ if ! command -v bun >/dev/null 2>&1; then
     fi
 fi
 
-# No dependency install needed: this repo is zero-dependency.
-(cd "$(dirname "$0")" && bun run scripts/install-kimi.ts --yes)
+# Installer dependencies (@clack/prompts UI), then run the installer.
+(cd "$(dirname "$0")" && bun install --silent && bun run scripts/install-kimi.ts --yes)

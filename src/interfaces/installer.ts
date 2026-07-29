@@ -19,6 +19,8 @@ export interface InstallContext extends InstallerFlags {
 	repoRoot: string;
 	/** plugins/ dir scanned for manifests, mcp.json.bak, agents/, rules. */
 	pluginsRoot: string;
+	/** MCP server allowlist chosen by selectMcpServers; undefined = all servers. */
+	mcpSelection?: Set<string>;
 }
 
 export type StepStatus = "ok" | "skip" | "fail";
