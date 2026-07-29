@@ -1,0 +1,125 @@
+{
+  "version": "2",
+  "plugins": [
+    {
+      "id": "core-guards",
+      "displayName": "Core Guards",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/core-guards.zip"
+    },
+    {
+      "id": "fuse-ai-pilot",
+      "displayName": "Ai Pilot",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-ai-pilot.zip"
+    },
+    {
+      "id": "fuse-astro",
+      "displayName": "Astro",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-astro.zip"
+    },
+    {
+      "id": "fuse-cartographer",
+      "displayName": "Cartographer",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-cartographer.zip"
+    },
+    {
+      "id": "fuse-changelog",
+      "displayName": "Changelog",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-changelog.zip"
+    },
+    {
+      "id": "fuse-commit-pro",
+      "displayName": "Commit Pro",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-commit-pro.zip"
+    },
+    {
+      "id": "fuse-design",
+      "displayName": "Design",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-design.zip"
+    },
+    {
+      "id": "fuse-go",
+      "displayName": "Go",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-go.zip"
+    },
+    {
+      "id": "fuse-laravel",
+      "displayName": "Laravel",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-laravel.zip"
+    },
+    {
+      "id": "fuse-lessons",
+      "displayName": "Lessons",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-lessons.zip"
+    },
+    {
+      "id": "fuse-nextjs",
+      "displayName": "Nextjs",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-nextjs.zip"
+    },
+    {
+      "id": "fuse-php",
+      "displayName": "Php",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-php.zip"
+    },
+    {
+      "id": "fuse-prompt-engineer",
+      "displayName": "Prompt Engineer",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-prompt-engineer.zip"
+    },
+    {
+      "id": "fuse-react",
+      "displayName": "React",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-react.zip"
+    },
+    {
+      "id": "fuse-rust",
+      "displayName": "Rust",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-rust.zip"
+    },
+    {
+      "id": "fuse-security",
+      "displayName": "Security",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-security.zip"
+    },
+    {
+      "id": "fuse-seo",
+      "displayName": "Seo",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-seo.zip"
+    },
+    {
+      "id": "fuse-shadcn-ui",
+      "displayName": "Shadcn Ui",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-shadcn-ui.zip"
+    },
+    {
+      "id": "fuse-solid",
+      "displayName": "Solid",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-solid.zip"
+    },
+    {
+      "id": "fuse-swift-apple-expert",
+      "displayName": "Swift Apple Expert",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-swift-apple-expert.zip"
+    },
+    {
+      "id": "fuse-tailwindcss",
+      "displayName": "Tailwindcss",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-tailwindcss.zip"
+    },
+    {
+      "id": "fuse-tanstack-start",
+      "displayName": "Tanstack Start",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-tanstack-start.zip"
+    },
+    {
+      "id": "fuse-typescript",
+      "displayName": "Typescript",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/fuse-typescript.zip"
+    },
+    {
+      "id": "kimi-rules",
+      "displayName": "Kimi Rules",
+      "source": "https://github.com/fusengine/kimi-code/releases/download/v1.0.1/kimi-rules.zip"
+    }
+  ]
+}
