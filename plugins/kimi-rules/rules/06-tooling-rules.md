@@ -29,7 +29,7 @@ ALL docs in `docs/` folder - NEVER outside except root `README.md`
 
 ## Git & GitHub Flow (ZERO TOLERANCE)
 
-**Commit tool**: ALWAYS delegate to the agent `commit` (it executes `/fuse-commit-pro:commit` end to end). NEVER `git commit` directly, never hand-roll the flow yourself.
+**Commit tool**: ALWAYS delegate to the agent `commit` (it executes `/fusengine:commit` end to end). NEVER `git commit` directly, never hand-roll the flow yourself.
 
 **Branch enforcement**:
 - `main`, `master`, `develop`, `production` → **protected**, no direct commits
@@ -37,7 +37,7 @@ ALL docs in `docs/` folder - NEVER outside except root `README.md`
 - Types: `feat/`, `fix/`, `chore/`, `docs/`, `refactor/`, `perf/`, `test/`, `ci/`, `build/`, `style/`
 - kebab-case, < 50 chars, no personal prefix
 
-**Workflow** (owned by agent `commit`, which runs `/fuse-commit-pro:commit`):
+**Workflow** (owned by agent `commit`, which runs `/fusengine:commit`):
 1. Step 0: branch check — block if on protected, propose feature branch
 2. Step 1: security scan (secrets, .env)
 3. Steps 2-5: conventional commit with auto-detection

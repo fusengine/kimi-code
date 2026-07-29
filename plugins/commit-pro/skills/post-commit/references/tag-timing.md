@@ -4,7 +4,7 @@ Load when: you need the full explanation for why Step S2 (Standard Path) and Ste
 
 ## Standard Path (Step S2) / Marketplace Path (Step M5)
 
-**No tag pushed here.** Under `/fuse-commit-pro:commit`'s GitHub Flow, this commit lives on a feature branch that still has to pass CI and get merged (`gh pr merge --merge` — a real merge commit, never `--squash`) before it's part of `main`. Tagging and pushing the tag before that point risks tagging a commit that:
+**No tag pushed here.** Under `/fusengine:commit`'s GitHub Flow, this commit lives on a feature branch that still has to pass CI and get merged (`gh pr merge --merge` — a real merge commit, never `--squash`) before it's part of `main`. Tagging and pushing the tag before that point risks tagging a commit that:
 
 - never lands on `main` (CI fails, merge blocked by branch protection, PR closed unmerged), or
 - gets superseded by review changes.

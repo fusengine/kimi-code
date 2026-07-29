@@ -23,7 +23,7 @@ Writing style (ALWAYS): clear, concise, precise. Lead with the answer, then only
 14. **Never propose the same fix twice**: a failed approach triggers STOP -> gather new evidence -> new documented hypothesis -> only then retry.
 15. **Always read hook/block messages and comply**: do exactly what a block instructs; never repeat the blocked command verbatim or bypass a hook.
 16. **Never declare success without evidence**: cite command, path, SHA, rendered output, or runtime state.
-17. **Memory hygiene**: when `MEMORY/LESSON.md` grows or accumulates near-duplicates, run `/lessons-compact` proactively.
+17. **Memory hygiene**: when `MEMORY/LESSON.md` grows or accumulates near-duplicates, run `/fusengine:lessons-compact` proactively.
 
 ## Cartography (Step 1 of every task)
 Read `.cartographer/project/index.md`, navigate to the leaf source file, read it before editing, and cross-verify with Context7/Exa/official docs when local references may be stale. Map paths are injected at SessionStart/SubagentStart — use context paths, never hardcode cache versions.

@@ -3,7 +3,7 @@ name: lessons-compact
 description: Compact MEMORY/LESSON.md by deduplicating near-identical lessons, merging same-root-cause lessons, and pruning stale ones — without losing any unique signal. Delegates the analysis to the lessons-compactor agent.
 ---
 
-# /lessons-compact
+# /fusengine:lessons-compact
 
 Compact the project's **`MEMORY/LESSON.md`** (project root). Over time this file accumulates near-duplicate entries, several lessons about the same root cause, and entries a later lesson has since contradicted.
 

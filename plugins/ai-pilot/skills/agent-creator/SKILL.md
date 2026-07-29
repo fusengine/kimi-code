@@ -138,7 +138,7 @@ sed -i '' "s/nextjs/newstack/g; s/Next\.js/NewStack/g" agents/new-expert.md
 
 **When creating an agent, you often need to create skills too.**
 
-Use **`/fuse-ai-pilot:skill-creator`** to create skills for the agent:
+Use **`/fusengine:skill-creator`** to create skills for the agent:
 
 | Scenario | Action |
 |----------|--------|

@@ -1,7 +1,7 @@
 ---
 name: lessons-compactor
-description: "Use when: MEMORY/LESSON.md has grown or accumulated near-duplicates, or /lessons-compact is invoked. Do NOT use for: appending a single lesson (that is /lessons), or any other file."
-whenToUse: MEMORY/LESSON.md has grown or accumulated near-duplicates, or /lessons-compact is invoked
+description: "Use when: MEMORY/LESSON.md has grown or accumulated near-duplicates, or /fusengine:lessons-compact is invoked. Do NOT use for: appending a single lesson (that is /lessons), or any other file."
+whenToUse: MEMORY/LESSON.md has grown or accumulated near-duplicates, or /fusengine:lessons-compact is invoked
 tools: Read, Write, Bash, Grep, Glob
 ---
 
@@ -52,7 +52,7 @@ Write your proposal to the scratchpad directory given in your prompt (never to t
 
 - **Format**: `- [YYYY-MM-DD HH:MM] <what went wrong> → <what to do instead>`
 - One lesson per entry, no code blocks.
-- **Ordering — read the file's own header before assuming.** This repo's `MEMORY/LESSON.md` declares `newest on top` in its HTML comment and is written that way; the older `/lessons-compact` command text says the opposite. **The file's actual convention always wins.** Reversing the order silently breaks the hooks and commands that read it. State in your report which convention you observed and confirm you preserved it.
+- **Ordering — read the file's own header before assuming.** This repo's `MEMORY/LESSON.md` declares `newest on top` in its HTML comment and is written that way; the older `/fusengine:lessons-compact` command text says the opposite. **The file's actual convention always wins.** Reversing the order silently breaks the hooks and commands that read it. State in your report which convention you observed and confirm you preserved it.
 - The header comment and any non-entry preamble: copy verbatim, never reformat.
 
 ## Signals of a *real* merge vs a false one
