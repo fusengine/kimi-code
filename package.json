@@ -12,5 +12,8 @@
 	},
 	"engines": {
 		"bun": ">=1.1.0"
+	},
+	"fusengine": {
+		"harnessMinVersion": "0.1.85"
 	}
 }

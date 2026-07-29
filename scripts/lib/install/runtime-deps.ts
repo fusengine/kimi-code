@@ -9,6 +9,7 @@ import { cp, mkdir, writeFile } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { exists, readJsonSafe } from "../fs-exists";
+import { harnessSpec } from "./harness-version";
 import type { InstallContext, InstallStepResult } from "../../../src/interfaces/index.ts";
 import { info, plan } from "./ui";
 
@@ -21,15 +22,10 @@ async function stagedVersion(dir: string): Promise<string | null> {
 	return pkg?.version ?? null;
 }
 
-/** Desired harness version: $FUSENGINE_HARNESS_VERSION pin, else latest. */
-function targetVersion(): string {
-	return process.env.FUSENGINE_HARNESS_VERSION || "latest";
-}
-
 /** Installs the harness from npm into ctx.kimiHome via bun (full dep closure). */
 async function installFromNpm(ctx: InstallContext): Promise<InstallStepResult> {
 	const res: InstallStepResult = { name: "installRuntimeDeps", status: "ok", notes: [] };
-	const spec = `${PKG}@${targetVersion()}`;
+	const spec = `${PKG}@${await harnessSpec(ctx.repoRoot)}`;
 	if (ctx.dryRun) {
 		plan(`bun add ${spec} (cwd=${ctx.kimiHome})`);
 		res.notes.push(`from npm: ${spec}`);
