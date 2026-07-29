@@ -1,7 +1,9 @@
 /**
  * mcp-select.ts — MCP server selection BEFORE key prompting (parity with the
- * Claude installer). TTY: clack multiselect over catalog + .bak servers,
- * initialValues = entries whose `default` is not false, required: false.
+ * Claude installer). TTY: clack multiselect over catalog + .bak servers;
+ * initialValues follow the Claude rule — explicit `default` wins, otherwise
+ * no-key servers plus key-required ones whose apiKeyEnv is already set —
+ * and key-required entries are labelled ✓ / ⚠ key missing. required: false.
  * Non-TTY: the explicit FUSENGINE_MCP_SERVERS="a,b,c" allowlist, else all.
  * The choice lands in ctx.mcpSelection (undefined = all) and is honored by
  * missingKeys and scanMcpServers. Dry-run never prompts: selection stays
@@ -9,9 +11,10 @@
  */
 import type { InstallContext, InstallStepResult, McpServerConfig } from "../../../src/interfaces/index.ts";
 import { collectRawServers } from "./mcp-resolve";
+import { resolutionEnv } from "./env-file";
 import { initUi, plan, warn } from "./ui";
 
-type RawServer = { name: string; cfg: McpServerConfig; origin: string };
+export type RawServer = { name: string; cfg: McpServerConfig; origin: string };
 
 /** Dedupe by name, first wins — the same rule the merge applies. */
 function dedupe(raw: RawServer[]): RawServer[] {
@@ -21,6 +24,25 @@ function dedupe(raw: RawServer[]): RawServer[] {
 		seen.add(s.name);
 		return true;
 	});
+}
+
+/** True when a server's apiKeyEnv var is set in the resolution environment. */
+function keyPresent(cfg: McpServerConfig, env: Record<string, string>): boolean {
+	return typeof cfg.apiKeyEnv === "string" && !!env[cfg.apiKeyEnv];
+}
+
+/**
+ * Preselection, Claude-installer parity: explicit `default` wins; otherwise
+ * no-key servers, plus key-required ones whose apiKeyEnv is already set.
+ */
+export function defaultMcpSelection(all: RawServer[], env: Record<string, string>): string[] {
+	return all
+		.filter((s) => {
+			if (s.cfg.default === true) return true;
+			if (s.cfg.default === false) return false;
+			return s.cfg.requiresApiKey !== true || keyPresent(s.cfg, env);
+		})
+		.map((s) => s.name);
 }
 
 /** Non-interactive selection: explicit env allowlist, else undefined (= all). */
@@ -59,14 +81,19 @@ export async function selectMcpServers(ctx: InstallContext): Promise<InstallStep
 	if (!p) {
 		ctx.mcpSelection = envSelection(all);
 	} else {
-		const defaults = all.filter((s) => s.cfg.default !== false).map((s) => s.name);
+		const env = await resolutionEnv(ctx);
+		const defaults = defaultMcpSelection(all, env);
 		const picked = await p.multiselect({
 			message: "Select MCP servers to install:",
-			options: all.map((s) => ({
-				value: s.name,
-				label: s.name,
-				hint: (s.cfg._description as string) ?? s.origin,
-			})),
+			options: all.map((s) => {
+				const needsKey = s.cfg.requiresApiKey === true;
+				const status = needsKey ? ` [${keyPresent(s.cfg, env) ? "✓" : "⚠ key missing"}]` : "";
+				return {
+					value: s.name,
+					label: `${s.name}${status}`,
+					hint: (s.cfg._description as string) ?? s.origin,
+				};
+			}),
 			initialValues: defaults,
 			required: false,
 		});
