@@ -27,7 +27,7 @@ async function installFromNpm(ctx: InstallContext): Promise<InstallStepResult> {
 	const res: InstallStepResult = { name: "installRuntimeDeps", status: "ok", notes: [] };
 	const spec = `${PKG}@${await harnessSpec(ctx.repoRoot)}`;
 	if (ctx.dryRun) {
-		plan(`bun add ${spec} (cwd=${ctx.kimiHome})`);
+		plan(`bun add ${spec} + bun update ${PKG} (cwd=${ctx.kimiHome})`);
 		res.notes.push(`from npm: ${spec}`);
 		return res;
 	}
@@ -40,6 +40,14 @@ async function installFromNpm(ctx: InstallContext): Promise<InstallStepResult> {
 	if (run.status !== 0) {
 		res.status = "fail";
 		res.notes.push(`bun add ${spec} failed: ${(run.stderr || run.stdout || "").trim().slice(0, 200)}`);
+		return res;
+	}
+	// `bun add` honors the lockfile when the range is already satisfied —
+	// `bun update` moves the staged copy to the newest version within it.
+	const up = spawnSync("bun", ["update", PKG], { cwd: ctx.kimiHome, stdio: "pipe", encoding: "utf8" });
+	if (up.status !== 0) {
+		res.status = "fail";
+		res.notes.push(`bun update ${PKG} failed: ${(up.stderr || up.stdout || "").trim().slice(0, 200)}`);
 		return res;
 	}
 	const bin = join(ctx.kimiHome, "node_modules", ...PKG.split("/"), REL_BIN);
