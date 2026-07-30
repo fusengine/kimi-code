@@ -3,6 +3,11 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.13] - 2026-07-29
+
+### Fixed
+- `installRuntimeDeps`: `bun update` runs after `bun add` — the lockfile no longer pins the harness to the first staged version (0.1.85 deployed while npm served 0.1.86).
+
 ## [1.0.12] - 2026-07-29
 
 ### Fixed
