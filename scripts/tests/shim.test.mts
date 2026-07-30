@@ -91,4 +91,13 @@ describe("kimi-hook-shim", () => {
 		expect(out.env.ttl).toBe("480");
 		expect(out.env.quoted).toBe("hello world");
 	});
+
+	test("rules scope remaps KIMI_PLUGIN_ROOT to the kimi-rules sub-plugin", () => {
+		const home = makeHome(true);
+		const suite = join(home, "suite");
+		mkdirSync(join(suite, "plugins", "kimi-rules", "rules"), { recursive: true });
+		const r = runShim({ KIMI_CODE_HOME: home, HOME: home, KIMI_PLUGIN_ROOT: suite }, ["rules"]);
+		expect(r.code).toBe(0);
+		expect(JSON.parse(r.stdout).env.kimiRoot).toBe(join(suite, "plugins", "kimi-rules"));
+	});
 });

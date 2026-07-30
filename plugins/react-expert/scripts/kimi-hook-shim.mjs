@@ -71,6 +71,19 @@ function isConfirmDeny(stdout) {
 	}
 }
 
+/**
+ * Rules-scope env: the harness reads its rules corpus from
+ * <KIMI_PLUGIN_ROOT>/rules, but kimi sets KIMI_PLUGIN_ROOT to the SUITE root
+ * and the corpus lives in the kimi-rules sub-plugin. Remap the var to that
+ * sub-plugin when its rules/ dir exists, else the injection comes out empty.
+ */
+function rulesScopeEnv(env) {
+	const root = env.KIMI_PLUGIN_ROOT;
+	if (!root) return env;
+	const rulesPlugin = join(root, "plugins", "kimi-rules");
+	return existsSync(join(rulesPlugin, "rules")) ? { ...env, KIMI_PLUGIN_ROOT: rulesPlugin } : env;
+}
+
 async function main() {
 	const stdin = await readStdin();
 	const kimiHome = process.env.KIMI_CODE_HOME || join(homedir(), ".kimi-code");
@@ -82,9 +95,10 @@ async function main() {
 
 	const scope = process.argv[2] || "core";
 	const args = process.argv.slice(3);
+	const base = scope === "rules" ? rulesScopeEnv(process.env) : process.env;
 	const child = spawnSync("bun", [bin, "hook", "kimi", scope, ...args], {
 		input: stdin,
-		env: { ...process.env, ...loadKimiEnv(kimiHome) },
+		env: { ...base, ...loadKimiEnv(kimiHome) },
 		stdio: ["pipe", "pipe", "pipe"],
 	});
 	if (child.error) {

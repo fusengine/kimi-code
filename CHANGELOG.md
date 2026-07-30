@@ -3,6 +3,11 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.14] - 2026-07-30
+
+### Fixed
+- Hook shim: `KIMI_PLUGIN_ROOT` is remapped to the `kimi-rules` sub-plugin for the `rules` scope — the harness reads its corpus from `<KIMI_PLUGIN_ROOT>/rules` but kimi sets the var to the suite root, so per-prompt rules injection came out empty and the kimi-rules block never reached prompts.
+
 ## [1.0.13] - 2026-07-29
 
 ### Fixed
