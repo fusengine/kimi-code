@@ -17,7 +17,8 @@ process.stdin.on("data",c=>d+=c);process.stdin.on("end",()=>{
 process.stdout.write(JSON.stringify({argv:process.argv.slice(2),stdin:d,
 env:{kimiHome:process.env.KIMI_CODE_HOME,kimiRoot:process.env.KIMI_PLUGIN_ROOT,
 claudeRoot:process.env.CLAUDE_PLUGIN_ROOT,claudeDir:process.env.CLAUDE_PROJECT_DIR,
-claudeHome:process.env.CLAUDE_HOME}}))});`;
+claudeHome:process.env.CLAUDE_HOME,ttl:process.env.FUSE_ENFORCE_TTL_SEC,
+quoted:process.env.QUOTED_VAR}}))});`;
 
 function makeHome(withHarness: boolean): string {
 	const home = mkdtempSync(join(tmpdir(), "kimi-shim-test-"));
@@ -78,5 +79,16 @@ describe("kimi-hook-shim", () => {
 		const r = runShim({ KIMI_CODE_HOME: home, HOME: home });
 		expect(r.code).toBe(0);
 		expect(JSON.parse(r.stdout).argv).toEqual(["hook", "kimi", "core"]);
+	});
+
+	test("$KIMI_HOME/.env overrides the inherited env (cross-harness pollution)", () => {
+		const home = makeHome(true);
+		writeFileSync(join(home, ".env"), 'FUSE_ENFORCE_TTL_SEC=480\nQUOTED_VAR="hello world"\n');
+		// Ambient env simulates claude-env.fish exporting ~/.claude/.env values.
+		const r = runShim({ KIMI_CODE_HOME: home, HOME: home, FUSE_ENFORCE_TTL_SEC: "120" });
+		expect(r.code).toBe(0);
+		const out = JSON.parse(r.stdout);
+		expect(out.env.ttl).toBe("480");
+		expect(out.env.quoted).toBe("hello world");
 	});
 });

@@ -3,6 +3,12 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.12] - 2026-07-29
+
+### Fixed
+- Hook shim: `$KIMI_HOME/.env` is overlaid on top of the inherited environment when spawning the harness — cross-harness shell pollution (fish `conf.d/claude-env.fish` exporting `~/.claude/.env`) no longer wins over the kimi config (gates showed 2min TTL and `.claude` SOLID refs instead of 8min and kimi paths). All 24 bundled plugin copies synced.
+- `permission-mode`: `VALUE_RE` gains `/m` so the root-table key matches anywhere in the head segment.
+
 ## [1.0.11] - 2026-07-29
 
 ### Fixed

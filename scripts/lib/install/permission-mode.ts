@@ -17,7 +17,7 @@ type PermissionMode = (typeof MODES)[number];
 // belongs to that table — kimi reads default_permission_mode at the root only
 // (toml.io: the root table ends at the first table header).
 const KEY_RE = /^(default_permission_mode\s*=\s*)"[^"]*"(.*)$/m;
-const VALUE_RE = /^default_permission_mode\s*=\s*"([a-z]+)"/;
+const VALUE_RE = /^default_permission_mode\s*=\s*"([a-z]+)"/m;
 
 /** Split at the first table header; top-level keys live in `head` only. */
 function topLevel(toml: string): { head: string; rest: string } {
