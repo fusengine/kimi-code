@@ -131,6 +131,15 @@ function sessionAge(dir) {
 	} catch { return ""; }
 }
 
+/** Current branch from git itself (always fresh); "" outside a repo. */
+function gitBranch(cwd) {
+	if (!cwd) return "";
+	try {
+		const out = Bun.spawnSync(["git", "-C", cwd, "branch", "--show-current"], { stdout: "pipe", stderr: "ignore" });
+		return out.stdout.toString().trim();
+	} catch { return ""; }
+}
+
 /** Git counts from `git status --porcelain`: staged `+n`, unstaged `~n`, untracked `?n`; "" when clean or not a repo. */
 function gitCounts(cwd) {
 	if (!cwd) return "";
@@ -225,8 +234,8 @@ let snap = {};
 try { snap = JSON.parse(raw); } catch { /* keep defaults */ }
 
 const model = pick(snap, ["model", "modelAlias", "model.alias"]);
-const branch = pick(snap, ["gitBranch", "git_branch", "git.branch", "branch"]);
 const cwd = pick(snap, ["cwd", "workDir", "workdir"]);
+const branch = gitBranch(cwd) || pick(snap, ["gitBranch", "git_branch", "git.branch", "branch"]);
 const perm = pick(snap, ["permissionMode", "permission_mode", "mode"]);
 const plan = snap.planMode === true || snap.plan_mode === true ? "PLAN" : "";
 const version = pick(snap, ["version"]);
