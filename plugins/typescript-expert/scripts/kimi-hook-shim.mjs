@@ -84,6 +84,38 @@ function rulesScopeEnv(env) {
 	return existsSync(join(rulesPlugin, "rules")) ? { ...env, KIMI_PLUGIN_ROOT: rulesPlugin } : env;
 }
 
+/** Parse the hook event name from the stdin payload; "" when unreadable. */
+function eventNameOf(stdin) {
+	try { return JSON.parse(stdin)?.hook_event_name ?? ""; } catch { return ""; }
+}
+
+/**
+ * Compact the rules injection on UserPromptSubmit. Kimi renders ONE hook
+ * content in BOTH the model context (<hook_result>) and the TUI block
+ * (hook.result event) — no model-only channel exists (verified in 0.30.0
+ * dist). The full corpus still reaches the model at SessionStart and every
+ * SubagentStart; on each prompt the harness's `<corpus>\n\n<notice>` stdout
+ * is redundant, so forward only the notices — the user sees one line per
+ * injection, the model loses nothing it does not already have from session
+ * start. When $KIMI_HOME/AGENTS.md is present (loaded natively into the
+ * model's system prompt), an "AGENTS.md injected" line is prepended so the
+ * user sees both channels confirmed. Rules scope ONLY: lessons keep their
+ * full per-prompt injection — their payload is small and the hook is their
+ * only channel to the model. JSON envelopes (deny) pass through untouched.
+ */
+function compactPromptInjection(stdout, scope, eventName, kimiHome) {
+	if (scope !== "rules" || eventName !== "UserPromptSubmit") return stdout;
+	if (!stdout || stdout.startsWith("{")) return stdout;
+	const cut = stdout.lastIndexOf("\n\n");
+	if (cut === -1) return stdout;
+	const notice = stdout.slice(cut + 2).trim();
+	if (notice.length === 0 || notice.length > 120) return stdout;
+	const agentsMd = join(kimiHome, "AGENTS.md");
+	const agentsNote = existsSync(agentsMd) && readFileSync(agentsMd, "utf8").trim().length > 0
+		? "AGENTS.md injected\n" : "";
+	return `${agentsNote}${notice}\n`;
+}
+
 async function main() {
 	const stdin = await readStdin();
 	const kimiHome = process.env.KIMI_CODE_HOME || join(homedir(), ".kimi-code");
@@ -95,6 +127,7 @@ async function main() {
 
 	const scope = process.argv[2] || "core";
 	const args = process.argv.slice(3);
+	const eventName = eventNameOf(stdin);
 	const base = scope === "rules" ? rulesScopeEnv(process.env) : process.env;
 	const child = spawnSync("bun", [bin, "hook", "kimi", scope, ...args], {
 		input: stdin,
@@ -111,7 +144,8 @@ async function main() {
 		process.stderr.write("kimi-hook-shim: confirmation-class deny suppressed — Kimi permission system will prompt instead\n");
 		process.exit(0);
 	}
-	if (stdout) process.stdout.write(stdout);
+	const out = compactPromptInjection(stdout, scope, eventName, kimiHome);
+	if (out) process.stdout.write(out);
 	if (stderr) process.stderr.write(stderr);
 	process.exit(child.status ?? 0);
 }

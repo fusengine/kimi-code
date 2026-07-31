@@ -18,6 +18,6 @@
     "@clack/prompts": "^1.7.0"
   },
   "fusengine": {
-    "harnessMinVersion": "0.1.85"
+    "harnessMinVersion": "0.1.87"
   }
 }
