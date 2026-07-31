@@ -14,3 +14,4 @@ node_modules/
 # Generated migration reports (contain absolute local paths)
 migration-report.json
 plugins/migration-report.json
+.kimi-code/

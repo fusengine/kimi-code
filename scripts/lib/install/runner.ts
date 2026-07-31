@@ -14,6 +14,7 @@ import { promptMcpKeys } from "./mcp-key-prompt";
 import { configureHarness } from "./harness-config";
 import { configurePermissionMode } from "./permission-mode";
 import { configureExperimentalFlag } from "./experimental-flag";
+import { installStatusline } from "./statusline";
 import { installHooks } from "./hooks-config";
 import { installAgents } from "./agents-install";
 import { writeMarketplace } from "./marketplace";
@@ -50,6 +51,7 @@ export async function runInstaller(ctx: InstallContext): Promise<RunOutcome> {
 	await runStep(results, "configureHarness", () => configureHarness(ctx));
 	await runStep(results, "configurePermissionMode", () => configurePermissionMode(ctx));
 	await runStep(results, "configureExperimentalFlag", () => configureExperimentalFlag(ctx));
+	await runStep(results, "installStatusline", () => installStatusline(ctx));
 	await runStep(results, "installHooks", () => installHooks(ctx));
 	await runStep(results, "installAgents", () => installAgents(ctx));
 	step("writeMarketplace");
