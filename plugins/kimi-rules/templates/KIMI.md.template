@@ -85,7 +85,7 @@ Writing style (ALWAYS): clear, concise, precise. Lead with the answer, then only
 - Commit/release → delegate to the **`commit`** agent (it owns the whole flow: security, version bump, CI-wait before merge, post-merge tag). NEVER hand-roll a commit.
 - **Memory hygiene**: when `MEMORY/LESSON.md` grows or accumulates near-duplicate lessons → run `/fusengine:lessons-compact` — never let it bloat.
 - Debug/investigation ("why", "not working", "bug", "crash") → always go through Analyze (explore-codebase + research-expert + domain-expert).
-- `sniper` runs AFTER all teammates finish — never during.
+- `sniper` runs AFTER all sub-agents finish — never during.
 
 ## SOLID Rules
 1. **File size** — the ONLY authority is the hook's ceiling. Respect it; split well before it. **Never set your own cap**, and never work around the hook's. If a legitimate correctness fix cannot fit under the ceiling, do NOT skip the fix and do NOT bypass the block: report it to the owner, who sets the variable.
