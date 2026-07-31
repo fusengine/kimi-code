@@ -7,7 +7,7 @@ export function sh(cmd: string[], cwd: string, timeoutMs = 120_000): ShResult {
   return {
     code: p.exitCode,
     out: `${p.stdout.toString()}\n${p.stderr.toString()}`,
-    timedOut: p.exitedDueToTimeout,
+    timedOut: p.exitedDueToTimeout ?? false,
   };
 }
 
