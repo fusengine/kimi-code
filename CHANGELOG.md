@@ -3,6 +3,11 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.18] - 2026-07-31
+
+### Fixed
+- statusline: the branch name is now read live from `git branch --show-current` instead of the payload's `gitBranch` field — that field comes from a slowly-refreshed TUI cache and showed a stale branch name after switching branches. The payload value is kept as a fallback outside git repos (core-guards 1.1.39).
+
 ## [1.0.17] - 2026-07-31
 
 ### Added
