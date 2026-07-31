@@ -90,6 +90,21 @@ function eventNameOf(stdin) {
 }
 
 /**
+ * Parse the project cwd from the stdin payload; "" when unreadable/missing.
+ * Kimi runs plugin hooks with the process cwd set to the PLUGIN ROOT, and the
+ * harness CLI passes `process.cwd()` (not the payload cwd) to its gates — so
+ * without this, cwd-sensitive gates (the pre-commit tsc/eslint/prettier/ruff
+ * sweep) evaluate the deployed suite instead of the user's project and block
+ * every commit with phantom errors (TS2688 from the suite's own tsconfig).
+ */
+function payloadCwdOf(stdin) {
+	try {
+		const cwd = JSON.parse(stdin)?.cwd;
+		return typeof cwd === "string" && cwd.length > 0 && existsSync(cwd) ? cwd : "";
+	} catch { return ""; }
+}
+
+/**
  * Compact the rules injection on UserPromptSubmit. Kimi renders ONE hook
  * content in BOTH the model context (<hook_result>) and the TUI block
  * (hook.result event) — no model-only channel exists (verified in 0.30.0
@@ -128,10 +143,12 @@ async function main() {
 	const scope = process.argv[2] || "core";
 	const args = process.argv.slice(3);
 	const eventName = eventNameOf(stdin);
+	const payloadCwd = payloadCwdOf(stdin);
 	const base = scope === "rules" ? rulesScopeEnv(process.env) : process.env;
 	const child = spawnSync("bun", [bin, "hook", "kimi", scope, ...args], {
 		input: stdin,
 		env: { ...base, ...loadKimiEnv(kimiHome) },
+		cwd: payloadCwd || undefined,
 		stdio: ["pipe", "pipe", "pipe"],
 	});
 	if (child.error) {
