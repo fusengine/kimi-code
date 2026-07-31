@@ -3,6 +3,11 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.16] - 2026-07-31
+
+### Documentation
+- git-flow Step 8: the GitHub Release object is now MANDATORY for all repos — a pushed tag alone is invisible to anything resolving "latest release" (Kimi `/plugins install <github-url>` reads Releases, not tags); Step 8 runs `gh release create vX.Y.Z --latest` with CHANGELOG notes and verifies `releases/latest` (commit-pro 1.2.24). Skill frontmatter restored (`user-invocable: false`, `related-skills`).
+
 ## [1.0.15] - 2026-07-31
 
 ### Fixed

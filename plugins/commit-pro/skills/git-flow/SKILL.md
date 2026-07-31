@@ -1,6 +1,8 @@
 ---
 name: git-flow
 description: Use when committing, branching, opening PRs, or deciding merge/branch strategy.
+user-invocable: false
+related-skills: commit-optimization, post-commit, commit-detection
 ---
 
 
@@ -116,6 +118,8 @@ Determine which of the three cases applies from what actually exists on the PR �
 Merge is always `--merge` (real merge commit) — **never `--squash`**, it would orphan the release tag's target (see Tagging timing below).
 
 **Tagging timing**: never push the tag before the merge is validated — CI could still fail or branch protection could still block the merge, and a tag pushed early would point at a commit that never lands on `main`. Tag `vX.Y.Z` on `main` AFTER the merge completes, then push the tag (`commit` does this automatically in Step 8 — see also `commands/commit.md` Step 8 and `post-commit/references/tag-timing.md`).
+
+**Release object (MANDATORY, all repos)**: a pushed tag alone is invisible to anything that resolves "latest release" — Kimi `/plugins install <github-url>` first among them (it reads GitHub Releases, not tags). Step 8 therefore always runs `gh release create vX.Y.Z --latest` (notes from the CHANGELOG section) and verifies `gh api repos/<owner>/<repo>/releases/latest` resolves to the new version. Claude Code marketplaces read tags; Kimi installs read Releases — every repo ships both, no exceptions.
 
 ## After Merge
 
