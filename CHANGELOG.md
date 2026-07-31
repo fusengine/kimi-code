@@ -3,6 +3,16 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.17] - 2026-07-31
+
+### Added
+- Custom TUI statusline: `plugins/core-guards/statusline/native/statusline-native.mjs` renders one colored line from the CLI's JSON snapshot (time, git +staged/~unstaged/?untracked, truncated path, ± line stats parsed from the session wire, 5h/7D quota windows via the managed usage API with 5-min cache and NaN→0% rollover guard, ⚙ fg|bg agent counts, model+thinking effort from config.toml, permission mode, version, session age; <300ms, exit 0 always).
+- install: `installStatusline(ctx)` copies the script to `$KIMI_HOME/bin/statusline-native.mjs` (chmod 755) and surgically upserts `[status_line].command` in `$KIMI_HOME/tui.toml` — preserves all other content, idempotent, dryRun plans only, skips when the source is absent. Registered in the install runner after configureExperimentalFlag (core-guards 1.1.38).
+- tests: 8 install-statusline tests (deploy to bin/, content preservation, idempotence, header-with-comment TOML edge case).
+
+### Changed
+- gitignore: project-local `.kimi-code/` state is never tracked.
+
 ## [1.0.16] - 2026-07-31
 
 ### Documentation
