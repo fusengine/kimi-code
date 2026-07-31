@@ -8,15 +8,15 @@ framework expert for wiring into the codebase.
 
 | Project Files | Framework | UI Approach | Delegate To | Skills to Validate |
 |---------------|-----------|-------------|-------------|-------------------|
-| `next.config.*`, `app/layout.tsx` | Next.js | Direct HTML/CSS + shadcn | `nextjs-expert` | solid-nextjs, nextjs-16 |
-| `astro.config.*`, `src/pages/*.astro` | Astro | Direct HTML/CSS + shadcn (React islands) | `astro-expert` | solid-astro |
-| `@tanstack/react-start` + `tanstackStart()` in vite.config.* | TanStack Start | Direct HTML/CSS + shadcn | `tanstack-start-expert` | solid-tanstack-start, start-core |
-| `package.json` + React (no Next) | React SPA | Direct HTML/CSS + shadcn | `react-expert` | solid-react, react-19 |
-| `composer.json` + `artisan` + Inertia + React | Laravel+Inertia | Direct HTML/CSS + shadcn | `laravel-expert` | solid-php |
-| `composer.json` + `artisan` (no Inertia) | Laravel Blade | Visual specs → Livewire Flux | `laravel-expert` | solid-php |
-| `Package.swift`, `*.xcodeproj` | Swift/Apple | `design-ios` mockup + handoff spec → SwiftUI | `swift-expert` | swift-apple |
+| `next.config.*`, `app/layout.tsx` | Next.js | Direct HTML/CSS + shadcn | `fuse-nextjs:nextjs-expert` | solid-nextjs, nextjs-16 |
+| `astro.config.*`, `src/pages/*.astro` | Astro | Direct HTML/CSS + shadcn (React islands) | `fuse-astro:astro-expert` | solid-astro |
+| `@tanstack/react-start` + `tanstackStart()` in vite.config.* | TanStack Start | Direct HTML/CSS + shadcn | `fuse-tanstack-start:tanstack-start-expert` | solid-tanstack-start, start-core |
+| `package.json` + React (no Next) | React SPA | Direct HTML/CSS + shadcn | `fuse-react:react-expert` | solid-react, react-19 |
+| `composer.json` + `artisan` + Inertia + React | Laravel+Inertia | Direct HTML/CSS + shadcn | `fuse-laravel:laravel-expert` | solid-php |
+| `composer.json` + `artisan` (no Inertia) | Laravel Blade | Visual specs → Livewire Flux | `fuse-laravel:laravel-expert` | solid-php |
+| `Package.swift`, `*.xcodeproj` | Swift/Apple | `design-ios` mockup + handoff spec → SwiftUI | `fuse-swift-apple-expert:swift-expert` | swift-apple |
 | Android project (Gradle/Compose) | Android | `design-android` mockup + handoff spec → Compose | (Android developer, no dedicated plugin agent yet) | — |
-| `tailwind.config.*` only | Tailwind only | CSS specs | `tailwindcss-expert` | tailwindcss-v4 |
+| `tailwind.config.*` only | Tailwind only | CSS specs | `fuse-tailwindcss:tailwindcss-expert` | tailwindcss-v4 |
 
 ## Integration Workflow
 
@@ -36,7 +36,7 @@ framework expert for wiring into the codebase.
 ## Delegation Command
 
 ```
-Task: nextjs-expert
+Task: fuse-nextjs:nextjs-expert
 Prompt: "Validate this generated component for:
 1. solid-nextjs compliance (file size, interfaces)
 2. Next.js 16 patterns (App Router, Server Components)
@@ -82,7 +82,7 @@ For non-React projects, design-expert produces `design-system.md` + visual specs
 | Accordion, Tabs, Form (TanStack) | React `.tsx` | `client:visible` |
 
 > Wrap interdependent components in one `.tsx` — React Context is isolated per island.
-> Astro delegation: `astro-expert` — validate solid-astro, directives, View Transitions.
+> Astro delegation: `fuse-astro:astro-expert` — validate solid-astro, directives, View Transitions.
 
 ## Responsibility Split
 

@@ -54,7 +54,7 @@ All design work starts in `skills/design-method/SKILL.md`:
   has no design-specific enforcement — it does not block phase skipping, force
   light+dark validation, or gate Gemini usage. The pipeline discipline in
   `design-method` is followed by convention and verified in `design-review`, not
-  enforced by a hook. See `hooks/hooks.json`.
+  enforced by a hook. Hooks are declared in this plugin's `kimi.plugin.json`.
 - **Gemini Design MCP, Magic, and shadcn MCP are optional.** Direct HTML/CSS generation
   is the default and the fallback if any of them is unavailable.
 - **Every fact has one home.** Forbidden fonts and contrast thresholds live in
