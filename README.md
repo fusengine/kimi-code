@@ -10,8 +10,8 @@ Port of the [Fusengine Claude Code plugins](../claude-plugins/) to **Kimi Code C
 
 ```
 kimi-code/
-├── KIMI.template.md          # Global system-prompt template (K3-optimized)
-├── AGENTS.md                 # Operational global rules (installed to ~/.kimi-code/AGENTS.md)
+├── KIMI.template.md          # Legacy duplicate of plugins/kimi-rules/templates/KIMI.md.template
+├── AGENTS.md                 # Thin project-only instructions (global rules live in the template + corpus)
 ├── marketplace.json          # Plugin catalog for /plugins marketplace
 ├── plugins/                  # 24 plugins (kimi.plugin.json manifests)
 │   ├── kimi-rules/           # Core rules corpus 00-08 + template
@@ -43,7 +43,7 @@ Then `/reload` (or start a new session). One plugin, one namespace: 196 skills, 
 
 ## How it works
 
-The installer (run by `setup.sh`): backs up existing config, stages `@fusengine/harness` **from npm**, copies `AGENTS.md`, merges the rules corpus between idempotent fences, merges MCP servers into `~/.kimi-code/mcp.json`, and materializes the 37 agents into `~/.kimi-code/agents/`. Kimi Code does NOT auto-load `.env` — the installer reads it when resolving `${VAR}` placeholders into `mcp.json`, and the harness reads it at runtime.
+The installer (run by `setup.sh`): backs up existing config, stages `@fusengine/harness` **from npm**, copies `plugins/kimi-rules/templates/KIMI.md.template` as `~/.kimi-code/AGENTS.md`, merges the rules corpus between idempotent fences, merges MCP servers into `~/.kimi-code/mcp.json`, and materializes the 37 agents into `~/.kimi-code/agents/`. Kimi Code does NOT auto-load `.env` — the installer reads it when resolving `${VAR}` placeholders into `mcp.json`, and the harness reads it at runtime.
 
 ```
 User prompt → Hook detects project type → Expert agent activated
