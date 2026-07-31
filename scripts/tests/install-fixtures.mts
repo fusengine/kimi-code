@@ -57,6 +57,7 @@ export function makeRepo(dir: string): void {
 	write(join(dir, "plugins", "fake-one", "skills", "solid-generic", "references", "ref.md"), "# Refs\n");
 	write(join(dir, "plugins", "kimi-rules", "kimi.plugin.json"), manifest("kimi-rules", "Kimi Rules"));
 	write(join(dir, "plugins", "kimi-rules", "rules", "00-test-rule.md"), "# Test Rule\n\nAlways test.");
+	write(join(dir, "plugins", "kimi-rules", "templates", "KIMI.md.template"), "# Fake Global Template\n");
 	write(join(dir, "plugins", "fake-one", "scripts", "kimi-hook-shim.mjs"), "// fake shim\n");
 }
 

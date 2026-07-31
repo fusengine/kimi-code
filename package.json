@@ -1,6 +1,6 @@
 {
   "name": "@fusengine/kimi-code",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "private": true,
   "type": "module",
   "description": "Fusengine plugin ecosystem migrated to Kimi Code CLI",
@@ -18,6 +18,9 @@
     "@clack/prompts": "^1.7.0"
   },
   "fusengine": {
-    "harnessMinVersion": "0.1.85"
+    "harnessMinVersion": "0.1.87"
+  },
+  "devDependencies": {
+    "bun-types": "^1.3.14"
   }
 }

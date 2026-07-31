@@ -7,6 +7,11 @@
 - Clear, concise, precise. Lead with the answer, then only the details that change a decision
 - NEVER write like a dictionary — no exhaustive lists when one answer is expected, no theory recap before the point, no restating what the user already knows
 
+## User Confirmations (ZERO TOLERANCE)
+- ANY question that asks the user to choose or confirm (approvals, scope decisions, plan sign-off, commit confirmation) MUST go through the `AskUserQuestion` tool — NEVER as plain prose in a reply or a sub-agent report
+- If the answer is inferable from context, decide alone and ask nothing
+- Sub-agents that need a user decision: report the question to the lead, who calls `AskUserQuestion` — a text question in a report is a violation
+
 ## DRY Priority (BEFORE writing ANY code)
 1. **Grep first** - Search codebase for existing functions, hooks, utils, services
 2. **Reuse > Create** - Extend existing code instead of creating new

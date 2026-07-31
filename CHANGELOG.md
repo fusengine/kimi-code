@@ -3,6 +3,29 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.15] - 2026-07-31
+
+### Fixed
+- Hook shim: the payload `cwd` is forwarded to the harness child process — Kimi runs plugin hooks with the cwd set to the plugin root and the harness CLI passed `process.cwd()` to its gates, so cwd-sensitive gates (the pre-commit tsc sweep) evaluated the deployed suite root instead of the project and blocked every commit with phantom TS2688 errors. All 24 bundled plugin copies synced.
+- Hook shim: UserPromptSubmit rules injection compacted to notice lines ("AGENTS.md injected" / "rules 00-08 injected") — the full 18KB corpus flooded the TUI on every prompt; the corpus still reaches the model at SessionStart/SubagentStart. All 24 bundled plugin copies synced.
+- core-guards: duplicate SubagentStop/SessionStart hook registrations removed from the root and plugin manifests (core-guards 1.1.37).
+- benchmark shell: `timedOut` defaults to `false` when `exitedDueToTimeout` is undefined.
+
+### Added
+- install: `plugins/kimi-rules/templates/KIMI.md.template` deployed as `$KIMI_HOME/AGENTS.md`, with fixture and test coverage.
+- Rules: "User Confirmations (ZERO TOLERANCE)" section in 00-critical-rules; "teammates" renamed to "sub-agents" (Kimi vocabulary) across 03-agent-teams and both KIMI.md.template copies (kimi-rules 1.39.19).
+- ai-pilot commit agent: "Scope Boundary (ZERO TOLERANCE)" section — never code, escalate on gate surprises (ai-pilot 1.2.39).
+- MEMORY/LESSON.md: three lessons from the hook injection and design-expert migration work.
+
+### Changed
+- design-expert re-synced from the restructured claude-plugins via `scripts/migrate.ts` with the Kimi adaptations (bare agent names, KIMI_PLUGIN_ROOT, Agent/AgentSwarm, handoff section); the elysian reference site moved to the plugin-level `_artistic/` directory (design-expert 2.2.6).
+- AGENTS.md slimmed to a thin entry doc; README resynced with the current suite.
+- tsconfig excludes design-expert layout-check scripts, seo scripts and benchmark fixtures; layout-check gets its own tsconfig; bun-types devDependency added — repo-wide `tsc --noEmit` green.
+- gitignore: `**/.harness/`, `**/.claude/` and generated migration reports are never tracked; cached harness state and `plugins/migration-report.json` untracked (kept on disk).
+
+### Tests
+- hooks-e2e corpus aligned with the SessionStart/UserPromptSubmit injection split (63-rule corpus at SessionStart/SubagentStart, notice lines at UserPromptSubmit).
+
 ## [1.0.14] - 2026-07-30
 
 ### Fixed

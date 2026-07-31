@@ -6,3 +6,11 @@ node_modules/
 
 # Runtime artifacts (harness cartography maps, regenerated on the fly)
 .cartographer/
+
+# Harness state (cache/track) and Claude Code internals — never tracked
+**/.harness/
+**/.claude/
+
+# Generated migration reports (contain absolute local paths)
+migration-report.json
+plugins/migration-report.json

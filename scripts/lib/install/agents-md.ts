@@ -1,7 +1,9 @@
 /**
- * agents-md.ts — Install the repo AGENTS.md as $KIMI_HOME/AGENTS.md and merge
- * the kimi-rules corpus into it between idempotent fences (rerun replaces
- * the fenced block; outside content is preserved byte-for-byte).
+ * agents-md.ts — Install plugins/kimi-rules/templates/KIMI.md.template as
+ * $KIMI_HOME/AGENTS.md (NOT the repo AGENTS.md: that stays the thin
+ * project-level file — restating base rules there double-loads them), then
+ * merge the kimi-rules corpus into it between idempotent fences (rerun
+ * replaces the fenced block; outside content is preserved byte-for-byte).
  */
 import { mkdir, readdir } from "node:fs/promises";
 import { join } from "node:path";
@@ -31,10 +33,10 @@ export async function readRulesCorpus(rulesDir: string): Promise<string> {
 	return parts.join("\n\n");
 }
 
-/** Copy repo AGENTS.md → $KIMI_HOME/AGENTS.md (.pre-fusengine kept on first divergence). */
+/** Copy plugins/kimi-rules/templates/KIMI.md.template → $KIMI_HOME/AGENTS.md (.pre-fusengine kept on first divergence). */
 export async function installAgentsMd(ctx: InstallContext): Promise<InstallStepResult> {
 	const res: InstallStepResult = { name: "installAgentsMd", status: "ok", notes: [] };
-	const src = join(ctx.repoRoot, "AGENTS.md");
+	const src = join(ctx.pluginsRoot, "kimi-rules", "templates", "KIMI.md.template");
 	const dest = join(ctx.kimiHome, "AGENTS.md");
 	if (!(await exists(src))) {
 		res.status = "fail";

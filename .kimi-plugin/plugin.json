@@ -1,6 +1,6 @@
 {
   "name": "fusengine",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Fusengine agentic suite for Kimi Code (K3): 24 plugins, 196 skills, APEX workflow, harness-powered hooks",
   "author": {
     "name": "Fusengine",
@@ -122,11 +122,6 @@
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
     },
     {
-      "event": "SubagentStop",
-      "matcher": "",
-      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
-    },
-    {
       "event": "Notification",
       "matcher": "task\\.completed",
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
@@ -153,11 +148,6 @@
     },
     {
       "event": "SessionEnd",
-      "matcher": "",
-      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
-    },
-    {
-      "event": "SessionStart",
       "matcher": "",
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
     },

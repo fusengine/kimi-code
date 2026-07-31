@@ -25,6 +25,9 @@
   "exclude": [
     "**/node_modules/**",
     "**/dist/**",
-    "plugins/core-guards/statusline/**"
+    "plugins/core-guards/statusline/**",
+    "plugins/design-expert/scripts/layout-check/**",
+    "plugins/seo/scripts/**",
+    "scripts/benchmark/fixtures/**"
   ]
 }
