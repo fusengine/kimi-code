@@ -20,8 +20,8 @@ const PLUGINS = resolve(import.meta.dir, "../../plugins");
 const rules = await collectHookRules(PLUGINS);
 
 describe("layer 1: static", () => {
-	test("declared corpus is 65 rules across 21 plugins", () => {
-		expect(rules).toHaveLength(65);
+	test("declared corpus is 63 rules across 21 plugins", () => {
+		expect(rules).toHaveLength(63);
 		expect(new Set(rules.map((r) => r.pluginDir)).size).toBe(21);
 	});
 	test("every rule: known event, shim-pattern command, known scope, shim on disk", async () => {
@@ -77,9 +77,14 @@ describe("layer 3: live harness (skip-safe)", () => {
 		if (!(await stageLiveHarness(cacheDir))) return; // npm unreachable → skip, never fail
 		for (const r of liveSweep(PLUGINS, cacheDir, rules)) expect(r.violations).toEqual([]);
 		const rulesRef = rules.find((r) => r.pluginDir === "kimi-rules" && r.hook.event === "UserPromptSubmit")!;
+		const sessionRef = rules.find((r) => r.pluginDir === "kimi-rules" && r.hook.event === "SessionStart")!;
 		const guardRef = rules.find((r) => r.pluginDir === "core-guards" && r.hook.event === "PreToolUse")!;
-		const injected = runLiveRule(PLUGINS, cacheDir, rulesRef, synthesizePayload(rulesRef));
+		// Full corpus flows at SessionStart; UserPromptSubmit is compacted to the notice.
+		const injected = runLiveRule(PLUGINS, cacheDir, sessionRef, synthesizePayload(sessionRef));
 		expect(additionalContextOrText(injected.stdout)).toContain("Response Language");
+		const prompted = runLiveRule(PLUGINS, cacheDir, rulesRef, synthesizePayload(rulesRef));
+		expect(prompted.stdout).toContain("rules 00-08 injected");
+		expect(prompted.stdout).not.toContain("Response Language");
 		const rmrf = synthesizePayload(guardRef, { toolName: "Bash", toolInput: { command: "rm -rf /" } });
 		const denied = runLiveRule(PLUGINS, cacheDir, guardRef, rmrf);
 		expect(isDeny(JSON.parse(denied.stdout) as Record<string, unknown>)).toBe(true);
