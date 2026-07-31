@@ -56,11 +56,6 @@
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
     },
     {
-      "event": "SubagentStop",
-      "matcher": "",
-      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
-    },
-    {
       "event": "Notification",
       "matcher": "task\\.completed",
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
@@ -87,11 +82,6 @@
     },
     {
       "event": "SessionEnd",
-      "matcher": "",
-      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
-    },
-    {
-      "event": "SessionStart",
       "matcher": "",
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" core"
     },
