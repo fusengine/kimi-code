@@ -5,7 +5,8 @@
  * Steps: backup → installRuntimeDeps (harness) → installAgentsMd →
  * mergeKimiRules (fences) → selectMcpServers → promptMcpKeys → mergeMcp →
  * configureHarness → configurePermissionMode (YOLO) →
- * configureExperimentalFlag (v2 engine, shell rc) → installHooks →
+ * configureExperimentalFlag (v2 engine, shell rc) → installStatusline
+ * (native TUI statusline → bin/ + tui.toml) → installHooks →
  * installAgents → writeMarketplace → summary → assertInstalledState (--yes only).
  *
  * Flags: --yes (write; default is --dry-run) · --skip-env (ignore
