@@ -41,7 +41,8 @@ describe("install-kimi", () => {
 		expect(agentsMd()).toContain("<!-- fusengine:kimi-rules:start -->");
 		expect(agentsMd()).toContain("<!-- fusengine:kimi-rules:end -->");
 		expect(agentsMd()).toContain("Always test.");
-		expect(agentsMd()).toContain("# Fake Repo Instructions");
+		expect(agentsMd()).toContain("# Fake Global Template");
+		expect(agentsMd()).not.toContain("# Fake Repo Instructions");
 		expect(existsSync(join(home, "node_modules/@fusengine/harness/dist/cli/bin.mjs"))).toBe(true);
 		expect(existsSync(join(home, "agents", "fake-agent.md"))).toBe(true);
 		const servers = mcpServers(home);
@@ -107,7 +108,7 @@ describe("install-kimi", () => {
 	test("real repo dry-run regenerates marketplace.json with 24 entries", () => {
 		const proc = spawnSync("bun", [INSTALLER], { encoding: "utf8" });
 		expect(proc.status).toBe(0);
-		expect(`${proc.stdout}\n${proc.stderr}`).toContain(">=0.1.85");
+		expect(`${proc.stdout}\n${proc.stderr}`).toContain(">=0.1.87");
 		const market = JSON.parse(readFileSync(join(import.meta.dir, "..", "..", "marketplace.json"), "utf8"));
 		expect(market.plugins).toHaveLength(24);
 	});
