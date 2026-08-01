@@ -3,6 +3,11 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.19] - 2026-07-31
+
+### Fixed
+- readme: install section now uses `/plugins reload` instead of `/reload` (the correct command for plugin changes, per the official docs), and the hook count is corrected from 68 to 63 (actual count after the core-guards dedup, confirmed by `bun run build:manifest`).
+
 ## [1.0.18] - 2026-07-31
 
 ### Fixed

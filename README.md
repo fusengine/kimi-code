@@ -39,7 +39,7 @@ kimi-code/
 ~\.kimi-code\plugins\managed\fusengine\setup.ps1       # Windows
 ```
 
-Then `/reload` (or start a new session). One plugin, one namespace: 196 skills, 34 commands (`/fusengine:<cmd>`), 68 harness-backed hook rules. API keys for MCP servers: `cp ~/.kimi-code/plugins/managed/fusengine/.env.example ~/.kimi-code/.env`, fill in, re-run `setup.sh`.
+Then `/plugins reload` (or start a new session). One plugin, one namespace: 196 skills, 34 commands (`/fusengine:<cmd>`), 63 harness-backed hook rules. API keys for MCP servers: `cp ~/.kimi-code/plugins/managed/fusengine/.env.example ~/.kimi-code/.env`, fill in, re-run `setup.sh`.
 
 ## How it works
 
