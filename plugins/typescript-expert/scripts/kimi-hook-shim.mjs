@@ -90,6 +90,25 @@ function eventNameOf(stdin) {
 }
 
 /**
+ * Normalize the tool_input field names onto the Claude wire shape the harness
+ * was written for: Kimi sends `path`, harness consumers like the lessons
+ * write-tracker read `file_path` (Claude's key) and silently no-op without it
+ * — the lessons Stop reminder can never arm without this alias. Fail-open:
+ * the original payload is returned byte-identical on any parse problem.
+ */
+function normalizeToolInput(stdin) {
+	try {
+		const payload = JSON.parse(stdin);
+		const ti = payload?.tool_input;
+		if (ti && typeof ti === "object" && typeof ti.path === "string" && ti.file_path === undefined) {
+			ti.file_path = ti.path;
+			return JSON.stringify(payload);
+		}
+		return stdin;
+	} catch { return stdin; }
+}
+
+/**
  * Parse the project cwd from the stdin payload; "" when unreadable/missing.
  * Kimi runs plugin hooks with the process cwd set to the PLUGIN ROOT, and the
  * harness CLI passes `process.cwd()` (not the payload cwd) to its gates — so
@@ -118,16 +137,37 @@ function payloadCwdOf(stdin) {
  * full per-prompt injection — their payload is small and the hook is their
  * only channel to the model. JSON envelopes (deny) pass through untouched.
  */
+/**
+ * Compact the rules/lessons injections on UserPromptSubmit. Kimi renders ONE
+ * hook content in BOTH the model context (<hook_result>) and the TUI block
+ * (hook.result event) — no model-only channel exists (verified in 0.30.0
+ * dist). The full corpus still reaches the model at SessionStart and every
+ * SubagentStart; on each prompt the harness's `<corpus>\n\n<notice>` stdout
+ * is redundant, so forward only the notices — the user sees one line per
+ * injection, the model loses nothing it does not already have from session
+ * start. Two output shapes are handled: the long `<corpus>\n\n<notice>` form
+ * (trimmed to the notice) and the harness's own short notice (guard true —
+ * passed through). When $KIMI_HOME/AGENTS.md is present (loaded natively
+ * into the model's system prompt), an "AGENTS.md injected" line is prepended
+ * in both cases. rules + lessons scopes ONLY; JSON envelopes (deny) pass
+ * through untouched.
+ */
 function compactPromptInjection(stdout, scope, eventName, kimiHome) {
-	if (scope !== "rules" || eventName !== "UserPromptSubmit") return stdout;
+	if ((scope !== "rules" && scope !== "lessons") || eventName !== "UserPromptSubmit") return stdout;
 	if (!stdout || stdout.startsWith("{")) return stdout;
+	let agentsNote = "";
+	if (scope === "rules") {
+		const agentsMd = join(kimiHome, "AGENTS.md");
+		agentsNote = existsSync(agentsMd) && readFileSync(agentsMd, "utf8").trim().length > 0
+			? "AGENTS.md injected\n" : "";
+	}
 	const cut = stdout.lastIndexOf("\n\n");
-	if (cut === -1) return stdout;
+	if (cut === -1) {
+		const trimmed = stdout.trim();
+		return trimmed.length > 0 && trimmed.length <= 120 ? `${agentsNote}${trimmed}\n` : stdout;
+	}
 	const notice = stdout.slice(cut + 2).trim();
 	if (notice.length === 0 || notice.length > 120) return stdout;
-	const agentsMd = join(kimiHome, "AGENTS.md");
-	const agentsNote = existsSync(agentsMd) && readFileSync(agentsMd, "utf8").trim().length > 0
-		? "AGENTS.md injected\n" : "";
 	return `${agentsNote}${notice}\n`;
 }
 
@@ -146,7 +186,7 @@ async function main() {
 	const payloadCwd = payloadCwdOf(stdin);
 	const base = scope === "rules" ? rulesScopeEnv(process.env) : process.env;
 	const child = spawnSync("bun", [bin, "hook", "kimi", scope, ...args], {
-		input: stdin,
+		input: normalizeToolInput(stdin),
 		env: { ...base, ...loadKimiEnv(kimiHome) },
 		cwd: payloadCwd || undefined,
 		stdio: ["pipe", "pipe", "pipe"],

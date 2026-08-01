@@ -68,28 +68,50 @@ function editCount(dir) {
 	} catch { return 0; }
 }
 
-/** Agent activity from agents/main/: { fg (foreground: agent dirs whose wire.jsonl was written in the last 5s — foreground agents leave no task JSON), bg (running detached tasks from agents/main/tasks/*.json). } */
-function bgAgents(dir) {
+/**
+ * Agent activity, exact: for every agent wire in the session (main + nested
+ * agent-* dirs), count `Agent` tool.call events with NO tool.result yet
+ * (foreground in flight), plus task JSONs with kind=agent & status=running
+ * (background). Calls older than the subagent timeout (2h) are dead —
+ * killed/lost agents never get a result and would otherwise count forever.
+ */
+function agentCounts(dir) {
 	const zero = { fg: 0, bg: 0 };
+	const TIMEOUT_MS = 2 * 60 * 60 * 1000;
 	try {
 		const stats = { ...zero };
-		const tasksDir = join(dir, "agents", "main", "tasks");
-		for (const f of readdirSync(tasksDir)) {
-			if (!f.endsWith(".json")) continue;
-			try {
-				const t = JSON.parse(readFileSync(join(tasksDir, f), "utf8"));
-				if (t.kind === "agent" && t.status === "running") stats.bg++;
-			} catch { /* skip malformed task file */ }
-		}
 		const agentsDir = join(dir, "agents");
-		const now = Date.now();
+		const wires = [join(agentsDir, "main", "wire.jsonl")];
 		for (const a of readdirSync(agentsDir)) {
 			if (a === "main" || a.startsWith(".")) continue;
-			try {
-				const mtime = Number(Bun.file(join(agentsDir, a, "wire.jsonl")).lastModified ?? 0);
-				if (mtime > 0 && now - mtime < 5000) stats.fg++;
-			} catch { /* no wire for this agent dir */ }
+			const w = join(agentsDir, a, "wire.jsonl");
+			if (existsSync(w)) wires.push(w);
 		}
+		const calls = new Set(), done = new Set();
+		const now = Date.now();
+		for (const w of wires) {
+			for (const line of readFileSync(w, "utf8").split("\n")) {
+				if (!line.includes('"toolCallId"')) continue;
+				const call = line.match(/"toolCallId":"(tool_[A-Za-z0-9]+)","name":"Agent"/);
+				if (call) {
+					const t = Number(line.match(/"time":(\d+)/)?.[1] ?? 0);
+					if (t === 0 || now - t < TIMEOUT_MS) calls.add(call[1]);
+					continue;
+				}
+				const res = line.match(/"type":"tool\.result"[^}]*"toolCallId":"(tool_[A-Za-z0-9]+)"/);
+				if (res) done.add(res[1]);
+			}
+		}
+		for (const id of calls) if (!done.has(id)) stats.fg++;
+		try {
+			for (const f of readdirSync(join(agentsDir, "main", "tasks"))) {
+				if (!f.endsWith(".json")) continue;
+				try {
+					const t = JSON.parse(readFileSync(join(agentsDir, "main", "tasks", f), "utf8"));
+					if (t.kind === "agent" && t.status === "running") stats.bg++;
+				} catch { /* skip malformed task file */ }
+			}
+		} catch { /* no tasks dir */ }
 		return stats;
 	} catch { return zero; }
 }
@@ -242,7 +264,7 @@ const version = pick(snap, ["version"]);
 const effort = thinkingEffort();
 const sDir = sessionDir(pick(snap, ["sessionId", "session_id"]));
 const stats = sDir ? editStats(sDir) : { added: 0, removed: 0 };
-const agents = sDir ? bgAgents(sDir) : { fg: 0, bg: 0 };
+const agents = sDir ? agentCounts(sDir) : { fg: 0, bg: 0 };
 const age = sDir ? sessionAge(sDir) : "";
 
 const parts = [];
