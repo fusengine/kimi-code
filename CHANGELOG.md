@@ -3,6 +3,17 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.20] - 2026-08-01
+
+### Fixed
+- Hook shim: `compactPromptInjection` now covers the `lessons` scope too — the TUI shows only "lessons injected" while the full lessons corpus still reaches the model at SessionStart/SubagentStart — and prepends "AGENTS.md injected" unconditionally on the rules scope, for both output shapes (harness-short notice and shim-trimmed corpus). All 24 bundled plugin copies synced.
+- Hook shim: new `normalizeToolInput` aliases Kimi's `tool_input.path` to Claude's `tool_input.file_path` before forwarding to the harness — repairs the lessons Stop write-tracker, which reads `file_path` and was silently dead under Kimi (PostToolUse on a source file now arms the reminder and Stop emits it, proven end-to-end live). All 24 bundled plugin copies synced.
+- mcp: magic env var renamed `MAGIC_API_KEY` → `TWENTY_FIRST_API_KEY` in `plugins/ai-pilot/mcp.json.bak` — the 21st MCP shim v0.2.2 reads only `API_KEY` / `TWENTY_FIRST_API_KEY` / `API_KEY_21ST` (verified in its dist code) and the old Magic keys were reset server-side by 21st.dev (ai-pilot 1.2.40).
+- statusline: exact agent detection — foreground = `Agent` tool.calls without a matching `tool.result` across all session wires (main + nested agent-*), background = task JSONs with kind=agent and status running, plus a 2h timeout cap so dangling calls from killed/lost agents stop counting (was stuck at ⚙ 1 with zero active agents) (core-guards 1.1.40).
+
+### Documentation
+- .env.example: same `MAGIC_API_KEY` → `TWENTY_FIRST_API_KEY` rename, with a note that the old keys were reset and that the shim reads only the three variables above.
+
 ## [1.0.19] - 2026-07-31
 
 ### Fixed
