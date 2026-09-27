@@ -3,6 +3,11 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.21] - 2026-09-27
+
+### Changed
+- skills/agents: port of the 2026-09-27 claude-plugins skills update to the latest stable versions — React 19.3, Next.js 16.3, Prisma 7.10, TypeScript 7.0, Tailwind CSS 4.3, Astro 7.3, Laravel 13, PHP 8.5, Go 1.27, Rust 1.98, Swift 6.4 / iOS 27; shadcn/ui docs now Base UI-first; all skill and agent content translated to English (676 files, frontmatter keys unchanged) (astro-expert 1.0.11, cartographer 1.0.10, design-expert 2.2.7, go-expert 1.0.4, laravel-expert 1.2.5, nextjs-expert 1.1.21, php-expert 1.0.4, react-expert 1.0.18, rust-expert 1.0.4, seo 1.0.9, shadcn-expert 1.0.15, solid 1.0.16, swift-apple-expert 1.1.17, tailwindcss 1.1.8, tanstack-start-expert 1.0.3, typescript-expert 1.0.4).
+
 ## [1.0.20] - 2026-08-01
 
 ### Fixed

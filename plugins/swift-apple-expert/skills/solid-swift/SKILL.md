@@ -5,7 +5,7 @@ description: Use when applying SOLID principles to Swift 6/SwiftUI code — file
 
 
 <objective>
-Enforces SOLID and DRY principles for Swift 6 and SwiftUI (iOS 26+) projects: a mandatory Features/[Feature]/ modular directory structure (never a flat Sources/ layout), strict file-size limits (100 lines, split at 90, with per-layer budgets for Views/ViewModels/Services/Protocols), protocols separated into their own Protocols/ directories, @Observable + @MainActor for ViewModels, Sendable structs for models, and mandatory #Preview on every View.
+Enforces SOLID and DRY principles for Swift 6 and SwiftUI (iOS 27+) projects: a mandatory Features/[Feature]/ modular directory structure (never a flat Sources/ layout), strict file-size limits (100 lines, split at 90, with per-layer budgets for Views/ViewModels/Services/Protocols), protocols separated into their own Protocols/ directories, @Observable + @MainActor for ViewModels, Sendable structs for models, and mandatory #Preview on every View.
 
 Covers all five SOLID principles with dedicated references (SRP, OCP, LSP, ISP, DIP), concurrency patterns (actors, @MainActor, Sendable), an anti-pattern catalog, and code templates for views, view models, services, protocols, and models.
 

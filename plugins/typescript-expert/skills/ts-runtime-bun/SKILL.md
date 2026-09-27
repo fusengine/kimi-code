@@ -5,7 +5,7 @@ description: Use when running TypeScript on Bun — bunfig.toml, bun test, Bun.b
 
 
 <objective>
-This skill covers running TypeScript natively on Bun 1.3.x: configuring bunfig.toml (test
+This skill covers running TypeScript natively on Bun 1.4.x: configuring bunfig.toml (test
 coverage thresholds, JUnit reporter, preload), running bun test (Jest-compatible API via
 bun:test), bundling with Bun.build or producing a single-file executable with bun build
 --compile --target=, and structuring a Bun workspaces monorepo.
@@ -25,7 +25,7 @@ ts-runtime-node; tsconfig details belong to ts-config.
 Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Inspect `package.json`, `bunfig.toml`, `tsconfig.json`
-2. **research-expert** - Verify Bun 1.3.x behavior via Context7/Exa
+2. **research-expert** - Verify Bun 1.4.x behavior via Context7/Exa
 3. **mcp__context7__query-docs** - Check Bun runtime, test, and bundler docs
 
 After implementation, run **sniper** for validation.

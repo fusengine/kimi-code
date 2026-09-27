@@ -5,7 +5,7 @@ description: Use when writing or reviewing idiomatic Rust — edition 2024 owner
 
 
 <objective>
-This skill covers idiomatic Rust for stable 1.96.1, edition 2024: designing function
+This skill covers idiomatic Rust for stable 1.98.1, edition 2024: designing function
 signatures and data flow around ownership and borrowing, and using edition-2024 features
 (let chains, async closures) correctly.
 
@@ -21,7 +21,7 @@ solid-rust.
 
 # Rust Core Language
 
-Idiomatic Rust for stable **1.96.1**, **edition 2024**. This skill covers what the
+Idiomatic Rust for stable **1.98.1**, **edition 2024**. This skill covers what the
 compiler will not catch for you: ownership design that avoids gratuitous cloning,
 and the recurring failure modes of machine-generated Rust.
 
@@ -65,6 +65,12 @@ Never state a stabilization version from memory — verify against
 - **Let chains** (`if let A = x && let B = y && cond`) stabilized in **1.88.0**
   (2025-06-26), **edition 2024 only** — depends on the `if let` temporary-scope change.
 - **Async closures** (`async || { .. }`) stabilized in **1.85.0**.
+- **Rust 1.97.0** (2026-07-09): v0 symbol mangling is the default; Cargo `build.warnings`
+  (`CARGO_BUILD_WARNINGS=deny` in CI, no build-cache invalidation); linker output is shown
+  via the `linker_messages` lint (warn by default); integer `highest_one`/`lowest_one`/`bit_width`.
+- **Rust 1.98.0** (2026-08-20): `{integer}::format_into` + `core::fmt::NumBuffer` (std
+  replacement for `itoa`); `f32`/`f64` `algebraic_*` methods; `str::strip_circumfix`,
+  `str::substr_range`, `String::from_utf16le`/`from_utf16be`.
 - **`gen` blocks are UNSTABLE** — feature gate `#![feature(gen_blocks)]`, tracking
   issue rust-lang/rust#117078, RFC #3513. Do NOT use on stable; the returned
   iterators are not yet fused and the syntax may still change.

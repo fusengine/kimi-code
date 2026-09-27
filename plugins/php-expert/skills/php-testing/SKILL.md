@@ -5,7 +5,7 @@ description: Use when writing/configuring tests on a non-Laravel PHP project —
 
 
 <objective>
-Covers testing a framework-agnostic PHP project with PHPUnit 12 (class-based, xUnit-style, attributes only — annotations like @test/@dataProvider were removed) or Pest 4 (closure-based, expressive, adds browser/architecture/mutation testing), both of which run on PHPUnit's engine and require PHP 8.3+.
+Covers testing a framework-agnostic PHP project with PHPUnit 13 (class-based, xUnit-style, attributes only — annotations like @test/@dataProvider were removed in PHPUnit 12) or Pest 5 (closure-based, expressive, adds browser/architecture/mutation testing, built on PHPUnit 13), both of which run on PHPUnit's engine and require PHP 8.4+.
 
 Includes a decision matrix for choosing between the two (team preference, not capability), plus templates for phpunit.xml, Pest.php setup, and test doubles (stubs, mocks, fixtures, coverage).
 
@@ -15,7 +15,7 @@ Do NOT use this skill for Laravel test helpers such as RefreshDatabase or HTTP t
 
 # PHP Testing
 
-Two frameworks, one engine. Pest is a layer over PHPUnit — both need **PHP 8.3+**
+Two frameworks, one engine. Pest is a layer over PHPUnit — both need **PHP 8.4+**
 and share the same runner and assertions underneath.
 
 ## Agent Workflow (MANDATORY)
@@ -23,7 +23,7 @@ and share the same runner and assertions underneath.
 Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Detect existing framework (phpunit.xml vs Pest.php), test layout, PHP version
-2. **research-expert** - Verify latest PHPUnit 12 / Pest 4 docs via Context7/Exa
+2. **research-expert** - Verify latest PHPUnit 13 / Pest 5 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check attribute names, test-double API, config schema
 
 After implementation, run **sniper** for validation.
@@ -34,20 +34,20 @@ After implementation, run **sniper** for validation.
 
 | Framework | Style | Strength |
 |-----------|-------|----------|
-| PHPUnit 12 | Class-based, xUnit | Enterprise baseline, explicit, widest tooling/CI support |
-| Pest 4 | Closure-based, expressive | Modern DX, browser + arch + mutation testing, less boilerplate |
+| PHPUnit 13 | Class-based, xUnit | Enterprise baseline, explicit, widest tooling/CI support |
+| Pest 5 | Closure-based, expressive | Modern DX, browser + arch + mutation testing, less boilerplate |
 
-Pest 4 runs on PHPUnit's engine, so PHPUnit knowledge transfers directly. The
+Pest 5 runs on PHPUnit 13's engine, so PHPUnit knowledge transfers directly. The
 choice is about ergonomics and team preference, not capability.
 
 ---
 
 ## Critical Rules
 
-1. **PHP 8.3+ required** - Both PHPUnit 12 and Pest 4 drop older PHP
+1. **PHP 8.4+ required** - Both PHPUnit 13 and Pest 5 drop PHP 8.3 (stay on PHPUnit 12 / Pest 4 for 8.3)
 2. **Attributes only, no annotations** - PHPUnit 12 **removed** docblock annotations (`@test`, `@dataProvider`)
 3. **Data providers are `public static`** - Non-static providers no longer work
-4. **`createStub()` is not configurable** - Configure expectations only on `createMock()`
+4. **`createStub()` is not configurable** - Configure expectations only on `createMock()`; `any()` is hard-deprecated in PHPUnit 13 — use a stub or a real count (`once()`, `exactly(n)`)
 5. **One framework per project** - Pest or PHPUnit, not both driving the same suite
 6. **Mock at boundaries** - Network/DB/clock, never internal implementation detail
 
@@ -57,9 +57,9 @@ choice is about ergonomics and team preference, not capability.
 
 ```
 Choosing a framework? (non-Laravel)
-├── Enterprise / strict CI / mixed team → PHPUnit 12 (explicit, ubiquitous)
-├── Modern DX, greenfield, small team → Pest 4 (concise, expressive)
-├── Need browser / architecture / mutation testing out of the box → Pest 4
+├── Enterprise / strict CI / mixed team → PHPUnit 13 (explicit, ubiquitous)
+├── Modern DX, greenfield, small team → Pest 5 (concise, expressive)
+├── Need browser / architecture / mutation testing out of the box → Pest 5
 └── Migrating a large PHPUnit suite → stay PHPUnit, or drift-migrate to Pest
 ```
 
@@ -78,8 +78,8 @@ choice — pick per team, not per hype.
 | Topic | Reference | Load when |
 |-------|-----------|-----------|
 | Framework choice | `references/choosing-framework.md` | Deciding PHPUnit vs Pest |
-| PHPUnit 12 | `references/phpunit-12.md` | Writing PHPUnit tests |
-| Pest 4 | `references/pest-4.md` | Writing Pest tests |
+| PHPUnit 13 | `references/phpunit-12.md` | Writing PHPUnit tests |
+| Pest 5 | `references/pest-4.md` | Writing Pest tests |
 | Annotation migration | `references/annotations-to-attributes.md` | Upgrading pre-12 tests |
 
 ### Templates
@@ -94,7 +94,7 @@ choice — pick per team, not per hype.
 
 ## Quick Start
 
-### PHPUnit 12
+### PHPUnit 13
 
 ```php
 use PHPUnit\Framework\TestCase;
@@ -108,7 +108,7 @@ final class GreeterTest extends TestCase
 }
 ```
 
-### Pest 4
+### Pest 5
 
 ```php
 it('greets', function () {

@@ -21,7 +21,7 @@ tvOS-specific development for Apple TV living room experiences.
 Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing tvOS patterns
-2. **research-expert** - Verify latest tvOS 26 docs via Context7/Exa
+2. **research-expert** - Verify latest tvOS 27 docs via Context7/Exa
 3. **mcp__apple-docs__search_apple_docs** - Check tvOS patterns
 
 After implementation, run **sniper** for validation.

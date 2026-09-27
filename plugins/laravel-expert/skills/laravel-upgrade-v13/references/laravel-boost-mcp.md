@@ -16,7 +16,7 @@ composer require laravel/boost --dev
 php artisan boost:install
 ```
 
-The installer registers an MCP server for Kimi Code / Cursor / Windsurf.
+The installer registers an MCP server for your AI assistant. The `/upgrade-laravel-v13` command requires Laravel Boost `^2.0` (current: 2.10) and works in Claude Code, Cursor, OpenCode, Gemini and VS Code. Kimi Code is not in the installer's agent list: register the Boost MCP server (`php artisan boost:mcp`) in Kimi Code's MCP config manually.
 
 ## Usage in Kimi Code
 

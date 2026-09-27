@@ -77,7 +77,7 @@ All i18n code organized in `modules/cores/i18n/`:
 
 - `src/modules/cores/i18n/src/config/routing.ts` - Locale routing config
 - `src/modules/cores/i18n/messages/en.json` - English translations
-- `src/modules/cores/i18n/messages/fr.json` - French translations
+- `src/modules/cores/i18n/messages/es.json` - Spanish translations
 - `proxy.ts` - Locale detection and redirect logic
 
 ---
@@ -89,7 +89,7 @@ All i18n code organized in `modules/cores/i18n/`:
 All routes prefixed with `[locale]` dynamic segment:
 
 - `/en/about` → English about page
-- `/fr/about` → French about page
+- `/es/about` → Spanish about page
 - `/` → Redirects to default locale
 
 ### Navigation Components

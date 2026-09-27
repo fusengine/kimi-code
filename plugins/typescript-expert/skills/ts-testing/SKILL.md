@@ -41,8 +41,8 @@ snapshots, mocks). They differ on speed, coverage maturity, and CI scaling.
 
 | Runner | Strength | Weakness |
 |--------|----------|----------|
-| `bun test` | Fastest cold start, zero-config TS/JSX, built-in | Single process, experimental coverage, mock limits |
-| Vitest | V8/Istanbul coverage, multi-worker CI scaling, ~Jest parity, browser mode | Needs Vite + config, slower cold start |
+| `bun test` | Fastest cold start, zero-config TS/JSX, built-in; `--parallel` workers + `--shard` (1.3.13+) | Single process unless `--parallel`, experimental coverage, mock limits |
+| Vitest | V8/Istanbul coverage, multi-worker CI scaling, ~Jest parity, browser mode | Needs Vite (peer dep in 5.x) + config, slower cold start |
 
 ---
 
