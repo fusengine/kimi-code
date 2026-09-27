@@ -1,32 +1,45 @@
 ---
 name: react-19
-description: Use when implementing React 19.2 patterns — use(), useOptimistic, useActionState, useEffectEvent, Activity component, React Compiler.
+description: Use when implementing React 19.3 patterns — use(), useOptimistic, useActionState, useEffectEvent, Activity, ViewTransition, Fragment refs, use(browser()), React Compiler.
 ---
 
 
 <objective>
-Covers React 19.2's new hooks and features: `use()` for reading promises/context in render, `useOptimistic` for instant UI updates, `useActionState` for form action state, `useFormStatus` for child-component pending state, `useEffectEvent` for non-reactive effect callbacks, the `Activity` component for hiding/showing UI while preserving state, and the React Compiler's automatic memoization (making manual `useMemo`/`useCallback` mostly obsolete).
+Covers React 19.3's hooks and features: `use()` for reading promises/context in render, `useOptimistic` for instant UI updates, `useActionState` for form action state, `useFormStatus` for child-component pending state, `useEffectEvent` for non-reactive effect callbacks, the `Activity` component for hiding/showing UI while preserving state, `<ViewTransition>` + `addTransitionType` animations, Fragment refs and `use(browser())` browser-only rendering (new in 19.3), and the React Compiler's automatic memoization (making manual `useMemo`/`useCallback` mostly obsolete).
 
 Also documents all classic hooks (useState, useEffect, useLayoutEffect, useRef, useImperativeHandle, useMemo, useCallback, useId, useSyncExternalStore) and React 18→19 breaking changes (`ref` as a prop instead of `forwardRef`, `<Context value={}>` instead of `<Context.Provider>`). This is the core React hooks/features skill — for global state see react-state, for forms see react-forms, and for SOLID architecture rules see solid-react.
 </objective>
 
-# React 19.2 Core Features
+# React 19.3 Core Features
 
 ## Agent Workflow (MANDATORY)
 
 Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing React patterns and component structure
-2. **research-expert** - Verify latest React 19.2 docs via Context7/Exa
+2. **research-expert** - Verify latest React 19.3 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check use(), useOptimistic, useActionState, Activity patterns
 
 After implementation, run **sniper** for validation.
 
 ---
 
-## What's New in React 19.2
+## What's New in React 19.3
 
-### New Hooks
+Stable in 19.3 (react/react-dom 19.3.0, 2026-09-09; `@types/react` 19.3 needs TypeScript ≥ 5.6):
+
+| API | Purpose | Guide |
+|-----|---------|-------|
+| `<ViewTransition>` | Animate enter/exit/update/share via the browser View Transition API | `references/suspense-patterns.md` |
+| `addTransitionType(type)` | Tag a Transition to pick a different animation | `references/suspense-patterns.md` |
+| `<Fragment ref>` | `FragmentInstance` (events, focus, observers) without a wrapper `<div>` | `references/ref-as-prop.md` |
+| `use(browser(reason?))` (`react-dom`) | Browser-only rendering: suspends on the server, Suspense fallback in HTML | `references/new-hooks.md` |
+
+Behaviour changes: Transitions no longer entangle, StrictMode double-invokes effects during hydration, DEV warning on conditional `use()` unblocking → `references/migration-18-19.md`.
+
+**RSC security:** `react-server-dom-*` must be ≥ 19.2.4 (CVE-2025-55182 RCE and follow-up DoS CVEs); prefer ≥ 19.2.7 or 19.3.0.
+
+### New Hooks (19.0–19.2)
 
 | Hook | Purpose | Guide |
 |------|---------|-------|
@@ -87,7 +100,7 @@ After implementation, run **sniper** for validation.
 
 ---
 
-### Activity Component (19.2)
+### Activity Component (stable since 19.2)
 
 Hide/show components while preserving state:
 
@@ -99,7 +112,7 @@ Hide/show components while preserving state:
 
 → See `references/activity-component.md` for patterns
 
-### React Compiler (19.1+)
+### React Compiler (1.0 stable, Oct 2025 — React 17+)
 
 Automatic memoization - useMemo/useCallback mostly obsolete:
 
@@ -144,7 +157,7 @@ const [state, action, isPending] = useActionState(asyncFn, initialState)
 
 → See `references/templates/action-form.md`
 
-### useEffectEvent (19.2)
+### useEffectEvent (stable since 19.2)
 
 ```typescript
 const onEvent = useEffectEvent(() => {
@@ -228,7 +241,7 @@ Code split routes and heavy components for smaller bundles.
 Measure render performance with DevTools Profiler.
 → See `references/profiling.md`
 
-**Note:** With React Compiler (19.1+), manual memo/useMemo/useCallback optimizations are mostly obsolete. Profile first to verify if optimization is needed.
+**Note:** With React Compiler (1.0+), manual memo/useMemo/useCallback optimizations are mostly obsolete. Profile first to verify if optimization is needed.
 
 ---
 

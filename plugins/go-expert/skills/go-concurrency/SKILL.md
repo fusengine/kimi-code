@@ -5,16 +5,16 @@ description: Use when writing or reviewing Go concurrency — goroutines, channe
 
 
 <objective>
-Covers Go concurrency for Go 1.26: goroutines and channels, golang.org/x/sync/errgroup,
+Covers Go concurrency for Go 1.27: goroutines and channels, golang.org/x/sync/errgroup,
 context propagation and cancellation, sync.WaitGroup vs channels, the -race detector,
-and diagnosing goroutine leaks (including the 1.26 goroutineleak profile). Does not
+and diagnosing goroutine leaks (including the goroutineleak profile, GA in 1.27). Does not
 cover sequential error handling, slog, generics, or interface style (see
 go-core-idioms), non-Go languages, or framework-specific code.
 </objective>
 
 # Go Concurrency
 
-Goroutines, channels, `context`, and `errgroup` for Go 1.26 — plus the number-one
+Goroutines, channels, `context`, and `errgroup` for Go 1.27 — plus the number-one
 documented pitfall: **leaking goroutines on an unbuffered channel + early return.**
 
 ## Agent Workflow (MANDATORY)
@@ -39,7 +39,7 @@ with `go test -race ./...`.
 | **context** | First param, propagated strictly, carries cancellation/deadline |
 | **WaitGroup vs channels** | Counting-only vs result/error passing |
 | **Race detector** | `-race` in tests/CI to catch data races |
-| **Leak profile (1.26)** | `GOEXPERIMENT=goroutineleakprofile` / `/debug/pprof/goroutineleak` |
+| **Leak profile (GA 1.27)** | `pprof.Lookup("goroutineleak")` / `/debug/pprof/goroutineleak` — no GOEXPERIMENT needed |
 
 ---
 
@@ -77,7 +77,7 @@ internal/
 | **Goroutines & channels** | [goroutines-channels.md](references/goroutines-channels.md) | Buffered vs not, select, WaitGroup vs channels |
 | **errgroup** | [errgroup.md](references/errgroup.md) | Fan-out, error aggregation, SetLimit, TryGo |
 | **context** | [context-propagation.md](references/context-propagation.md) | Cancellation, deadlines, propagation rules |
-| **Goroutine leaks** | [goroutine-leaks.md](references/goroutine-leaks.md) | The #1 pitfall + the 1.26 leak profile |
+| **Goroutine leaks** | [goroutine-leaks.md](references/goroutine-leaks.md) | The #1 pitfall + the goroutineleak profile (GA 1.27) |
 
 ### Templates
 
@@ -121,7 +121,8 @@ ch := make(chan result, len(items)) // buffered → early return can't strand se
 - Pass `ctx` first and thread it through every blocking call
 - Reach for `errgroup` before hand-rolling `WaitGroup` + error channels
 - Buffer result channels to the number of senders, or fully drain them
-- Run `go test -race`; try `GOEXPERIMENT=goroutineleakprofile` in CI (1.26)
+- Run `go test -race`; check the `goroutineleak` profile in CI (GA in 1.27; the
+  1.26 `GOEXPERIMENT=goroutineleakprofile` flag is deleted)
 
 ### DON'T
 - Return early from a fan-out while goroutines still block on an unbuffered channel

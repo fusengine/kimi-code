@@ -21,7 +21,7 @@ macOS-specific development with window management and distribution tools.
 Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing macOS patterns
-2. **research-expert** - Verify latest macOS 26 docs via Context7/Exa
+2. **research-expert** - Verify latest macOS 27 docs via Context7/Exa
 3. **mcp__XcodeBuildMCP__build_macos** - Build for macOS validation
 
 After implementation, run **sniper** for validation.

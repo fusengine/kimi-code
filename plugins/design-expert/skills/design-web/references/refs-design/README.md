@@ -7,7 +7,7 @@ each reviewed and accepted by the owner. Every folder holds `index.html`, `style
 one or more `motion*.js`, plus the two markdown files described below.
 
 There is **no original creation here**, and that is deliberate: every value in this folder
-was measured against something that actually shipped, which is what makes `[relevé]` mean
+was measured against something that actually shipped, which is what makes `[measured]` mean
 anything.
 
 ---
@@ -287,15 +287,14 @@ it does not prescribe imitating them on this point.** Take the mechanism, not th
 
 | Marker | Meaning |
 |---|---|
-| `[relevé]` | value read in the source or measured on the render |
-| `[arbitrage]` | judgment call by the rebuilder, justified on the line |
-| `[estimé]` | reconstructed value — the source does not carry it explicitly |
+| `[measured]` | value read in the source or measured on the render |
+| `[decided]` | judgment call by the rebuilder, justified on the line |
+| `[estimated]` | reconstructed value — the source does not carry it explicitly |
 
-These three markers stay in French on purpose: they appear identically in the comments of
-`styles.css`, `index.html` and `motion*.js`. Translating them in one place only would
-desynchronise the documentation from the code. Treat them as identifiers.
-
-Everything else in these files is English.
+These three markers appear identically in the `.md` files and in the comments of
+`styles.css`, `index.html` and `motion*.js`. Change them everywhere at once or not at all —
+renaming them in one place only would desynchronise the documentation from the code. Treat
+them as identifiers.
 
 ---
 

@@ -5,16 +5,16 @@ description: Use when writing or reviewing idiomatic sequential Go — error han
 
 
 <objective>
-Covers idiomatic sequential Go 1.26: error handling (%w wrapping, errors.Join,
-errors.Is/As, errors.AsType), slog structured logging, generics, small
-consumer-side interfaces, naming/style conventions, new(expr), and go fix
-modernizers. Does not cover goroutines/channels/errgroup/context concurrency
+Covers idiomatic sequential Go 1.27: error handling (%w wrapping, errors.Join,
+errors.Is/As, errors.AsType), slog structured logging, generics (including 1.27
+generic methods), small consumer-side interfaces, naming/style conventions,
+new(expr), and go fix modernizers. Does not cover goroutines/channels/errgroup/context concurrency
 (see go-concurrency), non-Go languages, or framework-specific code.
 </objective>
 
 # Go Core Idioms
 
-Idiomatic sequential Go for 1.26. For anything touching goroutines, channels,
+Idiomatic sequential Go for 1.27. For anything touching goroutines, channels,
 `errgroup`, or `context` cancellation, use **go-concurrency** instead.
 
 ## Agent Workflow (MANDATORY)
@@ -35,9 +35,9 @@ After implementation, run **sniper** for validation.
 |---------|-------------|
 | **Error handling** | Explicit `if err != nil`, `%w` wrapping, `errors.Join`, `errors.AsType` (1.26) |
 | **Structured logging** | `log/slog` stdlib — handlers, attrs, groups, `LogValuer` |
-| **Generics** | Type params, constraints, self-referential types (1.26) |
+| **Generics** | Type params, constraints, self-referential types (1.26), generic methods (1.27) |
 | **Interfaces** | Small, consumer-side — "accept interfaces, return structs" |
-| **Modernizers** | `go fix` auto-applies dozens of idiom/API fixers (1.26) |
+| **Modernizers** | `go fix` auto-applies dozens of idiom/API fixers (1.26; more added in 1.27) |
 
 ---
 
@@ -47,7 +47,7 @@ After implementation, run **sniper** for validation.
 2. **Wrap with `%w`, not `%v`** - Preserves the chain for `errors.Is`/`As`/`AsType`
 3. **Accept interfaces, return structs** - Define interfaces where consumed, not where produced
 4. **Value receivers by default** - Use pointer receivers only for mutation or large structs
-5. **Run `go fix` + `go vet`** - Let modernizers migrate to current idioms (1.26)
+5. **Run `go fix` + `go vet`** - Let modernizers migrate to current idioms (1.26+)
 
 ---
 
@@ -76,7 +76,7 @@ internal/
 |-------|-----------|-----------------|
 | **Error handling** | [error-handling.md](references/error-handling.md) | Wrapping, sentinels, `errors.Join`, `AsType` |
 | **Structured logging** | [slog-logging.md](references/slog-logging.md) | Choosing handlers, attrs, groups, perf |
-| **Generics & 1.26** | [generics-and-1.26.md](references/generics-and-1.26.md) | Type params, self-ref types, `new(expr)` |
+| **Generics & 1.26–1.27** | [generics-and-1.26.md](references/generics-and-1.26.md) | Type params, generic methods (1.27), self-ref types, `new(expr)` |
 | **Interfaces & style** | [interfaces-and-style.md](references/interfaces-and-style.md) | Interface placement, naming, receivers |
 
 ### Templates
@@ -121,7 +121,7 @@ logger.Info("user created", "id", id, slog.Duration("took", elapsed))
 - Keep interfaces one-to-three methods, named at the call site
 - Add context on the way up with `%w`; check with `errors.Is`/`AsType`
 - Use `slog.LogAttrs` on hot paths to avoid allocation
-- Run `go fix` to adopt current APIs and idioms automatically (1.26)
+- Run `go fix` to adopt current APIs and idioms automatically (1.26+)
 
 ### DON'T
 - Swallow errors (`_ = err`) or return bare `err` when context helps

@@ -21,7 +21,7 @@ watchOS-specific development for Apple Watch experiences.
 Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing watchOS patterns
-2. **research-expert** - Verify latest watchOS 26 docs via Context7/Exa
+2. **research-expert** - Verify latest watchOS 27 docs via Context7/Exa
 3. **mcp__apple-docs__search_apple_docs** - Check watchOS patterns
 
 After implementation, run **sniper** for validation.

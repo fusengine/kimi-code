@@ -43,7 +43,7 @@ After implementation, run **sniper** for validation.
 | Signal-based state | Minimal re-renders, optimal performance |
 | Full TypeScript | DeepKeys, DeepValue inference |
 | Server Actions native | Built-in Next.js 16 integration |
-| Zod adapter | Schema-first validation |
+| Standard Schema (Zod, Valibot…) | Schema-first validation, no adapter needed |
 | Framework agnostic | Same API for React, Vue, Solid |
 | Headless | Works with any UI library (shadcn/ui) |
 

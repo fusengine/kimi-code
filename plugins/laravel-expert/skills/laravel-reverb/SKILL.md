@@ -103,8 +103,9 @@ REVERB_PORT=8080
 
 ## Laravel 13 Notes
 
-Reverb 1.4 est **compatible Laravel 13** sans changement. À noter :
+Reverb 1.x (current 1.12) is **Laravel 13 compatible** with no changes. Notes:
 
-- La queue `broadcast` profite du nouveau `Queue::route()` (voir [[laravel-queues]])
-- `Context::add()` propagé automatiquement dans les broadcast events
-- PHP 8.3 minimum pour le serveur Reverb embarqué
+- Broadcast events can be routed via `Queue::route(ShouldBroadcast::class, queue: 'events')` (see [[laravel-queues]])
+- `Context::add()` is propagated automatically into broadcast events
+- PHP: Reverb accepts PHP 8.2+, but Laravel 13 requires PHP 8.3 minimum
+- Alternative: first-party **Mercure** driver (13.32+), installable via `php artisan install:broadcasting` (`--pretend` option in 13.33 to preview)

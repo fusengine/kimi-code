@@ -5,11 +5,12 @@ description: Use when writing or reviewing modern TS syntax — const type param
 
 
 <objective>
-This skill covers TypeScript 6.0 language features and idioms: const type parameters
-(<const T>) for narrowest-literal inference without as const, using/await using for
-deterministic Symbol.dispose/asyncDispose cleanup, standard ECMAScript decorators (never
-experimentalDecorators), satisfies for narrow-type validation, and the 6.0 inference change
-making method-syntax callbacks order-independent.
+This skill covers TypeScript 7.0 language features and idioms (7.0 keeps 6.0's type-checking
+behavior): const type parameters (<const T>) for narrowest-literal inference without as const,
+using/await using for deterministic Symbol.dispose/asyncDispose cleanup, standard ECMAScript
+decorators (never experimentalDecorators), satisfies for narrow-type validation, the 6.0
+inference change making method-syntax callbacks order-independent, and 7.0's Unicode-aware
+template-literal inference.
 
 It also covers fixing LLM-authored anti-patterns: legacy enum (un-erasable by Node's type
 stripper, replace with const objects as const), namespace wrapping runtime code, and missing
@@ -19,7 +20,7 @@ Out of scope: tsconfig/compiler flags belong to ts-config; SOLID structure and f
 rules belong to solid-generic; framework-specific APIs are not covered.
 </objective>
 
-# TypeScript Language Patterns (TS 6.0)
+# TypeScript Language Patterns (TS 7.0)
 
 ## Agent Workflow (MANDATORY)
 
@@ -42,6 +43,7 @@ After writing, run **sniper** for validation.
 | **Standard decorators** | ECMAScript decorators — NOT `experimentalDecorators` |
 | **`satisfies`** | Validate a value against a type while keeping its narrow inferred type |
 | **6.0 inference** | Method-syntax callbacks are no longer contextually sensitive → order-independent inference |
+| **7.0 template literals** | Inference splits on Unicode code points, not UTF-16 surrogate halves |
 
 ---
 
@@ -51,7 +53,7 @@ After writing, run **sniper** for validation.
 2. **No legacy `enum`** - prefer `const` objects `as const`; `enum` is un-erasable by Node's type stripper.
 3. **No `namespace` with runtime code** - use ESM modules; type-only `namespace` is acceptable.
 4. **Use standard decorators** - never enable `experimentalDecorators` for new code.
-5. **Never rely on implicit `any`** - `strict` is the 6.0 default; annotate or infer explicitly.
+5. **Never rely on implicit `any`** - `strict` is the default since 6.0 (kept in 7.0); annotate or infer explicitly.
 
 ---
 

@@ -5,7 +5,7 @@ description: Use when writing or refactoring Go code, structuring internal/modul
 
 
 <objective>
-SOLID Go enforces a modular architecture for Go 1.23+: every feature lives under `internal/modules/[feature]/` (handlers, services, repositories, ports, models) with shared code in `internal/core/`, interfaces (ports) live only in `ports/` directories and stay small (1-3 methods, the Go idiom), functions accept interfaces but return structs, and every exported function carries a godoc comment.
+SOLID Go enforces a modular architecture for Go 1.27+: every feature lives under `internal/modules/[feature]/` (handlers, services, repositories, ports, models) with shared code in `internal/core/`, interfaces (ports) live only in `ports/` directories and stay small (1-3 methods, the Go idiom), functions accept interfaces but return structs, and every exported function carries a godoc comment.
 
 Before writing any new code it requires a DRY check against `internal/core/services` and `internal/core/ports`. See `solid-principles.md` for the overview, the per-principle references for SRP/OCP/LSP/ISP/DIP detail, `architecture-patterns.md` for hexagonal/modular layout, and the templates for module/service/interface/handler/error/test scaffolding.
 </objective>

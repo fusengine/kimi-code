@@ -49,6 +49,16 @@ After implementation, run **sniper** for validation.
 | Database flexible | Prisma, Drizzle, MongoDB, PostgreSQL, MySQL, SQLite |
 | Enterprise ready | SSO, SCIM, organizations, audit logs |
 
+### Version Notes (current stable: 1.7.x)
+
+| Since | Change |
+|-------|--------|
+| 1.5 | Standalone CLI `npx auth@latest` (`generate`, `migrate`, `secret`, `init`, `check`…) replaces `@better-auth/cli`; OAuth 2.1 Provider (`@better-auth/oauth-provider`) |
+| 1.6 | `session.freshAge` computed from `createdAt`; `oidcProvider` deprecated |
+| 1.7 | `oidcProvider` removed; generic OAuth providers use `signIn.social` (no `genericOAuthClient`); DB joins via `advanced.database.joins`; accounts keyed on `(issuer, accountId)`; `twoFactor.enable` returns a `method`-discriminated response; MCP → `@better-auth/mcp`; SCIM decoupled from organization |
+
+After upgrading to 1.7, regenerate the schema (`npx auth@latest generate`) and follow the official 1.7 upgrade guide.
+
 ---
 
 ## Coverage

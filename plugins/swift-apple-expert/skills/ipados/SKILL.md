@@ -21,7 +21,7 @@ iPadOS-specific development for tablet and productivity experiences.
 Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing iPad patterns
-2. **research-expert** - Verify latest iPadOS 26 docs via Context7/Exa
+2. **research-expert** - Verify latest iPadOS 27 docs via Context7/Exa
 3. **mcp__apple-docs__search_apple_docs** - Check iPad multitasking patterns
 
 After implementation, run **sniper** for validation.

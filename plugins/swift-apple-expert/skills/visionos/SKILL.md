@@ -21,7 +21,7 @@ visionOS-specific development for Apple Vision Pro spatial computing.
 Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing visionOS patterns
-2. **research-expert** - Verify latest visionOS 26 docs via Context7/Exa
+2. **research-expert** - Verify latest visionOS 27 docs via Context7/Exa
 3. **mcp__apple-docs__search_apple_docs** - Check spatial computing patterns
 
 After implementation, run **sniper** for validation.

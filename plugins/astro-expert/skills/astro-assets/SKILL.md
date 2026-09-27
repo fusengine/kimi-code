@@ -20,7 +20,7 @@ Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing image usage and asset patterns
 2. **research-expert** - Verify astro:assets API via Context7/Exa
-3. **mcp__context7__query-docs** - Check Astro 6 Fonts API and image component docs
+3. **mcp__context7__query-docs** - Check Astro 7 Fonts API and image component docs
 
 After implementation, run **sniper** for validation.
 

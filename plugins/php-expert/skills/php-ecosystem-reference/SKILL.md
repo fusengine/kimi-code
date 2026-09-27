@@ -5,7 +5,7 @@ description: Use when picking a non-Laravel PHP tool — Symfony components, API
 
 
 <objective>
-This is a routing/orientation map for the non-Laravel PHP framework ecosystem, not an implementation guide. It answers "which tool fits this problem, and where do I go next?" for three areas: standalone Symfony components (Console, Process, HttpFoundation, EventDispatcher, Validator, Serializer) usable via Composer outside any framework, API Platform 4.3 (API-first on Symfony), and the Slim 4.15 micro-framework.
+This is a routing/orientation map for the non-Laravel PHP framework ecosystem, not an implementation guide. It answers "which tool fits this problem, and where do I go next?" for three areas: standalone Symfony components (Console, Process, HttpFoundation, EventDispatcher, Validator, Serializer) usable via Composer outside any framework, API Platform 5.0 (API-first on Symfony), and the Slim 4.15 micro-framework.
 
 It does not carry deep, version-specific how-to knowledge for Symfony full-stack, API Platform, or Slim — for implementation details it hands off to the research-expert agent and to [[php-http-psr]] for framework-agnostic HTTP.
 
@@ -41,7 +41,7 @@ This skill orients; the research agent supplies verified specifics before any co
 | Area | What it is | Reference |
 |------|-----------|-----------|
 | **Symfony Components** | Decoupled PHP libraries, each installable standalone via Composer — no full framework needed | [symfony-components.md](references/symfony-components.md) |
-| **API Platform 4.3** | API-first framework built on Symfony (REST, GraphQL, OpenAPI from resource classes) | [api-platform.md](references/api-platform.md) |
+| **API Platform 5.0** | API-first framework built on Symfony (REST, GraphQL, OpenAPI from resource classes) | [api-platform.md](references/api-platform.md) |
 | **Slim 4.15** | PSR-7/PSR-15 micro-framework for small APIs and services | [slim-framework.md](references/slim-framework.md) |
 | **Boundaries** | Where this skill stops and who to route to | [boundaries.md](references/boundaries.md) |
 

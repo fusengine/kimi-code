@@ -21,7 +21,7 @@ iOS-specific development with XcodeBuildMCP automation tools.
 Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing iOS patterns
-2. **research-expert** - Verify latest iOS 26 docs via Context7/Exa
+2. **research-expert** - Verify latest iOS 27 docs via Context7/Exa
 3. **mcp__XcodeBuildMCP__discover_projs** - Find Xcode projects
 
 After implementation, run **sniper** for validation.
