@@ -3,6 +3,11 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.24] - 2026-10-12
+
+### Changed
+- deps: harness floor raised to @fusengine/harness 0.1.108 (`fusengine.harnessMinVersion`, install test asserts `>=0.1.108`, AGENTS.md harness-floor note) — 0.1.108 asks for lessons in caveman style and adds a per-recipient injection registry for Claude Code only (Kimi hook output byte-identical) (ai-pilot 1.2.43, astro-expert 1.0.14, cartographer 1.0.13, changelog-watcher 1.0.15, commit-pro 1.2.27, core-guards 1.1.43, design-expert 2.2.10, fuse-lessons 1.0.7, go-expert 1.0.7, kimi-rules 1.39.22, laravel-expert 1.2.8, nextjs-expert 1.1.24, php-expert 1.0.7, prompt-engineer 1.1.12, react-expert 1.0.21, rust-expert 1.0.7, security-expert 1.0.18, seo 1.0.12, shadcn-expert 1.0.18, solid 1.0.19, swift-apple-expert 1.1.20, tailwindcss 1.1.11, tanstack-start-expert 1.0.6, typescript-expert 1.0.7).
+
 ## [1.0.23] - 2026-10-12
 
 ### Fixed
