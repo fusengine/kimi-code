@@ -18,7 +18,7 @@ related: examples.md
 - **Architecture**: Clean Architecture
 - **State Management**: Zustand
 - **Interface Location**: src/interfaces/
-- **File Sizes**: ✅ All <100 LoC
+- **File Sizes**: ✅ All within `FUSE_SOLID_MAX_LINES`
 
 ### PHASE 2: Documentation (via research-expert)
 - **Research Agent Used**: ✅ YES
@@ -49,7 +49,7 @@ related: examples.md
 - **Interfaces Moved**: 3 files (components → interfaces/)
 - **Logic Extracted**: 2 hooks created
 - **Stores Created**: 1 Zustand store
-- **Files Split**: 2 (>100 LoC → multiple files)
+- **Files Split**: 2 (over `FUSE_SOLID_MAX_LINES` → multiple files)
 
 ### PHASE 6: Verification
 - ✅ Linters: 0 errors

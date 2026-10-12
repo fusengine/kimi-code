@@ -14,7 +14,7 @@ related: single-responsibility.md, open-closed.md, liskov-substitution.md, inter
 
 | Principle | React Application | Key Symptom of Violation |
 |-----------|-------------------|--------------------------|
-| **S**ingle Responsibility | 1 component = 1 UI, 1 hook = 1 logic | File > 90 lines |
+| **S**ingle Responsibility | 1 component = 1 UI, 1 hook = 1 logic | File approaches `FUSE_SOLID_MAX_LINES` |
 | **O**pen/Closed | Extend via props/composition | Adding feature = modify existing |
 | **L**iskov Substitution | Implementations respect contracts | Mock fails, real works |
 | **I**nterface Segregation | Small, focused interfaces | Interface has 10+ methods |
@@ -32,10 +32,8 @@ related: single-responsibility.md, open-closed.md, liskov-substitution.md, inter
 - 1 service = 1 domain (users OR auth OR payments)
 
 **File Limits:**
-- Component: 50 lines
-- Hook: 30 lines
-- Service: 40 lines
-- Any file: 100 lines (split at 90)
+- All source-file types use `FUSE_SOLID_MAX_LINES` as the only size ceiling.
+- Exception: Zustand stores keep the owner rule of max 40 lines (`07-state-management.md`).
 
 → See `single-responsibility.md` for detailed guide
 → See `templates/` for code examples
@@ -105,7 +103,7 @@ related: single-responsibility.md, open-closed.md, liskov-substitution.md, inter
 ## Decision Flow
 
 ```
-Is file > 90 lines?
+Does the file approach `FUSE_SOLID_MAX_LINES`?
 └─ Yes → Apply SRP (split)
 
 Need to add feature?

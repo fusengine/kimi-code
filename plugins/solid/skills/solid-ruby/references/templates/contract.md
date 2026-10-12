@@ -6,7 +6,7 @@ when-to-use: Defining service interfaces, repository patterns
 keywords: contract, duck typing, interface, module
 ---
 
-# Contract Template (< 30 lines)
+# Contract Template
 
 ## Basic Contract
 
@@ -134,7 +134,7 @@ end
 
 ## Key Rules
 
-- Max 30 lines per contract
+- One small, focused contract per file (within `FUSE_SOLID_MAX_LINES`)
 - Use module, not class
 - YARD document all methods
 - Raise NotImplementedError in stubs

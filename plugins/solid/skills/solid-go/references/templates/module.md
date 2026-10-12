@@ -331,5 +331,5 @@ func main() {
 - [ ] `handlers/create.go` - Create handler
 - [ ] `handlers/get.go` - Get handler
 - [ ] `cmd/main.go` - Wiring updated
-- [ ] All files < 100 lines
+- [ ] All files within `FUSE_SOLID_MAX_LINES`
 - [ ] All exported functions have Godoc

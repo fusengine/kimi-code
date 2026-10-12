@@ -148,7 +148,7 @@ API routes with `api` middleware.
 
 | Rule | Application |
 |------|-------------|
-| Files < 100 lines | Split at 90 lines |
+| Files within `FUSE_SOLID_MAX_LINES` | Split well before it |
 | Interfaces in Contracts/ | Never in components |
 | Single responsibility | One class = one job |
 

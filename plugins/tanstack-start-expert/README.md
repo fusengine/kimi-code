@@ -12,7 +12,7 @@ Expert TanStack Start development — the full-stack React framework (Release Ca
 
 | Skill | Description |
 |-------|-------------|
-| solid-tanstack-start | SOLID principles for TanStack Start with modular architecture (files < 100 lines) |
+| solid-tanstack-start | SOLID principles for TanStack Start with modular architecture (source files within `FUSE_SOLID_MAX_LINES`) |
 | start-core | Framework fundamentals, `tanstackStart()` Vite plugin, project layout, versions |
 | start-server-functions | `createServerFn`, `.validator()`, `.handler()`, GET/POST methods |
 | start-middleware | `createMiddleware` for request and server-function middleware chains |

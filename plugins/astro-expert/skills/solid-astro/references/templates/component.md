@@ -5,7 +5,7 @@ applies-to: "**/*.astro"
 
 # Template: Astro Component with Props + JSDoc
 
-Canonical SOLID-compliant Astro component (< 60 lines).
+Canonical SOLID-compliant Astro component (within `FUSE_SOLID_MAX_LINES`).
 
 ## src/components/blog/BlogCard.astro
 

@@ -15,18 +15,18 @@ related: architecture-patterns.md, dependency-inversion.md
 ## Decision Tree
 
 ```
-HTTP handler? → Controller (< 50 lines)
-Database? → Repository (< 100 lines)
-Business rules? → Service (< 100 lines)
+HTTP handler? → Controller
+Database? → Repository
+Business rules? → Service
 ```
 
 ## Layer Jobs
 
-| Layer | Job | Max Lines |
-|-------|-----|-----------|
-| Controller | Parse request → call service → return response | 50 |
-| Service | Business logic, orchestration, transactions | 100 |
-| Repository | JPA queries only, no business logic | 100 |
+| Layer | Job |
+|-------|-----|
+| Controller | Parse request → call service → return response |
+| Service | Business logic, orchestration, transactions |
+| Repository | JPA queries only, no business logic |
 
 ## Module Structure
 
@@ -76,6 +76,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 - [ ] Controllers: NO business logic
 - [ ] Services: NO HTTP concerns
 - [ ] Repositories: NO business rules
-- [ ] All files < 100 lines (split at 90)
+- [ ] All files within `FUSE_SOLID_MAX_LINES`
 - [ ] Dependencies injected via constructor
 - [ ] No `new` keyword for services/repositories

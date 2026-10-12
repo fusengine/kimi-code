@@ -5,7 +5,7 @@ applies-to: "**/*.astro"
 
 # Template: TypeScript Interface File
 
-SOLID-compliant interface file in src/interfaces/ (< 50 lines per file).
+SOLID-compliant interface file in src/interfaces/ (split by domain, within `FUSE_SOLID_MAX_LINES`).
 
 ## src/interfaces/content.interface.ts
 

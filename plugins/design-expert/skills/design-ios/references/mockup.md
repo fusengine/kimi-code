@@ -10,8 +10,8 @@ related: ../SKILL.md, viewports.md
 # Device-Framed HTML Mockup
 
 ## Structure
-- Outer frame `<div>` sized to the exact point viewport from `viewports.md` (1pt = 1px in
-  the mockup, no arbitrary scaling).
+- Outer frame `<div>` sized to the point canvas recorded per `viewports.md` (Xcode Device
+  Hub size, source stated in the spec; 1pt = 1px in the mockup, no arbitrary scaling).
 - `<meta name="viewport" content="width=device-width, viewport-fit=cover">` to allow
   safe-area simulation.
 - Safe areas via `env(safe-area-inset-top)`, `env(safe-area-inset-bottom)`,

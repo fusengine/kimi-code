@@ -30,7 +30,7 @@ app/modules/your_feature/
 
 ---
 
-## Controller (< 50 lines)
+## Controller
 
 ```ruby
 # frozen_string_literal: true
@@ -56,7 +56,7 @@ end
 
 ---
 
-## Service (< 100 lines)
+## Service
 
 ```ruby
 # frozen_string_literal: true

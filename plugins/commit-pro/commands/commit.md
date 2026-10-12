@@ -1,7 +1,7 @@
 ---
 description: Smart conventional commit with security validation, branch flow enforcement, and auto-detection. Use for git commit, commit changes, save work, stage and commit.
 argument-hint: "[message] | [type scope message] | (empty for auto-detection)"
-allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*), Bash(git tag:*), Bash(git push:*), Bash(git pull:*), Bash(git describe:*), Bash(git branch:*), Bash(git checkout:*), Bash(git rev-parse:*), Bash(git remote:*), Bash(git merge-base:*), Bash(git fetch:*), Bash(gh pr create:*), Bash(gh pr view:*), Bash(gh pr merge:*), Bash(gh pr checks:*), Bash(gh pr edit:*), Bash(gh auth:*), Bash(command:*), Read, Edit
+allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*), Bash(git tag:*), Bash(git push:*), Bash(git pull:*), Bash(git describe:*), Bash(git branch:*), Bash(git checkout:*), Bash(git rev-parse:*), Bash(git remote:*), Bash(git merge-base:*), Bash(git fetch:*), Bash(gh pr create:*), Bash(gh pr view:*), Bash(gh pr merge:*), Bash(gh pr checks:*), Bash(gh pr edit:*), Bash(gh auth:*), Bash(gh run list:*), Bash(gh run watch:*), Bash(gh run view:*), Bash(gh run rerun:*), Bash(git rev-list:*), Bash(npm view:*), Bash(command:*), Read, Edit
 disable-model-invocation: false
 ---
 
@@ -268,3 +268,12 @@ git tag vX.Y.Z
 Do **not** run `git push origin vX.Y.Z` automatically — there is either no remote to push to, or no confirmed merge yet. Print the manual command for the user to run once the remote/`gh` prerequisite is met and the change has actually landed on `main`.
 
 Output tag verification (FULL mode) or the manual push reminder (LOCAL/DEGRADED mode) alongside the PR URL + merge status from Step 7.
+
+### Step 9: Release Workflow — watch it to the end (FULL mode only, conditional)
+
+The release ends at the registry, not at the tag — **when the repo has a tag-triggered release workflow** (e.g. `Publish` to npm). Full procedure: `skills/git-flow/references/release-workflow.md`.
+
+1. Verify, never assume: no `.github/workflows/` directory, or no workflow with an `on: push: tags` trigger → `publish: none`; nothing to watch, stop here (this is the case for repos without CI).
+2. Otherwise find the tag's runs (`gh run list --commit "$(git rev-list -n1 vX.Y.Z)" --event push`, polled ~90s, they register late) and `gh run watch <id> --exit-status` each one, never piped.
+3. Failure → `gh run view <id> --log-failed` at once. Flaky (threshold just over its limit, network/registry timeout, runner crash — not caused by the diff) → `gh run rerun <id> --failed`, max 2 reruns, then escalate. Real defect (compile/type/lint, deterministic test, auth, same failure twice) → stop, never rerun; report run URL, job, step and the log lines that prove the cause.
+4. Announce "published" only when the final attempt is fully green (post-publish verify jobs included) **and** the registry serves X.Y.Z (`npm view <pkg> version` or the matching registry query). Until then: `tagged, publish pending` or `publish failed:<job>`.

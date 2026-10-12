@@ -116,9 +116,9 @@ Extract complex effects to custom hooks:
 
 ```text
 modules/[feature]/src/hooks/
-├── useWindowSize.ts     (< 30 lines)
-├── useWebSocket.ts      (< 30 lines)
-└── useKeyboard.ts       (< 30 lines)
+├── useWindowSize.ts     (viewport tracking)
+├── useWebSocket.ts      (socket lifecycle)
+└── useKeyboard.ts       (key bindings)
 ```
 
 See `solid-react/references/` for hook patterns.

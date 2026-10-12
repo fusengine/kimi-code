@@ -1,6 +1,6 @@
 ---
 name: module-template
-description: TypeScript/Bun module template (< 80 lines)
+description: TypeScript/Bun module template
 when-to-use: creating modules, barrel exports, feature entry points
 keywords: module, barrel, exports, index, feature
 priority: medium
@@ -10,7 +10,7 @@ trigger-on-edit: "modules/"
 level: template
 ---
 
-# Module (< 80 lines)
+# Module
 
 ## Basic Module with Exports
 
@@ -88,8 +88,8 @@ await main()
 
 ## Rules
 
-- Max 80 lines per module
+- Module within `FUSE_SOLID_MAX_LINES`
 - Import feature types from `../interfaces/`, shared from `@/modules/cores/`
 - JSDoc for all exports
-- Entry points: wiring only (< 30 lines)
+- Entry points: wiring only
 - Export functions, not classes (prefer composition)

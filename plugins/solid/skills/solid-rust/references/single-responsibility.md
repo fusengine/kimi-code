@@ -191,5 +191,5 @@ impl UserService {
 1. **Use traits for abstraction** - Repository trait enables testing and swapping implementations
 2. **Generic bounds** - Service accepts `trait UserRepository` not concrete type
 3. **Result<T,E>** - Error handling is responsibility too; use custom error types
-4. **Split early** - Extract to separate files at 90 lines (see architecture-patterns.md)
+4. **Split early** - Extract to separate files once a file mixes responsibilities, well before `FUSE_SOLID_MAX_LINES` (see architecture-patterns.md)
 5. **impl blocks** - Keep related impl blocks together in same module, split methods across files at boundaries

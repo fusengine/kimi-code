@@ -214,14 +214,14 @@ composer quality
 ### Check File Lines
 
 ```bash
-# Find files > 100 lines
-find app -name "*.php" -exec wc -l {} + | awk '$1 > 100'
+# Find files over FUSE_SOLID_MAX_LINES
+find app -name "*.php" -exec wc -l {} + | awk -v max="${FUSE_SOLID_MAX_LINES:-100}" '$1 > max'
 ```
 
 ### Verify Structure
 
 ```text
-[ ] All files < 100 lines
+[ ] All files within `FUSE_SOLID_MAX_LINES`
 [ ] Interfaces in Contracts/
 [ ] Services in Services/
 [ ] DTOs in DTOs/
@@ -284,7 +284,7 @@ public function find(int $id): ?User
 - Time: 2.3s
 
 ### File Checks
-- Files > 100 lines: 0
+- Files over `FUSE_SOLID_MAX_LINES`: 0
 - Missing strict_types: 0
 ```
 
@@ -296,7 +296,7 @@ public function find(int $id): ?User
 [ ] Larastan level 8+ passed
 [ ] Pint --test passed
 [ ] All Pest tests passed
-[ ] All files < 100 lines
+[ ] All files within `FUSE_SOLID_MAX_LINES`
 [ ] No type errors
 [ ] No code style issues
 ```

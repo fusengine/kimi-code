@@ -1,7 +1,7 @@
 ---
 name: single-responsibility
 applies-to: "**/app/**/*.tsx, **/app/**/*.ts, **/pages/**/*.tsx, **/pages/**/*.ts"
-description: SRP Guide - When and how to split files, line limits, modular paths
+description: SRP Guide - When and how to split files, size ceiling, modular paths
 when-to-use: file too long, component doing too much, refactoring, code organization
 keywords: single responsibility, SRP, splitting, lines, refactoring, modular
 priority: high
@@ -18,22 +18,14 @@ related: architecture-patterns.md, templates/service.md, templates/hook.md
 
 ### Symptoms of Violation
 
-1. **File exceeds 90 lines** → Trigger a split
+1. **File approaches `FUSE_SOLID_MAX_LINES`** → Split by responsibility
 2. **Cannot describe file in one sentence** → Too many responsibilities
 3. **File has more than 15 imports** → Doing too much
 4. **File has more than 5 exports** → Mixed responsibilities
 
-### Line Limits by Type
+### Size Ceiling
 
-| File Type | Max Limit | Split Threshold |
-|-----------|-----------|-----------------|
-| Page component (`app/*/page.tsx`) | 50 lines | 40 lines |
-| Client component (`'use client'`) | 60 lines | 50 lines |
-| Server component | 80 lines | 70 lines |
-| Service / Utility | 80 lines | 70 lines |
-| Hook | 60 lines | 50 lines |
-| Server Action | 30 lines | 25 lines |
-| Any other file | 100 lines | 90 lines |
+All source-file types (page, client/server component, service, hook, Server Action, other) use `FUSE_SOLID_MAX_LINES` as the only size ceiling. Split by responsibility when cohesion drops.
 
 ---
 
@@ -65,7 +57,7 @@ modules/[feature]/src/
 
 ### Split Example
 
-Before (1 file of 150 lines in wrong place):
+Before (1 file mixing several responsibilities in the wrong place):
 ```
 app/login/page.tsx → Types, API calls, State, Validation, UI
 ```
@@ -146,7 +138,7 @@ One action = One operation:
 
 ## Where to Find Code Templates?
 
-→ `templates/server-component.md` - Page template < 50 lines
+→ `templates/server-component.md` - Page template
 → `templates/client-component.md` - Client component template
 → `templates/service.md` - Service in `modules/[feature]/src/services/`
 → `templates/hook.md` - Hook in `modules/[feature]/src/hooks/`
@@ -156,7 +148,7 @@ One action = One operation:
 
 ## SRP Checklist
 
-- [ ] File < line limit for its type
+- [ ] Source file stays within `FUSE_SOLID_MAX_LINES`
 - [ ] Types in `modules/[feature]/src/interfaces/` only
 - [ ] Services in `modules/[feature]/src/services/`
 - [ ] Queries in `modules/[feature]/src/queries/`

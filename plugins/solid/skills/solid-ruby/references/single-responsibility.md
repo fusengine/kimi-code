@@ -18,13 +18,15 @@ Each class has ONE reason to change.
 
 ## Layer Responsibilities
 
-| Layer | Responsibility | Max Lines |
-|-------|-----------------|-----------|
-| Controller | Parse HTTP, authorize, delegate | 50 |
-| Service | Business logic, orchestration | 100 |
-| Query | Data retrieval, filtering | 100 |
-| Repository | SQL abstraction | 100 |
-| Model | Associations, validations, scopes | 50 |
+| Layer | Responsibility |
+|-------|-----------------|
+| Controller | Parse HTTP, authorize, delegate |
+| Service | Business logic, orchestration |
+| Query | Data retrieval, filtering |
+| Repository | SQL abstraction |
+| Model | Associations, validations, scopes |
+
+Every file stays within `FUSE_SOLID_MAX_LINES`.
 
 ---
 

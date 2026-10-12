@@ -16,7 +16,7 @@ Production-ready React framework with Server Components, streaming, and Turbopac
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing routes, components, and patterns
 2. **research-expert** - Verify latest Next.js 16 docs via Context7/Exa

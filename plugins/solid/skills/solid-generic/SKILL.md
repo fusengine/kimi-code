@@ -1,11 +1,11 @@
 ---
 name: solid-generic
-description: Use when building CLI tools, libraries, scripts, hooks, or non-framework TypeScript code (Bun/Node.js -- SOLID, files < 100 lines, JSDoc mandatory).
+description: Use when building CLI tools, libraries, scripts, hooks, or non-framework TypeScript code (Bun/Node.js -- SOLID, files within FUSE_SOLID_MAX_LINES, JSDoc mandatory).
 ---
 
 
 <objective>
-SOLID Generic enforces a modular architecture for plain TypeScript/Bun/Node.js code with no framework (CLI tools, libraries, scripts, hooks): interfaces live in `modules/[feature]/src/interfaces/` or `modules/cores/interfaces/` for shared types, never in implementation files; files stay under 100 lines (modules <80, services <60, validators <40); every export carries JSDoc.
+SOLID Generic enforces a modular architecture for plain TypeScript/Bun/Node.js code with no framework (CLI tools, libraries, scripts, hooks): interfaces live in `modules/[feature]/src/interfaces/` or `modules/cores/interfaces/` for shared types, never in implementation files; files stay within `FUSE_SOLID_MAX_LINES`, one responsibility each; every export carries JSDoc.
 
 Before writing any new code it requires a DRY check across `modules/cores/lib`, `modules/cores/interfaces`, and `modules/cores/errors`, extracting anything repeated 3+ times into a shared helper. Each of the 5 SOLID principles has its own detailed reference (`single-responsibility.md` through `dependency-inversion.md`), plus copy-paste-ready templates for modules, services, interfaces, validators, factories, errors, and tests.
 </objective>
@@ -37,11 +37,9 @@ After implementation, run **sniper** for validation.
 
 ## Absolute Rules (MANDATORY)
 
-### 1. Files < 100 lines
-- **Split at 90 lines** - Never exceed 100
-- Modules < 80 lines
-- Services < 60 lines
-- Validators < 40 lines
+### 1. Files within `FUSE_SOLID_MAX_LINES`
+- **Split mixed responsibilities** before the hook ceiling is reached
+- One purpose per module, service and validator
 
 ### 2. Interfaces Separated (Modular MANDATORY)
 ```text
@@ -84,21 +82,21 @@ See [solid-principles.md](references/solid-principles.md) for overview and [arch
 
 ## Code Templates
 
-| Template | Usage | Max Lines |
-|----------|-------|-----------|
-| [module.md](references/templates/module.md) | TypeScript/Bun module | 80 |
-| [service.md](references/templates/service.md) | Service with DI | 60 |
-| [interface.md](references/templates/interface.md) | TypeScript interfaces | - |
-| [validator.md](references/templates/validator.md) | Zod validation schemas | 40 |
-| [factory.md](references/templates/factory.md) | Factory pattern | 60 |
-| [error.md](references/templates/error.md) | Custom error classes | 40 |
-| [test.md](references/templates/test.md) | Bun test / Vitest | - |
+| Template | Usage |
+|----------|-------|
+| [module.md](references/templates/module.md) | TypeScript/Bun module |
+| [service.md](references/templates/service.md) | Service with DI |
+| [interface.md](references/templates/interface.md) | TypeScript interfaces |
+| [validator.md](references/templates/validator.md) | Zod validation schemas |
+| [factory.md](references/templates/factory.md) | Factory pattern |
+| [error.md](references/templates/error.md) | Custom error classes |
+| [test.md](references/templates/test.md) | Bun test / Vitest |
 
 ---
 
 ## Forbidden
 
-- Files > 100 lines
+- Files over `FUSE_SOLID_MAX_LINES`
 - Interfaces in implementation files
 - Business logic in entry points
 - Missing JSDoc on exports

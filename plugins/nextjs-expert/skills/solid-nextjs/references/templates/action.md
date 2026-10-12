@@ -4,7 +4,7 @@ applies-to: "**/app/**/*.tsx, **/app/**/*.ts, **/pages/**/*.tsx, **/pages/**/*.t
 description: Server Action template with validation and revalidation
 ---
 
-# Server Action (< 30 lines)
+# Server Action
 
 ```typescript
 // modules/users/src/actions/user.actions.ts

@@ -36,7 +36,7 @@ Expert <technology> developer for <domain>.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing <domain> patterns
 2. **research-expert** - Verify latest <technology> docs via Context7/Exa
@@ -71,7 +71,7 @@ After implementation, run **sniper** for validation.
 
 | Rule | Requirement |
 |------|-------------|
-| Files | < 100 lines (split at 90) |
+| Files | Within `FUSE_SOLID_MAX_LINES` |
 | Interfaces | `<location>` ONLY |
 | Documentation | <DocType> on every function |
 | Research | Always before coding |

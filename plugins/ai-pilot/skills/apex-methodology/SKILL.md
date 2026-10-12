@@ -7,7 +7,7 @@ description: "Use when starting ANY development task -- feature, bug fix, refact
 <objective>
 APEX Methodology drives the full Analyze -> Plan -> Execute -> eLicit -> eXamine workflow for any development task -- new features, bug fixes, refactors, hotfixes. It auto-detects the project type (Laravel, Next.js, React, Swift) and loads the matching framework-specific reference set, then walks through branch creation, brainstorming, codebase analysis, planning, TDD execution, expert self-review (eLicit), functional verification, and sniper validation (eXamine) through to PR creation.
 
-It enforces the project's hard constraints throughout: files under 100 lines (split at 90), interfaces kept out of component files, SOLID principles, and a mandatory sniper pass after every Edit/Write (blocked by PostToolUse hooks until it runs). Three modes control how much is automatic: `--auto` (default, no prompts), `--manual` (step-by-step confirmation), and `--skip-elicit` (bypasses the self-review phase).
+It enforces the project's hard constraints throughout: every file within `FUSE_SOLID_MAX_LINES` (the hook ceiling), interfaces kept out of component files, SOLID principles, and a mandatory sniper pass after every Edit/Write (blocked by PostToolUse hooks until it runs). Three modes control how much is automatic: `--auto` (default, no prompts), `--manual` (step-by-step confirmation), and `--skip-elicit` (bypasses the self-review phase).
 </objective>
 
 **Current Task:** $ARGUMENTS
@@ -83,9 +83,9 @@ This creates `.kimi/apex/task.json` (documentation consultation status) and `.ki
 ### File Size (ABSOLUTE)
 
 ```text
-🚨 STOP at 90 lines → Split immediately
-❌ NEVER exceed 100 lines
-📊 Target: 50-80 lines per file
+🚨 Approaching `FUSE_SOLID_MAX_LINES` → Split by responsibility immediately
+❌ NEVER exceed `FUSE_SOLID_MAX_LINES` (the hook blocks it)
+📊 One responsibility per file; set no cap of your own
 ```
 
 ### Interface Location
@@ -111,7 +111,7 @@ This creates `.kimi/apex/task.json` (documentation consultation status) and `.ki
 ```text
 ❌ Skip explore-codebase or research-expert
 ❌ Assume API syntax without verification
-❌ Create files >100 lines
+❌ Create files over `FUSE_SOLID_MAX_LINES`
 ❌ Put interfaces in component files
 ❌ Skip sniper after changes
 ❌ Merge without tests

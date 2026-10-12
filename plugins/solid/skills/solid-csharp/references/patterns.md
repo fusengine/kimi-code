@@ -15,11 +15,11 @@ related: principles.md
 ```
 src/Modules/
 ├── Users/
-│   ├── Controllers/           # HTTP endpoints (< 50 lines)
-│   ├── Services/              # Business logic (< 100 lines)
-│   ├── Repositories/          # Data access (< 100 lines)
-│   ├── Contracts/             # Interfaces (< 30 lines)
-│   └── Models/                # Entities + DTOs (< 50 lines)
+│   ├── Controllers/           # HTTP endpoints
+│   ├── Services/              # Business logic
+│   ├── Repositories/          # Data access
+│   ├── Contracts/             # Interfaces
+│   └── Models/                # Entities + DTOs
 └── Core/                      # Shared across features
     ├── Services/
     ├── Contracts/

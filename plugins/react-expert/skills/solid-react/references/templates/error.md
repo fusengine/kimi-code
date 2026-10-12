@@ -1,10 +1,10 @@
 ---
 name: error-template
 applies-to: "**/*.tsx, **/*.jsx"
-description: Custom error class templates (< 30 lines)
+description: Custom error class templates
 ---
 
-# Custom Errors (< 30 lines)
+# Custom Errors
 
 ## Base Application Error
 
@@ -150,7 +150,7 @@ export function getErrorMessage(error: unknown): string {
 
 ## Rules
 
-- Max 30 lines per error class
+- Keep each error file within `FUSE_SOLID_MAX_LINES` and focused on one error family
 - Location: `modules/cores/errors/` or `modules/[feature]/src/errors/`
 - Extend base `AppError` class
 - Include error code and status code

@@ -67,6 +67,11 @@
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" aipilot"
     },
     {
+      "event": "Stop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
       "event": "SessionEnd",
       "matcher": "",
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" aipilot"
@@ -147,6 +152,11 @@
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
     },
     {
+      "event": "PostCompact",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
+    },
+    {
       "event": "SessionEnd",
       "matcher": "",
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
@@ -205,6 +215,26 @@
       "event": "Stop",
       "matcher": "",
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "SessionStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" memory"
+    },
+    {
+      "event": "Stop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" memory"
+    },
+    {
+      "event": "SubagentStop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" memory"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Bash|Read|Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" memory"
     },
     {
       "event": "PostToolUse",
@@ -370,6 +400,7 @@
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/hooks/kimi-hook-shim.mjs\" core"
     }
   ],
+  "systemPromptPath": "./plugins/ai-pilot/APEX-SUBAGENT.md",
   "skillInstructions": "Kimi Code tool mapping for Fusengine skills and agents:\n- Task tool → Agent tool; TeamCreate → AgentSwarm (min 4 subagents).\n- WebFetch → FetchURL; TodoWrite → TodoList.\n- Skill tool references map to Kimi Code's native Skill tool.\n- Read/Write/Edit/Bash/Grep/Glob/WebSearch keep their native names.",
   "interface": {
     "displayName": "Fusengine Suite",

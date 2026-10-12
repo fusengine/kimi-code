@@ -6,7 +6,7 @@ when-to-use: Defining Rails models with SOLID compliance
 keywords: model, ActiveRecord, validations, associations
 ---
 
-# Model Template (< 50 lines)
+# Model Template
 
 ## Complete Example
 
@@ -104,7 +104,7 @@ User.created_after(1.month.ago)
 
 ## Key Rules
 
-- **Max 50 lines**
+- **File within `FUSE_SOLID_MAX_LINES`**
 - Associations ONLY
 - Validations ONLY
 - Scopes (queries)

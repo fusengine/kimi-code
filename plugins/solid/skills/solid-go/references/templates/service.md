@@ -330,4 +330,4 @@ func NewUserService(repo UserRepository) *UserService {
 - [ ] No global state or `init()` functions
 - [ ] Business logic only (no HTTP, no DB)
 - [ ] All exported functions documented
-- [ ] File < 100 lines
+- [ ] File within `FUSE_SOLID_MAX_LINES`

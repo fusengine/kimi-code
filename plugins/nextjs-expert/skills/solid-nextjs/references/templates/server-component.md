@@ -4,7 +4,7 @@ applies-to: "**/app/**/*.tsx, **/app/**/*.ts, **/pages/**/*.tsx, **/pages/**/*.t
 description: Server Component template with data fetching, Suspense, and proper typing
 ---
 
-# Server Component (< 80 lines)
+# Server Component
 
 ```typescript
 // app/(dashboard)/users/page.tsx

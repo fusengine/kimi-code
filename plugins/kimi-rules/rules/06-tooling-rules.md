@@ -29,7 +29,7 @@ ALL docs in `docs/` folder - NEVER outside except root `README.md`
 
 ## Git & GitHub Flow (ZERO TOLERANCE)
 
-**Commit tool**: ALWAYS delegate to the agent `commit` (it executes `/fusengine:commit` end to end). NEVER `git commit` directly, never hand-roll the flow yourself.
+**Commit tool**: ALWAYS delegate to the agent `commit` (it executes `/fusengine:commit` end to end). NEVER `git commit` directly, never hand-roll the flow yourself — NEVER hand-roll a commit. External executors (Claude/Codex/Cursor) never push/PR/merge/tag/publish — release goes through the `commit` agent only.
 
 **Branch enforcement**:
 - `main`, `master`, `develop`, `production` → **protected**, no direct commits

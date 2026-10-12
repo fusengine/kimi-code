@@ -52,7 +52,7 @@
 | ARCH-01 | **SOLID Compliance** | All 5 principles checked | Business logic |
 | ARCH-02 | **Dependency Analysis** | Proper DI, no circular deps? | Modules |
 | ARCH-03 | **Coupling Review** | Loose coupling maintained? | Refactoring |
-| ARCH-04 | **File Size Check** | All files <100 LoC? | Always |
+| ARCH-04 | **File Size Check** | All files within `FUSE_SOLID_MAX_LINES`? | Always |
 | ARCH-05 | **Layer Separation** | UI/Logic/Data properly split? | Full-stack |
 | ARCH-06 | **Interface Location** | Interfaces in dedicated folder? | TypeScript |
 

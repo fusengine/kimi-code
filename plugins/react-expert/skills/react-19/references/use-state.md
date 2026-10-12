@@ -78,15 +78,15 @@ useState triggers re-renders. If you use state values in callbacks:
 
 ## SOLID Compliance
 
-Files < 100 lines. Split complex state logic:
+Source files stay within `FUSE_SOLID_MAX_LINES`. Split complex state logic by responsibility:
 
 ```text
 modules/[feature]/components/
-├── Counter.tsx          (< 50 lines)
-└── UserForm.tsx         (< 50 lines)
+├── Counter.tsx          (UI only)
+└── UserForm.tsx         (UI only)
 
 modules/[feature]/src/hooks/
-└── useFormState.ts      (< 30 lines - extracted hook)
+└── useFormState.ts      (extracted hook)
 ```
 
 See `solid-react/references/` for file organization rules.

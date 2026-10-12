@@ -7,7 +7,7 @@ next_step: references/swift/03.5-elicit.md
 
 # Swift Implementation Guide
 
-## View Pattern (< 80 lines)
+## View Pattern
 
 ```swift
 import SwiftUI
@@ -33,7 +33,7 @@ struct ProfileView: View {
 #Preview { NavigationStack { ProfileView() } }
 ```
 
-## ViewModel Pattern (< 100 lines)
+## ViewModel Pattern
 
 ```swift
 @MainActor @Observable
@@ -83,9 +83,9 @@ Text("profile.greeting \(profile.name)") // Interpolation
 Button("button.save") { ... }
 ```
 
-## Extract at 30+ Lines
+## Extract Mixed Sections
 
-When a view section exceeds 30 lines, extract to subview:
+When a view section mixes several concerns, extract it to a subview:
 `ProfileHeader`, `ProfileDetails`, `ProfileActions`
 
 ## Update Task Phase

@@ -130,7 +130,7 @@ public interface PaymentGateway {
 
 - [ ] Interface in `modules/[feature]/interfaces/`
 - [ ] One interface per file
-- [ ] Max 30 lines per interface
+- [ ] Small, focused interface within `FUSE_SOLID_MAX_LINES`
 - [ ] Full Javadoc on methods
 - [ ] Exceptions documented
 - [ ] No implementation code

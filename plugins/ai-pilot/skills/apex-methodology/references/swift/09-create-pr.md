@@ -20,7 +20,7 @@ Brief description (1-2 sentences).
 ## Checklist
 - [ ] MVVM architecture followed
 - [ ] @Observable (not ObservableObject)
-- [ ] Files < 150 lines, Views < 80
+- [ ] Files within `FUSE_SOLID_MAX_LINES`
 - [ ] SwiftLint passes
 - [ ] /// docs on public APIs
 - [ ] Unit tests added

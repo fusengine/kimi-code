@@ -28,11 +28,11 @@ related: single-responsibility.md, open-closed.md, liskov-substitution.md, inter
 app/
 ├── modules/
 │   ├── [feature]/
-│   │   ├── controllers/     # HTTP handlers (< 50 lines)
-│   │   ├── services/        # Business logic (< 100 lines)
-│   │   ├── repositories/    # Data access (< 100 lines)
-│   │   ├── contracts/       # Duck typing modules ONLY (< 30 lines)
-│   │   ├── models/          # ActiveRecord (< 50 lines)
+│   │   ├── controllers/     # HTTP handlers
+│   │   ├── services/        # Business logic
+│   │   ├── repositories/    # Data access
+│   │   ├── contracts/       # Duck typing modules ONLY
+│   │   ├── models/          # ActiveRecord
 │   │   └── concerns/        # Shared behavior
 │   └── core/                # Shared (cross-feature)
 │       ├── services/
@@ -47,14 +47,7 @@ app/
 
 ## File Size Limits
 
-| Type | Max Lines | Split At |
-|------|-----------|----------|
-| Controller | 50 | 40 |
-| Service | 100 | 90 |
-| Repository | 100 | 90 |
-| Contract | 30 | 25 |
-| Model | 50 | 40 |
-| **Any file** | **100** | **90** |
+Every file stays within the hook ceiling `FUSE_SOLID_MAX_LINES`. One purpose per file: controllers stay thin, contracts hold duck-typing modules only; split mixed responsibilities.
 
 ---
 
@@ -72,7 +65,7 @@ app/
 
 ## Quick Checklist
 
-- [ ] Files < 100 lines
+- [ ] Files within `FUSE_SOLID_MAX_LINES`
 - [ ] Contracts in `modules/[feature]/contracts/` or `modules/core/contracts/`
 - [ ] Services accept duck-typed dependencies
 - [ ] `# frozen_string_literal: true` in every file

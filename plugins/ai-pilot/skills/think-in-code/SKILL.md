@@ -22,13 +22,13 @@ Heuristic: if your task is "for each file in set, compute/extract X, then aggreg
 
 ## 5 Runnable Patterns
 
-### 1. File size audit (> 100 lines violations)
+### 1. File size audit (files over `FUSE_SOLID_MAX_LINES`)
 
 ```bash
 find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.py" -o -name "*.php" \) \
   -not -path "*/node_modules/*" -not -path "*/vendor/*" \
   | xargs wc -l 2>/dev/null \
-  | awk '$1 > 100 && $2 != "total" {print $1, $2}' \
+  | awk -v max="${FUSE_SOLID_MAX_LINES:?set to the hook ceiling}" '$1 > max && $2 != "total" {print $1, $2}' \
   | sort -rn | head -20
 ```
 
@@ -79,9 +79,9 @@ RIGHT: Bash(find ... | xargs wc -l | awk ...) → 1 compact table
 
 ## Before / After
 
-**Task:** "Find files > 100 lines in `src/`."
+**Task:** "Find files over `FUSE_SOLID_MAX_LINES` in `src/`."
 
 - Before: 10 × Read full file → ~60KB tokens consumed, then mental wc.
-- After: 1 × `find src -name '*.ts' | xargs wc -l | awk '$1>100'` → ~1KB result.
+- After: 1 × `find src -name '*.ts' | xargs wc -l | awk -v m="${FUSE_SOLID_MAX_LINES:-100}" '$1>m'` → ~1KB result.
 
 **~60× reduction. Use the script.**

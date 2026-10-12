@@ -1,6 +1,6 @@
 ---
 name: factory-template
-description: Factory pattern template with dependency injection (< 60 lines)
+description: Factory pattern template with dependency injection
 when-to-use: creating factories, object creation patterns, dependency resolution
 keywords: factory, creation, builder, instantiation, pattern
 priority: medium
@@ -10,7 +10,7 @@ trigger-on-edit: "factories/"
 level: template
 ---
 
-# Factory (< 60 lines)
+# Factory
 
 ## HTTP Client Factory
 
@@ -132,7 +132,7 @@ export function bootstrap(config: Config) {
 
 ## Rules
 
-- Max 60 lines per factory
+- One factory per file, within `FUSE_SOLID_MAX_LINES`
 - Return interface type (not concrete)
 - JSDoc with `@param` for all parameters
 - One factory per file

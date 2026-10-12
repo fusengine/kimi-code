@@ -16,7 +16,7 @@ Rust-free TypeScript ORM with 90% smaller bundles and 3x faster queries.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing schema and database patterns
 2. **research-expert** - Verify latest Prisma 7 docs via Context7/Exa
@@ -99,11 +99,11 @@ Database code organized in `modules/cores/db/`:
 
 ### File Organization
 
-| File | Purpose | Max Lines |
-|------|---------|-----------|
-| `prisma.ts` | Singleton client | 30 |
-| `schema.prisma` | Models, relations | 100 per section |
-| `seed.ts` | Database seeding | 50 |
+| File | Purpose |
+|------|---------|
+| `prisma.ts` | Singleton client |
+| `schema.prisma` | Models, relations |
+| `seed.ts` | Database seeding |
 
 ---
 

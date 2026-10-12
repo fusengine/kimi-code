@@ -10,7 +10,7 @@ keywords: viewmodel, observable, MainActor, template, Swift
 
 ## Rules
 
-- ViewModels < 100 lines
+- One screen responsibility per ViewModel; under the hook ceiling (`FUSE_SOLID_MAX_LINES`)
 - Always `@MainActor @Observable`
 - Location: `Features/[Feature]/ViewModels/`
 - Depend on protocols, not concrete types

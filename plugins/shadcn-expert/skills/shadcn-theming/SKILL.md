@@ -14,7 +14,7 @@ Documents the token hierarchy (component → semantic → primitive OKLCH values
 
 ## Agent Workflow (MANDATORY)
 
-Before theming work, use `TeamCreate`:
+Before theming work, spawn agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Find existing theme tokens
 2. **research-expert** - Verify OKLCH patterns via Context7

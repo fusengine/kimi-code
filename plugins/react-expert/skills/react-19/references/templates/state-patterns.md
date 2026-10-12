@@ -7,7 +7,7 @@ difficulty: "beginner"
 
 # State Patterns: Complete Examples
 
-All examples use React 19 with TypeScript and follow SOLID principles (files < 100 lines, JSDoc on exports).
+All examples use React 19 with TypeScript and follow SOLID principles (source files within `FUSE_SOLID_MAX_LINES`; JSDoc on exports).
 
 ---
 

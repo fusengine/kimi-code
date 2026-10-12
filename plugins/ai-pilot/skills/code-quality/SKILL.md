@@ -160,7 +160,7 @@ See [references/examples.md](references/examples.md) for detailed walkthrough.
 - ❌ Interfaces in component files (ZERO TOLERANCE)
 - ❌ Business logic in components (must be in hooks)
 - ❌ Monolithic components (must section)
-- ❌ Files >100 LoC without split
+- ❌ Files over `FUSE_SOLID_MAX_LINES` without split
 - ❌ Local state for global data (use stores)
 
 ### Safety Violations

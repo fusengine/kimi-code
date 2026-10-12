@@ -14,12 +14,12 @@ It does not create the skills an agent references -- for that, use `skill-creato
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY agent creation, delegate via `Task` — spawn 2 agents in parallel (single message, 2 Task calls). Generated agents only carry `Task` in their tools (no `TeamCreate`), so this same pattern is what they must use internally too:
+Before ANY agent creation, delegate via `Agent` — spawn 2 agents in parallel (single message, 2 `Agent` calls). Generated agents carry `Agent` in their tools, so this same pattern is what they must use internally too:
 
 1. **explore-codebase** - Check existing agents, analyze patterns
 2. **research-expert** - Fetch latest agent conventions
 
-`mcp__context7__query-docs` is a direct MCP call, not a spawned agent — invoke it directly (alongside the 2 Task calls) to get examples from existing agents.
+`mcp__context7__query-docs` is a direct MCP call, not a spawned agent — invoke it directly (alongside the 2 `Agent` calls) to get examples from existing agents.
 
 After creation, run **sniper** for validation.
 

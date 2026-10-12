@@ -1,12 +1,17 @@
 ---
 name: solid-php
 description: Use when applying SOLID principles to Laravel 13 / PHP 8.3+ code — file size limits, interface placement, or PHPDoc enforcement.
+versions:
+  laravel: "13.0"
+  php: "8.3"
+user-invocable: true
+references: references/solid-principles.md, references/single-responsibility.md, references/open-closed.md, references/liskov-substitution.md, references/interface-segregation.md, references/dependency-inversion.md, references/anti-patterns.md, references/decision-guide.md, references/php85-features.md, references/laravel12-structure.md, references/fusecore-structure.md, references/templates/code-templates.md, references/templates/controller-templates.md, references/templates/refactoring-guide.md
+related-skills: laravel-architecture, fusecore
 ---
 
-
 <objective>
-Enforces SOLID principles and DRY on Laravel 13 + PHP 8.3+ code: files under
-100 lines (split at 90), interfaces separated into
+Enforces SOLID principles and DRY on Laravel 13 + PHP 8.3+ code: files within
+the hook ceiling `FUSE_SOLID_MAX_LINES`, interfaces separated into
 FuseCore/[Module]/App/Contracts/ (or FuseCore/Core/App/Contracts/ for shared
 ones), and mandatory PHPDoc on all public methods. Auto-detects Laravel vs
 FuseCore modular architecture and routes code placement accordingly
@@ -20,7 +25,7 @@ guidance per SOLID principle (SRP/OCP/LSP/ISP/DIP).
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing architecture
 2. **research-expert** - Verify Laravel/PHP docs via Context7
@@ -72,25 +77,25 @@ New code needed?
 
 ## Decision Tree: Which Pattern?
 
-| Need | Pattern | Location | Max Lines |
-|------|---------|----------|-----------|
-| HTTP handling | Controller | Controllers/ | 50 |
-| Validation | FormRequest | Requests/ | 50 |
-| Single operation | Action | Actions/ | 50 |
-| Complex logic | Service | Services/ | 100 |
-| Data access | Repository | Repositories/ | 100 |
-| Data structure | DTO | DTOs/ | 50 |
-| Abstraction | Interface | Contracts/ | 30 |
+| Need | Pattern | Location |
+|------|---------|----------|
+| HTTP handling | Controller | Controllers/ |
+| Validation | FormRequest | Requests/ |
+| Single operation | Action | Actions/ |
+| Complex logic | Service | Services/ |
+| Data access | Repository | Repositories/ |
+| Data structure | DTO | DTOs/ |
+| Abstraction | Interface | Contracts/ |
 
 ---
 
 ## Critical Rules (MANDATORY)
 
-### 1. Files < 100 lines
-- **Split at 90 lines** - Never exceed 100
-- Controllers < 50 lines
-- Models < 80 lines (excluding relations)
-- Services < 100 lines
+### 1. Files within `FUSE_SOLID_MAX_LINES`
+- **Split well before the hook ceiling** - never work around it
+- Controllers: HTTP concerns only
+- Models: relations + casts only
+- Services: business logic only
 
 ### 2. Interfaces Separated (FuseCore Modular MANDATORY)
 ```
@@ -146,8 +151,8 @@ public function create(CreateUserDTO $dto): User
 
 | Anti-Pattern | Detection | Fix |
 |--------------|-----------|-----|
-| Files > 100 lines | Line count | Split into smaller files |
-| Controllers > 50 lines | Line count | Extract to Service |
+| Files above `FUSE_SOLID_MAX_LINES` | Line count | Split into smaller files |
+| Controllers with business logic | Code review | Extract to Service |
 | Interfaces in impl files | Location | Move to `FuseCore/[Module]/App/Contracts/` |
 | Business logic in Models | Code in model | Extract to Service |
 | Concrete dependencies | `new Class()` | Inject via ModuleServiceProvider |
@@ -167,7 +172,7 @@ public function create(CreateUserDTO $dto): User
 | Depend on interfaces | Depend on concrete classes |
 | Use `final readonly class` | Use mutable classes |
 | Use `declare(strict_types=1)` | Skip type declarations |
-| Split at 90 lines | Wait until 100 lines |
+| Split well before `FUSE_SOLID_MAX_LINES` | Wait until the hook blocks |
 | Use DTOs for data transfer | Use arrays |
 
 ---

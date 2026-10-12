@@ -110,7 +110,7 @@ bun run build
 [ ] No inline types (use interfaces/)
 [ ] Props destructured
 [ ] JSDoc present
-[ ] <50 lines for presentation
+[ ] Presentation only (logic lives in hooks)
 [ ] No business logic in JSX
 ```
 
@@ -118,7 +118,7 @@ bun run build
 
 ```text
 [ ] Starts with "use"
-[ ] <30 lines
+[ ] Hook stays focused (see FUSE_SOLID_MAX_LINES)
 [ ] Single responsibility
 [ ] Dependencies array correct
 [ ] No stale closures
@@ -127,7 +127,7 @@ bun run build
 ### File Structure
 
 ```text
-[ ] All files <100 lines
+[ ] All files within `FUSE_SOLID_MAX_LINES`
 [ ] Interfaces in src/interfaces/
 [ ] Hooks in src/hooks/
 [ ] Components in components/
@@ -191,7 +191,7 @@ if (!user) return null
 - Biome: PASS (formatted)
 
 ### File Checks
-- All files <100 lines: PASS
+- All files within `FUSE_SOLID_MAX_LINES`: PASS
 - Interfaces location: PASS
 - Hooks separation: PASS
 
@@ -214,7 +214,7 @@ if (!user) return null
 [ ] All 6 phases completed
 [ ] ZERO linter errors
 [ ] ZERO type errors
-[ ] All files <100 lines verified
+[ ] All files within `FUSE_SOLID_MAX_LINES` verified
 [ ] Build successful
 [ ] No React antipatterns
 ```

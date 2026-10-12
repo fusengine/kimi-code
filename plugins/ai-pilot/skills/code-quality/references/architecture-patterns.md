@@ -79,14 +79,14 @@ function Dashboard() {
 
 ### Rule 4: Component Sectioning
 ```typescript
-// ❌ VIOLATION: Monolithic component (150+ lines)
+// ❌ VIOLATION: Monolithic component (over FUSE_SOLID_MAX_LINES)
 function Dashboard() {
-  // 50 lines of state/effects
-  // 100 lines of JSX with header, sidebar, content, footer
+  // state/effects
+  // JSX with header, sidebar, content, footer
 }
 
 // ✅ FIXED: Sectioned architecture
-// components/Dashboard/Dashboard.tsx (40 lines)
+// components/Dashboard/Dashboard.tsx (orchestrator)
 function Dashboard() {
   const { data, actions } = useDashboardLogic()
   return (
@@ -99,10 +99,10 @@ function Dashboard() {
   )
 }
 
-// components/Dashboard/DashboardHeader.tsx (25 lines)
-// components/Dashboard/DashboardSidebar.tsx (30 lines)
-// components/Dashboard/DashboardContent.tsx (35 lines)
-// hooks/useDashboardLogic.ts (50 lines)
+// components/Dashboard/DashboardHeader.tsx (header)
+// components/Dashboard/DashboardSidebar.tsx (sidebar)
+// components/Dashboard/DashboardContent.tsx (content)
+// hooks/useDashboardLogic.ts (state + actions)
 ```
 
 ### Project Structure (TypeScript/Next.js)

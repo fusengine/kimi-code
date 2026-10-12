@@ -7,13 +7,16 @@
 | swift-expert | `solid-swift/references/` | `Sources/Interfaces/` |
 | react-expert | `solid-react/references/` | `modules/[feature]/src/interfaces/` |
 | astro-expert | `solid-astro/references/` | `src/interfaces/` |
+| tanstack-start-expert | `solid-tanstack-start/references/` | per `solid-tanstack-start` |
 | other languages | `solid` plugin: `solid-detection` → `solid-{python,go,java,rust,ruby,csharp,generic}/references/` | per stack convention |
 
 **Split:** `main.ts` + `validators.ts` + `types.ts` + `utils.ts` + `constants.ts`
 
 ## DRY (ZERO TOLERANCE)
 
-Before ANY new code: Grep codebase -> check shared locations -> extend/reuse if exists
+Before ANY new code: grep the codebase, then load the stack's SOLID skill — `solid-detection` routes to the right `solid-<stack>` (solid-nextjs, solid-react, solid-tanstack-start, solid-astro, solid-swift, solid-php (Laravel/PHP), solid-go, solid-rust, solid-python, solid-java, solid-csharp, solid-ruby, solid-generic) — which defines that stack's shared locations; extend/reuse what exists.
+
+Quick reference (the `solid-<stack>` skill is authoritative; never apply another stack's directories):
 
 | Stack | Shared Locations |
 |-------|-----------------|

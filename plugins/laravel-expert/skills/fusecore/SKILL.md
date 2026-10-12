@@ -18,7 +18,7 @@ cross-module dependency declaration.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation in FuseCore project, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation in FuseCore project, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing modules in `/FuseCore/`
 2. **research-expert** - Verify Laravel 13 patterns via Context7
@@ -48,7 +48,7 @@ FuseCore is a **Modular Monolith** architecture for Laravel 13 with React 19 int
 1. **All code in `/FuseCore/{Module}/`** - Never in `/app/`
 2. **One module.json per module** - Required for discovery
 3. **ServiceProvider per module** - Use `HasModule` trait
-4. **Files < 100 lines** - Split at 90 lines (SOLID)
+4. **Files within `FUSE_SOLID_MAX_LINES`** - Split larger files (SOLID)
 5. **Interfaces in `/App/Contracts/`** - Never in components
 6. **Migrations in module** - `/Database/Migrations/`
 7. **Routes in module** - `/Routes/api.php`
@@ -218,7 +218,7 @@ Route::middleware(['api', 'auth:sanctum'])->group(function () {
 | **Interface Segregation** | Separate contracts |
 | **Dependency Inversion** | Inject via ServiceProvider |
 
-**File limits**: All files < 100 lines. Split at 90.
+**File limits**: All files within `FUSE_SOLID_MAX_LINES`. Split well before it.
 
 ---
 
@@ -281,5 +281,5 @@ L13 uses hyphens by default. For FuseCore, configuring the prefix per module via
 - Import a class from another module without going through its Contract
 - Put business logic in Controllers (extract it into a module Service)
 - Instantiate a model during its own boot (`new static()` inside `boot()` → LogicException in L13)
-- Exceed 100 lines per file (split into sub-modules or Services)
+- Exceed the hook ceiling `FUSE_SOLID_MAX_LINES` per file (split into sub-modules or Services)
 - Share migrations between modules (each module owns its tables)

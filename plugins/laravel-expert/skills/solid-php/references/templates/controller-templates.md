@@ -7,7 +7,7 @@ keywords: controller, action, formrequest, resource, policy, templates
 
 # Controller & Action Templates
 
-## Controller Template (< 50 lines)
+## Controller Template
 
 ```php
 <?php
@@ -67,7 +67,7 @@ final class UserController extends Controller
 
 ---
 
-## Action Template (< 50 lines)
+## Action Template
 
 ```php
 <?php
@@ -106,7 +106,7 @@ final readonly class CreateUserAction
 
 ---
 
-## FormRequest Template (< 50 lines)
+## FormRequest Template
 
 ```php
 <?php

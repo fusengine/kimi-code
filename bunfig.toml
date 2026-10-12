@@ -1,0 +1,14 @@
+# Test scope for `bun test`.
+#
+# scripts/benchmark/fixtures/ holds DELIBERATELY broken code: it is the input
+# of the comparative benchmark (task 3-debug ships a cache whose TTL and key
+# normalization are wrong, and the agent under test has to find them). Those
+# failures are the fixture working as intended, not a regression — but picked
+# up by a bare `bun test` they make the suite permanently red and mask real
+# breakage. Restricting the root keeps the project suite meaningful.
+#
+# The fixtures stay runnable on demand — the path needs a leading "./" so bun
+# reads it as a path and not as a name filter (verified, 2 expected failures):
+#   bun test ./scripts/benchmark/fixtures/3-debug/tests/cache.test.ts
+[test]
+root = "scripts/tests"

@@ -72,8 +72,8 @@ Adapt to different screen sizes and orientations.
 - ✅ Extract subviews at 30+ lines
 - ✅ Use `some View` return type (opaque)
 - ✅ Prefer composition over inheritance
-- ✅ Use semantic colors (.primary, .secondary)
-- ✅ Add `.accessibilityLabel()` to icons
+- ✅ Use system colors; custom colors need light, dark and increased-contrast variants (HIG /color)
+- ✅ Add `.accessibilityLabel()` to every icon-only control (see `hig-accessibility.md`)
 - ✅ Always include `#Preview`
 - ❌ Don't use GeometryReader unnecessarily
 - ❌ Don't nest ScrollViews
@@ -81,24 +81,24 @@ Adapt to different screen sizes and orientations.
 
 ---
 
-## iOS 26 Liquid Glass
+## Liquid Glass (iOS 26+)
 
-New design language using light lensing (not blur).
+Material for the controls/navigation layer. The regular variant blurs and adjusts the luminosity of background content; the clear variant is highly translucent, for use over media only (HIG /materials).
 
-### Automatic Application (Xcode 26 recompile)
-- NavigationBar, TabBar, Toolbar
-- Sheets, Popovers, Menus, Alerts
-- Search bars, Controls (during interaction)
+### Automatic Application (when built with the current SDK)
+- Navigation bars, tab bars, toolbars, sidebars
+- Sheets, popovers, menus, alerts
+- Search fields, controls (during interaction)
 
-### Manual API
+### Manual API (custom controls only, sparingly - never content layer)
 ```swift
-MyView()
-    .glassEffect()                          // .regular (default)
-    .glassEffect(.clear)                    // Variants: .regular, .clear, .identity
-    .glassEffect(.regular.interactive(), in: .capsule) // Custom shape
+MyControl()
+    .glassEffect()                          // .regular in a capsule (default)
+    .glassEffect(.regular.interactive(), in: .capsule)
 ```
+Rules and accessibility fallbacks: `liquid-glass.md`.
 
-### TabBar iOS 26
+### TabBar (iOS 26+)
 ```swift
 TabView {
     Tab("Home", systemImage: "house") { HomeView() }
@@ -118,10 +118,10 @@ TabView {
 ```
 
 ### Design Principles
-1. **Layering** - Content under glass remains visible
-2. **Depth** - Visual hierarchy via translucency
-3. **Responsiveness** - Glass reacts to interactions
-4. **Adaptivity** - Automatic light/dark mode
+1. **Layering** - Glass floats above content; content scrolls and peeks beneath it
+2. **Hierarchy** - Glass only for controls/navigation, never the content layer
+3. **Responsiveness** - Interactive glass reacts to touch
+4. **Adaptivity** - Light/dark, Increase Contrast, Reduce Transparency
 
 ---
 
@@ -129,8 +129,8 @@ TabView {
 
 | API | Purpose |
 |-----|---------|
-| `ContentBuilder` | Unified result builder replacing type-specific builders (`ToolbarContentBuilder`, `CommandsBuilder`) |
-| `.reorderable()` + `.reorderContainer(for:isEnabled:move:)` | Drag-to-reorder in lists, stacks, grids, custom layouts |
+| `ContentBuilder` | Result-builder attribute that builds views and other content types from closures |
+| `.reorderable()` (on `ForEach`) + `.reorderContainer(for:isEnabled:move:)` | Drag-to-reorder in lists, stacks, grids, custom layouts |
 | `.swipeActions(edge:allowsFullSwipe:content:onPresentationChanged:)` + `.swipeActionsContainer()` | Swipe actions outside `List` |
 | `.visibilityPriority(_:)` on `ToolbarContent` | Keep key toolbar items visible as space shrinks |
 | `ToolbarOverflowMenu` | Send secondary toolbar actions straight to overflow |
@@ -139,6 +139,6 @@ TabView {
 | `.asyncImageURLSession(_:)` | Custom `URLSession` (caching) for `AsyncImage` |
 | `Tab(role: .prominent)` | Separate trailing tab in the tab bar |
 
-Source: developer.apple.com/documentation/updates/swiftui (June 2026).
+Source: developer.apple.com/documentation/updates/swiftui (June 2026); each symbol re-checked on developer.apple.com (Oct 2026).
 
 → See `templates/view-structure.md` for code examples

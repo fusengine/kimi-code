@@ -58,7 +58,7 @@ return new class extends Migration
 
 ---
 
-### Model Template (< 80 lines)
+### Model Template
 
 ```php
 <?php
@@ -141,7 +141,7 @@ readonly class CreatePostDTO
 
 ---
 
-### Service Template (< 100 lines)
+### Service Template
 
 ```php
 <?php
@@ -184,7 +184,7 @@ final readonly class PostService
 
 ---
 
-### Controller Template (< 50 lines)
+### Controller Template (thin)
 
 ```php
 <?php
@@ -322,7 +322,7 @@ final class PostResource extends JsonResource
 
 ```text
 [ ] declare(strict_types=1) in all files
-[ ] All files < 100 lines
+[ ] All files within `FUSE_SOLID_MAX_LINES`
 [ ] PHPDoc on public methods
 [ ] Interfaces in Contracts/
 [ ] Dependencies injected

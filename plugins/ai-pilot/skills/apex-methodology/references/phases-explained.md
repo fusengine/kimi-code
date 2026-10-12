@@ -27,7 +27,7 @@ ALWAYS run 2 agents in parallel:
 ALWAYS use TaskCreate:
 
 1. Break down into tasks
-2. Each task <100 lines
+2. Each task small enough to stay within `FUSE_SOLID_MAX_LINES`
 3. Plan file splits FIRST
 4. Map dependencies (addBlockedBy)
 ```
@@ -41,7 +41,7 @@ FOLLOW plan strictly with TDD cycle:
 2. Write failing test (RED) → verify it fails
 3. Write minimal code (GREEN) → verify it passes
 4. Refactor → keep tests green
-5. Monitor file sizes (<100 lines)
+5. Monitor file sizes (within `FUSE_SOLID_MAX_LINES`)
 6. Write JSDoc/comments
 7. Atomic commits per task
 ```

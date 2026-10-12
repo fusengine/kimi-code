@@ -5,7 +5,7 @@ description: Use when applying SOLID principles to an Astro project — file-siz
 
 
 <objective>
-Enforces SOLID and DRY architecture on Astro projects: files under 100 lines (split at 90), all TypeScript types moved to `src/interfaces/` (never in component files), mandatory JSDoc on exported functions, no business logic in `src/pages/`, and mandatory grepping for existing logic/utilities in `src/lib/` and `src/components/` before writing new code.
+Enforces SOLID and DRY architecture on Astro projects: source files within `FUSE_SOLID_MAX_LINES` and split by responsibility when cohesion drops, all TypeScript types moved to `src/interfaces/` (never in component files), mandatory JSDoc on exported functions, no business logic in `src/pages/`, and mandatory grepping for existing logic/utilities in `src/lib/` and `src/components/` before writing new code.
 
 Provides ready-to-copy templates for components, layouts, services, and interfaces that already follow these rules. This is a cross-cutting code-quality skill, not a feature skill — it doesn't teach Astro APIs themselves (see astro-7, astro-content, astro-i18n, astro-styling for that), only how to structure the code that uses them.
 </objective>
@@ -14,7 +14,7 @@ Provides ready-to-copy templates for components, layouts, services, and interfac
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze project structure, naming, and existing patterns
 2. **research-expert** - Verify Astro 7 architecture best practices via Context7/Exa
@@ -49,7 +49,7 @@ Before writing ANY new code:
 
 ## Absolute Rules
 
-- Files < 100 lines — split at 90
+- Source files within `FUSE_SOLID_MAX_LINES` — split by responsibility
 - All types in `src/interfaces/` — never in component files
 - JSDoc mandatory on all exported functions
 - No business logic in `src/pages/`
@@ -84,7 +84,7 @@ See `references/architecture.md`, `references/file-limits.md`, `references/solid
 
 ## Forbidden
 
-- Files > 100 lines (split at 90)
+- Source files exceeding `FUSE_SOLID_MAX_LINES`
 - TypeScript interfaces in component `.astro` files
 - Business logic in `src/pages/` files
 - Direct CMS/API calls in components (use `src/lib/` services)

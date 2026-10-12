@@ -16,7 +16,7 @@ Accessible, copy-in components on Base UI, Radix UI or React Aria primitives, st
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing components and patterns
 2. **research-expert** - Verify latest shadcn/ui docs via Context7/Exa

@@ -50,11 +50,11 @@ After implementation, run **sniper** for validation.
 
 ## SOLID Rules (MANDATORY)
 
-**Read the `solid-php` skill before ANY code** — it already covers PHP-generic SOLID (files < 100 lines, interfaces separated, PHPDoc mandatory) beyond its Laravel auto-detection. Do NOT duplicate SOLID guidance locally (DRY).
+**Read the `solid-php` skill before ANY code** — it already covers PHP-generic SOLID (files within `FUSE_SOLID_MAX_LINES`, interfaces separated, PHPDoc mandatory) beyond its Laravel auto-detection. Do NOT duplicate SOLID guidance locally (DRY).
 
 | Rule | Requirement |
 |------|-------------|
-| Files | < 100 lines (split at 90) |
+| Files | within `FUSE_SOLID_MAX_LINES` |
 | Interfaces | separated, one per contract |
 | Documentation | PHPDoc on every exported/public symbol |
 | Validation | `sniper` after changes |

@@ -21,13 +21,7 @@ next_step: references/nextjs/03-execution.md
 
 ### File Size Rules
 
-| Component Type | Max Lines | Split At |
-| --- | --- | --- |
-| Page (app/) | 50 | 40 |
-| Server Component | 80 | 70 |
-| Client Component | 60 | 50 |
-| Server Action | 30 | 25 |
-| API Route | 50 | 40 |
+Every component type (Page, Server Component, Client Component, Server Action, API Route) stays within the hook ceiling `FUSE_SOLID_MAX_LINES`; plan the split by responsibility before it.
 
 ---
 
@@ -189,7 +183,7 @@ ISR (Incremental):
 
 ```text
 [ ] TaskCreate plan created
-[ ] All files <100 lines each
+[ ] Every file within `FUSE_SOLID_MAX_LINES`
 [ ] Interfaces in modules/[feature]/src/interfaces/
 [ ] Server/Client boundary defined
 [ ] Server Actions planned

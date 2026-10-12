@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solvo: payment infrastructure and financial services</title>
+<meta name="description" content="Solvo is a financial services platform that helps businesses of all sizes accept payments, build their billing and move their money.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<!-- ============================================================ 1. HEADER -->
+<header class="masthead" id="masthead">
+  <div class="masthead__track">
+    <a class="brand" href="#" aria-label="Solvo, home page">
+      <span class="brand__sign" aria-hidden="true"></span>
+      <span class="brand__word">solvo</span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <ul class="nav__list">
+        <li><button class="nav__link" type="button" aria-expanded="false">Products<span class="chevron" aria-hidden="true"></span></button></li>
+        <li><button class="nav__link" type="button" aria-expanded="false">Solutions<span class="chevron" aria-hidden="true"></span></button></li>
+        <li><button class="nav__link" type="button" aria-expanded="false">Developers<span class="chevron" aria-hidden="true"></span></button></li>
+        <li><button class="nav__link" type="button" aria-expanded="false">Resources<span class="chevron" aria-hidden="true"></span></button></li>
+        <li><a class="nav__link" href="#pricing">Pricing</a></li>
+      </ul>
+    </nav>
+    <div class="masthead__actions">
+      <a class="button button--ghost" href="#sign-in">Sign in</a>
+      <a class="button button--solid" href="#contact">Contact sales<span class="arrow" aria-hidden="true"></span></a>
+    </div>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open the menu">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <ul>
+      <li><a href="#suite">Products</a></li>
+      <li><a href="#enterprises">Solutions</a></li>
+      <li><a href="#infra">Developers</a></li>
+      <li><a href="#news">Resources</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <div class="mobile-menu__actions">
+      <a class="button button--ghost" href="#sign-in">Sign in</a>
+      <a class="button button--solid" href="#contact">Contact sales</a>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+
+<!-- ============================================================ 2. HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="ribbon ribbon--1"></div>
+    <div class="ribbon ribbon--2"></div>
+    <div class="ribbon ribbon--3"></div>
+    <div class="ribbon ribbon--4"></div>
+    <div class="ribbon ribbon--5"></div>
+    <div class="ribbon ribbon--6"></div>
+    <div class="ribbon ribbon--7"></div>
+  </div>
+  <div class="hero__white" aria-hidden="true"></div>
+  <div class="track hero__track">
+    <p class="hero__eyebrow">
+      <span class="hero__eyebrow-label">Global GDP running on Solvo</span>
+      <span class="hero__eyebrow-value" data-counter data-target="1.41072936">0.00000000</span><span class="hero__eyebrow-pct">%</span>
+    </p>
+    <h1 class="hero__title" id="hero-title"><span class="hero__title-main">Financial infrastructure</span> to grow your revenue. Accept payments, offer financial services and implement custom revenue models, from your first transaction to your billionth.</h1>
+    <div class="hero__actions">
+      <a class="button button--solid button--large" href="#contact">Get started<span class="arrow" aria-hidden="true"></span></a>
+      <a class="button button--light button--large" href="#contact">Talk to an expert<span class="arrow" aria-hidden="true"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3. LOGO BAND -->
+<section class="logos" aria-label="Businesses using Solvo">
+  <div class="track logos__track">
+    <span class="logos__item logos__item--serif">Marshal</span>
+    <span class="logos__item logos__item--bold">amberly</span>
+    <span class="logos__item">NOVASTRAT</span>
+    <span class="logos__item logos__item--serif">The Courier</span>
+    <span class="logos__item logos__item--bold">Kestrel</span>
+    <span class="logos__item">ORBIT</span>
+    <span class="logos__item logos__item--bold">peartree</span>
+  </div>
+</section>
+
+<!-- ============================================================ 4. SUITE / BENTO -->
+<section class="suite" id="suite" aria-labelledby="suite-title">
+  <div class="track">
+    <h2 class="title title--lg" id="suite-title">
+      <span>Flexible solutions for every business model.</span>
+      <span class="title--muted">Grow your business with a comprehensive set of payments and financial tools, designed to work individually or together.</span>
+    </h2>
+    <div class="bento" data-reveal-group>
+      <!-- Dominant card -->
+      <article class="tile tile--major" data-reveal>
+        <header class="tile__head">
+          <h3 class="tile__title">Accept and optimise payments globally, online and in person</h3>
+          <span class="tile__zoom" aria-hidden="true"></span>
+        </header>
+        <div class="tile__scene scene--payment">
+          <!-- product mockup recreated in HTML/CSS: mobile terminal -->
+          <div class="phone" role="img" aria-label="Mobile payment screen showing an amount of 26.89 euros">
+            <div class="phone__screen">
+              <div class="phone__merchant"><span class="dot" aria-hidden="true"></span>cartsy</div>
+              <p class="phone__label">Pay Cartsy</p>
+              <p class="phone__amount">€26.89</p>
+              <p class="phone__note">Pay by card, bank transfer or wallet</p>
+              <dl class="phone__lines">
+                <div><dt>Deluxe Shirt</dt><dd>€22.60</dd></div>
+                <div><dt>VAT</dt><dd>€4.29</dd></div>
+                <div class="phone__total"><dt>Total</dt><dd>€26.89</dd></div>
+              </dl>
+              <p class="phone__button">Continue</p>
+            </div>
+          </div>
+          <!-- product mockup recreated in HTML/CSS: browser checkout -->
+          <div class="window" role="img" aria-label="Checkout flow in a browser">
+            <div class="window__bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><em>cartsy.com/checkout</em></div>
+            <div class="window__body">
+              <div class="window__col">
+                <p class="window__merchant">CARTSY</p>
+                <label class="field"><span>Email</span><i>casey.rivers@example.com</i></label>
+                <div class="wallets">
+                  <span class="wallet wallet--green">link</span>
+                  <span class="wallet wallet--black">Pay</span>
+                </div>
+                <p class="window__or">or</p>
+                <p class="window__subtitle">Payment method</p>
+                <div class="method method--active"><span class="method__icon" aria-hidden="true"></span>Card</div>
+                <div class="method"><span class="method__icon method__icon--red" aria-hidden="true"></span>Pay in 4 interest-free instalments, from €50.28</div>
+                <div class="method"><span class="method__icon" aria-hidden="true"></span>Bank transfer</div>
+                <p class="window__cta">Pay €26.89</p>
+              </div>
+              <div class="window__col window__col--summary">
+                <p class="window__subtitle">Order summary</p>
+                <div class="article">
+                  <span class="article__thumb" aria-hidden="true"></span>
+                  <span class="article__text"><b>Hoodie</b><i>Navy, size M</i></span>
+                  <span class="article__price">€41.70</span>
+                </div>
+                <dl class="summary">
+                  <div><dt>Subtotal</dt><dd>€41.70</dd></div>
+                  <div><dt>VAT</dt><dd>€7.91</dd></div>
+                  <div><dt>Shipping</dt><dd>Free</dd></div>
+                  <div class="summary__total"><dt>Total</dt><dd>€49.61</dd></div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile tile--billing" data-reveal>
+        <header class="tile__head">
+          <h3 class="tile__title">Enable any billing model</h3>
+          <span class="tile__zoom" aria-hidden="true"></span>
+        </header>
+        <div class="tile__scene scene--billing">
+          <div class="floating-card" role="img" aria-label="Configuration panel for a subscription plan">
+            <p class="floating-card__head"><span class="icon-round" aria-hidden="true"></span><b>Pro Plan</b><i>Billed monthly</i></p>
+            <dl class="floating-card__lines">
+              <div><dt>Tokens</dt><dd>€0.01 per 1,000 units</dd></div>
+              <div><dt>Usage meter</dt><dd>Enabled</dd></div>
+            </dl>
+            <div class="gauge" aria-hidden="true"><span style="width:64%"></span></div>
+          </div>
+          <div class="floating-card floating-card--low" role="img" aria-label="Counter of tokens used over thirty days">
+            <p class="floating-card__mini">Tokens used in the last 30 days</p>
+            <p class="floating-card__big">1,500,000,000</p>
+            <div class="sparkline" aria-hidden="true"><i style="height:22%"></i><i style="height:38%"></i><i style="height:31%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:66%"></i><i style="height:58%"></i><i style="height:81%"></i><i style="height:73%"></i><i style="height:96%"></i></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile" data-reveal>
+        <header class="tile__head">
+          <h3 class="tile__title">Monetise through agentic commerce</h3>
+          <span class="tile__zoom" aria-hidden="true"></span>
+        </header>
+        <div class="tile__scene scene--agent">
+          <div class="thread" role="img" aria-label="Conversation with an agent recommending two items">
+            <p class="bubble bubble--user">I'm refreshing my wardrobe. Can you recommend some comfortable basics in size M?</p>
+            <p class="bubble bubble--agent">Of course. Here are two pieces that go well together and make a good starting point.</p>
+            <div class="thread__products">
+              <span class="product"><i class="product__img product__img--blue" aria-hidden="true"></i><b>Premium T-shirt</b><em>Blue, size M</em><strong>€23.00</strong></span>
+              <span class="product"><i class="product__img product__img--navy" aria-hidden="true"></i><b>Hoodie</b><em>Navy, size M</em><strong>€43.00</strong></span>
+            </div>
+            <p class="thread__buy">Buy both</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile" data-reveal>
+        <header class="tile__head">
+          <h3 class="tile__title">Create a card issuing programme</h3>
+          <span class="tile__zoom" aria-hidden="true"></span>
+        </header>
+        <div class="tile__scene scene--card">
+          <div class="bank-card" role="img" aria-label="Payment card with a violet and peach gradient">
+            <span class="bank-card__chip" aria-hidden="true"></span>
+            <span class="bank-card__wave" aria-hidden="true"></span>
+            <span class="bank-card__network">VISA</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile" data-reveal>
+        <header class="tile__head">
+          <h3 class="tile__title">Access borderless money movement with stablecoins and crypto</h3>
+          <span class="tile__zoom" aria-hidden="true"></span>
+        </header>
+        <div class="tile__scene scene--globe">
+          <div class="globe" role="img" aria-label="Dotted globe showing the payment corridors">
+            <span class="globe__ring" aria-hidden="true"></span>
+            <span class="globe__ring globe__ring--2" aria-hidden="true"></span>
+            <span class="globe__ring globe__ring--3" aria-hidden="true"></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile tile--large" data-reveal>
+        <div class="tile__column">
+          <header class="tile__head">
+            <h3 class="tile__title">Embed payments in your platform</h3>
+            <span class="tile__zoom" aria-hidden="true"></span>
+          </header>
+        </div>
+        <div class="tile__scene scene--platform">
+          <div class="receipt" role="img" aria-label="Receipt for an accepted order">
+            <p class="receipt__head"><span class="icon-round icon-round--warm" aria-hidden="true"></span>Quiet Fire Yoga</p>
+            <p class="receipt__thanks">Thank you. Your payment was accepted.</p>
+            <dl class="receipt__lines">
+              <div><dt>Order number</dt><dd>#194756</dd></div>
+              <div><dt>Date</dt><dd>Feb 20</dd></div>
+              <div><dt>Payment method</dt><dd>Wallet</dd></div>
+              <div><dt>Your purchase</dt><dd>€22.00</dd></div>
+              <div class="receipt__total"><dt>Total</dt><dd>€22.00</dd></div>
+            </dl>
+          </div>
+          <div class="dashboard" role="img" aria-label="Dashboard listing the connected accounts and their volumes">
+            <div class="window__bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><em>dashboard.zenflow.com</em></div>
+            <div class="dashboard__body">
+              <p class="dashboard__title">Connected accounts</p>
+              <table class="grid">
+                <thead><tr><th scope="col">Account</th><th scope="col" class="col-country">Country</th><th scope="col">Balance</th><th scope="col" class="col-vol">Volume</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="token token--g" aria-hidden="true"></span>Vital Flow</td><td class="col-country">Canada</td><td>€7,513.00</td><td class="col-vol">€64,406.68</td></tr>
+                  <tr><td><span class="token token--r" aria-hidden="true"></span>Yoga Daybreak</td><td class="col-country">United States</td><td>€1,352.00</td><td class="col-vol">€7,989.00</td></tr>
+                  <tr><td><span class="token token--o" aria-hidden="true"></span>Sacred Space</td><td class="col-country">UK</td><td>€1,122.00</td><td class="col-vol">€22,112.18</td></tr>
+                  <tr><td><span class="token token--b" aria-hidden="true"></span>Jackson Hot Yoga</td><td class="col-country">Australia</td><td>€3,290.00</td><td class="col-vol">€11,378.97</td></tr>
+                  <tr><td><span class="token token--g" aria-hidden="true"></span>Harmony Flow</td><td class="col-country">Canada</td><td>€27,840.00</td><td class="col-vol">€265,202.69</td></tr>
+                  <tr><td><span class="token token--r" aria-hidden="true"></span>Balance at Brunch</td><td class="col-country">United States</td><td>€302.00</td><td class="col-vol">€3,285.32</td></tr>
+                  <tr><td><span class="token token--o" aria-hidden="true"></span>Studio Breathline</td><td class="col-country">United States</td><td>€2,021.00</td><td class="col-vol">€7,747.00</td></tr>
+                  <tr><td><span class="token token--b" aria-hidden="true"></span>Zenith Zen</td><td class="col-country">Australia</td><td>€594.00</td><td class="col-vol">€1,478.97</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 5. FULL-WIDTH PROMO -->
+<section class="promo" aria-labelledby="promo-title">
+  <div class="track">
+    <div class="promo__frame">
+      <div class="promo__sheet" aria-hidden="true"></div>
+      <div class="promo__text">
+        <h2 class="title title--md promo__title" id="promo-title">Building the economic infrastructure for AI</h2>
+        <a class="button button--light" href="#news">Watch now<span class="arrow" aria-hidden="true"></span></a>
+      </div>
+      <p class="promo__signature" aria-hidden="true"><b>solvo</b> sessions</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 6. PILLAR + FIGURES -->
+<section class="pillar" aria-labelledby="pillar-title">
+  <div class="track">
+    <h2 class="title title--xxl pillar__title" id="pillar-title">The backbone<br>of global commerce</h2>
+  </div>
+  <div class="track">
+    <ul class="figures">
+      <li><span class="figures__value">128+</span><span class="figures__caption">currencies and payment methods supported</span></li>
+      <li><span class="figures__value">US$1.4tn</span><span class="figures__caption">in payments volume processed in 2025</span></li>
+      <li><span class="figures__value">99.999%</span><span class="figures__caption">historical uptime for Solvo services</span></li>
+      <li><span class="figures__value">180M+</span><span class="figures__caption">active subscriptions managed on Solvo Billing</span></li>
+    </ul>
+  </div>
+  <div class="burst" aria-hidden="true">
+    <div class="burst__halo"></div>
+    <div class="burst__rays" data-burst></div>
+  </div>
+</section>
+
+<!-- ============================================================ 7. ALL SIZES -->
+<section class="sizes" aria-labelledby="sizes-title">
+  <div class="track">
+    <h2 class="title title--lg" id="sizes-title">
+      <span>Powering businesses of all sizes.</span>
+      <span class="title--muted">Run your business on a reliable platform that adapts to your needs.</span>
+    </h2>
+  </div>
+</section>
+
+<!-- ============================================================ 8. ENTERPRISES -->
+<section class="enterprises" id="enterprises" aria-labelledby="enterprises-title">
+  <div class="track">
+    <div class="duo">
+      <div class="duo__left">
+        <h3 class="title title--sm" id="enterprises-title">Transform your enterprise with agile financial infrastructure</h3>
+        <a class="button button--solid" href="#contact">Solvo for enterprises<span class="arrow" aria-hidden="true"></span></a>
+      </div>
+      <p class="duo__right">48% of Fortune 100 companies have used Solvo to grow their businesses, from expanding internationally to reimagining the customer experience.</p>
+    </div>
+
+    <div class="accordion" data-accordion>
+      <article class="fold fold--open" data-fold>
+        <h4 class="fold__head">
+          <button type="button" class="fold__button" aria-expanded="true" aria-controls="fold-1">
+            <span class="fold__initials fold__initials--yellow" aria-hidden="true">H</span>
+            <span class="fold__label">Hertel unifies commerce with Solvo</span>
+            <span class="fold__sign" aria-hidden="true"></span>
+          </button>
+        </h4>
+        <div class="fold__body" id="fold-1">
+          <div class="fold__inner">
+            <img class="fold__image" src="img/hero.webp" alt="Aerial view of a business district at dawn, the sky shifting from indigo violet to peach orange then to pale cyan" width="1920" height="885">
+            <div class="fold__footer">
+              <dl class="fold__stats">
+                <div><dt>152</dt><dd>countries</dd></div>
+                <div><dt>9K+</dt><dd>locations globally</dd></div>
+              </dl>
+              <p class="fold__products"><b>Products used:</b> Payments, Terminal, Connect, Radar and Solvo Sigma</p>
+              <a class="arrow-link" href="#testimonial">Read the story<span class="arrow" aria-hidden="true"></span></a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="fold" data-fold>
+        <h4 class="fold__head">
+          <button type="button" class="fold__button" aria-expanded="false" aria-controls="fold-2">
+            <span class="fold__initials" aria-hidden="true">UR</span>
+            <span class="fold__label">Urbane consolidates €4 billion in online and in-store revenue onto Solvo</span>
+            <span class="fold__sign" aria-hidden="true"></span>
+          </button>
+        </h4>
+        <div class="fold__body" id="fold-2" hidden>
+          <div class="fold__inner">
+            <img class="fold__image" src="img/shop.webp" alt="Interior of a bright modern shop, counter and payment terminal, violet and peach accents" loading="lazy" width="1920" height="1280">
+            <div class="fold__footer">
+              <dl class="fold__stats">
+                <div><dt>5+</dt><dd>consumer brands</dd></div>
+                <div><dt>640+</dt><dd>store locations</dd></div>
+              </dl>
+              <p class="fold__products"><b>Products used:</b> Payments, Terminal, Connect, Solvo Sigma and Radar</p>
+              <a class="arrow-link" href="#testimonial">Read the story<span class="arrow" aria-hidden="true"></span></a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="fold" data-fold>
+        <h4 class="fold__head">
+          <button type="button" class="fold__button" aria-expanded="false" aria-controls="fold-3">
+            <span class="fold__initials fold__initials--green" aria-hidden="true">BA</span>
+            <span class="fold__label">Basketly powers online grocery delivery with Solvo</span>
+            <span class="fold__sign" aria-hidden="true"></span>
+          </button>
+        </h4>
+        <div class="fold__body" id="fold-3" hidden>
+          <div class="fold__inner">
+            <img class="fold__image" src="img/desk.webp" alt="Light work surface seen from above, laptop and notebook, subtle violet and cyan reflections" loading="lazy" width="1920" height="1280">
+            <div class="fold__footer">
+              <dl class="fold__stats">
+                <div><dt>540K+</dt><dd>shoppers</dd></div>
+                <div><dt>1.6K</dt><dd>retail partners across nearly 90K stores</dd></div>
+              </dl>
+              <p class="fold__products"><b>Products used:</b> Payments, Connect, Data Pipeline and Issuing</p>
+              <a class="arrow-link" href="#testimonial">Read the story<span class="arrow" aria-hidden="true"></span></a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="fold" data-fold>
+        <h4 class="fold__head">
+          <button type="button" class="fold__button" aria-expanded="false" aria-controls="fold-4">
+            <span class="fold__initials fold__initials--dark" aria-hidden="true">TC</span>
+            <span class="fold__label">The Courier improves local and international payments with Solvo</span>
+            <span class="fold__sign" aria-hidden="true"></span>
+          </button>
+        </h4>
+        <div class="fold__body" id="fold-4" hidden>
+          <div class="fold__inner">
+            <img class="fold__image" src="img/city.webp" alt="City skyline at dusk, the sky shifting from indigo violet to peach orange" loading="lazy" width="1920" height="1081">
+            <div class="fold__footer">
+              <dl class="fold__stats">
+                <div><dt>100%</dt><dd>of digital and print payments powered by Solvo</dd></div>
+                <div><dt>Less than 3 months</dt><dd>to implement and go live</dd></div>
+              </dl>
+              <p class="fold__products"><b>Products used:</b> Payments, Solvo Sigma and Radar</p>
+              <a class="arrow-link" href="#testimonial">Read the story<span class="arrow" aria-hidden="true"></span></a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 9. EXPERTS -->
+<section class="experts" aria-labelledby="experts-title">
+  <div class="track">
+    <h3 class="title title--sm" id="experts-title">Realise value faster with dedicated experts</h3>
+    <ul class="trio">
+      <li class="trio__item" data-reveal>
+        <span class="trio__icon" aria-hidden="true"><i class="glyph glyph--nodes"></i></span>
+        <p class="trio__text"><b>Professional services.</b> Get tailored guidance from Solvo experts on implementation, complex integrations, or major migrations.</p>
+        <a class="arrow-link" href="#contact">View services<span class="arrow" aria-hidden="true"></span></a>
+      </li>
+      <li class="trio__item" data-reveal>
+        <span class="trio__icon" aria-hidden="true"><i class="glyph glyph--duo"></i></span>
+        <p class="trio__text"><b>Solvo-certified experts.</b> Work with a Solvo consulting partner that can integrate and deploy Solvo solutions on your behalf.</p>
+        <a class="arrow-link" href="#contact">View partners<span class="arrow" aria-hidden="true"></span></a>
+      </li>
+      <li class="trio__item" data-reveal>
+        <span class="trio__icon" aria-hidden="true"><i class="glyph glyph--target"></i></span>
+        <p class="trio__text"><b>Support plans.</b> Receive ongoing assistance and day-to-day support for technical questions with tiered plans based on your needs.</p>
+        <a class="arrow-link" href="#contact">View plans<span class="arrow" aria-hidden="true"></span></a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ 10. STARTUPS + CAROUSEL -->
+<section class="startups" aria-labelledby="startups-title">
+  <div class="track">
+    <div class="duo">
+      <div class="duo__left">
+        <h3 class="title title--sm" id="startups-title">Build a foundation for your startup that enables faster growth</h3>
+        <a class="button button--solid" href="#contact">Solvo for startups<span class="arrow" aria-hidden="true"></span></a>
+      </div>
+      <p class="duo__right">From stablecoin pioneers to 74% of the Forbes AI 50, Solvo helps startups build what's next on easy-to-integrate financial infrastructure.</p>
+    </div>
+    <div class="rail" data-rail>
+      <div class="rail__controls">
+        <button class="round" type="button" data-rail-prev aria-label="Previous customer stories"><span class="arrow arrow--left" aria-hidden="true"></span></button>
+        <button class="round" type="button" data-rail-next aria-label="Next customer stories"><span class="arrow" aria-hidden="true"></span></button>
+      </div>
+      <ul class="rail__track" data-rail-track>
+        <li class="case"><span class="case__visual case__visual--green" aria-hidden="true"><b>Hourglass</b></span><p class="case__text">Hourglass grows its payments volume by more than 520% with Solvo.</p><a class="arrow-link" href="#testimonial">Read Hourglass's story<span class="arrow" aria-hidden="true"></span></a></li>
+        <li class="case"><span class="case__visual case__visual--water" aria-hidden="true"><b>Undertow</b></span><p class="case__text">Undertow protects developer time with no-code solutions from Solvo.</p><a class="arrow-link" href="#testimonial">Read Undertow's story<span class="arrow" aria-hidden="true"></span></a></li>
+        <li class="case"><span class="case__visual case__visual--night" aria-hidden="true"><b>Blossom</b></span><p class="case__text">Blossom grows into a vibe-coding juggernaut with Solvo.</p><a class="arrow-link" href="#testimonial">Read Blossom's story<span class="arrow" aria-hidden="true"></span></a></li>
+        <li class="case"><span class="case__visual case__visual--grid" aria-hidden="true"><b>Plinth</b></span><p class="case__text">Plinth delivers its backend-as-a-service to 140 countries with Solvo.</p><a class="arrow-link" href="#testimonial">Read Plinth's story<span class="arrow" aria-hidden="true"></span></a></li>
+        <li class="case"><span class="case__visual case__visual--warm" aria-hidden="true"><b>Gamut</b></span><p class="case__text">Gamut expands to US$90m ARR and 60 million users with Solvo.</p><a class="arrow-link" href="#testimonial">Read Gamut's story<span class="arrow" aria-hidden="true"></span></a></li>
+        <li class="case"><span class="case__visual case__visual--violet" aria-hidden="true"><b>Eleven</b></span><p class="case__text">Eleven grows into a US$2.4bn AI audio leader with Solvo.</p><a class="arrow-link" href="#testimonial">Watch the video<span class="arrow" aria-hidden="true"></span></a></li>
+        <li class="case"><span class="case__visual case__visual--cyan" aria-hidden="true"><b>Meridi</b></span><p class="case__text">Meridi opens its payments to 30 new markets in one quarter with Solvo.</p><a class="arrow-link" href="#testimonial">Read Meridi's story<span class="arrow" aria-hidden="true"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 11. PROMO DUO -->
+<section class="promos" aria-label="Solvo programmes">
+  <div class="track promos__grid">
+    <article class="promos__card" data-reveal>
+      <div class="promos__text">
+        <p><b>Solvo Startups programme.</b> Access financial benefits, a focused community, and expert resources to help you grow your business.</p>
+        <a class="arrow-link" href="#contact">Apply now<span class="arrow" aria-hidden="true"></span></a>
+      </div>
+      <div class="promos__shape promos__shape--magenta" aria-hidden="true"></div>
+    </article>
+    <article class="promos__card" data-reveal>
+      <div class="promos__text">
+        <p><b>Solvo Atlas.</b> Incorporate and get everything you need to fundraise, bank, and accept payments in two business days.</p>
+        <a class="arrow-link" href="#contact">Start your company<span class="arrow" aria-hidden="true"></span></a>
+      </div>
+      <div class="promos__shape promos__shape--amber" aria-hidden="true"></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================ 12. PLATFORMS -->
+<section class="platforms" aria-labelledby="platforms-title">
+  <div class="track">
+    <div class="duo">
+      <div class="duo__left">
+        <h3 class="title title--sm" id="platforms-title">Make your SaaS platform a complete financial operating system</h3>
+        <a class="button button--solid" href="#contact">Solvo for platforms<span class="arrow" aria-hidden="true"></span></a>
+      </div>
+      <p class="duo__right">From the Fortune 100 to the Forbes Cloud 100, vertical SaaS platforms use Solvo to expand their product offerings with embedded payments and financial services.</p>
+    </div>
+
+    <div class="scene-connect" data-reveal>
+      <div class="scene-connect__sheet" aria-hidden="true"></div>
+      <div class="scene-connect__window" role="img" aria-label="Dashboard of a platform, surrounded by integration code snippets">
+        <div class="window__bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><em>dashboard.zenflow.com</em></div>
+        <div class="scene-connect__body">
+          <aside class="scene-connect__menu">
+            <p class="scene-connect__merchant"><span class="icon-round icon-round--warm" aria-hidden="true"></span>Zenflow</p>
+            <ul><li class="is-active">Home</li><li>Payments</li><li>Reports</li><li>Settings</li></ul>
+          </aside>
+          <div class="scene-connect__panel">
+            <p class="scene-connect__greeting">Hello, Daybreak Yoga</p>
+            <div class="alert"><b>Action required.</b> We need to collect more information before we can confirm that we are able to support your business. <span class="alert__cta">Provide information</span></div>
+            <div class="scene-connect__pair">
+              <div class="figure-block"><p class="figure-block__mini">Total balance</p><p class="figure-block__big">€738.50</p><p class="figure-block__mini">Available to pay out <b>€307.62</b></p><p class="figure-block__cta">Pay out</p></div>
+              <div class="figure-block figure-block--offer"><p class="figure-block__mini">Expires June 12</p><p class="figure-block__method">You are eligible for financing of up to €33,300</p><p class="figure-block__cta">Apply for financing</p></div>
+            </div>
+            <p class="scene-connect__table-title">Payments</p>
+            <table class="grid grid--payments">
+              <thead><tr><th scope="col">Amount</th><th scope="col">Status</th><th scope="col" class="col-method">Payment method</th><th scope="col" class="col-desc">Description</th></tr></thead>
+              <tbody>
+                <tr><td>€39</td><td><span class="status status--ok">Succeeded</span></td><td class="col-method">Card 1234</td><td class="col-desc">Drop-in class</td></tr>
+                <tr><td>€39</td><td><span class="status status--ko">Disputed</span></td><td class="col-method">Card 4010</td><td class="col-desc">Drop-in class</td></tr>
+                <tr><td>€900.00</td><td><span class="status status--ok">Succeeded</span></td><td class="col-method">Bank transfer</td><td class="col-desc">Annual membership</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="code-bubble code-bubble--a"><p><b>Payouts.</b> Shows the total balance and lets a connected account trigger its payouts.</p><code>solvo.create(<em>'payouts'</em>);</code></div>
+      <div class="code-bubble code-bubble--b"><p><b>Payments.</b> Shows the list of payments and opens export, refund and dispute.</p><code>solvo.create(<em>'payments'</em>);</code></div>
+      <div class="code-bubble code-bubble--c"><p><b>Notification banner.</b> Shows the actions required for onboarding and risk.</p><code>solvo.create(<em>'notification-banner'</em>);</code></div>
+      <div class="code-bubble code-bubble--d"><p><b>Capital promotion.</b> Shows the financing available to a connected account and lets it apply for it.</p><code>solvo.create(<em>'capital-promotion'</em>);</code></div>
+    </div>
+
+    <ul class="trio">
+      <li class="trio__item" data-reveal>
+        <span class="trio__icon" aria-hidden="true"><i class="glyph glyph--rocket"></i></span>
+        <p class="trio__text"><b>Get to market faster.</b> Launch and scale payments products with lower operational overhead using embedded components and no-code tools.</p>
+        <a class="arrow-link" href="#contact">Read the guide<span class="arrow" aria-hidden="true"></span></a>
+      </li>
+      <li class="trio__item" data-reveal>
+        <span class="trio__icon" aria-hidden="true"><i class="glyph glyph--curve"></i></span>
+        <p class="trio__text"><b>Grow new lines of revenue.</b> Monetise platform transactions, including payments, card interchange and financing fees.</p>
+        <a class="arrow-link" href="#contact">Read the guide<span class="arrow" aria-hidden="true"></span></a>
+      </li>
+      <li class="trio__item" data-reveal>
+        <span class="trio__icon" aria-hidden="true"><i class="glyph glyph--shield"></i></span>
+        <p class="trio__text"><b>Manage platform risk.</b> Stay ahead of global regulations with tools for compliance, credit risk, fraud prevention and account security.</p>
+        <a class="arrow-link" href="#contact">Read the guide<span class="arrow" aria-hidden="true"></span></a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ 13. TESTIMONIAL -->
+<section class="testimonial" id="testimonial" aria-label="Customer testimonials">
+  <div class="track">
+    <div class="testimonial__scene" data-testimonial>
+      <figure class="testimonial__block is-visible" data-testimonial-item>
+        <p class="testimonial__merchant">PLANITY</p>
+        <blockquote class="testimonial__quote">“Solvo lets us help salons focus on their core business, cuts and care, by automating every other task.”</blockquote>
+        <figcaption class="testimonial__author"><b>Anthony Pierce,</b> co-founder and CEO at Planity</figcaption>
+        <a class="arrow-link" href="#contact">Read the story<span class="arrow" aria-hidden="true"></span></a>
+      </figure>
+      <figure class="testimonial__block" data-testimonial-item hidden>
+        <p class="testimonial__merchant">bsport</p>
+        <blockquote class="testimonial__quote">“We opened eleven markets in one year without hiring a single person on the payments side. The Solvo foundation absorbed all of the regulatory complexity.”</blockquote>
+        <figcaption class="testimonial__author"><b>Leah Fenton,</b> Chief Operating Officer at bsport</figcaption>
+        <a class="arrow-link" href="#contact">Read the story<span class="arrow" aria-hidden="true"></span></a>
+      </figure>
+      <figure class="testimonial__block" data-testimonial-item hidden>
+        <p class="testimonial__merchant">substrate</p>
+        <blockquote class="testimonial__quote">“Our usage-based billing was an eighteen-month project. It shipped in six weeks, meters and reports included.”</blockquote>
+        <figcaption class="testimonial__author"><b>Mark Osborne,</b> Chief Technology Officer at Substrate</figcaption>
+        <a class="arrow-link" href="#contact">Read the story<span class="arrow" aria-hidden="true"></span></a>
+      </figure>
+      <figure class="testimonial__block" data-testimonial-item hidden>
+        <p class="testimonial__merchant">hellogive</p>
+        <blockquote class="testimonial__quote">“Donations flow through more than thirty local payment methods. Our nonprofits have never had to worry about it.”</blockquote>
+        <figcaption class="testimonial__author"><b>Sonia Bell,</b> Head of Product at Hellogive</figcaption>
+        <a class="arrow-link" href="#contact">Read the story<span class="arrow" aria-hidden="true"></span></a>
+      </figure>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Choose a testimonial">
+      <button class="tab is-active" type="button" role="tab" aria-selected="true" data-tab="0"><span class="tab__bar" aria-hidden="true"><i data-bar></i></span>PLANITY</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" data-tab="1"><span class="tab__bar" aria-hidden="true"><i data-bar></i></span>bsport</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" data-tab="2"><span class="tab__bar" aria-hidden="true"><i data-bar></i></span>substrate</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" data-tab="3"><span class="tab__bar" aria-hidden="true"><i data-bar></i></span>hellogive</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 14. INFRA (DARK BLOCK) -->
+<section class="infra" id="infra" aria-labelledby="infra-title">
+  <div class="track">
+    <h2 class="title title--lg" id="infra-title">
+      <span>Reliable, extensible infrastructure for every stack.</span>
+      <span class="title--muted">Adapt Solvo to your business needs with flexible integration options.</span>
+    </h2>
+    <div class="infra__actions">
+      <a class="button button--solid" href="#contact">View developer docs<span class="arrow" aria-hidden="true"></span></a>
+      <a class="button button--dark" href="#contact">View Solvo's public repository</a>
+    </div>
+
+    <div class="infra__block" data-reveal>
+      <h3 class="title title--sm"><span>Connect to existing systems.</span> <span class="title--muted">Orchestrate payments across multiple processors, build custom workflows, and connect to third parties using APIs, partner apps or pre-built integrations.</span></h3>
+      <div class="schema" role="img" aria-label="Orchestration diagram linking business systems to Solvo, then to payment providers">
+        <div class="schema__row">
+          <span class="node">ERP</span><span class="node">CRM</span><span class="node">Subscriptions</span><span class="node">Billing software</span><span class="node">Booking system</span>
+        </div>
+        <div class="schema__row schema__row--tight">
+          <span class="node">SDK</span><span class="node">Event destinations</span>
+        </div>
+        <div class="schema__row schema__row--center">
+          <span class="node node--large">App marketplace</span>
+          <span class="node node--core">solvo</span>
+          <span class="node node--large">Data Pipeline</span>
+        </div>
+        <div class="schema__row schema__row--center"><span class="node">Orchestration</span></div>
+        <div class="schema__row schema__row--center">
+          <span class="node node--small">PSP</span><span class="node node--small">PSP</span><span class="node node--small">PSP</span><span class="node node--small">PSP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="infra__block" data-reveal>
+      <h3 class="title title--sm"><span>Scale with confidence.</span> <span class="title--muted">Handle thousands of transactions per second with consistent speed and reliability, even during peak traffic periods.</span></h3>
+      <div class="wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <ul class="figures figures--dark">
+        <li><span class="figures__value figures__value--gradient">440M+</span><span class="figures__caption">API requests per day</span></li>
+        <li><span class="figures__value figures__value--gradient">9K+</span><span class="figures__caption">API requests per second</span></li>
+        <li><span class="figures__value figures__value--gradient">130K+</span><span class="figures__caption">transactions per minute</span></li>
+      </ul>
+    </div>
+
+    <div class="infra__block" data-reveal>
+      <h3 class="title title--sm"><span>Choose an integration path.</span> <span class="title--muted">With AI-powered support, rich documentation, and built-in debugging tools, you can quickly get started with the best option for your business.</span></h3>
+      <ul class="trio trio--dark">
+        <li class="trio__item">
+          <div class="thumb thumb--nocode" aria-hidden="true">
+            <span class="thumb__bubble">Hi, I'm looking for a day cream with sun protection.</span>
+            <span class="thumb__product">Pure Radiance Cream</span>
+            <span class="thumb__link">pay.solvo.com/c/v1a3</span>
+            <span class="thumb__qr"></span>
+            <span class="thumb__price">€17.99</span>
+          </div>
+          <p class="trio__text"><b>Don't code?</b> Set up billing, take in-person payments, or share a payment link, right from the Solvo Dashboard, no code required.</p>
+          <a class="arrow-link" href="#contact">Explore no-code<span class="arrow" aria-hidden="true"></span></a>
+        </li>
+        <li class="trio__item">
+          <div class="thumb thumb--partners" aria-hidden="true">
+            <span class="app-dot app-dot--1"></span><span class="app-dot app-dot--2"></span><span class="app-dot app-dot--3"></span>
+            <span class="app-dot app-dot--4"></span><span class="app-dot app-dot--5"></span><span class="app-dot app-dot--6"></span>
+            <span class="app-dot app-dot--7"></span><span class="app-dot app-dot--8"></span><span class="app-dot app-dot--9"></span>
+          </div>
+          <p class="trio__text"><b>Use a pre-integrated platform.</b> Browse our directory of partner platforms that integrate Solvo into their own workflows.</p>
+          <a class="arrow-link" href="#contact">See directory<span class="arrow" aria-hidden="true"></span></a>
+        </li>
+        <li class="trio__item">
+          <div class="thumb thumb--code" aria-hidden="true">
+            <pre><span><i>1</i>const solvo = require(<em>'solvo'</em>)(</span><span><i>2</i>  <em>'sk_test_abc123'</em></span><span><i>3</i>);</span><span><i>4</i>await solvo.<b>accountLinks</b></span><span><i>5</i>  .<b>create</b>({ account });</span></pre>
+            <p class="thumb__console">$ node server.js &amp;&amp; solvo listen<br>&gt; Ready. Waiting for requests.</p>
+          </div>
+          <p class="trio__text"><b>Build your own integration.</b> Use our SDKs, APIs, MCP server and AI developer tools to build and maintain your own integration with Solvo.</p>
+          <a class="arrow-link" href="#contact">Get started<span class="arrow" aria-hidden="true"></span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 15. NEWS -->
+<section class="news" id="news" aria-labelledby="news-title">
+  <div class="track">
+    <div class="news__head">
+      <h2 class="title title--lg" id="news-title">
+        <span>What's happening</span>
+        <span class="title--muted">See the latest from Solvo.</span>
+      </h2>
+      <div class="rail__controls">
+        <button class="round" type="button" data-news-prev aria-label="Previous story"><span class="arrow arrow--left" aria-hidden="true"></span></button>
+        <button class="round" type="button" data-news-next aria-label="Next story"><span class="arrow" aria-hidden="true"></span></button>
+      </div>
+    </div>
+    <div class="blades" data-blades>
+      <div class="blade is-open" data-blade>
+        <span class="blade__bg blade__bg--violet" aria-hidden="true"></span>
+        <span class="blade__caption" aria-hidden="true">Annual letter<br>2025</span>
+        <button class="blade__trigger" type="button" data-trigger aria-expanded="true" aria-label="Annual letter 2025"></button>
+      </div>
+      <div class="blade" data-blade>
+        <span class="blade__bg blade__bg--tower" aria-hidden="true"></span>
+        <span class="blade__caption" aria-hidden="true">Year-end<br>sales records</span>
+        <button class="blade__trigger" type="button" data-trigger aria-expanded="false" aria-label="Year-end sales records"></button>
+      </div>
+      <div class="blade" data-blade>
+        <span class="blade__bg blade__bg--water" aria-hidden="true"></span>
+        <span class="blade__caption" aria-hidden="true">SaaS<br>benchmark 2025</span>
+        <button class="blade__trigger" type="button" data-trigger aria-expanded="false" aria-label="SaaS benchmark 2025"></button>
+      </div>
+      <div class="blade" data-blade>
+        <span class="blade__bg blade__bg--portrait" aria-hidden="true"></span>
+        <span class="blade__caption" aria-hidden="true">Founders<br>interview</span>
+        <button class="blade__trigger" type="button" data-trigger aria-expanded="false" aria-label="Founders interview"></button>
+      </div>
+      <div class="blade" data-blade>
+        <span class="blade__bg blade__bg--stripes" aria-hidden="true"></span>
+        <span class="blade__caption" aria-hidden="true">Payments<br>outside stores</span>
+        <button class="blade__trigger" type="button" data-trigger aria-expanded="false" aria-label="Payments outside app stores"></button>
+      </div>
+      <div class="blade" data-blade>
+        <span class="blade__bg blade__bg--cyan" aria-hidden="true"></span>
+        <span class="blade__caption" aria-hidden="true">Agentic<br>commerce</span>
+        <button class="blade__trigger" type="button" data-trigger aria-expanded="false" aria-label="Agentic commerce"></button>
+      </div>
+    </div>
+    <div class="news__footer">
+      <p class="news__summary" data-news-summary><b>Businesses on Solvo generated US$1.4tn in 2025.</b> <span>Our annual letter explores the trends defining the internet economy: steeper growth for newer businesses, faster international expansion, stablecoin progress and agentic commerce.</span></p>
+      <a class="button button--light" href="#contact">Read the letter<span class="arrow" aria-hidden="true"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 16. BOOK -->
+<section class="book" aria-labelledby="book-title">
+  <div class="track">
+    <h2 class="title title--lg" id="book-title">
+      <span>Book of the week</span>
+      <span class="title--muted">Entrepreneurship starts with ideas.</span>
+    </h2>
+    <div class="book__panel">
+      <div class="book__cover" aria-hidden="true">
+        <span class="book__cover-title">THE<br>MACHINE<br>WORKSHOP</span>
+        <span class="book__cover-author">Claire Nash</span>
+      </div>
+      <div class="book__text">
+        <span class="book__seal" aria-hidden="true">The Solvo library</span>
+        <h3 class="title title--xs">The Machine Workshop: how two engineers built an industry<br><span class="title--muted">Claire Nash</span></h3>
+        <p>In the early 1990s, a small group of engineers turned a laboratory tool into a mass-production platform. Nash follows their technical choices, their disagreements and the trade-offs that ended up splitting the two founders, while showing how complementary talents driven by an open approach created an entire industry.</p>
+        <p class="book__note">For more ideas on economic progress and technological advancement, see our in-house publications:</p>
+        <div class="book__links">
+          <a class="button button--light" href="#contact"><span class="icon-square" aria-hidden="true"></span>Solvo Press</a>
+          <a class="button button--light" href="#contact"><span class="icon-square icon-square--light" aria-hidden="true"></span>Works in Progress</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 17. CLOSING -->
+<section class="closing" id="pricing" aria-labelledby="closing-title">
+  <div class="track closing__grid">
+    <div class="closing__main">
+      <h2 class="title title--lg" id="closing-title">Ready to get started?</h2>
+      <p>Create an account instantly, or contact us to design a custom package for your business.</p>
+      <div class="closing__actions">
+        <a class="button button--solid button--large" href="#contact">Start now<span class="arrow" aria-hidden="true"></span></a>
+        <a class="button button--light button--large" href="#contact">Contact sales</a>
+      </div>
+    </div>
+    <div class="closing__aside">
+      <span class="trio__icon" aria-hidden="true"><i class="glyph glyph--tag"></i></span>
+      <p><b>See what you'll pay</b><br>Integrated per-transaction pricing with no hidden fees.</p>
+      <a class="arrow-link" href="#contact">Pricing details<span class="arrow" aria-hidden="true"></span></a>
+    </div>
+    <div class="closing__aside">
+      <span class="trio__icon" aria-hidden="true"><i class="glyph glyph--chevrons"></i></span>
+      <p><b>Start building</b><br>Get up and running with Solvo in as little as 10 minutes.</p>
+      <a class="arrow-link" href="#contact">Integration options<span class="arrow" aria-hidden="true"></span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================ 18. FOOTER -->
+<footer class="footer" id="contact">
+  <div class="track footer__grid">
+    <div class="footer__col">
+      <p class="footer__title">Products and pricing</p>
+      <ul><li><a href="#pricing">Pricing</a></li><li><a href="#pricing">Atlas</a></li><li><a href="#pricing">Billing</a></li><li><a href="#pricing">Capital</a></li><li><a href="#pricing">Checkout</a></li><li><a href="#pricing">Climate</a></li><li><a href="#pricing">Connect</a></li><li><a href="#pricing">Crypto</a></li><li><a href="#pricing">Data Pipeline</a></li><li><a href="#pricing">Elements</a></li><li><a href="#pricing">Identity</a></li><li><a href="#pricing">Invoicing</a></li><li><a href="#pricing">Issuing</a></li><li><a href="#pricing">Link</a></li><li><a href="#pricing">Payments</a></li><li><a href="#pricing">Radar</a></li><li><a href="#pricing">Sigma</a></li><li><a href="#pricing">Terminal</a></li><li><a href="#pricing">Treasury</a></li></ul>
+    </div>
+    <div class="footer__col">
+      <p class="footer__title">Solutions</p>
+      <ul><li><a href="#enterprises">Enterprises</a></li><li><a href="#enterprises">Startups</a></li><li><a href="#enterprises">Agentic commerce</a></li><li><a href="#enterprises">Cryptocurrency</a></li><li><a href="#enterprises">E-commerce</a></li><li><a href="#enterprises">Embedded finance</a></li><li><a href="#enterprises">Global businesses</a></li><li><a href="#enterprises">In-app payments</a></li><li><a href="#enterprises">Marketplaces</a></li><li><a href="#enterprises">Platforms</a></li><li><a href="#enterprises">SaaS</a></li><li><a href="#enterprises">AI companies</a></li><li><a href="#enterprises">Gaming</a></li><li><a href="#enterprises">Insurance</a></li><li><a href="#enterprises">Public sector</a></li><li><a href="#enterprises">Retail</a></li></ul>
+      <p class="footer__title footer__title--second">Developers</p>
+      <ul><li><a href="#infra">Documentation</a></li><li><a href="#infra">API reference</a></li><li><a href="#infra">API status</a></li><li><a href="#infra">Libraries and SDKs</a></li><li><a href="#infra">Developer blog</a></li></ul>
+    </div>
+    <div class="footer__col">
+      <p class="footer__title">Integrations and custom solutions</p>
+      <ul><li><a href="#suite">Solvo App Marketplace</a></li><li><a href="#suite">Solvo Partner ecosystem</a></li><li><a href="#suite">Professional services</a></li></ul>
+      <p class="footer__title footer__title--second">Resources</p>
+      <ul><li><a href="#news">Product roadmap</a></li><li><a href="#news">Guides</a></li><li><a href="#news">Customer stories</a></li><li><a href="#news">Blog</a></li><li><a href="#news">Community</a></li><li><a href="#news">Sessions annual conference</a></li><li><a href="#news">Licences</a></li><li><a href="#news">Sitemap</a></li><li><a href="#news">Privacy and terms</a></li></ul>
+    </div>
+    <div class="footer__col">
+      <p class="footer__title">Company</p>
+      <ul><li><a href="#contact">Careers</a></li><li><a href="#contact">Newsroom</a></li><li><a href="#contact">Solvo Press</a></li><li><a href="#contact">Contact sales</a></li></ul>
+      <p class="footer__title footer__title--second">Support</p>
+      <ul><li><a href="#contact">Get support</a></li><li><a href="#contact">Managed support plans</a></li></ul>
+      <p class="footer__strong-link"><a href="#sign-in">Sign in<span class="arrow" aria-hidden="true"></span></a></p>
+    </div>
+  </div>
+  <div class="track footer__bottom">
+    <p class="footer__locale"><span class="icon-globe" aria-hidden="true"></span>United States (English)</p>
+    <p class="footer__legal">© 2026 Solvo, LLC.</p>
+    <span class="footer__sign" aria-hidden="true"></span>
+  </div>
+</footer>
+
+<script src="motion.js"></script>
+<script src="motion-carrousel.js"></script>
+</body>
+</html>

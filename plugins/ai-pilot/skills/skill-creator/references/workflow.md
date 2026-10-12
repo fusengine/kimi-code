@@ -47,11 +47,11 @@ Simple 3-step process: Research → Create → Validate
 
 ### Rules
 
-| File Type | Max Lines | Content |
-|-----------|-----------|---------|
-| SKILL.md | ~150 | Guides to references |
-| References | 150 | Conceptual, minimal code |
-| Templates | Unlimited | Complete, copy-paste ready |
+| File Type | Size | Content |
+|-----------|------|---------|
+| SKILL.md | `FUSE_SOLID_MAX_LINES` | Guides to references |
+| References | `FUSE_SOLID_MAX_LINES` | Conceptual, minimal code |
+| Templates | `FUSE_SOLID_MAX_LINES` | Complete, split across linked files when needed |
 
 ---
 
@@ -64,7 +64,7 @@ Run **sniper** to verify:
 | Frontmatter | All files have proper YAML |
 | References | All listed in SKILL.md exist |
 | Content | English only |
-| Size | References < 150 lines |
+| Size | Every file within `FUSE_SOLID_MAX_LINES` |
 
 ---
 

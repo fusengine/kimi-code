@@ -121,6 +121,16 @@ Merge is always `--merge` (real merge commit) — **never `--squash`**, it would
 
 **Release object (MANDATORY, all repos)**: a pushed tag alone is invisible to anything that resolves "latest release" — Kimi `/plugins install <github-url>` first among them (it reads GitHub Releases, not tags). Step 8 therefore always runs `gh release create vX.Y.Z --latest` (notes from the CHANGELOG section) and verifies `gh api repos/<owner>/<repo>/releases/latest` resolves to the new version. Claude Code marketplaces read tags; Kimi installs read Releases — every repo ships both, no exceptions.
 
+## After the Tag — Release Workflow
+
+Pushing the tag is not the end of a release **when the repo has a tag-triggered workflow** (e.g. `Publish` to npm): it must be watched to the end, reruns included. Full procedure: `commands/commit.md` **Step 9** and `references/release-workflow.md`. In short:
+
+- No `on: push: tags` workflow in `.github/workflows/` (verified) → `publish: none`, nothing to watch.
+- Find the runs: `gh run list --commit "$(git rev-list -n1 vX.Y.Z)" --event push` (poll ~90s, they register late), then `gh run watch <id> --exit-status` each — never piped.
+- Failure → read `gh run view <id> --log-failed` at once and classify. **Flaky** (timing/perf threshold just over, network/registry timeout, runner crash) → `gh run rerun <id> --failed`, max 2 reruns then escalate. **Real defect** (compile/type/lint, deterministic test, auth, same failure twice) → stop and report the cause.
+- Say **"published" only** when the final attempt is fully green (post-publish verification jobs included) **and** the registry serves the version (`npm view <pkg> version` == X.Y.Z, or the matching registry query).
+- The release runs only through the `commit` agent launched by the lead — never through a code delegate or an external executor: they write code, not releases.
+
 ## After Merge
 
 - Delete branch automatically (`--delete-branch` flag or GitHub auto-delete setting)

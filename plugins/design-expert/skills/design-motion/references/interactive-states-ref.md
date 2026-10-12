@@ -12,7 +12,7 @@ related-skills: adding-animations, generating-components
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, use `TeamCreate` to spawn 3 agents:
+Before implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Check existing state patterns
 2. **research-expert** - Framer Motion state animations

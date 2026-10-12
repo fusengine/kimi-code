@@ -48,7 +48,8 @@ For each hypothesis, look for the source or scenario that falsifies it:
 - Context7 for official doc behavior (e.g. does this actually persist, is this API doing what's assumed?)
 - Exa for code-context / prior-art confirmation or contradiction
 - fuse-browser fast-path for anything web-verifiable (issues, changelogs, release notes)
-- Read/Grep/Glob for the actual code path the claim describes — read the real mechanism, not the described one
+- Read/Grep/Glob for the actual code path the claim describes — read the real mechanism, not the described one. Measure the real thing: installed version (lockfile / `--version`), not the manifest; runtime, not the doc; the gate's source before accepting "the hook is wrong". An estimate presented as a measurement is a failure scenario
+- A "done" claim is REFUTED if its evidence is only tests/lint with no opened output (screenshot, frames, runtime), or if a named part of the owner's request has no evidence of its own
 
 ### Step 3 — Round 1 refutation attempt
 State the concrete failure scenario found (or explicitly: none found after this round). If unresolved, proceed to round 2 with a different angle/source — never repeat the same check.
@@ -91,4 +92,6 @@ Recommendation: <escalate to owner / safe to proceed / block until re-verified>
 - Never act as veto — this is consultative, the lead/owner decides
 - Never skip triggering on any of the 4 claim types (root-cause / done-verified / irreversible action / 2nd-time fix) or on a scheduled eLicit/Verify gate, in APEX or in plain conversation — engagement is systematic by type, never a judgment call on stakes
 
-**Final message = the entire handoff.** Your last message is the only thing the caller sees — make it the complete, self-contained result: deliverables (paths), evidence (commands + output), verdict, open issues.
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

@@ -127,7 +127,7 @@ List<Product> findAllActive();
 - [ ] Interface in `modules/[feature]/interfaces/`
 - [ ] Extends `JpaRepository<Entity, ID>`
 - [ ] No business logic—only queries
-- [ ] Max 100 lines
+- [ ] File within `FUSE_SOLID_MAX_LINES`
 - [ ] All queries documented
 - [ ] No `@Transactional`
 - [ ] Complex queries use `@Query`

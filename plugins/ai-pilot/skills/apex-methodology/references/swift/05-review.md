@@ -19,11 +19,9 @@ next_step: references/swift/06-fix-issue.md
 
 ### File Organization
 
-- [ ] No file exceeds 150 lines
-- [ ] Views under 80 lines
-- [ ] ViewModels under 100 lines
-- [ ] Services under 100 lines
-- [ ] Subviews extracted at 30+ lines
+- [ ] No file exceeds `FUSE_SOLID_MAX_LINES`
+- [ ] Views, ViewModels and Services each keep one responsibility
+- [ ] Subviews extracted when a view section mixes concerns
 
 ### Swift 6 Concurrency
 

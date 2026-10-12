@@ -18,7 +18,7 @@ logging, error handling, and package authoring).
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing architecture
 2. **research-expert** - Verify Laravel patterns via Context7
@@ -47,7 +47,7 @@ Laravel architecture focuses on clean separation of concerns, dependency injecti
 1. **Thin controllers** - Delegate business logic to services
 2. **Interfaces in app/Contracts/** - Never alongside implementations
 3. **DI over facades** - Constructor injection for testability
-4. **Files < 100 lines** - Split larger files per SOLID
+4. **Files within `FUSE_SOLID_MAX_LINES`** - Split larger files per SOLID
 5. **Environment separation** - .env never committed
 
 ---

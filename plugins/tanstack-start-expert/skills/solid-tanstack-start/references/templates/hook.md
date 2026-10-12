@@ -1,10 +1,10 @@
 ---
 name: hook-template
 applies-to: "**/src/modules/**/hooks/*.ts"
-description: Client hook wrapping a Start server function via useServerFn / TanStack Query (< 30 lines)
+description: Client hook wrapping a Start server function via useServerFn / TanStack Query
 ---
 
-# Client Hook (< 30 lines)
+# Client Hook
 
 For interactive (non-loader) calls, wrap a server function in a hook. Use
 `useServerFn` so redirects/not-found from the server function are handled, and
@@ -59,7 +59,7 @@ export function useUser(id: string) {
 
 ## Rules
 
-- Max 30 lines.
+- Keep each hook within `FUSE_SOLID_MAX_LINES` and focused on one responsibility.
 - Prefer route **loaders** for initial data; use hooks for user-triggered calls.
 - Wrap server functions in `useServerFn` inside components/hooks.
 - Import types from `../interfaces/`, JSDoc every export.

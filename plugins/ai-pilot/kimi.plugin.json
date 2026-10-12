@@ -42,6 +42,11 @@
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" aipilot"
     },
     {
+      "event": "Stop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
       "event": "SessionEnd",
       "matcher": "",
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" aipilot"

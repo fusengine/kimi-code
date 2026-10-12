@@ -98,7 +98,7 @@ Fix 3: validateToken.ts:23
 ✅ ESLint: 0 errors, 0 warnings
 ✅ npm test: All passing
 ✅ Architecture: Compliant
-✅ File sizes: All <100 LoC
+✅ File sizes: All within `FUSE_SOLID_MAX_LINES`
 ✅ DRY: 1.8% duplication (down from 4.2%)
 
 🎯 MISSION COMPLETE: 3 errors fixed, 1 DRY extraction, 0 code broken

@@ -83,6 +83,6 @@ Creating a new model?
 | Use `$fillable` for explicit control | Use `$guarded = []` in production |
 | Set `$casts` for type safety | Store business logic in models |
 | Use model events for side effects | Query in accessors/mutators |
-| Keep models slim (< 200 lines) | Mix concerns |
+| Keep models slim (within `FUSE_SOLID_MAX_LINES`) | Mix concerns |
 
 → **Complete examples**: See [ModelBasic.php.md](templates/ModelBasic.php.md)

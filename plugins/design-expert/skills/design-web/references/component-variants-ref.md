@@ -12,7 +12,7 @@ related-skills: glassmorphism-advanced, generating-components
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, use `TeamCreate` to spawn 3 agents:
+Before implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Check existing variant patterns
 2. **research-expert** - cva/class-variance-authority docs

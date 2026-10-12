@@ -48,7 +48,8 @@ For each hypothesis, look for the source or scenario that falsifies it:
 - Context7 for official doc behavior (e.g. does this actually persist, is this API doing what's assumed?)
 - Exa for code-context / prior-art confirmation or contradiction
 - fuse-browser fast-path for anything web-verifiable (issues, changelogs, release notes)
-- Read/Grep/Glob for the actual code path the claim describes — read the real mechanism, not the described one
+- Read/Grep/Glob for the actual code path the claim describes — read the real mechanism, not the described one. Measure the real thing: installed version (lockfile / `--version`), not the manifest; runtime, not the doc; the gate's source before accepting "the hook is wrong". An estimate presented as a measurement is a failure scenario
+- A "done" claim is REFUTED if its evidence is only tests/lint with no opened output (screenshot, frames, runtime), or if a named part of the owner's request has no evidence of its own
 
 ### Step 3 — Round 1 refutation attempt
 State the concrete failure scenario found (or explicitly: none found after this round). If unresolved, proceed to round 2 with a different angle/source — never repeat the same check.

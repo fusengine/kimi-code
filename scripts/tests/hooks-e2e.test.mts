@@ -20,8 +20,8 @@ const PLUGINS = resolve(import.meta.dir, "../../plugins");
 const rules = await collectHookRules(PLUGINS);
 
 describe("layer 1: static", () => {
-	test("declared corpus is 63 rules across 21 plugins", () => {
-		expect(rules).toHaveLength(63);
+	test("declared corpus is 69 rules across 21 plugins", () => {
+		expect(rules).toHaveLength(69);
 		expect(new Set(rules.map((r) => r.pluginDir)).size).toBe(21);
 	});
 	test("every rule: known event, shim-pattern command, known scope, shim on disk", async () => {
@@ -36,8 +36,8 @@ describe("layer 2: simulated harness", () => {
 
 	test("subset covers every declared scope and event", () => {
 		console.log(`  layer-2 subset: ${picked.length} rules · scopes=${[...scopes].sort().join(",")} · events=${events.size}`);
-		expect(scopes.size).toBe(10);
-		expect(events.size).toBe(12);
+		expect(scopes.size).toBe(11);
+		expect(events.size).toBe(13);
 	});
 
 	test("shim forwards argv/stdin/env and propagates exit codes 0 and 2", () => {
@@ -79,12 +79,18 @@ describe("layer 3: live harness (skip-safe)", () => {
 		const rulesRef = rules.find((r) => r.pluginDir === "kimi-rules" && r.hook.event === "UserPromptSubmit")!;
 		const sessionRef = rules.find((r) => r.pluginDir === "kimi-rules" && r.hook.event === "SessionStart")!;
 		const guardRef = rules.find((r) => r.pluginDir === "core-guards" && r.hook.event === "PreToolUse")!;
-		// Full corpus flows at SessionStart; UserPromptSubmit is compacted to the notice.
+		// Kimi discards SessionStart output (observation-only event), so the shim
+		// writes nothing there.
 		const injected = runLiveRule(PLUGINS, cacheDir, sessionRef, synthesizePayload(sessionRef));
-		expect(additionalContextOrText(injected.stdout)).toContain("Response Language");
+		expect(additionalContextOrText(injected.stdout)).toBe("");
+		// UserPromptSubmit is the only channel that reaches the model. Compaction
+		// is the HARNESS's call (rulesInAgentsMd, >= 0.1.87): notice only when
+		// AGENTS.md already carries the corpus, full corpus otherwise. This test
+		// home has no AGENTS.md, so the corpus must flow — trimming it here would
+		// leave the model with no rules at all. The shim forwards it verbatim.
 		const prompted = runLiveRule(PLUGINS, cacheDir, rulesRef, synthesizePayload(rulesRef));
+		expect(prompted.stdout).toContain("Response Language");
 		expect(prompted.stdout).toContain("rules 00-08 injected");
-		expect(prompted.stdout).not.toContain("Response Language");
 		const rmrf = synthesizePayload(guardRef, { toolName: "Bash", toolInput: { command: "rm -rf /" } });
 		const denied = runLiveRule(PLUGINS, cacheDir, guardRef, rmrf);
 		expect(isDeny(JSON.parse(denied.stdout) as Record<string, unknown>)).toBe(true);

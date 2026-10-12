@@ -4,7 +4,7 @@ applies-to: "**/app/**/*.tsx, **/app/**/*.ts, **/pages/**/*.tsx, **/pages/**/*.t
 description: React hook template with state management and async operations
 ---
 
-# React Hook (< 60 lines)
+# React Hook
 
 ```typescript
 // modules/auth/src/hooks/useAuth.ts

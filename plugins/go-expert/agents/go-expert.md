@@ -49,11 +49,11 @@ After implementation, run **sniper** for validation.
 
 ## SOLID Rules (MANDATORY)
 
-**Read the `solid-go` skill before ANY code** — it already covers Go-specific SOLID (files < 100 lines, interfaces separated, modular architecture). Do NOT duplicate SOLID guidance locally (DRY).
+**Read the `solid-go` skill before ANY code** — it already covers Go-specific SOLID (files within `FUSE_SOLID_MAX_LINES`, interfaces separated, modular architecture). Do NOT duplicate SOLID guidance locally (DRY).
 
 | Rule | Requirement |
 |------|-------------|
-| Files | < 100 lines (split at 90) |
+| Files | within `FUSE_SOLID_MAX_LINES` |
 | Interfaces | separated, defined at the consumer, one contract per concern |
 | Documentation | doc comments on every exported identifier |
 | Validation | `sniper` after changes |

@@ -153,7 +153,7 @@ class UserService
 
 | Step | Action | Verify |
 |------|--------|--------|
-| 1 | Extract validation to FormRequest | Controller < 50 lines |
+| 1 | Extract validation to FormRequest | Controller does HTTP only |
 | 2 | Extract logic to Service | No business rules in Controller |
 | 3 | Extract queries to Repository | No Eloquent in Service |
 | 4 | Create DTOs | No array params |

@@ -78,7 +78,7 @@ pnpm build
 
 ```text
 Verify:
-[ ] All files <100 lines
+[ ] All files within `FUSE_SOLID_MAX_LINES`
 [ ] Interfaces in modules/[feature]/src/interfaces/
 [ ] No interfaces in component files
 [ ] Correct directory structure
@@ -211,7 +211,7 @@ find src -name "*.tsx" -o -name "*.ts" | xargs wc -l | sort -n
 ### Split Strategy
 
 ```text
-If file > 90 lines:
+If a file approaches `FUSE_SOLID_MAX_LINES`:
 main.tsx           # Core logic
 utils.ts           # Helper functions
 types.ts           # Interfaces (move to src/interfaces/)
@@ -264,7 +264,7 @@ Red flags:
 - Build time: 12s
 
 ### File Checks
-- All files <100 lines: PASS
+- All files within `FUSE_SOLID_MAX_LINES`: PASS
 - Interfaces location: PASS
 - JSDoc coverage: PASS
 
@@ -282,7 +282,7 @@ Red flags:
 [ ] tsc --noEmit passes
 [ ] eslint passes
 [ ] build succeeds
-[ ] All files <100 lines verified
+[ ] All files within `FUSE_SOLID_MAX_LINES` verified
 [ ] No hydration warnings
 [ ] Bundle size acceptable
 ```

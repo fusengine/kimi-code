@@ -112,7 +112,7 @@ public class OrderService {
 
 ## Checklist
 
-- [ ] Service is max 100 lines (split if exceeding)
+- [ ] Service file within `FUSE_SOLID_MAX_LINES`; split mixed responsibilities
 - [ ] All dependencies injected via constructor
 - [ ] No `new` keyword for repos/services
 - [ ] `@Transactional` on class level

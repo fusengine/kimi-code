@@ -28,11 +28,11 @@ related: single-responsibility.md, open-closed.md, liskov-substitution.md, inter
 internal/
 ├── modules/
 │   ├── [feature]/
-│   │   ├── handlers/        # HTTP handlers (< 50 lines)
-│   │   ├── services/        # Business logic (< 100 lines)
-│   │   ├── repositories/    # Data access (< 100 lines)
-│   │   ├── ports/           # Interfaces ONLY (< 30 lines)
-│   │   └── models/          # Domain models (< 50 lines)
+│   │   ├── handlers/        # HTTP handlers
+│   │   ├── services/        # Business logic
+│   │   ├── repositories/    # Data access
+│   │   ├── ports/           # Interfaces ONLY
+│   │   └── models/          # Domain models
 │   └── core/                # Shared (cross-feature)
 │       ├── services/
 │       ├── ports/
@@ -47,14 +47,7 @@ internal/
 
 ## File Size Limits
 
-| Type | Max Lines | Split At |
-|------|-----------|----------|
-| Handler | 50 | 40 |
-| Service | 100 | 90 |
-| Repository | 100 | 90 |
-| Interface (Port) | 30 | 25 |
-| Model | 50 | 40 |
-| **Any file** | **100** | **90** |
+Every file stays within the hook ceiling `FUSE_SOLID_MAX_LINES`. One purpose per file: handlers stay thin, ports hold interfaces only; split mixed responsibilities.
 
 ---
 
@@ -72,7 +65,7 @@ internal/
 
 ## Quick Checklist
 
-- [ ] Files < 100 lines
+- [ ] Files within `FUSE_SOLID_MAX_LINES`
 - [ ] Interfaces in `ports/` (1-3 methods each)
 - [ ] Accept interfaces, return structs
 - [ ] Constructor functions for dependency injection

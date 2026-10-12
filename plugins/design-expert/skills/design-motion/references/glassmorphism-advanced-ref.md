@@ -12,7 +12,7 @@ related-skills: designing-systems, generating-components
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, use `TeamCreate` to spawn 3 agents:
+Before implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Check existing glass patterns
 2. **research-expert** - Latest backdrop-filter support

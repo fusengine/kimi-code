@@ -68,7 +68,7 @@ References explain **concepts** - the WHY and WHEN.
 
 ### Size Limit
 
-**Maximum 150 lines** per reference file.
+`FUSE_SOLID_MAX_LINES` is the only file-size ceiling for a reference file.
 
 If larger, split into multiple files:
 - `queries.md` → `queries-basic.md` + `queries-advanced.md`

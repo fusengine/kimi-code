@@ -1,10 +1,10 @@
 ---
 name: validator-template
 applies-to: "**/*.tsx, **/*.jsx"
-description: Zod validation schema templates (< 30 lines)
+description: Zod validation schema templates
 ---
 
-# Zod Validators (< 30 lines)
+# Zod Validators
 
 ## Basic Validator
 
@@ -130,7 +130,7 @@ export function paginatedSchema<T extends z.ZodTypeAny>(itemSchema: T) {
 
 ## Rules
 
-- Max 30 lines per file
+- Keep each validator file within `FUSE_SOLID_MAX_LINES` and focused on one validation domain
 - Location: `modules/[feature]/src/validators/`
 - Export both schema and inferred type
 - Use `.catch()` for search params (graceful fallback)

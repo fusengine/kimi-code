@@ -13,8 +13,8 @@ next_step: references/swift/02-features-plan.md
 # List Swift files
 find . -name "*.swift" -type f | head -30
 
-# Find files > 150 lines (violations)
-find . -name "*.swift" -exec sh -c 'wc -l "$1" | awk "\$1 > 150"' _ {} \;
+# Find files over FUSE_SOLID_MAX_LINES (violations)
+find . -name "*.swift" -exec sh -c 'wc -l "$1" | awk -v max="${FUSE_SOLID_MAX_LINES:-100}" "\$1 > max"' _ {} \;
 
 # Count lines per file
 find . -name "*.swift" -exec wc -l {} + | sort -rn | head -15

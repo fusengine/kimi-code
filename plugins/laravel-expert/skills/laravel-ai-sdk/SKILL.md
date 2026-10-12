@@ -18,7 +18,7 @@ TypeSafe, VoyageAI, OpenRouter.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Map existing AI usage (custom HTTP clients, OpenAI PHP, etc.) to migrate
 2. **research-expert** - Verify provider model IDs and pricing on the official Laravel AI SDK docs

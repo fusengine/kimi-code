@@ -1,7 +1,7 @@
 ---
 name: single-responsibility
 applies-to: "**/*.tsx, **/*.jsx"
-description: SRP Guide - When and how to split files, line limits, modular paths for React
+description: SRP Guide - When and how to split files, size ceiling, modular paths for React
 when-to-use: file too long, component doing too much, refactoring, code organization
 keywords: single responsibility, SRP, splitting, lines, refactoring, modular
 priority: high
@@ -18,20 +18,14 @@ related: architecture-patterns.md, templates/service.md, templates/hook.md
 
 ### Symptoms of Violation
 
-1. **File exceeds 90 lines** → Trigger a split
+1. **File approaches `FUSE_SOLID_MAX_LINES`** → Split by responsibility
 2. **Cannot describe file in one sentence** → Too many responsibilities
 3. **File has more than 15 imports** → Doing too much
 4. **File has more than 5 exports** → Mixed responsibilities
 
-### Line Limits by Type
+### Size Ceiling
 
-| File Type | Max Limit | Split Threshold |
-|-----------|-----------|-----------------|
-| Component | 50 lines | 40 lines |
-| Hook | 30 lines | 25 lines |
-| Service | 40 lines | 35 lines |
-| Store | 40 lines | 35 lines |
-| Any other file | 100 lines | 90 lines |
+All source-file types (component, hook, service, store, other) use `FUSE_SOLID_MAX_LINES` as the only size ceiling. Split by responsibility when cohesion drops. Exception: Zustand stores keep the owner rule of max 40 lines (`07-state-management.md`).
 
 ---
 
@@ -57,7 +51,7 @@ modules/[feature]/src/
 
 ### Split Example
 
-Before (1 file of 150 lines):
+Before (1 file mixing five responsibilities):
 ```
 components/UserDashboard.tsx → Types, API calls, State, Validation, UI
 ```
@@ -122,9 +116,9 @@ modules/users/components/UserDashboard.tsx        → UI only
 
 ## Where to Find Code Templates?
 
-→ `templates/component.md` - Component < 50 lines
-→ `templates/service.md` - Service < 40 lines
-→ `templates/hook.md` - Hook < 30 lines
+→ `templates/component.md` - Component template
+→ `templates/service.md` - Service template
+→ `templates/hook.md` - Hook template
 → `templates/store.md` - Store < 40 lines
 → `templates/interface.md` - Interface definitions
 
@@ -132,7 +126,7 @@ modules/users/components/UserDashboard.tsx        → UI only
 
 ## SRP Checklist
 
-- [ ] File < line limit for its type
+- [ ] Source file stays within `FUSE_SOLID_MAX_LINES`
 - [ ] Types in `interfaces/` only
 - [ ] Services in `services/`
 - [ ] Hooks in `hooks/`

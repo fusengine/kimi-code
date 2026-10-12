@@ -95,7 +95,7 @@ Closes #123
 
 ## Checklist
 - [x] Tests added (hooks + components)
-- [x] All files <100 lines
+- [x] All files within `FUSE_SOLID_MAX_LINES`
 - [x] Interfaces in src/interfaces/
 - [x] JSDoc on exports
 - [x] No React antipatterns

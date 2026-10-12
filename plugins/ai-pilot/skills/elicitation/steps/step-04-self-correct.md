@@ -78,12 +78,12 @@ function login(email: string, password: string) {
 
 #### For SOLID Issues (ARCH-01)
 ```typescript
-// Finding: File >100 LoC
+// Finding: File over FUSE_SOLID_MAX_LINES
 // Action: Split into focused files
-// utils.ts (120 lines) →
-//   utils/validation.ts (40 lines)
-//   utils/formatting.ts (35 lines)
-//   utils/index.ts (10 lines - barrel)
+// utils.ts (over the ceiling) →
+//   utils/validation.ts (validation)
+//   utils/formatting.ts (formatting)
+//   utils/index.ts (barrel)
 ```
 
 #### For N+1 Issues (PERF-01)

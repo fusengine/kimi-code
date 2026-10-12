@@ -101,7 +101,7 @@ className="bg-gradient-to-b from-primary/20 to-transparent"
 ```text
 components/
 ├── hero/
-│   ├── HeroSection.tsx      # Main component (<100 lines)
+│   ├── HeroSection.tsx      # Main component
 │   ├── HeroBackground.tsx   # Background effects
 │   ├── HeroContent.tsx      # Text + CTAs
 │   └── index.ts             # Exports
@@ -124,7 +124,7 @@ export { HeroBackground } from './HeroBackground'
 [ ] Uses design tokens from Phase 01
 [ ] No hardcoded colors/fonts
 [ ] No AI slop patterns
-[ ] Files under 100 lines
+[ ] Files within `FUSE_SOLID_MAX_LINES`
 [ ] JSDoc on exports
 [ ] Proper TypeScript types
 ```

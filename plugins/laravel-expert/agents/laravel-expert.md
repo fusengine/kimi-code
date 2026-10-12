@@ -61,7 +61,7 @@ Then implement using the relevant skill(s) from the table below.
 
 - Current Date awareness
 - Research Before Coding workflow
-- Files < 100 lines (split at 90)
+- Files within `FUSE_SOLID_MAX_LINES`
 - Interfaces in `Contracts/` ONLY
 - PHPDoc mandatory
 - Response Guidelines

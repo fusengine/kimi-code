@@ -11,11 +11,12 @@ related: solid-validation.md, architecture-patterns.md
 
 ## Limits
 
+`FUSE_SOLID_MAX_LINES` (the hook ceiling, tunable by the owner) is the only file-size authority. Never set your own cap.
+
 | Metric | Limit | Action |
 |--------|-------|--------|
-| **LoC** (code only) | < 100 | ✅ OK |
-| **LoC** >= 100, **Total** < 200 | | ✅ OK (well-documented) |
-| **Total** >= 200 | | ❌ SPLIT required |
+| **File size** | within `FUSE_SOLID_MAX_LINES` | ✅ OK |
+| **File size** | over `FUSE_SOLID_MAX_LINES` | ❌ SPLIT by responsibility (the hook blocks it) |
 
 ## LoC Calculation
 
@@ -33,10 +34,10 @@ Comment patterns:
 ## Split Strategy
 
 ```
-component.tsx (150 lines) → SPLIT INTO:
-├── Component.tsx (40 lines) - orchestrator
-├── ComponentHeader.tsx (30 lines)
-├── ComponentContent.tsx (35 lines)
-├── useComponentLogic.ts (45 lines) - hook
-└── index.ts (5 lines) - barrel export
+component.tsx (over the ceiling) → SPLIT INTO:
+├── Component.tsx - orchestrator
+├── ComponentHeader.tsx - header
+├── ComponentContent.tsx - content
+├── useComponentLogic.ts - hook
+└── index.ts - barrel export
 ```

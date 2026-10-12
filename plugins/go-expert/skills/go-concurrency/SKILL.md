@@ -19,7 +19,7 @@ documented pitfall: **leaking goroutines on an unbuffered channel + early return
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Map existing goroutine/channel/context usage
 2. **research-expert** - Verify errgroup/context docs via Context7/Exa
