@@ -38,7 +38,7 @@ const pkg = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8"));
 const manifest = {
 	name: "fusengine",
 	version: pkg.version,
-	description: "Fusengine agentic suite for Kimi Code (K3): 24 plugins, 196 skills, APEX workflow, harness-powered hooks",
+	description: "Fusengine agentic suite for Kimi Code (K3): 24 plugins, 197 skills, APEX workflow, harness-powered hooks",
 	author: { name: "Fusengine", url: "https://github.com/fusengine" },
 	homepage: "https://github.com/fusengine/kimi-code",
 	repository: "https://github.com/fusengine/kimi-code",

@@ -3,6 +3,12 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.23] - 2026-10-12
+
+### Fixed
+- rules: the lead always delegates, even a one-line edit — Scope Ladder first row is now "1 agent (the domain expert) + sniper — the lead never edits, even a one-line change", new "Always delegate — every edit, even one line" bullet, "at the right scope" loophole removed; one canonical exception worded identically in the template trap, rule 03 and lead-orchestration steps 4/5 + Check (after 2 failed delegations on a localised, already-measured defect the lead reads and fixes it itself — the only case where the lead edits; otherwise escalate past the 3-cycle cap); APEX "SKIP APEX trivial fix — the edit is still made by one delegated agent"; apex-quick spawns ONE domain-expert agent.
+- docs: hand-typed counts re-measured — 197 skills, 38 agents, 34 commands, 69 hook rules (README, build-root-manifest, .kimi-plugin) (ai-pilot 1.2.42, astro-expert 1.0.13, cartographer 1.0.12, changelog-watcher 1.0.14, commit-pro 1.2.26, core-guards 1.1.42, design-expert 2.2.9, fuse-lessons 1.0.6, go-expert 1.0.6, kimi-rules 1.39.21, laravel-expert 1.2.7, nextjs-expert 1.1.23, php-expert 1.0.6, prompt-engineer 1.1.11, react-expert 1.0.20, rust-expert 1.0.6, security-expert 1.0.17, seo 1.0.11, shadcn-expert 1.0.17, solid 1.0.18, swift-apple-expert 1.1.19, tailwindcss 1.1.10, tanstack-start-expert 1.0.5, typescript-expert 1.0.6).
+
 ## [1.0.22] - 2026-10-12
 
 ### Changed

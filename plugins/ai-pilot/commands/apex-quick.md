@@ -5,7 +5,7 @@ argument-hint: "<fix description>"
 
 # APEX Quick Flow
 
-Fast-track workflow for simple bug fixes, typos, and minor changes. No multi-agent orchestration.
+Fast-track workflow for simple bug fixes, typos, and minor changes. No multi-agent orchestration: the lead spawns ONE domain-expert agent that edits; the main session never edits inline.
 
 ---
 
