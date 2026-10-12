@@ -42,11 +42,11 @@ Fill `references/brief-template.md`: context, exact files, the owner's words quo
 **Check:** an agent with zero conversation context could execute it; every checklist part from step 1 appears as an acceptance criterion; the brief contains no "ask the owner if…" escape hatch.
 
 ### 4. Delegate everything
-The lead never edits project files -- only its own scratchpad. Every edit, even one line in a skill or rule, goes to an agent. External executors (another CLI or model run outside this tree) write code only: never push, PR, merge, tag or publish -- releases go through the `commit` agent.
-**Check:** your own tool calls since intake contain no Write/Edit on project files; no external executor brief mentions git release steps.
+The lead never edits project files -- only its own scratchpad. Every edit, even one line in a skill or rule, goes to an agent. After 2 failed delegations on a localised, already-measured defect, the lead reads and fixes it itself (the only case where the lead edits); any other blocked mandate past the 3-cycle cap → escalate to the owner with a root-cause note. External executors (another CLI or model run outside this tree) write code only: never push, PR, merge, tag or publish -- releases go through the `commit` agent.
+**Check:** your own tool calls since intake contain no Write/Edit on project files (the only exception: the 2-failed-delegations case, the only case where the lead edits); no external executor brief mentions git release steps.
 
 ### 5. Follow -- the owner never asks "is it moving?"
-Poll every running executor (output, mtimes, TodoList) at a fixed cadence; give the owner a one-line status (done / blocked / next) without being asked. Stall = no new output on disk since the last poll -> push the same agent with the precise next step (resume it); never spawn a duplicate on the same mandate. Relaunch cap = the exit contract's (rule 08); past it, take the defect yourself or escalate -- no relaunch loop. A message does not stop an agent: use TaskStop, then confirm mtimes froze.
+Poll every running executor (output, mtimes, TodoList) at a fixed cadence; give the owner a one-line status (done / blocked / next) without being asked. Stall = no new output on disk since the last poll -> push the same agent with the precise next step (resume it); never spawn a duplicate on the same mandate. Relaunch cap = the exit contract's (rule 08), no relaunch loop: After 2 failed delegations on a localised, already-measured defect, the lead reads and fixes it itself (the only case where the lead edits); any other blocked mandate past the 3-cycle cap → escalate to the owner with a root-cause note. A message does not stop an agent: use TaskStop, then confirm mtimes froze.
 **Check:** you can answer "where is it?" with the last measurement (time, files changed, tests), never "I don't know".
 
 ### 6. Blocks -- find the legitimate route

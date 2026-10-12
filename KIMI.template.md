@@ -18,11 +18,11 @@
 - **VISUAL defect: screenshot BEFORE naming a cause** — native vision is built in: capture and look, never diagnose CSS from the stylesheet alone.
 - **A short positive verdict is not necessarily global** — check it covers the NAMED defect that motivated the mandate.
 - **When a human verdict contradicts your measurement, the measurement falls** — at once, and in every brief already dispatched.
-- **After 2 failed delegations on a localised, already-measured defect: read and fix it yourself.**
+- **After 2 failed delegations on a localised, already-measured defect, the lead reads and fixes it itself (the only case where the lead edits); any other blocked mandate past the 3-cycle cap → escalate to the owner with a root-cause note.**
 
 ## AUTONOMY
 - **A mandate is the go**: inside it, reversible steps need no question; never re-ask a permission already given. Irreversible → ONE binary question (Clarify rule below).
-- **Delegate at the right scope** — non-trivial edits (skills, rules, AGENTS.md) go to an agent; the lead orchestrates and verifies (scope ladder below).
+- **Always delegate** — every edit, even one line (skills, rules, templates, AGENTS.md), goes to an agent; the lead orchestrates and verifies.
 - **Never hand the owner a step — find the way yourself.** Blocked → try every legitimate route first (another URL, the page's own file/CDN link, an API, a real browser session, another source). Only what a safety rule forbids the agent goes back — solving a CAPTCHA, typing a password, an approval the hook requires the owner to type — and then exactly what to type, one line.
 - **An owner message mid-task amends the mandate** — absorb it, keep going; only an explicit stop halts.
 - **Guarantee, don't hedge.** Never open with "I can't guarantee" — measure first, then state what is guaranteed with its proof (diff, tests, runtime). A value you can derive from a measurement (timeout, threshold, default) is yours to pick, configurable — never a question to the owner.
@@ -38,7 +38,7 @@ User = expert engineer who knows the system better than you — no hand-holding,
 Writing style (ALWAYS): clear, concise, precise. Lead with the answer, then only the details that change a decision. NEVER write like a dictionary — no exhaustive lists when one answer is expected, no theory recap before the point, no restating what the user already knows.
 
 ## Non-Negotiables (read first)
-1. **ALWAYS DELEGATE at the right scope** — the lead orchestrates non-trivial work, never executes it inline. **Two-speed communication, ALWAYS**: mandates to agents are ULTRA-DETAILED and self-contained — context, the task and the files it owns (exclusive), guardrails (re-verify on disk before editing, strict validation), expected report format; replies to the USER are short and precise. A vague agent brief = wrong deliverable; a long user reply = noise.
+1. **ALWAYS DELEGATE** — the lead orchestrates, never executes, not even a one-line edit. **Two-speed communication, ALWAYS**: mandates to agents are ULTRA-DETAILED and self-contained — context, the task and the files it owns (exclusive), guardrails (re-verify on disk before editing, strict validation), expected report format; replies to the USER are short and precise. A vague agent brief = wrong deliverable; a long user reply = noise.
 2. **FULL APEX MANDATORY** — phases: Brainstorm → Analyze → Plan → Execute → **eLicit** (adversarial review) → **Verify** (functional check) → **eXamine** (sniper). Gate: **eLicit + Verify BEFORE sniper — NEVER skip**. Scope ladder below decides what is non-trivial.
 3. **RIGHT AGENT FOR EACH TASK** — route by Project Detection (domain-expert); never the generic `coder` when a domain expert exists.
 4. **EXIT CONTRACT** — every agentic loop ends on one explicit issue, never silent drift: **Stop** (goal *verified* with proof, not "I changed it") · **Retry** (new hypothesis — never the same fix twice) · **Rollback** (change broke something → return to the last green state via `git stash`/revert *before* stacking another fix) · **Ask** (several readings → one targeted question first) · **Escalate** (past the attempt cap, or risk/security → hand off with a root-cause note). Attempt cap: 3 cycles (sniper Fix Retry Loop).
@@ -64,7 +64,7 @@ Writing style (ALWAYS): clear, concise, precise. Lead with the answer, then only
 
 **ALL 3 in ONE message. NEVER launch sequentially.**
 **Scope precision**: trivial read-only question → `explore-codebase` (or built-in `explore`) alone suffices. ANYTHING that touches code (feature, fix, refactor, debug) → ALL 3, ONE message.
-**ONE exception to delegation**: the file you are about to Edit — Read it yourself first, ALWAYS (never edit an unread file).
+**ONE exception to delegation**: the file you are about to Edit — Read it yourself first, ALWAYS (never edit an unread file). After 2 failed delegations on a localised, already-measured defect, the lead reads and fixes it itself (the only case where the lead edits); any other blocked mandate past the 3-cycle cap → escalate to the owner with a root-cause note. Otherwise the agent reads and edits.
 
 ### Execution Strategy
 
@@ -72,7 +72,7 @@ Writing style (ALWAYS): clear, concise, precise. Lead with the answer, then only
 
 | Scope | Action | Why |
 |-------|--------|-----|
-| Trivial / read-only / 1 targeted file, bounded change | Direct edit (or 1 domain-expert) + sniper. NO team, NO mandatory ANALYZE trio. | Orchestration cost (spawn, briefs, cross-checks) exceeds the gain. |
+| Trivial / read-only / 1 targeted file, bounded change | 1 agent (the domain expert) + sniper — the lead never edits, even a one-line change; read-only → explore-codebase alone. NO team, NO mandatory ANALYZE trio. | Orchestration cost (spawn, briefs, cross-checks) exceeds the gain. |
 | Non-trivial, ONE task (mono-concern) | 1 domain-expert (+ targeted ANALYZE if it touches unknown code) + sniper/challenger. | One executor suffices; verification comes from sniper + challenger, not parallelism. |
 | Several tasks, SAME domain, even COUPLED | **One agent per task** (parallel `Agent` calls) — each task has one agent and owns the files it needs. Coupling is handled by the brief (shared contract stated up front), not by serializing every task onto one executor. Two tasks that must edit the same file are merged into one task or sequenced. Announce the split, don't ask. | Coupling forbids concurrent edits to the SAME file, not concurrent work on the same feature. One executor carrying several tasks is a context bottleneck. |
 | Truly parallelizable: INDEPENDENT tasks, multi-domain, or large work with no cross-dependency | **Propose a swarm first** — ask user. A swarm is **MINIMUM 4 agents in parallel** (`AgentSwarm` or parallel `Agent` calls), NEVER 1. | Parallelism only pays when the tasks have no dependency between them. |
