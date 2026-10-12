@@ -1,130 +1,61 @@
 ---
 name: ui-automation
-description: XcodeBuildMCP UI automation tools - tap, swipe, screenshot, type_text, snapshot_ui
-when-to-use: automating user interactions, capturing screenshots, testing UI flows
-keywords: tap, swipe, screenshot, type_text, snapshot_ui, gesture, UI automation, AXe
+description: XcodeBuildMCP UI automation tools - snapshot_ui, tap, batch, swipe, gesture, type_text, screenshot (elementRef-based)
+when-to-use: automating user interactions, capturing screenshots, testing UI flows, accessibility checks on simulator
+keywords: tap, swipe, screenshot, type_text, snapshot_ui, elementRef, batch, gesture, UI automation
 priority: medium
 requires: simulator-tools.md
-related: debugging.md
+related: debugging.md, ../../mcp-tools/references/xcodebuild-mcp-ui-verification.md
 ---
 
 # iOS UI Automation
 
-## When to Use
-
-- Automating repetitive UI interactions
-- Capturing screenshots for documentation
-- Testing UI flows programmatically
-- Extracting view hierarchy information
-- Building automation scripts
+Tool names and parameters read from `xcodebuildmcp@2.7.0` manifests.
 
 ## Prerequisites
 
-**AXe Installation Required:**
-```bash
-brew tap cameroncooke/axe
-brew install axe
+- `screenshot` and `snapshot_ui` are in the default **simulator** workflow.
+- `tap`, `batch`, `long_press`, `swipe`, `gesture`, `type_text`, `button`, `key_press`, `wait_for_ui` need the **ui-automation** workflow (`XCODEBUILDMCP_ENABLED_WORKFLOWS` or `.xcodebuildmcp/config.yaml` `enabledWorkflows`).
+- The AXe automation binary ships bundled with the npm package.
+
+## Model: observe, then act by elementRef
+
+1. `snapshot_ui` returns a semantic runtime UI tree; actionable nodes carry an `elementRef` (e.g. `e8`) and list their actions.
+2. Act on an `elementRef` - not raw coordinates.
+3. Refresh `snapshot_ui` after navigation, scrolling, sheet changes or layout changes; old refs go stale.
+
+## Tools
+
+| Tool | Key parameters | Use |
+|------|----------------|-----|
+| `snapshot_ui` | `simulatorId`, optional `sinceScreenHash` | Element tree, labels, frames, refs |
+| `wait_for_ui` | - | Wait for an element/state before acting |
+| `tap` | `elementRef`, optional `preDelay`/`postDelay` | One tap on a ref listing the tap action |
+| `batch` | `steps: [{"action":"tap","elementRef":"e1"}, ...]` | Several same-screen taps (e.g. toggles) |
+| `long_press` | `elementRef`, `duration` (ms) | Context menus |
+| `swipe` | `direction` up/down/left/right, optional `withinElementRef`, `distance`, `duration` | Scrolling, dismissing |
+| `gesture` | preset `scroll-up/down/left/right`, `swipe-from-{top,bottom,left,right}-edge` | Standard system gestures |
+| `type_text` | `elementRef`, `text`, optional `replaceExisting` | Form input |
+| `screenshot` | `returnFormat`: `path` or `base64` | Visual evidence |
+
+## Workflow
+
+```text
+1. snapshot_ui                       -> find elementRef + check labels/frames
+2. tap / type_text / batch           -> act
+3. snapshot_ui (refresh)             -> assert new state
+4. screenshot                        -> evidence
 ```
 
-## Available MCP Tools
+## Accessibility Use
 
-### tap
-Touch element or coordinate.
-
-**Parameters:**
-- `x`, `y` - Screen coordinates
-- `duration` - Optional hold time
-- `udid` - Optional simulator UDID
-
-**Use when:**
-- Simulating button taps
-- Selecting elements
-
-### long_press
-Extended press at coordinates.
-
-**Parameters:**
-- `x`, `y` - Screen coordinates
-- `duration` - Hold duration
-
-**Use when:**
-- Context menu triggers
-- Drag initiation
-
-### swipe
-Drag between two points.
-
-**Parameters:**
-- `fromX`, `fromY` - Start position
-- `toX`, `toY` - End position
-- `duration` - Swipe speed
-
-**Use when:**
-- Scrolling
-- Dismissing
-- Page navigation
-
-### type_text
-Enter text via keyboard.
-
-**Parameters:**
-- `text` - String to type
-
-**Use when:**
-- Form filling
-- Search input
-
-### screenshot
-Capture current screen.
-
-**Parameters:**
-- `savePath` - Output file path
-
-**Use when:**
-- Documenting UI
-- Bug reports
-- Visual testing
-
-### snapshot_ui
-Get complete view hierarchy with coordinates.
-
-**Returns:**
-- Element tree with positions
-- Accessibility labels
-- Frame coordinates
-
-**Use when:**
-- Finding tap coordinates
-- Understanding UI structure
-- Accessibility testing
-
-### gesture
-Execute predefined gestures.
-
-**Parameters:**
-- `gestureType` - swipeUp, swipeDown, pinch, etc.
-
-**Use when:**
-- Standard gestures
-- Multi-finger interactions
-
----
-
-## Workflow: UI Automation
-
-1. `snapshot_ui` - Get view hierarchy
-2. Find element coordinates
-3. `tap` / `swipe` - Interact
-4. `screenshot` - Capture result
-5. Repeat as needed
-
----
+`snapshot_ui` doubles as an accessibility check: unlabeled interactive nodes and frames under 44x44 pt are HIG violations (https://developer.apple.com/design/human-interface-guidelines/accessibility). Full gate: `mcp-tools/references/xcodebuild-mcp-ui-verification.md`.
 
 ## Best Practices
 
-- ✅ Use snapshot_ui to find coordinates
-- ✅ Add accessibility identifiers for reliability
-- ✅ Screenshot before and after actions
-- ✅ Use gestures for standard interactions
-- ❌ Don't hardcode coordinates without snapshot_ui
-- ❌ Don't assume static coordinates
+- ✅ Always act on refs from the latest `snapshot_ui`
+- ✅ Give controls accessibility labels/identifiers - they make refs stable and VoiceOver usable
+- ✅ Screenshot before and after key actions
+- ✅ Use `batch` for multiple same-screen taps
+- ❌ Don't reuse refs after navigation or scrolling
+- ❌ Don't pass text-only rows to `tap`

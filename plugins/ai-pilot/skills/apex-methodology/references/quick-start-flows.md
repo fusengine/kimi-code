@@ -12,7 +12,7 @@ description: Full step-by-step APEX flows for Standard Feature, Bug Fix, and Hot
 2. 00.5-brainstorm    → Ask questions, propose alternatives, get design approval
 3. 01-analyze-code    → explore-codebase + research-expert
 4. 02-features-plan   → TaskCreate task breakdown
-5. 03-execution       → TDD: write test FIRST, then implement (files <100 lines)
+5. 03-execution       → TDD: write test FIRST, then implement (files within `FUSE_SOLID_MAX_LINES`)
 6. 03.5-elicit        → Expert self-review (elicitation techniques)
 7. 03.7-verification  → Verify functional resolution against original request
 8. 04-validation      → sniper agent (code quality)

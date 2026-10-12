@@ -23,11 +23,11 @@ src/main/java/com/yourapp/
 │   │   ├── models/
 │   │   └── exceptions/
 │   ├── product/                 # Feature module
-│   │   ├── controllers/         (< 50 lines)
-│   │   ├── services/            (< 100 lines)
-│   │   ├── repositories/        (< 100 lines)
-│   │   ├── interfaces/          (< 30 lines)
-│   │   ├── models/              (< 50 lines)
+│   │   ├── controllers/
+│   │   ├── services/
+│   │   ├── repositories/
+│   │   ├── interfaces/
+│   │   ├── models/
 │   │   ├── exceptions/
 │   │   └── config/
 │   ├── order/
@@ -36,13 +36,15 @@ src/main/java/com/yourapp/
 
 ## Layer Responsibilities
 
-| Layer | Job | Max Lines | Details |
-|-------|-----|-----------|---------|
-| Controller | Parse request → service → response | 50 | No business logic |
-| Service | Business logic, orchestration, transactions | 100 | No HTTP concerns |
-| Repository | Data access with JPA | 100 | No business logic |
-| Interface | Contract definition | 30 | One per file, full Javadoc |
-| Model | Entities and DTOs | 50 | DTOs as `record` |
+| Layer | Job | Details |
+|-------|-----|---------|
+| Controller | Parse request → service → response | No business logic |
+| Service | Business logic, orchestration, transactions | No HTTP concerns |
+| Repository | Data access with JPA | No business logic |
+| Interface | Contract definition | One per file, full Javadoc |
+| Model | Entities and DTOs | DTOs as `record` |
+
+Every file stays within `FUSE_SOLID_MAX_LINES`.
 
 ## Import Rules (CRITICAL)
 
@@ -106,10 +108,9 @@ public class OrderService {
 ## Refactoring Checklist
 
 - [ ] All code in `modules/[feature]/`—no flat `src/`
-- [ ] Controllers < 50 lines
-- [ ] Services < 100 lines (split at 90)
-- [ ] Repositories < 100 lines
-- [ ] Interfaces < 30 lines, in `interfaces/` directory
+- [ ] Controllers thin, no business logic
+- [ ] Every file within `FUSE_SOLID_MAX_LINES`
+- [ ] Interfaces small and focused, in `interfaces/` directory
 - [ ] DTOs as `record` (Java 16+)
 - [ ] Shared code in `modules/core/`
 - [ ] No cross-module concrete imports

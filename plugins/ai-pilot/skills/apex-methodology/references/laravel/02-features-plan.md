@@ -70,24 +70,24 @@ Feature: User Profile API
 
 ## File Size Estimation
 
-### Target: Files < 100 lines
+### Target: every file within `FUSE_SOLID_MAX_LINES`
 
-| Component | Target Lines |
+| Component | Responsibility |
 | --- | --- |
-| Controller | < 50 lines |
-| Model | < 80 lines |
-| Service | < 100 lines |
-| FormRequest | < 50 lines |
-| Resource | < 50 lines |
-| Migration | < 50 lines |
-| Policy | < 50 lines |
+| Controller | HTTP in/out only, delegates to a service |
+| Model | Relations, casts, scopes |
+| Service | One business capability |
+| FormRequest | Validation rules for one request |
+| Resource | One response shape |
+| Migration | One schema change |
+| Policy | Authorization for one model |
 
 ### If Exceeds Limit
 
 ```text
-Controller > 50 -> Split by resource
-Service > 100   -> Extract sub-services
-Model > 80      -> Extract traits
+Controller over the ceiling -> Split by resource
+Service over the ceiling    -> Extract sub-services
+Model over the ceiling      -> Extract traits
 ```
 
 ---
@@ -213,7 +213,7 @@ Split large interfaces:
 
 ```text
 [ ] All components identified
-[ ] File sizes estimated <100 lines
+[ ] File sizes estimated within `FUSE_SOLID_MAX_LINES`
 [ ] Artisan commands listed
 [ ] Dependencies mapped
 [ ] Test coverage planned

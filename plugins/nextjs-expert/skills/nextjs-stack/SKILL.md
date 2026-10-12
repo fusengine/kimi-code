@@ -16,7 +16,7 @@ Master skill combining all framework documentation for modern Next.js developmen
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze project structure and existing patterns
 2. **research-expert** - Verify latest docs for all stack technologies

@@ -307,4 +307,4 @@ func CreateUser() UserInterface {
 - [ ] No unexported (private) interfaces
 - [ ] Never implements in the same file
 - [ ] One interface per file (or closely related composition)
-- [ ] < 30 lines maximum
+- [ ] Small, focused interface (1-3 methods), file within `FUSE_SOLID_MAX_LINES`

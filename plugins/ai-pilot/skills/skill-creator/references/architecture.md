@@ -19,11 +19,11 @@ Every skill follows a consistent directory structure for predictability and auto
 
 ```
 plugins/<agent>/skills/<skill-name>/
-├── SKILL.md                    # Entry point (~150 lines)
-└── references/                 # Conceptual docs (150 max)
+├── SKILL.md                    # Entry point
+└── references/                 # Conceptual docs
     ├── installation.md
     ├── core-concepts.md
-    └── templates/              # Complete code (no limit)
+    └── templates/              # Complete code (split across linked files when needed)
         └── basic-setup.md
 ```
 

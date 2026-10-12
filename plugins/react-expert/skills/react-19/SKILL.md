@@ -14,7 +14,7 @@ Also documents all classic hooks (useState, useEffect, useLayoutEffect, useRef, 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing React patterns and component structure
 2. **research-expert** - Verify latest React 19.3 docs via Context7/Exa

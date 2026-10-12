@@ -1,6 +1,6 @@
 ---
 name: validator-template
-description: Zod validation schema template (< 40 lines)
+description: Zod validation schema template
 when-to-use: validation logic, schema validation, input validation
 keywords: validator, validation, schema, input, sanitize
 priority: medium
@@ -10,7 +10,7 @@ trigger-on-edit: "validators/"
 level: template
 ---
 
-# Validator (< 40 lines)
+# Validator
 
 ## Basic Schema
 
@@ -91,7 +91,7 @@ export type CliArgs = z.infer<typeof cliArgsSchema>
 
 ## Rules
 
-- Max 40 lines per validator file
+- Validator file within `FUSE_SOLID_MAX_LINES`
 - Export schema AND inferred type together
 - Use `.default()` for optional fields with defaults
 - JSDoc for complex schemas

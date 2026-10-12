@@ -16,7 +16,7 @@ Do NOT use this skill for coding style, PSR compliance, or autoloading — that 
 
 ## Agent Workflow (MANDATORY)
 
-Before writing PHP, use `TeamCreate` to spawn 3 agents:
+Before writing PHP, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Detect the project's minimum PHP version (`composer.json` `require.php`, CI matrix)
 2. **research-expert** - Verify a feature's version + syntax on php.net before using it

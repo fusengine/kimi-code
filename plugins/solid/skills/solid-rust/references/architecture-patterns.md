@@ -38,9 +38,9 @@ src/
 ├── modules/
 │   ├── user/
 │   │   ├── mod.rs                 # Feature re-exports
-│   │   ├── handler.rs             # HTTP endpoints (< 100 lines)
-│   │   ├── service.rs             # Business logic (< 100 lines)
-│   │   ├── repository.rs          # Data access (< 100 lines)
+│   │   ├── handler.rs             # HTTP endpoints
+│   │   ├── service.rs             # Business logic
+│   │   ├── repository.rs          # Data access
 │   │   ├── model.rs               # Domain entities
 │   │   ├── error.rs               # User-specific errors
 │   │   ├── traits.rs              # User-specific traits
@@ -121,32 +121,32 @@ pub use self::service::UserService;
 
 ## File Size Rules (MANDATORY)
 
-**Maximum 100 lines per file.** Split at 90 to stay under limit.
+**Every file stays within the hook ceiling `FUSE_SOLID_MAX_LINES`.** Split well before it, as soon as a file mixes responsibilities.
 
-| File | Max Lines | When to Split |
-|------|-----------|---------------|
-| handler.rs | 100 | At 90 lines, create `handlers/` subdir |
-| service.rs | 100 | At 90 lines, move methods to separate impls |
-| repository.rs | 100 | At 90 lines, create traits/ with dedicated files |
-| mod.rs | 50 | Re-exports only |
+| File | When to Split |
+|------|---------------|
+| handler.rs | Several endpoints or concerns: create a `handlers/` subdir |
+| service.rs | Several concerns: move methods to separate impls |
+| repository.rs | Several data sources: create traits/ with dedicated files |
+| mod.rs | Re-exports only |
 
 ---
 
 ## Handler Split Strategy
 
 ```
-// Before: handler.rs at 120 lines
+// Before: one handler.rs mixing several endpoints
 user/
-└── handler.rs  (125 lines) ❌ TOO LONG
+└── handler.rs  ❌ MIXED RESPONSIBILITIES
 
-// After: split at 90 lines
+// After: one file per endpoint
 user/
 ├── mod.rs
 └── handlers/
     ├── mod.rs         (re-exports)
-    ├── create.rs      (create_user - 45 lines)
-    ├── update.rs      (update_user - 35 lines)
-    └── list.rs        (list_users - 40 lines)
+    ├── create.rs      (create_user)
+    ├── update.rs      (update_user)
+    └── list.rs        (list_users)
 ```
 
 **handlers/mod.rs:**
@@ -165,15 +165,15 @@ mod list;
 ## Service Split Strategy
 
 ```
-// Before: service.rs at 150 lines
+// Before: one service.rs mixing several concerns
 user/
-└── service.rs  (155 lines) ❌ TOO LONG
+└── service.rs  ❌ MIXED RESPONSIBILITIES
 
 // After: split concerns
 user/
-├── service.rs           (core UserService - 60 lines)
-├── email_service.rs     (email methods - 50 lines)
-└── validation_service.rs (validation - 45 lines)
+├── service.rs           (core UserService)
+├── email_service.rs     (email methods)
+└── validation_service.rs (validation)
 ```
 
 **Composition in mod.rs:**
@@ -429,11 +429,11 @@ mod service;
 
 ## Common File Size Splits
 
-| Original File | Size | Split Into |
-|---|---|---|
-| handler.rs | 120 | handlers/create.rs, handlers/list.rs, handlers/update.rs |
-| service.rs | 150 | service.rs (core), email_svc.rs, validation_svc.rs |
-| repository.rs | 100 | repository/mod.rs (trait), repository/pg.rs, repository/mock.rs |
+| Original File | Split Into |
+|---|---|
+| handler.rs | handlers/create.rs, handlers/list.rs, handlers/update.rs |
+| service.rs | service.rs (core), email_svc.rs, validation_svc.rs |
+| repository.rs | repository/mod.rs (trait), repository/pg.rs, repository/mock.rs |
 
 ---
 

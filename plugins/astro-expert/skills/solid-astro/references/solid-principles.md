@@ -12,11 +12,11 @@ One component = one purpose. One function = one task.
 ### Component Splitting
 
 ```astro
-<!-- BAD: Page component doing too much (> 50 lines) -->
+<!-- BAD: Page component doing too much -->
 <!-- src/pages/blog.astro — contains data fetching, UI, AND layout logic -->
 
 <!-- GOOD: Split responsibilities -->
-<!-- src/pages/blog.astro — layout + composition only (< 50 lines) -->
+<!-- src/pages/blog.astro — layout + composition only -->
 <!-- src/components/BlogList.astro — renders post list -->
 <!-- src/components/BlogCard.astro — renders single post card -->
 <!-- src/lib/blog.ts — data fetching service -->
@@ -24,14 +24,7 @@ One component = one purpose. One function = one task.
 
 ### File Size Limits
 
-| File Type | Max Lines | Split at |
-|-----------|-----------|---------|
-| Page component | 50 | 40 |
-| Layout component | 80 | 70 |
-| UI component | 60 | 50 |
-| Utility/service | 80 | 70 |
-| Content schema | 50 | 40 |
-| Interface file | 50 | 40 |
+Every file type (page, layout, UI component, utility/service, content schema, interface) stays within the hook ceiling `FUSE_SOLID_MAX_LINES`; split by responsibility before it.
 
 ## O — Open/Closed
 

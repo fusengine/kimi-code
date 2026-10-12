@@ -2,7 +2,7 @@
 name: complications
 description: watchOS complications for watch faces with WidgetKit, timelines, and data updates
 when-to-use: creating watch face complications, displaying glanceable data, updating complication content
-keywords: complication, WidgetKit, TimelineProvider, watch face, CLKComplicationFamily
+keywords: complication, WidgetKit, AppIntentTimelineProvider, accessory widget, watch face, Smart Stack
 priority: high
 related: workouts.md, watch-connectivity.md
 ---
@@ -19,7 +19,8 @@ related: workouts.md, watch-connectivity.md
 ## Key Concepts
 
 ### WidgetKit Complications (watchOS 9+)
-Modern complication system using WidgetKit.
+Complications are WidgetKit accessory widgets; ClockKit complications are legacy - migrate them
+(https://developer.apple.com/documentation/widgetkit/converting-a-clockkit-app).
 
 **Key Points:**
 - Same API as iOS widgets
@@ -29,20 +30,22 @@ Modern complication system using WidgetKit.
 
 ### Complication Families
 
-| Family | Description |
-|--------|-------------|
-| accessoryCircular | Small circular |
-| accessoryRectangular | Rectangular area |
-| accessoryInline | Single line text |
-| accessoryCorner | Corner placement |
+| Family | Where (HIG /widgets) |
+|--------|----------------------|
+| accessoryCircular | Complications and Smart Stack |
+| accessoryRectangular | Complications and Smart Stack |
+| accessoryInline | Complications (single tap target) |
+| accessoryCorner | Complications (watchOS only) |
 
-### TimelineProvider
-Provides content for complications.
+On Apple Watch, accessory widgets render in full-color or accented (tinted) mode - mark accent views with `widgetAccentable(_:)`.
+
+### AppIntentTimelineProvider (watchOS 10+, configurable)
+Async provider; prefer it over the completion-based `TimelineProvider`.
 
 **Methods:**
-- `placeholder(in:)` - Loading state
-- `getTimeline(in:completion:)` - Future entries
-- `getSnapshot(in:completion:)` - Quick preview
+- `placeholder(in:)` - Redacted loading state
+- `snapshot(for:in:) async` - Quick preview
+- `timeline(for:in:) async` - Future entries
 
 ### Timeline Entries
 Data snapshots at specific times.
@@ -65,17 +68,10 @@ Data snapshots at specific times.
 
 ---
 
-## Complication Placement
+## Placement
 
-```
-Watch Face
-├── Top slot
-├── Corner slots (4)
-├── Center slot
-└── Bottom slot
-
-Each slot supports specific families
-```
+Available slots depend on the watch face; each face exposes only some accessory families. Support several families and test on multiple faces and in the Smart Stack.
+Source: https://developer.apple.com/design/human-interface-guidelines/widgets
 
 ---
 

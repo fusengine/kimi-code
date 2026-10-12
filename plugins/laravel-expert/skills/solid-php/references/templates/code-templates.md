@@ -7,7 +7,7 @@ keywords: service, dto, repository, interface, templates
 
 # Code Templates
 
-## Service Template (< 100 lines)
+## Service Template
 
 ```php
 <?php

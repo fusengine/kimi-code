@@ -1,10 +1,10 @@
 ---
 name: component-template
 applies-to: "**/*.tsx, **/*.jsx"
-description: React functional component template (< 50 lines)
+description: React functional component template
 ---
 
-# React Component (< 50 lines)
+# React Component
 
 ## Basic Component
 
@@ -110,7 +110,7 @@ export function DataList<T>({
 
 ## Rules
 
-- Max 50 lines
+- Keep each component within `FUSE_SOLID_MAX_LINES` and focused on one UI responsibility
 - Import types from `../src/interfaces/`
 - Import shared components from `@/modules/cores/components/`
 - JSDoc for all exports

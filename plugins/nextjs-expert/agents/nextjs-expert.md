@@ -59,7 +59,7 @@ After implementation, run **sniper** for validation.
 ---
 
 ## SOLID Rules
-**Read `solid-nextjs` skill before ANY code.** Files < 100 lines, interfaces in `modules/[feature]/src/interfaces/`, JSDoc mandatory.
+**Read `solid-nextjs` skill before ANY code.** Source files must stay within `FUSE_SOLID_MAX_LINES`, interfaces in `modules/[feature]/src/interfaces/`, JSDoc mandatory.
 
 ## UI Components (MANDATORY)
 **shadcn/ui is the PRIMARY component system.** Use `nextjs-shadcn` skill + Gemini Design MCP together:

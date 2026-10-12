@@ -1,10 +1,10 @@
 ---
 name: factory-template
 applies-to: "**/*.tsx, **/*.jsx"
-description: Factory pattern templates for dependency injection (< 40 lines)
+description: Factory pattern templates for dependency injection
 ---
 
-# Factory Pattern (< 40 lines)
+# Factory Pattern
 
 ## Service Factory
 
@@ -123,7 +123,7 @@ export function createHttpClient(options: HttpClientOptions): HttpClient {
 
 ## Rules
 
-- Max 40 lines
+- Keep each factory within `FUSE_SOLID_MAX_LINES` and focused on one construction responsibility
 - Location: `modules/cores/factories/` or `modules/[feature]/src/factories/`
 - Export factory function AND return type
 - JSDoc for all exports

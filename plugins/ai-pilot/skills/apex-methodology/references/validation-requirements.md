@@ -19,7 +19,7 @@ description: Pre-PR and code quality checklists for the APEX workflow
 ## Code Quality
 
 ```text
-□ Files <100 lines
+□ Files within `FUSE_SOLID_MAX_LINES`
 □ Interfaces in correct location
 □ JSDoc on all exports
 □ No any types

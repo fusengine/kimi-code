@@ -98,7 +98,7 @@ App/
 
 - ✅ Use @Observable for ViewModels (not ObservableObject)
 - ✅ Define protocols for all dependencies
-- ✅ Keep ViewModels under 150 lines
+- ✅ Keep ViewModels within `FUSE_SOLID_MAX_LINES`
 - ✅ One ViewModel per View
 - ✅ Use constructor injection
 - ❌ Don't access network directly from Views

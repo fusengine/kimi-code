@@ -120,7 +120,7 @@ return <span>{user?.name}</span>
 ```text
 1. Make minimal change to fix
 2. Follow same patterns as codebase
-3. Keep files <100 lines
+3. Keep files within `FUSE_SOLID_MAX_LINES`
 4. Add regression test if applicable
 ```
 
@@ -196,7 +196,7 @@ git commit -m "test(Button): fix async assertion"
 [ ] Issue understood and reproduced
 [ ] Root cause identified
 [ ] Minimal fix implemented
-[ ] Files still <100 lines
+[ ] Files still within `FUSE_SOLID_MAX_LINES`
 [ ] sniper validation passes
 [ ] All tests pass
 [ ] Browser testing done

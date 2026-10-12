@@ -14,7 +14,7 @@ Produces a Base UI / Radix / React Aria / Mixed (migration needed) / None (fresh
 
 ## Agent Workflow (MANDATORY)
 
-Before detection, use `TeamCreate` to spawn agents:
+Before detection, spawn agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Scan project structure
 2. **research-expert** - Verify latest primitive patterns

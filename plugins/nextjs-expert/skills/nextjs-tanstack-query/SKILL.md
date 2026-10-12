@@ -16,7 +16,7 @@ TanStack Query v5 provides powerful server state management with Next.js 16 inte
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing data fetching patterns
 2. **research-expert** - Verify latest TanStack Query v5 docs

@@ -5,7 +5,7 @@ applies-to: "**/*.astro"
 
 # Template: Layout Component with Slots
 
-SOLID-compliant layout with named slots and JSDoc (< 80 lines).
+SOLID-compliant layout with named slots and JSDoc (within `FUSE_SOLID_MAX_LINES`).
 
 ## src/layouts/BaseLayout.astro
 

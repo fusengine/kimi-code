@@ -10,7 +10,7 @@ keywords: model, DTO, error, Sendable, Codable, template, Swift
 
 ## Rules
 
-- Models < 50 lines
+- Models within `FUSE_SOLID_MAX_LINES`, one model per file
 - Location: `Core/Models/` (shared) or `Features/[Feature]/Models/`
 - Always `struct` + `Sendable` + `Codable`
 - Include `.preview` static for `#Preview`

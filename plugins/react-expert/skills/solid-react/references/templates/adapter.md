@@ -1,10 +1,10 @@
 ---
 name: adapter-template
 applies-to: "**/*.tsx, **/*.jsx"
-description: Adapter pattern templates for external integrations (< 40 lines)
+description: Adapter pattern templates for external integrations
 ---
 
-# Adapter Pattern (< 40 lines)
+# Adapter Pattern
 
 ## API Response Adapter
 
@@ -160,7 +160,7 @@ export function adaptToMixpanel(event: AnalyticsEvent): void {
 
 ## Rules
 
-- Max 40 lines
+- Keep each adapter within `FUSE_SOLID_MAX_LINES` and focused on one integration boundary
 - Location: `modules/[feature]/src/adapters/`
 - Transform external data to internal format
 - JSDoc for all exports

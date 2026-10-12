@@ -42,7 +42,7 @@ Deep dive: the `start-execution-model` skill.
 ## Quick Decision Flow
 
 ```text
-File > 90 lines?                  → single-responsibility.md (split)
+File near FUSE_SOLID_MAX_LINES?   → single-responsibility.md (split)
 Designing a payload / context?    → interface-segregation.md
 Handler news up a DB client?      → dependency-inversion.md
 Where does this directory go?     → architecture-patterns.md
@@ -53,7 +53,7 @@ Which side does this run on?      → start-execution-model skill
 
 ## Non-Negotiables
 
-- Files < 100 lines (split at 90).
+- Source files within `FUSE_SOLID_MAX_LINES`, split by responsibility.
 - Types only in `src/interfaces/`.
 - JSDoc on every export.
 - Never hand-edit `src/routeTree.gen.ts`.

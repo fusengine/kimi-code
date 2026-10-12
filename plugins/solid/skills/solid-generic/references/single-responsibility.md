@@ -20,20 +20,14 @@ level: principle
 
 ### Symptoms of Violation
 
-1. **File exceeds 90 lines** -> Trigger a split
+1. **File approaches `FUSE_SOLID_MAX_LINES`** -> Trigger a split
 2. **Cannot describe file in one sentence** -> Too many responsibilities
 3. **File has more than 15 imports** -> Doing too much
 4. **File has more than 5 exports** -> Mixed responsibilities
 
-### Line Limits by Type
+### Size Limit
 
-| File Type | Max Limit | Split Threshold |
-|-----------|-----------|-----------------|
-| Module | 80 lines | 70 lines |
-| Service | 60 lines | 50 lines |
-| Validator | 40 lines | 35 lines |
-| Utility | 60 lines | 50 lines |
-| Any other file | 100 lines | 90 lines |
+Every file stays within the hook ceiling `FUSE_SOLID_MAX_LINES`. Split well before it: one purpose per module, service, validator and utility.
 
 ---
 
@@ -58,7 +52,7 @@ modules/
 
 ### Split Example
 
-Before (1 file of 150 lines):
+Before (1 file mixing several responsibilities):
 ```
 modules/config/src/config.ts -> Types, Parsing, Validation, Defaults, Errors
 ```
@@ -125,8 +119,8 @@ modules/cores/errors/config.error.ts               -> Error classes (shared)
 
 ## Where to Find Code Templates?
 
--> `templates/module.md` - Module < 80 lines
--> `templates/service.md` - Service < 60 lines
+-> `templates/module.md` - Module
+-> `templates/service.md` - Service
 -> `templates/interface.md` - Interface definitions
 -> `templates/validator.md` - Validation schemas
 
@@ -134,7 +128,7 @@ modules/cores/errors/config.error.ts               -> Error classes (shared)
 
 ## SRP Checklist
 
-- [ ] File < line limit for its type
+- [ ] File within `FUSE_SOLID_MAX_LINES`
 - [ ] Types in `interfaces/` only
 - [ ] Services in `services/`
 - [ ] Validators in `validators/`

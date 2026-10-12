@@ -28,11 +28,11 @@ related: single-responsibility.md, open-closed.md, liskov-substitution.md, inter
 src/main/java/com/app/
 ├── modules/
 │   ├── [feature]/
-│   │   ├── controllers/     # HTTP handlers (< 50 lines)
-│   │   ├── services/        # Business logic (< 100 lines)
-│   │   ├── repositories/    # Data access (< 100 lines)
-│   │   ├── interfaces/      # Contracts ONLY (< 30 lines)
-│   │   └── models/          # DTOs, records (< 50 lines)
+│   │   ├── controllers/     # HTTP handlers
+│   │   ├── services/        # Business logic
+│   │   ├── repositories/    # Data access
+│   │   ├── interfaces/      # Contracts ONLY
+│   │   └── models/          # DTOs, records
 │   └── core/                # Shared (cross-feature)
 │       ├── services/
 │       ├── interfaces/
@@ -46,14 +46,7 @@ src/main/java/com/app/
 
 ## File Size Limits
 
-| Type | Max Lines | Split At |
-|------|-----------|----------|
-| Controller | 50 | 40 |
-| Service | 100 | 90 |
-| Repository | 100 | 90 |
-| Interface | 30 | 25 |
-| Model/DTO | 50 | 40 |
-| **Any file** | **100** | **90** |
+Every file stays within the hook ceiling `FUSE_SOLID_MAX_LINES`. One purpose per file: controllers stay thin, interfaces are small and focused; split mixed responsibilities.
 
 ---
 
@@ -69,7 +62,7 @@ src/main/java/com/app/
 
 ## Quick Checklist
 
-- [ ] Files < 100 lines
+- [ ] Files within `FUSE_SOLID_MAX_LINES`
 - [ ] Interfaces in `modules/[feature]/interfaces/` or `modules/core/interfaces/`
 - [ ] Services depend on interfaces (constructor injection)
 - [ ] DTOs use `record` (Java 16+)

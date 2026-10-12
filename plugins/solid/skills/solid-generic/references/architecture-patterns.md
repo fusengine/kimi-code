@@ -94,16 +94,17 @@ modules/
 
 ## File Size Rules
 
-| Type | Max Lines | Purpose |
-|------|-----------|---------|
-| Module | 80 | Main logic unit |
-| Service | 60 | Business operations |
-| Validator | 40 | Schema definitions |
-| Utility | 60 | Pure helpers |
-| Error class | 40 | Error definitions |
-| Constants | 40 | Static values |
-| Entry point | 30 | Wiring only |
-| Total file | 100 | Split at 90 |
+| Type | Purpose |
+|------|---------|
+| Module | Main logic unit |
+| Service | Business operations |
+| Validator | Schema definitions |
+| Utility | Pure helpers |
+| Error class | Error definitions |
+| Constants | Static values |
+| Entry point | Wiring only |
+
+Every file stays within the hook ceiling `FUSE_SOLID_MAX_LINES`.
 
 ---
 
@@ -126,7 +127,7 @@ modules/
 |---------|-----|----------|
 | Types in service files | Violates SRP | -> `interfaces/` |
 | Logic in entry point | Hard to test | -> `services/` |
-| Files > 100 lines | Maintenance cost | -> Split |
+| Files over `FUSE_SOLID_MAX_LINES` | Maintenance cost | -> Split |
 | Service -> Service import | Tight coupling | -> DI via factory |
 | Feature -> Feature import | Cross-dependency | -> Move to `cores/` |
 | `any` type | No type safety | -> Proper typing |

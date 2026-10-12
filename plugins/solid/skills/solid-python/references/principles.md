@@ -24,7 +24,7 @@ related: patterns.md
 
 ## S - Single Responsibility (SRP)
 
-- Modules < 100 lines (split at 90)
+- Modules within `FUSE_SOLID_MAX_LINES`; split mixed responsibilities
 - Routes: HTTP I/O only, delegate to services
 - Services: Business logic only, use repositories
 - Repositories: Data access only

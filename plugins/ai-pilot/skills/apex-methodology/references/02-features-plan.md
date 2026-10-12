@@ -24,7 +24,7 @@ next_step: references/03-execution.md
 ```text
 Use TaskCreate tool to create:
 1. Ordered list of implementation steps
-2. Each step <100 lines of code
+2. Each step small enough to stay within `FUSE_SOLID_MAX_LINES`
 3. Clear acceptance criteria
 4. Dependencies between tasks (addBlockedBy)
 Use TaskUpdate to track status (in_progress/completed).
@@ -57,18 +57,17 @@ Use TaskUpdate to track status (in_progress/completed).
 
 ### Size Estimation Rules
 
-| Estimated Lines | Action |
+| Estimated Size | Action |
 | --- | --- |
-| < 50 | Single file OK |
-| 50-80 | Monitor during implementation |
-| 80-100 | Plan split points NOW |
-| > 100 | MUST split before starting |
+| Well within `FUSE_SOLID_MAX_LINES` | Single file OK |
+| Approaching `FUSE_SOLID_MAX_LINES` | Plan split points NOW |
+| Over `FUSE_SOLID_MAX_LINES` | MUST split before starting |
 
 ### Split Strategy
 
 ```text
 Large feature → Split into:
-├── main.[ext] (orchestration, <80 lines)
+├── main.[ext] (orchestration only)
 ├── types.[ext] (interfaces, types)
 ├── validators.[ext] (validation logic)
 ├── utils.[ext] (helper functions)
@@ -144,7 +143,7 @@ tests
 ### Identify Risks
 
 ```text
-□ Complex logic requiring >100 lines?
+□ Complex logic requiring more than `FUSE_SOLID_MAX_LINES`?
    → Plan split NOW
 
 □ Multiple external dependencies?
@@ -203,7 +202,7 @@ tests
 
 ```text
 □ TaskCreate plan created
-□ All tasks <100 lines each
+□ Every task fits within `FUSE_SOLID_MAX_LINES`
 □ Interfaces planned FIRST
 □ File splits pre-planned
 □ Dependencies mapped

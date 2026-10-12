@@ -40,7 +40,7 @@ Each feature is self-contained:
 
 ```text
 modules/[feature]/
-├── components/          # UI (< 50 lines each)
+├── components/          # UI (rendering only)
 └── src/
     ├── interfaces/      # Types ONLY
     ├── services/        # Business logic
@@ -71,13 +71,14 @@ modules/cores/
 
 ## File Size Rules
 
-| Type | Max Lines | Purpose |
-|------|-----------|---------|
-| Component | 50 | UI rendering only |
-| Hook | 30 | Single logic concern |
-| Service | 40 | API operations |
-| Store | 40 | State management |
-| Total file | 100 | Split at 90 |
+| Type | Purpose |
+|------|---------|
+| Component | UI rendering only |
+| Hook | Single logic concern |
+| Service | API operations |
+| Store | State management (max 40 lines, owner rule) |
+
+All source files must stay within `FUSE_SOLID_MAX_LINES`.
 
 ---
 
@@ -163,7 +164,7 @@ export const Route = createFileRoute('/products')({
 |---------|-----|----------|
 | Types in component | Violates SRP | → `interfaces/` |
 | Logic in component | Violates SRP | → `hooks/` or `services/` |
-| Files > 100 lines | Hard to maintain | → Split |
+| Source files exceeding `FUSE_SOLID_MAX_LINES` | Hard to maintain | → Split by responsibility |
 | Feature → Feature import | Tight coupling | → `cores/` |
 | `useEffect` for fetch | Race conditions | → TanStack Query |
 | Barrel exports | Bundle bloat | Direct imports |

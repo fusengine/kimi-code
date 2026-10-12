@@ -27,7 +27,7 @@ related: views-modifiers.md
 - `.ornament()` modifier on views
 - Position with `attachmentAnchor`
 - Standard SwiftUI content
-- Liquid Glass styling by default
+- Glass background by default (visionOS window glass)
 
 ### Attachments (RealityView)
 2D SwiftUI attached to 3D entities.
@@ -51,20 +51,26 @@ related: views-modifiers.md
 
 ## Ornament Usage
 
+`ornament(visibility:attachmentAnchor:contentAlignment:ornament:)` is a **View** modifier (visionOS 1.0+) - apply it to the window's root view, not to the `WindowGroup` scene.
+
 ```swift
 WindowGroup {
     ContentView()
-}
-.ornament(
-    attachmentAnchor: .scene(.bottom)
-) {
-    HStack {
-        Button("Play") { }
-        Button("Settings") { }
-    }
-    .padding()
+        .ornament(attachmentAnchor: .scene(.bottom)) {
+            HStack {
+                Button("Play", systemImage: "play.fill") { }
+                Button("Settings", systemImage: "gearshape") { }
+            }
+            .padding()
+            .glassBackgroundEffect()
+        }
 }
 ```
+
+HIG (https://developer.apple.com/design/human-interface-guidelines/ornaments):
+- Use ornaments for frequently needed, window-related controls; system toolbars and tab bars already appear as ornaments - don't rebuild them.
+- Keep ornaments visible (hide only during immersive content like video), few in number, no wider than the window.
+- Borderless buttons work well: the ornament background is already glass.
 
 ---
 
@@ -87,23 +93,23 @@ RealityView { content, attachments in
 
 ---
 
-## Liquid Glass Styling
+## Glass Styling
 
-iOS 26 / visionOS 26 default styling:
-- Translucent backgrounds
-- Light lensing effects (not blur)
-- `.glassBackgroundEffect()` (visionOS-specific for windows)
-- `.glassEffect(.regular)` (standard glass modifier)
+visionOS windows use an unmodifiable system **glass** material that lets surroundings show through and adapts to their luminance (HIG /materials, visionOS):
+- `.glassBackgroundEffect()` for custom window/ornament/attachment surfaces
+- Prefer translucency to opaque colors in windows
+- visionOS has no Dark Mode setting; glass adapts automatically
+- `glassEffect(_:in:)` (Liquid Glass) is not available on visionOS - see `swiftui-core/references/liquid-glass.md`
 
 ---
 
 ## Best Practices
 
-- ✅ Use ornaments for scene controls
+- ✅ Use ornaments for app-specific, window-related controls
 - ✅ Use attachments for entity UI
-- ✅ Keep ornaments minimal
-- ✅ Apply glass effects
-- ✅ Position intuitively
+- ✅ Keep ornaments minimal and no wider than the window
+- ✅ Rely on the default glass background (borderless buttons)
+- ✅ Hit targets >= 60x60 pt (HIG /accessibility, visionOS)
 - ❌ Don't overcrowd with UI
 - ❌ Don't block 3D content
 - ❌ Don't ignore depth perception

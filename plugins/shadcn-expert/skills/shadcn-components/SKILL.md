@@ -14,7 +14,7 @@ Requires detecting the project's primitive first (`shadcn-detection`) and consul
 
 ## Agent Workflow (MANDATORY)
 
-Before component work, use `TeamCreate` to spawn agents:
+Before component work, spawn agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Find existing components
 2. **research-expert** - Verify component APIs via Context7

@@ -117,7 +117,7 @@ Directly select 3-5 techniques based on {code_categories}.
 - `ARCH-01`: SOLID Compliance
 - `ARCH-02`: Dependency Analysis
 - `ARCH-03`: Coupling Review
-- `ARCH-04`: File Size Check (<100 LoC)
+- `ARCH-04`: File Size Check (within `FUSE_SOLID_MAX_LINES`)
 
 ### Testing (pick always)
 - `TEST-01`: Edge Case Analysis

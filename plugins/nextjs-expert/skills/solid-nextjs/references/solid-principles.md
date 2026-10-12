@@ -55,7 +55,7 @@ modules/cores/
 
 ### S - Single Responsibility
 
-**When:** File > 90 lines, does multiple things
+**When:** File approaches `FUSE_SOLID_MAX_LINES` or does multiple things
 
 **Action:** Split into modular structure:
 - Types → `modules/[feature]/src/interfaces/`
@@ -123,7 +123,7 @@ modules/cores/
 
 | Symptom | Principle | Where to Put Code |
 |---------|-----------|-------------------|
-| File > 90 lines | **S** | Split into `interfaces/`, `services/`, `hooks/` |
+| File approaches `FUSE_SOLID_MAX_LINES` | **S** | Split into `interfaces/`, `services/`, `hooks/` |
 | Adding if/switch | **O** | New file in `services/` |
 | Different behaviors | **L** | Fix implementations in `services/` |
 | Interface > 5 methods | **I** | Split files in `interfaces/` |
@@ -141,5 +141,5 @@ modules/cores/
 - [ ] Validators in `modules/[feature]/src/validators/`
 - [ ] Translations in `modules/[feature]/src/i18n/`
 - [ ] Factories in `modules/cores/lib/factories/`
-- [ ] Files < 100 lines (split at 90)
+- [ ] Source files within `FUSE_SOLID_MAX_LINES`
 - [ ] All exports have JSDoc

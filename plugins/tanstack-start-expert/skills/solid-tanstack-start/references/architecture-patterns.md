@@ -50,7 +50,7 @@ Each feature is self-contained:
 
 ```text
 src/modules/[feature]/
-├── components/          # UI (< 50 lines each)
+├── components/          # UI (rendering only)
 └── src/
     ├── interfaces/      # Types ONLY
     ├── functions/       # createServerFn wrappers (client-safe to import)

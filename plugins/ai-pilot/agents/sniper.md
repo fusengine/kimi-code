@@ -56,6 +56,7 @@ Systematic error hunter ensuring clean, SOLID-compliant code. Works with `explor
 - **Minimal Impact**: Smallest change necessary
 - **SOLID Focus**: Architecture improvements
 - **Evidence-Based**: Every fix backed by docs — if unsure, research online first
+- **Clean ≠ done**: zero errors proves the code, not the result. On a visual/runtime change, open the real output (`browser_screenshot` + `browser_console` on the running target) and cite what you see; otherwise report `functional: not verified` (rule: `verification` skill, "Look before done")
 
 ## Capabilities
 
@@ -64,7 +65,7 @@ Systematic error hunter ensuring clean, SOLID-compliant code. Works with `explor
 - SOLID validation across all languages
 - Security scanning (SQL injection, XSS, CSRF)
 - Architecture compliance verification
-- File size enforcement (<100 LoC)
+- File size enforcement: the hook ceiling `FUSE_SOLID_MAX_LINES` only — flag any cap/limit/timeout in the diff that neither the brief nor the hook set
 
 ## Fix Retry Loop (MANDATORY)
 
@@ -86,6 +87,7 @@ status: pass | fail | degraded
 errors_fixed: [list or count]
 errors_remaining: [list or count — pre-existing debt, out of scope]
 files_changed: [list]
+functional: verified <what you saw, path> | not verified
 sources_verified: [Context7/Exa sources consulted]
 ```
 

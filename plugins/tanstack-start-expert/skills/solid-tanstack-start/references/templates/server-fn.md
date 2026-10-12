@@ -1,10 +1,10 @@
 ---
 name: server-fn-template
 applies-to: "**/src/modules/**/functions/*.ts"
-description: createServerFn template - validated server-only RPC (< 40 lines)
+description: createServerFn template - validated server-only RPC
 ---
 
-# Server Function (< 40 lines)
+# Server Function
 
 Server functions are type-safe RPCs. On the client, a call becomes a same-origin
 fetch; on the server it runs directly. Put DB/secret access here, never in a
@@ -66,7 +66,7 @@ export const requireAuth = createServerFn().handler(async () => {
 
 ## Rules
 
-- Max 40 lines.
+- Keep each server function file within `FUSE_SOLID_MAX_LINES` and focused on one concern.
 - Always `.validator()` before `.handler()` — inputs cross the network.
 - Import server-only internals from `../server/`, keep them out of client code.
 - Read `process.env` **inside** `.handler()`, never at module scope.

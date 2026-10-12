@@ -1,11 +1,13 @@
 ---
 name: solid-react
 description: Use when applying SOLID principles to React architecture — file-size limits, hook separation, src/interfaces/, JSDoc.
+version: 1.0.0
+user-invocable: true
+references: references/solid-principles.md, references/single-responsibility.md, references/open-closed.md, references/liskov-substitution.md, references/interface-segregation.md, references/dependency-inversion.md, references/architecture-patterns.md, references/templates/component.md, references/templates/hook.md, references/templates/service.md, references/templates/store.md, references/templates/interface.md, references/templates/validator.md, references/templates/factory.md, references/templates/adapter.md, references/templates/error.md, references/templates/test.md
 ---
 
-
 <objective>
-Enforces SOLID and DRY architecture on React 19 projects: files under 100 lines (components < 50, hooks < 30, services < 40), types isolated in `modules/[feature]/src/interfaces/` (never in component files), mandatory JSDoc on exports, no class components, and mandatory grepping for existing logic/utilities before writing new code (with `jscpd` duplication checks).
+Enforces SOLID and DRY architecture on React 19 projects: source files within `FUSE_SOLID_MAX_LINES` and split by responsibility when cohesion drops, types isolated in `modules/[feature]/src/interfaces/` (never in component files), mandatory JSDoc on exports, no class components, and mandatory grepping for existing logic/utilities before writing new code (with `jscpd` duplication checks).
 
 Provides a dedicated reference guide per SOLID letter (SRP file-splitting, OCP composition/render-props, LSP contract compliance, ISP role-based props/context, DIP constructor injection via Context) plus 10 ready-to-copy templates covering components, hooks, services, stores, validators, factories, and tests. This is a cross-cutting code-quality skill, not a feature skill — for the React APIs themselves see react-19, react-state, react-forms, and react-tanstack-router.
 </objective>
@@ -34,7 +36,7 @@ Provides a dedicated reference guide per SOLID letter (SRP file-splitting, OCP c
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze project structure and existing patterns
 2. **research-expert** - Verify latest docs for all stack technologies
@@ -46,12 +48,10 @@ After implementation, run **sniper** for validation.
 
 ## Absolute Rules (MANDATORY)
 
-### 1. Files < 100 lines
+### 1. Source-file size ceiling
 
-- **Split at 90 lines** - Never exceed 100
-- Components < 50 lines (use composition)
-- Hooks < 30 lines each
-- Services < 40 lines each
+- Source files must not exceed `FUSE_SOLID_MAX_LINES` - the hook's ceiling is the only authority
+- Split by responsibility when cohesion drops (components via composition, hooks, services)
 
 ### 2. Modular Architecture
 
@@ -87,7 +87,7 @@ modules/[feature]/src/interfaces/
 Each SOLID principle has a dedicated reference guide:
 
 1. **`references/single-responsibility.md`** - One function = one reason to change
-   - File splitting at 90 lines (components < 50, hooks < 30)
+   - Responsibility-based splitting within `FUSE_SOLID_MAX_LINES`
    - Component composition patterns
    - Split strategy
 
@@ -119,18 +119,20 @@ See `references/solid-principles.md` for overview and quick reference.
 
 Ready-to-copy code in `references/templates/`:
 
-| Template | Usage | Max Lines |
-|----------|-------|-----------|
-| `component.md` | React functional component | 50 |
-| `hook.md` | Custom hook with TanStack Query | 30 |
-| `service.md` | Service with dependency injection | 40 |
-| `store.md` | Zustand store with persistence | 40 |
-| `interface.md` | TypeScript interfaces | - |
-| `validator.md` | Zod validation schemas | 30 |
-| `factory.md` | Factory pattern | 40 |
-| `adapter.md` | Adapter pattern | 40 |
-| `error.md` | Custom error classes | 30 |
-| `test.md` | Vitest + Testing Library | - |
+| Template | Usage |
+|----------|-------|
+| `component.md` | React functional component |
+| `hook.md` | Custom hook with TanStack Query |
+| `service.md` | Service with dependency injection |
+| `store.md` | Zustand store with persistence (max 40 lines, owner rule) |
+| `interface.md` | TypeScript interfaces |
+| `validator.md` | Zod validation schemas |
+| `factory.md` | Factory pattern |
+| `adapter.md` | Adapter pattern |
+| `error.md` | Custom error classes |
+| `test.md` | Vitest + Testing Library |
+
+Every template stays within `FUSE_SOLID_MAX_LINES`.
 
 ---
 
@@ -150,7 +152,7 @@ Ready-to-copy code in `references/templates/`:
 
 - Coding without researching docs first (ALWAYS research)
 - Using outdated APIs without checking current year docs
-- Files > 100 lines
+- Source files exceeding `FUSE_SOLID_MAX_LINES`
 - Interfaces in component files
 - Business logic in components
 - Class components

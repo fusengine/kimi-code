@@ -12,18 +12,18 @@ keywords: module, structure, scaffold, layout, Java
 
 ```
 modules/[feature]/
-├── controllers/           # HTTP handlers (< 50 lines)
+├── controllers/           # HTTP handlers
 │   └── [Feature]Controller.java
-├── services/              # Business logic (< 100 lines)
+├── services/              # Business logic
 │   ├── [Feature]Service.java
 │   └── [Feature]Validator.java
-├── repositories/          # Data access (< 100 lines)
+├── repositories/          # Data access
 │   └── [Feature]Repository.java (interface)
-├── interfaces/            # Contracts (< 30 lines each)
+├── interfaces/            # Contracts
 │   ├── [Feature]Repository.java
 │   ├── [Feature]Validator.java
 │   └── [Feature]Service.java
-├── models/                # Entities & DTOs (< 50 lines each)
+├── models/                # Entities & DTOs
 │   ├── [Feature]Entity.java (JPA)
 │   ├── Create[Feature]DTO.java (record)
 │   └── [Feature]DTO.java (record)
@@ -122,8 +122,8 @@ public record CreateProductDTO(
 ## Checklist
 
 - [ ] Directory structure matches `modules/[feature]/`
-- [ ] Controllers < 50 lines
-- [ ] Services < 100 lines
+- [ ] Controllers thin, no business logic
+- [ ] Every file within `FUSE_SOLID_MAX_LINES`
 - [ ] All interfaces in `interfaces/`
 - [ ] DTOs as `record`
 - [ ] Constructor injection only

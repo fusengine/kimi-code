@@ -145,7 +145,7 @@ related: <related1.md>, <related2.md>
 
 ### Length
 
-**Maximum 150 lines.** If longer, split into parts:
+`FUSE_SOLID_MAX_LINES` is the only file-size ceiling. If longer, split into parts:
 - `queries.md` → `queries-basic.md` + `queries-advanced.md`
 
 ### Code

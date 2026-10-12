@@ -4,7 +4,7 @@ applies-to: "**/app/**/*.tsx, **/app/**/*.ts, **/pages/**/*.tsx, **/pages/**/*.t
 description: Client Component template with hooks, state, and event handlers
 ---
 
-# Client Component (< 60 lines)
+# Client Component
 
 ```typescript
 // modules/auth/components/LoginForm.tsx

@@ -5,7 +5,7 @@ description: Use when needing Xcode build automation or Apple API/WWDC documenta
 
 
 <objective>
-Documents the two MCP servers that power the Swift/Apple workflow: XcodeBuildMCP for Xcode project automation and build validation (discover projects, build for macOS/iOS Simulator/device, list schemes, clean builds, scaffold new projects, and autonomous build-fix-rebuild loops), and Apple Docs MCP for official documentation with offline WWDC access (all frameworks, symbol details, WWDC sessions 2014-2025 with transcripts, sample code, API availability/deprecation).
+Documents the two MCP servers that power the Swift/Apple workflow: XcodeBuildMCP for Xcode project automation, build validation and on-simulator UI verification (discover projects, build/run/test on simulator, screenshots, runtime UI snapshots, appearance, autonomous build-fix-rebuild loops), and Apple Docs MCP for official documentation (all frameworks, symbol details, availability/deprecation, sample code, and bundled WWDC transcripts for 2014-2025 - newer sessions via developer.apple.com).
 
 Defines the mandatory research-first priority order (Apple Docs MCP first, then Context7 for third-party libraries, then Exa web search) and the mandatory build-validation loop after every code change (build, read errors, fix, rebuild, only commit on zero errors).
 
@@ -21,14 +21,14 @@ Includes installation snippets for both servers and a quick-reference table mapp
 ### 1. XcodeBuildMCP
 **Purpose**: Xcode project automation and build validation
 
-**Documentation**: `xcode-build-mcp.md`
+**Documentation**: [xcodebuild-mcp.md](references/xcodebuild-mcp.md), [xcodebuild-mcp-ui-verification.md](references/xcodebuild-mcp-ui-verification.md)
 
 **Key features**:
 - Discover Xcode projects and workspaces
-- Build for macOS, iOS Simulator, iOS Device
+- Build/run/test on simulator (`build_run_sim`, `test_sim`), device and macOS
 - List schemes and show build settings
 - Clean builds and derived data
-- Create new projects from templates
+- `screenshot` + `snapshot_ui` for UI verification (default workflow); appearance and taps via optional workflows
 - **Autonomous build validation** (AI can build, read errors, fix, rebuild)
 
 **Installation**:
@@ -54,12 +54,12 @@ Includes installation snippets for both servers and a quick-reference table mapp
 ### 2. Apple Docs MCP
 **Purpose**: Official Apple documentation with offline WWDC access
 
-**Documentation**: `apple-docs-mcp.md`
+**Documentation**: [apple-docs-mcp.md](references/apple-docs-mcp.md), [apple-docs-mcp-workflows.md](references/apple-docs-mcp-workflows.md)
 
 **Key features**:
 - Search all Apple frameworks (SwiftUI, UIKit, Foundation, etc.)
 - Get detailed symbol information (classes, methods, properties)
-- **WWDC sessions 2014-2025** with full transcripts (offline)
+- **WWDC sessions bundled offline for 2014-2025**; newer sessions via developer.apple.com/videos
 - Access Apple sample code
 - Framework exploration and discovery
 - API availability and deprecation checking
@@ -128,7 +128,8 @@ After EVERY code change:
    ↓
 7. Run tests (if available)
    ↓
-8. Commit changes
+8. UI changed? HIG verification gate on simulator
+   (xcodebuild-mcp-ui-verification.md)
 ```
 
 ---
@@ -144,19 +145,18 @@ After EVERY code change:
 
 ### Apple Docs MCP
 ✅ Official Apple documentation (most accurate)
-✅ WWDC sessions offline (2014-2025)
-✅ Zero network latency
-✅ Complete API coverage
+✅ WWDC sessions offline (2014-2025 bundled)
 ✅ Deprecation and availability info
+⚠️ No HIG pages and no post-2025 WWDC: use developer.apple.com via `browser_fetch`
 
 ---
 
 ## Resources
 
 **XcodeBuildMCP**:
-- [GitHub](https://github.com/cameroncooke/XcodeBuildMCP)
+- [Website](https://www.xcodebuildmcp.com) (repository moved to getsentry)
 - [npm](https://www.npmjs.com/package/xcodebuildmcp)
-- Version: 2.7.0 (npm, September 2026)
+- Version: 2.7.0 (npm)
 
 **Apple Docs MCP**:
 - [GitHub](https://github.com/kimsungwhee/apple-docs-mcp)
@@ -171,7 +171,9 @@ After EVERY code change:
 | Search Apple API | `apple-docs` | `apple-docs-mcp.md` |
 | Find WWDC session | `apple-docs` | `apple-docs-mcp.md` |
 | Get code example | `apple-docs` | `apple-docs-mcp.md` |
-| Build project | `XcodeBuildMCP` | `xcode-build-mcp.md` |
-| Validate changes | `XcodeBuildMCP` | `xcode-build-mcp.md` |
-| Clean build | `XcodeBuildMCP` | `xcode-build-mcp.md` |
-| Create project | `XcodeBuildMCP` | `xcode-build-mcp.md` |
+| Research workflow | `apple-docs` | `apple-docs-mcp-workflows.md` |
+| Build project | `XcodeBuildMCP` | `xcodebuild-mcp.md` |
+| Validate changes | `XcodeBuildMCP` | `xcodebuild-mcp.md` |
+| Clean build | `XcodeBuildMCP` | `xcodebuild-mcp.md` |
+| Create project | `XcodeBuildMCP` | `xcodebuild-mcp.md` |
+| Verify UI (HIG gate) | `XcodeBuildMCP` | `xcodebuild-mcp-ui-verification.md` |

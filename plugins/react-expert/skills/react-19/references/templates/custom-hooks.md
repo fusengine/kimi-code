@@ -386,4 +386,4 @@ export function useInterval(callback: () => void, delay: number | null) {
 5. **Error handling** - Try/catch for localStorage, clipboard, etc.
 6. **JSDoc** - Document parameters and return values
 7. **Location comment** - Indicate where file should be created
-8. **Max 30 lines** - Keep hooks focused and small
+8. **Source-size ceiling** - Keep hooks focused and within `FUSE_SOLID_MAX_LINES`

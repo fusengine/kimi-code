@@ -12,18 +12,20 @@ related: solid-principles.md, anti-patterns.md
 
 ## Pattern Selection
 
-| I Need To... | Use | Location | Max Lines |
-|--------------|-----|----------|-----------|
-| Handle HTTP request | Controller | `Http/Controllers/` | 50 |
-| Validate input | FormRequest | `Http/Requests/` | 50 |
-| Transform API response | Resource | `Http/Resources/` | 50 |
-| Execute single action | Action | `Actions/` | 50 |
-| Orchestrate business logic | Service | `Services/` | 100 |
-| Access database | Repository | `Repositories/` | 100 |
-| Transfer data between layers | DTO | `DTOs/` | 50 |
-| Define contract | Interface | `Contracts/` | 30 |
-| React to domain event | Listener | `Listeners/` | 50 |
-| Authorize action | Policy | `Policies/` | 50 |
+| I Need To... | Use | Location |
+|--------------|-----|----------|
+| Handle HTTP request | Controller | `Http/Controllers/` |
+| Validate input | FormRequest | `Http/Requests/` |
+| Transform API response | Resource | `Http/Resources/` |
+| Execute single action | Action | `Actions/` |
+| Orchestrate business logic | Service | `Services/` |
+| Access database | Repository | `Repositories/` |
+| Transfer data between layers | DTO | `DTOs/` |
+| Define contract | Interface | `Contracts/` |
+| React to domain event | Listener | `Listeners/` |
+| Authorize action | Policy | `Policies/` |
+
+File size: every type stays within the hook ceiling `FUSE_SOLID_MAX_LINES`.
 
 ---
 
@@ -44,7 +46,7 @@ related: solid-principles.md, anti-patterns.md
 ```
 Request Flow:
 ┌─────────────┐
-│  Controller │ ← HTTP concerns only (< 50 lines)
+│  Controller │ ← HTTP concerns only
 └──────┬──────┘
        │
 ┌──────▼──────┐
@@ -52,15 +54,15 @@ Request Flow:
 └──────┬──────┘
        │
 ┌──────▼──────┐
-│   Service   │ ← Business logic (< 100 lines)
+│   Service   │ ← Business logic only
 └──────┬──────┘
        │
 ┌──────▼──────┐
-│ Repository  │ ← Data access (< 100 lines)
+│ Repository  │ ← Data access only
 └──────┬──────┘
        │
 ┌──────▼──────┐
-│    Model    │ ← Relations + Casts (< 80 lines)
+│    Model    │ ← Relations + Casts only
 └─────────────┘
 ```
 
@@ -92,7 +94,7 @@ Request Flow:
 
 | Indicator | Threshold | Action |
 |-----------|-----------|--------|
-| Line count | > 90 lines | Split into 2 files |
+| Line count | approaching `FUSE_SOLID_MAX_LINES` | Split into 2 files |
 | Public methods | > 5 | Extract related methods |
 | Dependencies | > 4 | Split responsibilities |
 | Nested conditions | > 3 levels | Extract to methods |
@@ -143,5 +145,5 @@ New feature request?
 |----|-------|
 | Start with Action, grow to Service | Start with Service always |
 | One interface per domain concept | One generic interface |
-| Split at 90 lines proactively | Wait until code breaks |
+| Split well before `FUSE_SOLID_MAX_LINES` | Wait until code breaks |
 | Use Repository for queries | Query in Controllers/Services |

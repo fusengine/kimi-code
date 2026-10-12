@@ -61,7 +61,7 @@ Scan for:
 - Hardcoded values (secrets, URLs)
 - Missing error handling (try/catch, if err)
 - Missing validation (input, params)
-- Large functions (>50 lines)
+- Functions mixing several responsibilities (split them)
 - Complex conditionals (>3 nested)
 - Missing types (any, unknown)
 - N+1 queries (loops with DB calls)

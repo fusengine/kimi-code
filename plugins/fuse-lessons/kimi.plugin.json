@@ -1,6 +1,6 @@
 {
   "name": "fuse-lessons",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Project memory: writes compact 'never reproduce' lessons to MEMORY/LESSON.md on finish, force-reads them at session/subagent start.",
   "author": {
     "name": "Fusengine",
@@ -40,6 +40,26 @@
       "event": "Stop",
       "matcher": "",
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" lessons"
+    },
+    {
+      "event": "SessionStart",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" memory"
+    },
+    {
+      "event": "Stop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" memory"
+    },
+    {
+      "event": "SubagentStop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" memory"
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "Bash|Read|Write|Edit",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" memory"
     },
     {
       "event": "PostToolUse",

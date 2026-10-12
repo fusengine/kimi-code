@@ -20,21 +20,23 @@ related: open-closed.md, templates/view.md, templates/viewmodel.md, templates/se
 
 1. **View contains API calls** -> Mix of UI + networking
 2. **ViewModel validates AND fetches AND formats** -> Too many roles
-3. **File > 100 lines** -> Needs splitting
-4. **View > 80 lines** -> Extract subviews
+3. **File mixes several concerns or nears the hook ceiling (`FUSE_SOLID_MAX_LINES`)** -> Needs splitting
+4. **View body hard to read (~30+ lines)** -> Extract subviews
 5. **Model contains business logic** -> Should be in Service
 
 ---
 
 ## Layer Responsibilities (Features Modular MANDATORY)
 
-| Layer | Location | Responsibility | Max Lines |
-|-------|----------|----------------|-----------|
-| View | `Features/[Feature]/Views/` | UI rendering only | 80 |
-| ViewModel | `Features/[Feature]/ViewModels/` | State + user actions | 100 |
-| Service | `Features/[Feature]/Services/` | Business logic + API | 100 |
-| Model | `Core/Models/` | Data structure only | 50 |
-| Protocol | `Features/[Feature]/Protocols/` | Contract definition | 30 |
+| Layer | Location | Responsibility |
+|-------|----------|----------------|
+| View | `Features/[Feature]/Views/` | UI rendering only |
+| ViewModel | `Features/[Feature]/ViewModels/` | State + user actions |
+| Service | `Features/[Feature]/Services/` | Business logic + API |
+| Model | `Core/Models/` | Data structure only |
+| Protocol | `Features/[Feature]/Protocols/` | Contract definition |
+
+Every file stays within the hook ceiling `FUSE_SOLID_MAX_LINES`.
 
 Shared code: `Core/Services/`, `Core/Protocols/`, `Core/Extensions/`
 
@@ -68,15 +70,15 @@ struct UserView: View {
 ```
 Features/User/
 ├── Views/
-│   ├── UserView.swift          # 30 lines - orchestrator
-│   ├── UserHeader.swift        # 25 lines - subview
-│   └── UserContent.swift       # 30 lines - subview
+│   ├── UserView.swift          # orchestrator
+│   ├── UserHeader.swift        # subview
+│   └── UserContent.swift       # subview
 ├── ViewModels/
-│   └── UserViewModel.swift     # 50 lines - state management
+│   └── UserViewModel.swift     # state management
 ├── Services/
-│   └── UserService.swift       # 40 lines - API calls
+│   └── UserService.swift       # API calls
 └── Protocols/
-    └── UserServiceProtocol.swift # 15 lines - contract
+    └── UserServiceProtocol.swift # contract
 ```
 
 ---

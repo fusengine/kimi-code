@@ -1,226 +1,70 @@
 ---
 name: xcodebuild-mcp
-description: XcodeBuildMCP for Xcode project management, building, and automation
-when-to-use: building projects, validating code changes, creating projects, running tests, inspecting build errors
-keywords: Xcode, build, compile, project, scheme, simulator, device, clean, archive
+description: XcodeBuildMCP for Xcode project discovery, building, testing, running on simulators, and workflow configuration
+when-to-use: building projects, validating code changes, running tests, launching on simulator, enabling extra workflows
+keywords: Xcode, build, build_run_sim, test_sim, scheme, simulator, session defaults, workflows, clean
 priority: high
-related: apple-docs-mcp.md
+related: xcodebuild-mcp-ui-verification.md, apple-docs-mcp.md
 ---
 
 # XcodeBuildMCP Usage Guide
 
-**MCP Server for Xcode project management and automation.**
-
-Source: [XcodeBuildMCP GitHub](https://github.com/cameroncooke/XcodeBuildMCP)
-
----
+Source: https://www.xcodebuildmcp.com (npm `xcodebuildmcp`, repository getsentry/XcodeBuildMCP).
+Tool names below were read from the `xcodebuildmcp@2.7.0` package manifests.
 
 ## Installation
-
-Add to your MCP configuration:
 
 ```json
 {
   "mcpServers": {
-    "XcodeBuildMCP": {
-      "command": "npx",
-      "args": ["-y", "xcodebuildmcp@latest"]
-    }
+    "XcodeBuildMCP": { "command": "npx", "args": ["-y", "xcodebuildmcp@latest"] }
   }
 }
 ```
 
----
+Homebrew alternative: `brew tap getsentry/xcodebuildmcp && brew install xcodebuildmcp`. Requires macOS 14.5+, Xcode 16+.
 
-## Available Tools
+## Workflows
 
-### 1. Discover Projects
+Tools are grouped in workflows. Only **simulator** and **session-management** are enabled by default. Enable more with the `XCODEBUILDMCP_ENABLED_WORKFLOWS` env var (comma-separated) or `enabledWorkflows` in `.xcodebuildmcp/config.yaml` (see https://xcodebuildmcp.com/docs/configuration).
 
-**Purpose**: Find Xcode projects and workspaces in directory
+| Workflow | Key tools |
+|----------|-----------|
+| `simulator` (default) | `list_sims`, `boot_sim`, `open_sim`, `build_sim`, `build_run_sim`, `test_sim`, `install_app_sim`, `launch_app_sim`, `stop_app_sim`, `screenshot`, `snapshot_ui`, `record_sim_video`, `clean`, `discover_projs`, `list_schemes`, `show_build_settings` |
+| `simulator-management` | `set_sim_appearance`, `sim_statusbar`, `set_sim_location`, `erase_sims` |
+| `ui-automation` | `snapshot_ui`, `wait_for_ui`, `tap`, `batch`, `long_press`, `swipe`, `gesture`, `type_text`, `button`, `key_press`, `screenshot` |
+| `session-management` (default) | `session_show_defaults`, `session_set_defaults`, `session_clear_defaults`, `session_use_defaults_profile` |
+| `device`, `macos`, `debugging`, `swift-package`, `project-scaffolding`, `coverage` | build/run on device or Mac, LLDB, SwiftPM, scaffold, coverage |
 
-**Use when**:
-- Starting work on a project
-- Finding all Xcode projects in a repository
-- Identifying workspace vs project files
+## Run Flow (Simulator)
 
-**Example**:
-```bash
-# Find all .xcodeproj and .xcworkspace files
-# Returns: List of project paths
+1. `session_show_defaults` before the first build/run/test of a session - confirm project/workspace, scheme, simulator.
+2. Missing project? `discover_projs`, then `session_set_defaults`.
+3. `build_run_sim` (build + install + launch, boots the simulator) - preferred single step.
+4. `test_sim` for the test suite.
+5. `launch_app_sim` with `args` to relaunch with launch arguments (e.g. RTL testing).
+
+## Build Validation Loop
+
+```text
+After every code change:
+1. build_sim (or build_run_sim)
+2. Errors -> read them, fix, rebuild
+3. test_sim when tests exist
+4. UI change -> HIG verification (xcodebuild-mcp-ui-verification.md)
+5. Done only with zero errors
 ```
-
----
-
-### 2. Build Operations
-
-**Purpose**: Build Xcode project for different platforms
-
-**Platforms**:
-- macOS (Mac applications)
-- iOS Simulator (testing on simulator)
-- iOS Device (release builds)
-
-**Use when**:
-- Validating code changes
-- Running automated builds
-- Testing compilation after modifications
-
-**Example workflow**:
-```bash
-1. List schemes → Choose appropriate scheme
-2. Build for iOS Simulator → Check for errors
-3. If errors → Fix code → Build again
-```
-
-**Key feature**: Incremental build support for lightning-fast builds (experimental, opt-in)
-
----
-
-### 3. List Schemes
-
-**Purpose**: Show available build schemes in project
-
-**Use when**:
-- Need to know which schemes exist
-- Choosing correct scheme for build
-- Verifying scheme configuration
-
-**Returns**: List of scheme names (e.g., "MyApp", "MyAppTests")
-
----
-
-### 4. Show Build Settings
-
-**Purpose**: Display Xcode build configuration
-
-**Use when**:
-- Debugging build issues
-- Verifying compiler flags
-- Checking deployment target
-- Inspecting signing configuration
-
-**Returns**: Full build settings for scheme
-
----
-
-### 5. Clean Build
-
-**Purpose**: Remove build products and derived data
-
-**Use when**:
-- Build errors persist after code changes
-- Switching between branches
-- Before fresh build
-- Resolving caching issues
-
-**Equivalent to**: Product → Clean Build Folder in Xcode
-
----
-
-### 6. Create Project
-
-**Purpose**: Scaffold new iOS/macOS project from modern templates
-
-**Features**:
-- Workspace + SPM package architecture
-- Customizable bundle identifiers
-- Deployment targets configuration
-- Device families selection
-
-**Use when**:
-- Starting new project from scratch
-- Creating demo/sample projects
-- Prototyping new features
-
----
-
-## Best Practices
-
-### 1. Build Validation Workflow
-
-```bash
-# MANDATORY after code changes
-1. List schemes
-2. Build for iOS Simulator
-3. If build fails:
-   a. Read error messages
-   b. Fix issues
-   c. Build again
-4. If build succeeds:
-   a. Run tests (if available)
-   b. Commit changes
-```
-
-### 2. Before Committing Code
-
-```bash
-# Always validate builds before git commit
-1. Clean build
-2. Build for target platform
-3. Check for warnings (treat as errors)
-4. Commit only if zero errors
-```
-
-### 3. Error Inspection
-
-**XcodeBuildMCP enables autonomous iteration**:
-- AI can read build errors
-- Identify problematic code
-- Apply fixes
-- Re-build to validate
-
----
-
-## Integration with Swift Expert Agent
-
-**Automatic usage when**:
-- User asks to "build the project"
-- After making code changes (validation)
-- Creating new Xcode project
-- Debugging build issues
-
-**Priority**: Always build to validate after code modifications.
-
----
 
 ## Troubleshooting
 
-### Build Fails with "Scheme not found"
-
-```bash
-1. Use "List Schemes" to see available schemes
-2. Verify scheme name matches exactly
-3. Check if workspace vs project is being used
-```
-
-### Incremental Build Not Working
-
-```bash
-# Opt-in required for incremental builds
-# Check XcodeBuildMCP version (1.12.3+)
-```
-
-### Clean Build Needed
-
-```bash
-# Indicators:
-- Strange compilation errors
-- "Module not found" after adding dependency
-- Stale cache warnings
-
-# Solution: Clean build before regular build
-```
-
----
-
-## Version
-
-Latest: **2.7.0** (npm, as of September 2026)
-
----
+| Symptom | Action |
+|---------|--------|
+| "Scheme not found" | `list_schemes`; check workspace vs project in session defaults |
+| Strange errors after branch switch / new dependency | `clean`, then rebuild |
+| Tool missing (e.g. `tap`, `set_sim_appearance`) | Its workflow is not enabled - see Workflows |
+| Need build flags / deployment target | `show_build_settings` |
 
 ## Resources
 
-- [GitHub Repository](https://github.com/cameroncooke/XcodeBuildMCP)
-- [npm Package](https://www.npmjs.com/package/xcodebuildmcp)
-- [Official Website](https://www.xcodebuildmcp.com/)
+- Website/docs: https://www.xcodebuildmcp.com
+- npm: https://www.npmjs.com/package/xcodebuildmcp (2.7.0 at time of writing)

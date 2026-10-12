@@ -47,6 +47,11 @@ const manifest = {
 	skills,
 	commands,
 	hooks,
+	// Sub-agents never see a hook's output: Kimi discards the return value of
+	// SubagentStart. This file is the only channel into their system prompt —
+	// it carries the hand-written APEX sub-agent preamble. The corpus rules are
+	// NOT here: sub-agents already get them through the natively loaded AGENTS.md.
+	systemPromptPath: "./plugins/ai-pilot/APEX-SUBAGENT.md",
 	skillInstructions: "Kimi Code tool mapping for Fusengine skills and agents:\n- Task tool → Agent tool; TeamCreate → AgentSwarm (min 4 subagents).\n- WebFetch → FetchURL; TodoWrite → TodoList.\n- Skill tool references map to Kimi Code's native Skill tool.\n- Read/Write/Edit/Bash/Grep/Glob/WebSearch keep their native names.",
 	interface: {
 		displayName: "Fusengine Suite",

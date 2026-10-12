@@ -18,7 +18,7 @@ and collaborative-editing whisper events — not for background/async work
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing broadcasting patterns
 2. **research-expert** - Verify Reverb docs via Context7

@@ -138,27 +138,27 @@ func (r *UserRepository) Save(ctx context.Context, u *User) (*User, error) {
 - Call service methods
 - Format HTTP responses
 - Set HTTP headers/status codes
-- **Max 50 lines**
+- **Thin: no business logic**
 
 ### Service Layer
 - Business logic & domain rules
 - Data validation (business rules, not HTTP)
 - Orchestrate repositories & external services
 - Handle errors meaningfully
-- **Max 100 lines**
+- **One service per responsibility**
 
 ### Repository Layer
 - Database queries
 - Data persistence
 - ORM/query building
 - Transform DB models to domain models
-- **Max 100 lines**
+- **Data access only**
 
 ### Model Layer
 - Domain structs (User, Product, Order)
 - Value objects
 - Domain methods (User.IsActive())
-- **Max 50 lines**
+- **Data and domain methods only**
 
 ---
 
@@ -210,7 +210,7 @@ func (s *UserService) CreateUser(ctx context.Context, email string) (*User, erro
 - [ ] Service uses only Repositories and Ports (no HTTP)
 - [ ] Repository handles only data access (no domain logic)
 - [ ] Models are data holders only
-- [ ] Each file has ONE responsibility (max 100 lines)
+- [ ] Each file has ONE responsibility (within `FUSE_SOLID_MAX_LINES`)
 - [ ] Shared code lives in `internal/core/`
 - [ ] Every exported function has Godoc
 - [ ] No circular dependencies between layers

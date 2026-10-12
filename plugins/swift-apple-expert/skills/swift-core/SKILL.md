@@ -18,7 +18,7 @@ Swift 6 fundamentals shared across all Apple platforms.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing Swift patterns
 2. **research-expert** - Verify latest Swift 6 docs via Context7/Exa

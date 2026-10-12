@@ -15,10 +15,10 @@ related: single-responsibility.md, open-closed.md, dependency-inversion.md
 | Anti-Pattern | Detection | Fix |
 |--------------|-----------|-----|
 | View does API calls | `URLSession` in View | Extract to Service + ViewModel |
-| View > 80 lines | Line count | Extract subviews |
-| ViewModel > 100 lines | Line count | Split into smaller ViewModels |
+| View body mixes several sections | Long `body` (~30+ lines) | Extract subviews |
+| ViewModel with several roles | Validates + fetches + formats | Split into smaller ViewModels |
 | Model has business logic | Methods in model | Extract to Service |
-| File > 100 lines | Line count | Split into multiple files |
+| File blocked by hook ceiling | `FUSE_SOLID_MAX_LINES` deny | Split by responsibility (never bypass) |
 
 ---
 
@@ -88,13 +88,15 @@ related: single-responsibility.md, open-closed.md, dependency-inversion.md
 
 ## File Size Violations
 
-| Type | Max | Fix |
-|------|-----|-----|
-| View | 80 lines | Extract subviews at 30+ body lines |
-| ViewModel | 100 lines | Split by responsibility |
-| Service | 100 lines | Split by domain |
-| Model | 50 lines | Separate nested types |
-| Any file | 100 lines | Split at 90 lines |
+The only line limit is the hook ceiling (`FUSE_SOLID_MAX_LINES`). Split on responsibility, not on an invented count:
+
+| Type | Split signal | Fix |
+|------|--------------|-----|
+| View | Body ~30+ lines | Extract subviews |
+| ViewModel | Several roles | Split by responsibility |
+| Service | Several domains | Split by domain |
+| Model | Nested types pile up | Separate nested types |
+| Any file | Near/over hook ceiling | Split by responsibility; report if a fix cannot fit |
 
 ---
 

@@ -10,7 +10,7 @@ keywords: view, SwiftUI, template, preview, subview
 
 ## Rules
 
-- Views < 80 lines
+- Under the hook ceiling (`FUSE_SOLID_MAX_LINES`)
 - Extract subviews at 30+ body lines
 - Location: `Features/[Feature]/Views/`
 - Always include `#Preview`

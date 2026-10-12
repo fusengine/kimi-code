@@ -7,7 +7,7 @@ description: Use when building Apple TV apps — focus-based navigation, Siri Re
 <objective>
 Covers tvOS-specific development for the Apple TV living-room experience: the focus system for large-screen navigation, Liquid Glass styling on TV (tvOS 26), AVKit media playback, Siri Remote gesture handling, multi-user support, and game controller integration.
 
-Includes tvOS 26 code examples for Liquid Glass buttons/tab bars and focus-state-driven scale effects.
+Includes tvOS 26+ guidance on system-applied Liquid Glass (buttons/images adopt it on focus, never added manually) and focus-state-driven scale effects.
 
 Best practices: size UI elements to be readable from 10 feet, give clear visual focus feedback, keep navigation depth minimal, design remote-friendly gestures, optimize for media-first content, and support user switching.
 </objective>
@@ -18,7 +18,7 @@ tvOS-specific development for Apple TV living room experiences.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing tvOS patterns
 2. **research-expert** - Verify latest tvOS 27 docs via Context7/Exa
@@ -54,15 +54,18 @@ After implementation, run **sniper** for validation.
 
 ### Liquid Glass on TV
 
-```swift
-Button("Watch Now") { }
-    .buttonStyle(.bordered)
-    .glassEffect(.regular)  // Glass effect on focus
+In tvOS, Liquid Glass appears throughout navigation and system experiences; **buttons and image views adopt it automatically when they gain focus** (HIG https://developer.apple.com/design/human-interface-guidelines/materials). Don't add `glassEffect` manually - use standard styles and components.
 
+```swift
 TabView {
-    // Tab bar with Liquid Glass
+    Tab("Home", systemImage: "house") { HomeView() }   // system tab bar gets glass
 }
+
+Button("Watch Now") { }
+    .buttonStyle(.bordered)   // standard style: system handles the focused appearance
 ```
+
+Use standard materials (not glass) for content-layer overlays.
 
 ### Focus System
 
@@ -92,8 +95,8 @@ struct ContentView: View {
 
 ## Best Practices
 
-1. **Large UI elements** - Readable from 10 feet
-2. **Focus feedback** - Clear visual indication
+1. **Large UI elements** - Controls 66x66 pt default, 56x56 pt minimum; body text 29 pt default, 23 pt minimum ([HIG accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility))
+2. **Focus feedback** - Clear visual indication ([HIG focus](https://developer.apple.com/design/human-interface-guidelines/focus-and-selection))
 3. **Simple navigation** - Minimal depth
 4. **Remote-friendly** - Siri Remote gestures
 5. **Media-first** - Optimize for video/audio

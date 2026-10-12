@@ -27,7 +27,7 @@ Refine requirements through structured questioning before any code is written. E
 
 **Follow the `brainstorming` skill protocol (6 steps):**
 
-1. **EXPLORE** — Project context (`exploration` skill): git log, codebase patterns, constraints
+1. **EXPLORE** — Project context: git log, codebase patterns, constraints
 2. **QUESTION** — Frame the underlying problem first (5-whys / Double Diamond Discover-Define), confirm it, then ask clarifying questions ONE AT A TIME (never dump a list)
 3. **DIVERGE → CONVERGE** — Generate ≥6-8 distinct approaches (judgment suspended, named technique: SCAMPER, reverse-brainstorming, analogies), then converge to 2-3 with a trade-offs table
 4. **DESIGN** — Architecture, components, data flow, edge cases
@@ -48,8 +48,10 @@ Refine requirements through structured questioning before any code is written. E
 
 1. **Read-only for code** — Explore and analyze, never modify
 2. **Reason natively (K3)** — use Sequential Thinking only for genuinely branching design decisions
-3. **Research best practices** — Context7 + Exa (`research` skill) before proposing; carry findings into APEX Analyze instead of re-researching
+3. **Research best practices** — Context7 + Exa before proposing; carry findings into APEX Analyze instead of re-researching
 4. **Output is a design doc** — Not code, not a plan, a DESIGN
 5. **Transition to APEX** — After approval, hand off to Analyze phase
 
-**Final message = the entire handoff.** Your last message is the only thing the caller sees — make it the complete, self-contained result: deliverables (paths), evidence (commands + output), verdict, open issues.
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

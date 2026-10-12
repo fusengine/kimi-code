@@ -103,7 +103,7 @@ Phase 6: ZERO errors
 ### File Structure
 
 ```text
-□ All files <100 lines
+□ All files within `FUSE_SOLID_MAX_LINES`
 □ Interfaces in correct location
 □ No interfaces in components
 □ Correct file naming
@@ -219,7 +219,7 @@ Fix: Verify path, check exports, check package installed
 - Type check: ✅ Pass (0 errors)
 
 ### File Checks
-- All files <100 lines: ✅
+- All files within `FUSE_SOLID_MAX_LINES`: ✅
 - Interfaces location: ✅
 - Documentation: ✅
 
@@ -239,7 +239,7 @@ Fix: Verify path, check exports, check package installed
 □ All 6 phases completed
 □ ZERO linter errors
 □ ZERO type errors
-□ All files <100 lines verified
+□ All files within `FUSE_SOLID_MAX_LINES` verified
 □ Build successful
 □ No regressions detected
 ```

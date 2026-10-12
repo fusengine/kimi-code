@@ -30,13 +30,12 @@ Then implement using the platform-specific skill(s) (see Coding Standards below)
 ## MCP Tools Available (NEW 2026)
 
 ### XcodeBuildMCP (Xcode Automation)
-**Source**: [XcodeBuildMCP GitHub](https://github.com/cameroncooke/XcodeBuildMCP)
+**Source**: [xcodebuildmcp.com](https://www.xcodebuildmcp.com) — details in `mcp-tools` skill (`xcodebuild-mcp.md`)
 
 - **Discover Projects**: Find Xcode projects and workspaces
-- **Build Operations**: Build for macOS, iOS simulator, iOS device
-- **List Schemes**: Show available schemes in projects
-- **Show Build Settings**: Display Xcode build configuration
-- **Clean Build**: Clean build products and derived data
+- **Build/Run/Test**: `build_sim`, `build_run_sim`, `test_sim` (simulator), device and macOS workflows
+- **List Schemes / Show Build Settings / Clean**
+- **UI evidence**: `screenshot`, `snapshot_ui` (default workflow); `set_sim_appearance` and taps need the `simulator-management` / `ui-automation` workflows
 - **Create Project**: Scaffold new iOS/macOS projects with modern templates
 
 **Use cases**:
@@ -52,7 +51,7 @@ Then implement using the platform-specific skill(s) (see Coding Standards below)
 - **Get Framework Details**: Access detailed framework information
 - **Get Symbol Info**: Retrieve class, method, property documentation
 - **List Technologies**: Explore available Apple frameworks
-- **Search WWDC**: Find WWDC sessions (2014-2025) with transcripts
+- **Search WWDC**: Bundled WWDC sessions (2014-2025) with transcripts; newer sessions via `browser_fetch` on developer.apple.com/videos
 - **Get Sample Code**: Access Apple code examples and snippets
 
 **Use cases**:
@@ -71,7 +70,7 @@ Then implement using the platform-specific skill(s) (see Coding Standards below)
 
 - Current Date awareness
 - Research Before Coding workflow
-- Files < 100 lines (Views < 80)
+- File size: only the hook ceiling (`FUSE_SOLID_MAX_LINES`) applies; split by responsibility, never bypass it
 - Protocols in `Protocols/` ONLY
 - `///` documentation mandatory
 - @Observable (not ObservableObject)
@@ -88,6 +87,7 @@ Then implement using the platform-specific skill(s) (see Coding Standards below)
 - **Protocol-oriented** design, **small views** (extract at 30+ lines), **accessibility** mandatory
 - **i18n** — ALL user-facing text must use String Catalogs
 - See platform-specific skills (`ios`, `macos`, `watchos`, `visionos`, `tvos`, `ipados`) for platform targeting
+- **HIG** — for any UI work load the `swiftui-core` HIG references (`hig-accessibility.md`, `hig-rtl.md`, `hig-modality.md`, `hig-system-surfaces.md`, `hig-iphone-duo.md`, `liquid-glass.md`). Visual specs come from the design-ios handoff when one exists; you implement and verify them.
 
 ## fuse-browser (ZERO TOLERANCE)
 
@@ -101,7 +101,27 @@ Then implement using the platform-specific skill(s) (see Coding Standards below)
 Done = all checks below pass with ZERO errors:
 1. Run `build_sim` (XcodeBuildMCP) — build succeeds
 2. Run `test_sim` (XcodeBuildMCP) — all tests pass
-3. Run **sniper** for validation
+3. **UI changed? Run the HIG UI Gate below** — no `done` while an item is `fail`
+4. Run **sniper** for validation
+
+### HIG UI Gate (any UI change)
+
+`session_show_defaults` → `build_run_sim` on a booted simulator, then capture evidence with `screenshot` / `snapshot_ui`. Procedure and commands: `mcp-tools` → `xcodebuild-mcp-ui-verification.md`. Rules: `swiftui-core` HIG references.
+
+| # | Check | Pass criterion (HIG source) |
+|---|-------|-----------------------------|
+| 1 | Baseline | Light mode, default text size screenshot, no layout errors |
+| 2 | Dynamic Type AX5 | `simctl ui <udid> content_size accessibility-extra-extra-extra-large`: no clipping/overlap, no truncation in scrollable text, rows stacked (/typography) |
+| 3 | Dark mode + Increase Contrast | Text ≥ 4.5:1 (target 7:1 small text); custom colors adapt (/dark-mode, /color) |
+| 4 | VoiceOver labels | `snapshot_ui`: every interactive element labeled, icon-only controls included (/voiceover) |
+| 5 | Hit targets | Frames ≥ 44×44 pt iOS/iPadOS/watchOS, 60 visionOS, 66 tvOS, 28 macOS; below platform minimum = fail (/accessibility) |
+| 6 | RTL | `launch_app_sim` args `-AppleTextDirection YES`: navigation/progress mirrored, logos/checkmarks not (/right-to-left) |
+| 7 | Reduce Motion / Transparency | Custom animations become fades; custom glass/material falls back to opaque (/accessibility, /materials) |
+| 8 | Liquid Glass | No `glassEffect` on content layer, standard bars, sidebars; tint only on primary action (/materials) |
+| 9 | Screen sizes | Compact iPhone + iPad regular (+ iPhone Duo poses if available); no fixed widths (/layout, /designing-for-iphone-duo) |
+| 10 | Modality & order | Sheet Cancel leading / Done trailing; `snapshot_ui` order = sensible VoiceOver order (/sheets, /voiceover) |
+
+Report every item as `pass`, `fail` or `not verified` (with reason, e.g. "ui-automation workflow disabled", "no iPad simulator"). Never `pass` without a screenshot or snapshot proving it.
 
 ## Output Format
 
@@ -109,6 +129,7 @@ Report back to the lead with:
 - **status**: `done` | `failed` | `blocked`
 - **files_changed**: list of modified/created files
 - **verification**: results from the Verification Gate above (build_sim/test_sim + sniper outcome)
+- **hig_gate**: the 10 items above, each `pass` / `fail` / `not verified` + evidence path (screenshot/snapshot) — or `n/a (no UI change)`
 - **remaining_issues**: any known gaps or follow-ups, or `none`
 - **sources_verified**: Apple Docs MCP / Context7 / Exa references consulted (Core Rule)
 

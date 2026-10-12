@@ -14,7 +14,7 @@ related: anti-patterns.md, decision-guide.md
 
 | Principle | Rule | Detection | Fix |
 |-----------|------|-----------|-----|
-| **S**RP | 1 class = 1 responsibility | Class > 100 lines | Split class |
+| **S**RP | 1 class = 1 responsibility | Class above `FUSE_SOLID_MAX_LINES` | Split class |
 | **O**CP | Open extension, closed modification | `if/switch` for types | Interface + impl |
 | **L**SP | Subtypes substitutable | Child breaks parent | Redesign hierarchy |
 | **I**SP | Specific interfaces | Unused interface methods | Segregate interfaces |
@@ -103,7 +103,7 @@ final readonly class UserService {
 
 ```
 Code violates SOLID?
-├── Class > 100 lines → SRP: Split class
+├── Class above FUSE_SOLID_MAX_LINES → SRP: Split class
 ├── Switch on types → OCP: Use interfaces
 ├── Child changes behavior → LSP: Redesign
 ├── Unused methods → ISP: Segregate

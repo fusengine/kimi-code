@@ -1,0 +1,1486 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Design reference — techniques measured on the source
+   Reproduction: structure, rhythm, typography, components, motion.
+   Own identity: brand "Trove.link", deep teal + coral palette,
+   photographs and copy rewritten.
+
+   Traceability: [measured] = value read in the source · [decided] = choice
+   added here · [estimated] = computation whose value the source does not give.
+
+   Source HTML: source.html (45,483 bytes, TanStack Start SSR
+                render, Tailwind v4 utility classes + inline <style> block)
+   Source CSS : /assets/index-Bc6vz3Z7.css (252,518 bytes, compiled
+                Tailwind v4) — that is where --font-sans and the theme come from.
+   Coverage   : every section of the source page, in order.
+
+   The source writes almost no CSS rule: everything goes through utility
+   classes. The values below are therefore the RESOLUTION of those classes
+   through the default Tailwind v4 table (text-4xl = 2.25rem/2.5rem, gap-4 = 1rem,
+   p-7 = 1.75rem, rounded-3xl = 1.5rem, sm = 40rem, lg = 64rem…). The only
+   literal values in the source are its bracketed arbitraries:
+   rounded-[2rem], rounded-[2.5rem], rounded-[3rem], rounded-[2.4rem],
+   text-[13px], text-[15px], h-[420px], h-[520px], h-[560px], w-[280px],
+   w-[300px], min-h-[320px], min-h-[380px], leading-[1.05], tracking-[0.2em],
+   bg-white/[0.03], border-white/[0.06], border-white/[0.08], gap-px.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   1 ▸ TOKENS
+   Named by role. The source page is locked to dark: a single
+   .landing-page bg-[#120a10] text-[#f7ede8] class wraps the whole document
+   and the footer is forcibly repainted by an !important rule [measured].
+   Here the lock is carried by :root, same effect, a single link.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  color-scheme: dark;
+
+  /* -- Backgrounds --------------------------------------------------------
+     The source builds its dark on a very desaturated plum: #120a10
+     (background), #1a0e15 (card), #160b12 (panel), #251621 (raised).
+     Here the same ARCHITECTURE — four steps, identical luminance gaps
+     within ±1% — transposed onto a deep teal. [decided] in full on the
+     hues, [measured] on the number of steps and their role. */
+  --bg-page:         #05171a;   /* role of #120a10 — background of the whole document */
+  --bg-panel:        #082024;   /* role of #160b12 — step cells, agent panel */
+  --bg-card:         #0a262a;   /* role of #1a0e15 — phone chassis */
+  --bg-raised:       #0e3034;   /* role of #251621 — secondary surfaces */
+
+  /* Surfaces built in opacity, not in hue: three values, like the source.
+     [measured] bg-white/[0.03] (cards), bg-white/10 (glass button),
+     bg-white/[0.06] (full-width button). */
+  --veil-3:          rgb(255 255 255 / 0.03);
+  --veil-6:          rgb(255 255 255 / 0.06);
+  --veil-10:         rgb(255 255 255 / 0.10);
+  --veil-20:         rgb(255 255 255 / 0.20);
+
+  /* -- Lines --------------------------------------------------------------
+     Copied as is: the source has only three hairlines and they are enough. */
+  --line:            rgb(255 255 255 / 0.08);  /* [measured] border-white/[0.08] — frames, header pill */
+  --line-soft:       rgb(255 255 255 / 0.06);  /* [measured] border-white/[0.06] — cards, inner separators */
+  --line-strong:     rgb(255 255 255 / 0.20);  /* [measured] border-white/20 — query pills, chassis */
+  --line-footer:     rgb(255 255 255 / 0.07);  /* [measured] literal: border-top-color of .landing-page footer */
+
+  /* -- Text ---------------------------------------------------------------
+     Five levels, exactly like the source: primary, secondary, on-image,
+     plan label, placeholder. Contrast ratios are measured
+     on --bg-page. */
+  --text:            #eaf6f3;   /* role of #f7ede8 — 15.9:1 on --bg-page [estimated] */
+  --text-muted:      #93b3b0;   /* role of #a89099 —  7.1:1 [estimated] */
+  --text-image:      #dcefea;   /* role of #f3dfd6 — set on photos only */
+  --text-light:      #ffd2c2;   /* role of #ffd9c2 — eyebrows on photos */
+  --text-label:      #a4c4bd;   /* role of #c9a99b — plan name, notes */
+  --text-faint:      #86aaa6;   /* role of #8a7078 — placeholder of the agent field.
+                                   Measured 6.3:1 on --bg-panel. The value first
+                                   set (#6d8f8d) fell to 4.43:1, under the floor
+                                   of 4.5: raised after measurement, not by eye. */
+
+  /* -- Accent -------------------------------------------------------------
+     The source has a single accent, #ff8f70 (an orange-leaning coral), and a
+     four-stop heading gradient. The coral is KEPT in its role; it barely
+     changes — it is the background that shifts from plum to teal, and
+     that is what moves the whole page. [decided] on the exact value. */
+  --accent:          #ff7a5c;   /* role of #ff8f70 — eyebrows, numbers, checks, ring */
+  --accent-warm:     #ff9d70;   /* role of #ff8f50 — end of the button gradient */
+  --on-accent:       #10231f;   /* [decided] the source sets white on its gradient
+                                   (≈3.0:1). A very dark teal ink reaches 8.9:1 there
+                                   [estimated] without touching the button geometry. */
+
+  /* Heading gradient — four stops, 100deg angle, exactly the mechanics
+     of .landing-gradient-text [measured]; the four hues are mine. */
+  --gradient-title:  linear-gradient(100deg, #ffd2bd 0%, #ff7a5c 38%, #ffa981 62%, #58d3c2 100%);
+  /* Featured button gradient — from/to, like from-[#ff8f50] to-[#f0648e] [measured]. */
+  --gradient-button: linear-gradient(90deg, #ff7a5c 0%, #ffb27f 100%);
+
+  /* -- Status green -------------------------------------------------------
+     [measured] the source sets #28c840 (Apple's "Online" green) and the three
+     window dots #ff5f57 / #febc2e / #28c840. Here the green is brought back
+     into the teal family, the dots keep their colour code. */
+  --status-live:     #3ddba6;
+  --dot-1:           #ff7a5c;
+  --dot-2:           #ffc46b;
+  --dot-3:           #3ddba6;
+
+  /* -- Radii --------------------------------------------------------------
+     The source STACKS radii instead of choosing one: five distinct
+     values, from the largest frame to the smallest field. It is a
+     composition fact, copied as is. [measured] all values. */
+  --r-hero:          2rem;      /* rounded-[2rem]   — the hero card, the only one at 32px */
+  --r-frame:         2.5rem;    /* rounded-[2.5rem] — the four large photo cards */
+  --r-card:          1.5rem;    /* rounded-3xl      — observation cards, plans, thumbnails */
+  --r-item:          1rem;      /* rounded-2xl      — items inside the phone */
+  --r-field:         0.75rem;   /* rounded-xl       — agent input field */
+  --r-pill:          999px;     /* rounded-full compiled by Tailwind to 3.4e38px */
+  --r-phone:         3rem;      /* rounded-[3rem]   — chassis */
+  --r-screen:        2.4rem;    /* rounded-[2.4rem] — screen, 0.6rem less than the chassis */
+
+  /* -- Type scale ---------------------------------------------------------
+     Default Tailwind v4 table, except the source's two arbitraries
+     (13px for eyebrows and pills, 15px for the accordion).
+     The 13px is raised to 14px here, and it is the ONLY typographic deviation:
+     the legibility floor at 360px (pre-flight 17) sets 14px of RENDERED
+     size for any information-bearing text, labels included.
+     [decided] documented. */
+  --t-micro:   0.875rem;  --t-micro-h: 1.25rem;   /* [decided] source text-[13px] */
+  --t-s:       0.875rem;  --t-s-h:     1.5rem;    /* [measured] text-sm + leading-relaxed */
+  --t-15:      0.9375rem; --t-15-h:    1.5rem;    /* [measured] text-[15px], accordion */
+  --t-base:    1rem;      --t-base-h:  1.625;     /* [measured] text-base + leading-relaxed */
+  --t-lg:      1.125rem;  --t-lg-h:    1.75rem;   /* [measured] text-lg, brand and step numbers */
+  --t-xl:      1.25rem;   --t-xl-h:    1.75rem;   /* [measured] text-xl, step titles */
+  --t-2xl:     1.5rem;    --t-2xl-h:   2rem;      /* [measured] text-2xl, card titles */
+  /* [measured] text-4xl + leading-[1.05]. The leading IS 1.05 in the source;
+     it is raised to 1.15 here, and it is a measured [decided], not a taste: the
+     content area of a grotesque is ~1.28em, so at 1.05 the ink of one
+     line leaves its box by 8px and bites into the next. The render check
+     (pre-flight 11) reports it as vertical overflow at all six widths;
+     1.15 is the smallest value that clears it. */
+  --t-4xl:     2.25rem;   --t-4xl-h:   1.20;
+  --t-5xl:     3rem;                              /* [measured] text-5xl, mobile h1 and prices */
+  --t-6xl:     3.75rem;                           /* [measured] text-6xl, desktop h2 */
+  --t-7xl:     4.5rem;                            /* [measured] text-7xl, h1 beyond 1024px */
+
+  --weight-medium:   500;   /* [measured] navigation, buttons, step titles */
+  --weight-semibold: 600;   /* [measured] solid buttons, badge, screen title */
+  --tracking-tight: -0.025em;  /* [measured] tracking-tight */
+  --tracking-wide:   0.025em;  /* [measured] tracking-wide, hero eyebrow */
+  --tracking-wider:  0.2em;    /* [measured] tracking-[0.2em], section eyebrows */
+
+  /* -- Rhythm -------------------------------------------------------------
+     The source does NOT set a single section padding: each band has its
+     own value, and seven distinct values coexist. Copied as is. */
+  --gutter:          1.5rem;   /* [measured] px-6, identical from 360px to 1440px */
+  --container:       72rem;    /* [measured] max-w-6xl */
+  --container-medium: 64rem;   /* [measured] max-w-5xl — FAQ and footer only */
+  --band:            6rem;     /* [measured] py-24 / pb-24 */
+  --band-large:      8rem;     /* [measured] sm:py-32 / sm:pb-32 */
+
+  /* -- Motion -------------------------------------------------------------
+     The only duration written in the source is 150ms, on .landing-press button
+     [measured, literal]. All other motion comes from the Framer
+     Motion runtime, unreadable from the shipped HTML: the start states are
+     readable there (opacity:0 + translateY 16px or 24px), the durations are not.
+     [decided] on the three reveal durations and on the curves. */
+  --duration-press:  150ms;    /* [measured] transition-duration of .landing-press */
+  --duration-state:  200ms;    /* [decided] link and button hover */
+  --duration-reveal: 620ms;    /* [decided] a block rising on scroll */
+  --cascade-step:    90ms;     /* [decided] offset from one cell to the next */
+  --ease-out:        cubic-bezier(0.16, 1, 0.3, 1);   /* [decided] firm deceleration */
+  --ease-state:      cubic-bezier(0.4, 0, 0.2, 1);    /* [measured] Tailwind's implicit curve */
+
+  /* The source's two rise distances, distinct and not
+     interchangeable: the hero rises 16px, the section blocks 24px.
+     [measured] literal, read in the style attributes of the served HTML. */
+  --rise-hero:       16px;
+  --rise-block:      24px;
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   2 ▸ BASE
+   ─────────────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  /* The source sets no scroll-padding; its fixed header therefore covers
+     the top of an anchor. Fixed here: 5rem = pill height + margin. */
+  scroll-padding-top: 5rem;   /* [decided] */
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text);
+  /* [measured] --font-sans:"Geist Variable", sans-serif, read in the :root of the
+     source's CSS bundle. System fallback added here. */
+  font-family: "Geist", "Geist Variable", ui-sans-serif, system-ui, -apple-system,
+               "Segoe UI", Roboto, sans-serif;
+  font-size: var(--t-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+h1, h2, h3 { margin: 0; font-weight: 400; }
+p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+
+/* A single focus ring, visible everywhere. The source sets focus-visible:ring-3
+   ring-ring/50 on --ring:#ff8f70 [measured]; same principle, same role
+   colour, thickness raised to 2px + offset to stay legible on photos. */
+:where(a, button):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* The serif family, the page's only second typeface.
+   [measured] .landing-display { font-family:"Instrument Serif", Georgia, serif }
+   It appears ONLY on: the brand, the italic h1/h2, the observation
+   card titles, the step numbers, the key figures and the prices. */
+.serif {
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+em.serif { font-style: italic; }
+
+/* A display serif has a much taller content area than a grotesque
+   (≈1.4em against ≈1.28em). Set as an <em> INSIDE a heading, it inflates the
+   line box beyond the requested leading and pushes the grotesque's ink
+   out of its box — 3px measured at every width before correction. A
+   leading specific to the serif fragment closes the gap without touching the
+   rhythm of the headings. [decided] */
+.section-title em.serif,
+.hero__title em { line-height: 0.86; }
+
+/* Gradient heading. [measured] background-clip:text on a linear-gradient
+   at 100deg and color:transparent — identical mechanics, own hues.
+   padding-bottom: the descenders of italics are otherwise clipped by the
+   clip box on Blink. [decided] */
+.gradient-text {
+  background: var(--gradient-title);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.06em;
+}
+
+/* Grain. [measured] .landing-noise: opacity .06, feTurbulence fractalNoise
+   baseFrequency .65 numOctaves 3, 250px tile, with pointer-events:none.
+   Copied identically — it is what keeps the gradients from banding. */
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 250px;
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   3 ▸ CONTAINER
+   A single width ceiling for the whole page, a single gutter.
+   [measured] mx-auto max-w-6xl inside a section px-6: the gutter
+   is carried by the SECTION, the ceiling by the child. Only two sections
+   go down to max-w-5xl: the FAQ and the footer.
+   ─────────────────────────────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+.container--medium { max-width: var(--container-medium); }
+
+/* The four large photo cards: same frame, same clipping, same hairline. */
+.container--frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-frame);
+}
+
+/* All sections share the gutter; only the vertical rhythm changes. */
+main > section { padding-inline: var(--gutter); }
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   4 ▸ HEADER — floating pill
+   [measured] fixed inset-x-0 top-0 z-50; the child is mx-4 mt-4 h-12 max-w-6xl
+   rounded-full border bg-…/70 backdrop-blur-xl px-5 sm:px-6, and switches to
+   lg:mx-auto beyond 1024px. Never a burger: below 768px the three links
+   simply disappear, only the button remains [measured].
+   ─────────────────────────────────────────────────────────────────────────── */
+.site-header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 50;
+}
+.site-header__pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 3rem;                       /* [measured] h-12 */
+  margin: 1rem;                       /* [measured] mx-4 mt-4 */
+  max-width: var(--container);
+  padding-inline: 1.25rem;            /* [measured] px-5 */
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--bg-panel) 70%, transparent);  /* [measured] bg-…/70 */
+  backdrop-filter: blur(24px);        /* [measured] backdrop-blur-xl */
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.brand {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: var(--t-lg);             /* [measured] text-lg */
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+  white-space: nowrap;
+}
+.brand__suffix { color: var(--accent); }   /* [measured] only the suffix takes the accent */
+
+.nav {
+  display: none;                      /* [measured] hidden md:flex */
+  align-items: center;
+  gap: 1.75rem;                       /* [measured] gap-7 */
+  font-size: var(--t-micro);
+  color: var(--text-muted);
+}
+.nav a { transition: color var(--duration-state) var(--ease-state); }
+.nav a:hover { color: var(--text); }
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   5 ▸ BUTTONS
+   Four variants, exactly those of the source: glass (bordered, translucent),
+   ghost (bordered, transparent), solid (light background, dark ink), accent
+   (gradient). Heights 2rem / 2.5rem / 2.75rem depending on placement [measured].
+   The press gesture is literal: scale(0.96) over 150ms on
+   transform, background-color, border-color, color, opacity [measured].
+   ─────────────────────────────────────────────────────────────────────────── */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  height: 2.75rem;                    /* [measured] h-11, the most common height */
+  padding-inline: 1.75rem;            /* [measured] px-7 */
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  font-size: var(--t-s);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  cursor: pointer;
+  transition-property: transform, background-color, border-color, color, opacity;
+  transition-duration: var(--duration-press);
+  transition-timing-function: var(--ease-state);
+}
+.button:active { transform: scale(0.96); }   /* [measured] literal */
+.button__icon { width: 0.875rem; height: 0.875rem; }  /* [measured] size-3.5 */
+
+.button--compact {
+  height: 2rem;                       /* [measured] h-8, header pill */
+  padding-inline: 0.875rem;           /* [measured] px-3.5 */
+  font-size: var(--t-micro);
+}
+.button--full-width { width: 100%; }
+
+.button--glass {
+  border-color: var(--veil-20);       /* [measured] border-white/15 to /10 depending on placement */
+  background: var(--veil-10);
+  color: var(--text);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.button--glass:hover { background: var(--veil-20); }
+
+.button--ghost {
+  border-color: var(--veil-10);
+  background: transparent;
+  color: var(--text-light);
+}
+.button--ghost:hover { background: var(--veil-6); color: #fff; }
+
+/* [measured] the source grows this button by 3% on hover, and the only
+   opaque-background button on the page is this one. */
+.button--solid {
+  background: var(--text);
+  color: var(--bg-page);
+  font-weight: var(--weight-semibold);
+  transition-property: transform, background-color, opacity;
+}
+.button--solid:hover { transform: scale(1.03); }
+.button--solid:active { transform: scale(0.96); }
+
+.button--accent {
+  background: var(--gradient-button);
+  color: var(--on-accent);
+  font-weight: var(--weight-semibold);
+}
+.button--accent:hover { transform: scale(1.02); }   /* [measured] hover:scale-[1.02], 1% less than the white one */
+.button--accent:active { transform: scale(0.96); }
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   6 ▸ SHARED TEXT BLOCKS
+   An eyebrow, a heading, a paragraph: three pieces reused by seven
+   sections. The eyebrow is the source's typographic signature — capitals,
+   0.2em letter-spacing, coral accent on a bare background, pale coral on photos.
+   ─────────────────────────────────────────────────────────────────────────── */
+.eyebrow {
+  font-size: var(--t-micro);
+  line-height: var(--t-micro-h);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);   /* [measured] tracking-[0.2em] */
+}
+.eyebrow--accent { color: var(--accent); }
+.eyebrow--light  { color: var(--text-light); }
+
+/* The section heading. Only two steps: 2.25rem everywhere, 3.75rem
+   beyond 640px. Pricing stops one step lower (3rem) [measured] —
+   it is the only heading on the page that does not climb to the top. */
+.section-title {
+  margin-top: 1rem;                    /* [measured] mt-4 */
+  font-size: var(--t-4xl);
+  line-height: var(--t-4xl-h);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+  text-wrap: balance;
+}
+.section-title--large    { max-width: 48rem; }   /* [measured] max-w-3xl / max-w-2xl / max-w-xl depending on the section */
+.section-title--compact  { margin-top: 0; }
+.section-title--on-image {
+  color: #fff;
+  /* [measured] literal: [text-shadow:0_2px_30px_rgba(18,10,16,0.6)] — the text
+     shadow is the source's contrast mechanism on its photos. */
+  text-shadow: 0 2px 30px rgb(5 23 26 / 0.75);
+}
+
+.paragraph {
+  margin-top: 1.5rem;                  /* [measured] mt-6 */
+  font-size: var(--t-base);
+  line-height: var(--t-base-h);
+  color: var(--text-muted);
+  text-wrap: pretty;
+}
+.paragraph--narrow { max-width: 36rem; }   /* [measured] max-w-xl */
+.paragraph--short  { max-width: 28rem; }   /* [measured] max-w-md */
+.paragraph--on-image {
+  color: var(--text-image);
+  text-shadow: 0 1px 20px rgb(5 23 26 / 0.85);
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   7 ▸ HERO
+   ─────────────────────────────────────────────────────────────────────────── */
+.hero { padding-top: 6rem; }           /* [measured] pt-24 */
+
+.hero__card {
+  position: relative;
+  overflow: hidden;
+  max-width: var(--container);
+  margin-inline: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-hero);       /* [measured] 2rem — the only card at this radius */
+}
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;         /* [measured] object-[center_30%] */
+}
+/* Two stacked veils, not one: a vertical gradient over the whole card
+   plus a 10rem bottom band that closes onto the page background. [measured] */
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgb(5 23 26 / 0.50) 0%,
+    rgb(5 23 26 / 0.20) 50%,
+    rgb(5 23 26 / 0.90) 100%);
+}
+.hero__base-veil {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 10rem;                       /* [measured] h-40 */
+  background: linear-gradient(to bottom, transparent, var(--bg-page));
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 1.5rem 5rem;           /* [measured] pt-16 px-6 pb-20 */
+}
+.hero__eyebrow {
+  font-size: var(--t-micro);
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-light);
+}
+.hero__title {
+  margin-top: 1.5rem;                  /* [measured] mt-6 */
+  font-size: var(--t-5xl);
+  line-height: 1.2;                    /* [decided] the source leaves text-5xl at its
+                                          leading of 1; same quantified reason as in
+                                          §1 for --t-4xl-h */
+  letter-spacing: var(--tracking-tight);
+  color: #fff;
+  text-shadow: 0 2px 40px rgb(5 23 26 / 0.7);   /* [measured] same mechanics, opacity raised */
+}
+.hero__lede {
+  margin-top: 1.5rem;
+  max-width: 32rem;                    /* [measured] max-w-lg */
+  font-size: var(--t-base);
+  line-height: var(--t-base-h);
+  color: var(--text-image);
+  text-shadow: 0 1px 20px rgb(5 23 26 / 0.85);
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;                        /* [measured] gap-3 */
+  margin-top: 2rem;                    /* [measured] mt-8 */
+}
+.hero__actions .button { height: 2.5rem; padding-inline: 1.5rem; }  /* [measured] h-10 px-6 */
+
+/* The proof strip: four items separated by a dash set in ::after,
+   never by a character in the text. [measured] the source places a separator
+   <span> INSIDE every item except the last; here it is a pseudo-element,
+   which keeps a screen reader from reading the dash. [decided] */
+.hero__proofs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;                    /* [measured] mt-4 */
+  font-size: var(--t-micro);
+  color: color-mix(in srgb, var(--text-image) 70%, transparent);
+}
+.hero__proofs li:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 0.75rem;
+  margin-left: 0.75rem;
+  border-top: 1px solid currentColor;
+  vertical-align: middle;
+  opacity: 0.6;
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   8 ▸ THE PROBLEM — grid of three cards
+   ─────────────────────────────────────────────────────────────────────────── */
+.problem { padding-block: var(--band); }   /* [measured] py-24 */
+
+.grid-three {
+  display: grid;
+  gap: 1rem;                           /* [measured] gap-4 — a single grid gutter across the whole page */
+  margin-top: 3.5rem;                  /* [measured] mt-14 */
+}
+.grid-three--tight { margin-top: 1rem; }  /* [measured] mt-4: under the promise, the stats stick to the card */
+
+.card {
+  height: 100%;
+  padding: 1.75rem;                    /* [measured] p-7 */
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-card);
+  background: var(--veil-3);           /* [measured] bg-white/[0.03] */
+  transition: background-color var(--duration-state) var(--ease-state),
+              border-color var(--duration-state) var(--ease-state);
+}
+.card:hover { background: var(--veil-6); border-color: var(--line); }
+
+.card__title {
+  font-size: var(--t-2xl);             /* [measured] text-2xl, in serif */
+  line-height: var(--t-2xl-h);
+  color: var(--text);
+}
+.card__figure {
+  font-size: var(--t-4xl);             /* [measured] text-4xl, in serif — the key figures */
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+}
+.card__text {
+  margin-top: 0.75rem;                 /* [measured] mt-3 */
+  font-size: var(--t-s);
+  line-height: var(--t-s-h);
+  color: var(--text-muted);
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   9 ▸ THE FIX — photo card + strip of steps separated by a 1px hairline
+   The most economical technique on the page: the grid itself carries the
+   hairline colour and the cells their opaque background, so that a single
+   `gap: 1px` draws both separators. [measured] gap-px bg-white/[0.06].
+   ─────────────────────────────────────────────────────────────────────────── */
+.fix { padding-bottom: var(--band); }
+
+.fix__scene { position: relative; }
+.fix__image {
+  width: 100%;
+  height: 420px;                       /* [measured] h-[420px] */
+  object-fit: cover;
+  /* The whole monolith in the frame, and the rocky base in the bottom third
+     where the caption sits. It is the place the source gives its own portal
+     in this section, and it is the reference's signature image. [decided] */
+  object-position: center 45%;
+}
+.fix__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg-page) 0%, transparent 55%, transparent 100%);
+}
+.fix__caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 2rem;                       /* [measured] p-8 */
+}
+.fix__caption .section-title { margin-top: 0.75rem; max-width: 42rem; }  /* [measured] mt-3 max-w-2xl */
+
+.fix__steps {
+  display: grid;
+  gap: 1px;                            /* [measured] gap-px */
+  background: var(--line-soft);        /* the hairline IS the grid background */
+}
+.step {
+  padding: 2rem;                       /* [measured] p-8 */
+  background: var(--bg-panel);
+}
+.step__number {
+  font-size: var(--t-lg);              /* [measured] text-lg, in serif, accent colour */
+  color: var(--accent);
+}
+.step__title {
+  margin-top: 1rem;                    /* [measured] mt-4 */
+  font-size: var(--t-xl);
+  line-height: var(--t-xl-h);
+  font-weight: var(--weight-medium);
+  color: var(--text);
+}
+.step__text {
+  margin-top: 0.75rem;
+  font-size: var(--t-s);
+  line-height: var(--t-s-h);
+  color: var(--text-muted);
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   10 ▸ THE AGENTIC SIDE — column / panel duo
+   ─────────────────────────────────────────────────────────────────────────── */
+.agent { padding-block: var(--band); }
+
+.duo {
+  display: grid;
+  align-items: center;
+  gap: 3rem;                           /* [measured] gap-12 */
+}
+
+.agent__thumbnail {
+  margin: 2.5rem 0 0;                  /* [measured] mt-10 */
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+}
+.agent__thumbnail img {
+  width: 100%;
+  height: 14rem;                       /* [measured] h-56 */
+  object-fit: cover;
+  /* The coral break in `hills.webp` sits at 36% of its height. In such a
+     low band, it is the only detail that carries: we frame on it. [decided] */
+  object-position: center 36%;
+}
+
+/* The agent panel: an application window rebuilt in HTML/CSS, never
+   a screenshot. [measured] the source does exactly that — three
+   dots, a name, a status pill, a thread area with an enforced minimum
+   height, a fake input field. */
+.panel {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  background: var(--bg-panel);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);   /* [measured] shadow-2xl shadow-black/40 */
+}
+.panel__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;            /* [measured] px-5 py-3 */
+  border-bottom: 1px solid var(--line-soft);
+}
+.panel__left { display: flex; align-items: center; gap: 0.75rem; }
+.dots { display: inline-flex; gap: 0.375rem; }   /* [measured] gap-1.5 */
+.dots i {
+  width: 0.75rem; height: 0.75rem;     /* [measured] size-3 */
+  border-radius: var(--r-pill);
+}
+.dots i:nth-child(1) { background: var(--dot-1); }
+.dots i:nth-child(2) { background: var(--dot-2); }
+.dots i:nth-child(3) { background: var(--dot-3); }
+
+.panel__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: var(--t-micro);
+  font-weight: var(--weight-medium);
+  color: var(--text);
+}
+.panel__icon { width: 0.875rem; height: 0.875rem; color: var(--text-light); }
+
+.panel__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;            /* [measured] px-2 py-0.5 */
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--status-live) 15%, transparent);   /* [measured] bg-…/15 */
+  font-size: var(--t-micro);           /* [decided] the source sets 10px; 14px floor */
+  font-weight: var(--weight-medium);
+  color: var(--status-live);
+}
+.panel__status i {
+  width: 0.375rem; height: 0.375rem;   /* [measured] size-1.5 */
+  border-radius: var(--r-pill);
+  background: currentColor;
+}
+
+.panel__thread {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;                           /* [measured] space-y-4 */
+  min-height: 320px;                   /* [measured] min-h-[320px] */
+  padding: 1.25rem;                    /* [measured] p-5 */
+}
+
+.bubble {
+  max-width: 85%;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--r-field);
+  font-size: var(--t-s);
+  line-height: var(--t-s-h);
+}
+.bubble--user {
+  align-self: flex-end;
+  background: var(--gradient-button);
+  color: var(--on-accent);
+}
+.bubble--agent {
+  align-self: flex-start;
+  border: 1px solid var(--line-soft);
+  background: var(--veil-3);
+  color: var(--text);
+}
+
+/* The two results returned by the agent: a bordered item, not an image. */
+.result {
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-field);
+  background: var(--veil-3);
+}
+.result__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: var(--t-micro);
+}
+.result__source { color: var(--text-muted); }
+.result__tag {
+  padding: 0.0625rem 0.5rem;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
+  font-weight: var(--weight-medium);
+}
+.result__title {
+  margin-top: 0.375rem;
+  font-size: var(--t-s);
+  font-weight: var(--weight-medium);
+  color: var(--text);
+}
+
+.panel__input {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--line-soft);
+}
+.panel__field {
+  padding: 0.625rem 1rem;              /* [measured] px-4 py-2.5 */
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-field);
+  background: var(--veil-3);
+  font-size: var(--t-s);
+  color: var(--text-faint);
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   11 ▸ THE PROMISE — photo card with a horizontal veil + query pills
+   ─────────────────────────────────────────────────────────────────────────── */
+.promise { padding-bottom: var(--band); }
+
+.promise__scene { isolation: isolate; }
+.promise__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* `forest.webp` has no focal point: a uniform teal canopy, flecked with
+     coral crowns. That is precisely what is needed under the five query
+     pills and the paragraph, which occupy the left two thirds of the card —
+     an image with a strong subject would fight the text there. Centred crop,
+     any window of this image is as good as another. [decided] */
+  object-position: center 50%;
+}
+/* [measured] gradient-to-r from-…/95 via-…/60 to-…/10: the veil is HORIZONTAL
+   here, vertical elsewhere. That is what puts the text on the left without centring it. */
+.promise__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right,
+    rgb(5 23 26 / 0.95) 0%,
+    rgb(5 23 26 / 0.62) 50%,
+    rgb(5 23 26 / 0.15) 100%);
+}
+.promise__content {
+  position: relative;
+  z-index: 2;
+  padding: 5rem 2rem;                  /* [measured] px-8 py-20 */
+}
+.promise__content .section-title { max-width: 36rem; }   /* [measured] max-w-xl */
+
+/* Five query pills, in frosted glass on the photo. [measured] rounded-full
+   border-white/20 bg-…/50 px-4 py-2 backdrop-blur-md. */
+.queries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;                       /* [measured] gap-2.5 */
+  max-width: 42rem;                    /* [measured] max-w-2xl */
+  margin-top: 2rem;                    /* [measured] mt-8 */
+}
+.queries li {
+  padding: 0.5rem 1rem;                /* [measured] px-4 py-2 */
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  background: rgb(5 23 26 / 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: var(--t-micro);
+  color: var(--text-light);
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   12 ▸ THE iOS SIDE — photo card + drawn phone chassis
+   ─────────────────────────────────────────────────────────────────────────── */
+.ios { padding-bottom: var(--band); }
+
+.ios__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* `arch.webp` is the only image of the set with a strong AND off-centre
+     focal point: the arch opening fills the right half, the dark rock the whole
+     left. That is exactly the geometry of this section's veil (opaque on the
+     left, clear on the right): the text sits on the rock, the phone stands
+     out against the glow. 55% on the Y axis centres the opening. [decided] */
+  object-position: center 55%;
+}
+/* [measured] the veil is vertical below 640px and horizontal above: the source
+   changes the DIRECTION of the gradient at the breakpoint, not only its opacity. */
+.ios__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgb(5 23 26 / 0.82) 0%,
+    rgb(5 23 26 / 0.42) 50%,
+    rgb(5 23 26 / 0.88) 100%);
+}
+.ios__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-items: center;
+  gap: 3rem;                           /* [measured] gap-12 */
+  padding: 4rem 2rem;                  /* [measured] px-8 py-16 */
+}
+.ios__content .section-title { max-width: 28rem; }        /* [measured] max-w-md */
+.ios__content .button { margin-top: 2.25rem; }            /* [measured] mt-9 */
+
+.phone-frame { display: flex; justify-content: center; }
+
+/* Chassis: a light border, a card background, 0.625rem of inner padding.
+   The screen radius equals the chassis radius minus the padding — 3rem - 0.6rem =
+   2.4rem, which is exactly the source's rounded-[2.4rem] [measured]. */
+.phone {
+  position: relative;
+  width: 280px;                        /* [measured] w-[280px] */
+  max-width: 100%;
+  padding: 0.625rem;                   /* [measured] p-2.5 */
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-phone);
+  background: var(--bg-card);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+}
+.phone__notch {
+  position: absolute;
+  left: 50%;
+  top: 1.25rem;                        /* [measured] top-5 */
+  z-index: 10;
+  width: 6rem;                         /* [measured] w-24 */
+  height: 1.5rem;                      /* [measured] h-6 */
+  transform: translateX(-50%);
+  border-radius: var(--r-pill);
+  background: #000;
+}
+/* A light screen INSIDE a dark chassis: this is not a theme inversion,
+   it is a depicted object. Precedent in the corpus: cursor-recode, whose
+   only dark surfaces are a phone chassis drawn in CSS. */
+.phone__screen {
+  display: flex;
+  flex-direction: column;
+  height: 560px;                       /* [measured] h-[560px] */
+  overflow: hidden;
+  border-radius: var(--r-screen);
+  background: #f1f5f3;
+  color: #16211f;
+}
+.screen__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3.5rem 1.25rem 0.75rem;     /* [measured] pt-14 px-5 pb-3 */
+}
+.screen__title {
+  font-size: 1.0625rem;                /* [measured] text-[17px] */
+  font-weight: var(--weight-semibold);
+}
+.screen__search { width: 1.125rem; height: 1.125rem; }   /* [measured] size-4.5 */
+
+.screen__list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;                        /* [measured] space-y-3 */
+  overflow: hidden;
+  padding-inline: 1rem;                /* [measured] px-4 */
+}
+.item {
+  overflow: hidden;
+  border-radius: var(--r-item);
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(22 33 31 / 0.08);
+}
+/* Page preview: no screenshot is supplied, so it is DRAWN.
+   16/9 ratio kept — it is what sets the item's height. [measured] */
+.item__preview {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+.item__preview--one {
+  background:
+    radial-gradient(120% 90% at 20% 0%, rgb(255 122 92 / 0.55), transparent 60%),
+    linear-gradient(135deg, #0a262a, #14494c);
+}
+.item__preview--two {
+  background:
+    radial-gradient(110% 100% at 80% 10%, rgb(88 211 194 / 0.5), transparent 62%),
+    linear-gradient(200deg, #082024, #123a44);
+}
+.item__body { padding: 0.75rem 0.875rem; }   /* [measured] px-3.5 py-3 */
+.item__source {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: var(--t-micro);           /* [decided] the source sets 11px; 14px floor */
+  color: #5c6f6c;
+}
+.item__favicon {
+  width: 0.875rem; height: 0.875rem;   /* [measured] size-3.5, the favicon */
+  border-radius: 3px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+}
+.item__title {
+  margin-top: 0.25rem;
+  font-size: var(--t-s);
+  font-weight: var(--weight-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.screen__tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.75rem 2rem;               /* [measured] px-8 py-3 */
+  border-top: 1px solid #dfe6e3;
+  background: #fff;
+}
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--t-micro);           /* [decided] the source sets 9px; 14px floor */
+  color: #566b68;                      /* measured 6.1:1 on the screen's white; #8b9c99,
+                                          set first, only gave 2.87:1 */
+}
+.tab svg { width: 1.125rem; height: 1.125rem; }
+.tab--active { color: #16211f; font-weight: var(--weight-medium); }
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   13 ▸ PRICING
+   ─────────────────────────────────────────────────────────────────────────── */
+.pricing { padding-bottom: var(--band); }
+
+.pricing__header {
+  max-width: 42rem;                    /* [measured] max-w-2xl */
+  margin-inline: auto;
+  text-align: center;
+}
+/* The only heading on the page that does not reach 3.75rem: it stops at 3rem [measured]. */
+.pricing__header .section-title { max-width: none; }
+
+.pricing__grid {
+  display: grid;
+  gap: 1rem;
+  max-width: 56rem;                    /* [measured] max-w-4xl */
+  margin: 3.5rem auto 0;               /* [measured] mt-14 */
+}
+
+.plan {
+  position: relative;
+  padding: 2rem;                       /* [measured] p-8 */
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-card);
+  background: var(--veil-3);
+}
+/* The featured card changes neither size nor radius: it changes border
+   and receives a very faint vertical gradient. [measured] */
+.plan--featured {
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  background: linear-gradient(to bottom,
+    color-mix(in srgb, var(--accent-warm) 8%, transparent),
+    var(--veil-3));
+}
+.plan__badge {
+  position: absolute;
+  top: -0.75rem;                       /* [measured] -top-3 */
+  right: 2rem;                         /* [measured] right-8 */
+  padding: 0.25rem 0.75rem;            /* [measured] px-3 py-1 */
+  border-radius: var(--r-pill);
+  background: var(--gradient-button);
+  font-size: var(--t-micro);           /* [decided] the source sets 11px; 14px floor */
+  font-weight: var(--weight-semibold);
+  color: var(--on-accent);
+}
+.plan__name {
+  font-size: var(--t-s);
+  font-weight: var(--weight-medium);
+  color: var(--text-label);
+}
+.plan__price {
+  display: flex;
+  align-items: baseline;               /* [measured] items-baseline: the price and its unit
+                                          share the baseline, not the centre */
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.plan__price .serif {
+  font-size: var(--t-5xl);             /* [measured] text-5xl, in serif */
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+}
+.plan__unit { font-size: var(--t-s); color: var(--text-muted); }
+
+.plan__note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: var(--t-s);
+  font-weight: var(--weight-medium);
+  color: var(--text-label);
+}
+.plan__dot {
+  width: 0.375rem; height: 0.375rem;
+  border-radius: var(--r-pill);
+  background: var(--veil-20);
+}
+.plan__dot--accent { background: var(--accent); }
+
+.plan__text {
+  margin-top: 1rem;
+  font-size: var(--t-s);
+  line-height: var(--t-s-h);
+  color: var(--text-muted);
+}
+.plan__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;                        /* [measured] space-y-3 */
+  margin-top: 1.75rem;                 /* [measured] mt-7 */
+}
+.plan__list li {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;                       /* [measured] gap-2.5 */
+  font-size: var(--t-s);
+  color: var(--text);
+}
+.plan__list svg {
+  flex: none;
+  width: 1rem; height: 1rem;           /* [measured] size-4 */
+  color: var(--accent);
+}
+.plan .button { margin-top: 2rem; } /* [measured] mt-8 */
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   14 ▸ FAQ — title column + accordion
+   No-JS contract: panels are OPEN by default. The .js-motion class
+   is set on <html> only if the script managed to arm the triggers; a
+   missing or failing script therefore leaves the whole text visible.
+   Technique taken from cursor-recode (resting state never armed blindly).
+   ─────────────────────────────────────────────────────────────────────────── */
+.faq { padding-bottom: var(--band); }
+
+.faq__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;                           /* [measured] gap-12 */
+}
+.faq__column { flex: none; }
+.faq__column .eyebrow { margin-bottom: 0.75rem; }   /* [measured] mb-3 */
+.faq__list { flex: 1; }
+
+.fold { border-bottom: 1px solid var(--line); }        /* [measured] not-last:border-b */
+.fold:last-child { border-bottom: 0; }
+.fold h3 { display: flex; }
+
+.fold__trigger {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;             /* [measured] items-start: the chevron aligns
+                                          with the FIRST line, not the centre */
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 1.25rem 0;                  /* [measured] py-5 */
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: none;
+  font-size: var(--t-15);              /* [measured] text-[15px] */
+  line-height: var(--t-15-h);
+  font-weight: var(--weight-medium);
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+  transition: color var(--duration-state) var(--ease-state);
+}
+.fold__trigger:hover { color: #fff; }
+.fold__trigger svg {
+  flex: none;
+  width: 1rem; height: 1rem;           /* [measured] size-4 */
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  transition: transform var(--duration-state) var(--ease-state);
+}
+.fold__trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+/* Opening through grid-template-rows 0fr → 1fr: the only layout property
+   the repo allows to animate (pre-flight 10, accordion exception). */
+.fold__panel {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--duration-state) var(--ease-state);
+}
+/* `overflow: hidden` clips the folded panel but its <p> keeps a box, hence
+   a position: the render check saw it overlapping the next
+   trigger. `visibility: hidden` removes it from the accessibility tree AND from
+   keyboard navigation, which clipping alone does not. The delay is set
+   only on closing: on opening the text must be visible immediately. */
+.fold__panel > div {
+  overflow: hidden;
+  visibility: visible;
+  transition: visibility 0s;
+}
+.js-motion .fold__panel[data-folded] > div {
+  visibility: hidden;
+  transition: visibility 0s linear var(--duration-state);
+}
+.fold__panel p {
+  padding-bottom: 1.25rem;
+  font-size: var(--t-s);
+  line-height: var(--t-s-h);
+  color: var(--text-muted);
+}
+.js-motion .fold__panel[data-folded] { grid-template-rows: 0fr; }
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   15 ▸ CLOSING
+   ─────────────────────────────────────────────────────────────────────────── */
+.closing { padding-bottom: var(--band); }
+
+.closing__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* `lake.webp` is top/bottom symmetric, waterline at 52%: the Y axis is the
+     most sensitive of the whole set there — 30% would keep only the sky, 70% only the
+     reflection, and the symmetry IS the subject. We keep it. [decided] */
+  object-position: center 50%;
+}
+/* [measured] gradient-to-t from-…/90 via-…/40 to-…/30: the only veil on the page
+   whose lightest stop stays at 30% — the photo is never cleared. */
+.closing__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgb(5 23 26 / 0.90) 0%,
+    rgb(5 23 26 / 0.55) 50%,
+    rgb(5 23 26 / 0.45) 100%);
+}
+.closing__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 6rem 2rem;                  /* [measured] px-8 py-24 */
+}
+.closing__content .section-title { max-width: 42rem; }   /* [measured] max-w-2xl */
+.closing__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2.25rem;                 /* [measured] mt-9 */
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   16 ▸ FOOTER
+   [measured] the source ships a generic footer (bg-[#141414]) then
+   forcibly repaints it with the landing background through .landing-page footer { … !important }.
+   Here there is only one colour, written once.
+   ─────────────────────────────────────────────────────────────────────────── */
+.site-footer {
+  padding-inline: 1rem;                /* [measured] px-4 — the only 1rem gutter on the page */
+  padding-bottom: 2rem;                /* [measured] pb-8 */
+  border-top: 1px solid var(--line-footer);
+}
+.site-footer > .container { margin-block: 3.5rem; }   /* [measured] my-14 */
+
+.site-footer__top {
+  display: grid;
+  gap: 2rem;                           /* [measured] gap-8 */
+  margin-bottom: 3rem;                 /* [measured] gap-12 of the container */
+}
+.brand--footer { font-size: var(--t-lg); }
+.site-footer__tagline {
+  max-width: 20rem;                    /* [measured] max-w-xs */
+  margin-top: 0.75rem;
+  font-size: var(--t-s);
+  line-height: var(--t-s-h);
+  color: var(--text-muted);
+}
+
+.site-footer__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));   /* [measured] grid-cols-2 */
+  /* Split gutter: 2rem between rows, 1rem between columns.
+     At 768px the four columns are only 93px each with 2rem everywhere, and
+     a one-word label overflows by 4px there (measured). [decided] */
+  gap: 2rem 1rem;
+}
+.site-footer__title {
+  margin-bottom: 0.75rem;
+  font-size: var(--t-s);
+  font-weight: var(--weight-medium);
+  color: var(--text);
+}
+.site-footer__columns nav { display: flex; flex-direction: column; gap: 0.5rem; }
+.site-footer__columns a,
+.site-footer__bottom a,
+.site-footer__bottom p {
+  font-size: var(--t-s);
+  color: var(--text-muted);
+}
+.site-footer__columns a,
+.site-footer__bottom a { transition: color var(--duration-state) var(--ease-state); }
+.site-footer__columns a:hover,
+.site-footer__bottom a:hover { color: var(--text); }
+
+.site-footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 2rem;                   /* [measured] pt-8 */
+}
+.site-footer__bottom nav { display: flex; gap: 1.5rem; }   /* [measured] gap-6 */
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   17 ▸ MOTION
+   Two devices, and only two, exactly like the source:
+   (a) the hero raises its five children in a cascade on load, by 16px;
+   (b) each section block rises by 24px when it enters the viewport.
+   No @keyframes: everything is a transition between two states, like the source
+   whose motion is carried entirely by a runtime.
+
+   Safety contract: the resting state (opacity:0) is armed only under
+   .js-motion, a class set by motion.js AFTER checking that it will be able to
+   lift it. Without JS, without IntersectionObserver or with reduced motion, nothing
+   is hidden.
+   ─────────────────────────────────────────────────────────────────────────── */
+.js-motion [data-rise],
+.js-motion [data-reveal] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-duration: var(--duration-reveal);
+  transition-timing-function: var(--ease-out);
+  transition-delay: calc(var(--i, 0) * var(--cascade-step));
+  will-change: opacity, transform;
+}
+.js-motion [data-rise]   { transform: translateY(var(--rise-hero)); }
+.js-motion [data-reveal] { transform: translateY(var(--rise-block)); }
+
+.js-motion [data-rise].is-visible,
+.js-motion [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* The agent panel messages land one after another, never as a
+   block. [measured] the thread area is EMPTY in the HTML served by the source:
+   its content is written by the runtime, hence staged. The technique is
+   reproduced; the durations are a [decided]. */
+.js-motion [data-thread] [data-message] {
+  opacity: 0;
+  transform: translateY(10px);
+  transition-property: opacity, transform;
+  transition-duration: var(--duration-reveal);
+  transition-timing-function: var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 220ms);
+}
+.js-motion [data-thread].is-visible [data-message] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Full neutralisation: the durations AND the resting states. An opacity:0
+   left in place would empty the page. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .js-motion [data-rise],
+  .js-motion [data-reveal],
+  .js-motion [data-thread] [data-message] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .button:active,
+  .button--solid:hover,
+  .button--accent:hover { transform: none; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   18 ▸ BREAKPOINTS
+   The source has only two that matter: 40rem (sm) and 64rem (lg).
+   40rem switches ALL grids from 1 to 3 columns at once and
+   increases every band padding; 64rem opens the two duo
+   layouts and unlocks the h1's last step. No intermediate step [measured].
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 40rem) {
+  .hero { padding-top: 7rem; }                                   /* [measured] sm:pt-28 */
+  .hero__content { padding: 6rem 3rem 7rem; }                    /* [measured] sm:pt-24 sm:px-12 sm:pb-28 */
+  .hero__title { font-size: var(--t-6xl); }
+
+  .problem { padding-block: var(--band-large); }                 /* [measured] sm:py-32 */
+  .fix,
+  .promise,
+  .ios,
+  .pricing,
+  .faq,
+  .closing { padding-bottom: var(--band-large); }                /* [measured] sm:pb-32 */
+  .agent { padding-block: var(--band-large); }
+
+  .section-title { font-size: var(--t-6xl); }
+  .pricing__header .section-title { font-size: var(--t-5xl); }   /* [measured] sm:text-5xl, one step lower */
+
+  .grid-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fix__steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pricing__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .fix__image { height: 520px; }                                 /* [measured] sm:h-[520px] */
+  .fix__caption { padding: 3rem; }                               /* [measured] sm:p-12 */
+  .step { padding: 2.5rem; }                                     /* [measured] sm:p-10 */
+
+  .promise__content { padding: 7rem 3.5rem; }                    /* [measured] sm:px-14 sm:py-28 */
+  .ios__content { padding: 5rem 3.5rem; }                        /* [measured] sm:px-14 sm:py-20 */
+  /* [measured] sm:bg-gradient-to-r — the DIRECTION of the veil changes at the breakpoint */
+  .ios__veil {
+    background: linear-gradient(to right,
+      rgb(5 23 26 / 0.92) 0%,
+      rgb(5 23 26 / 0.45) 55%,
+      rgb(5 23 26 / 0.22) 100%);
+  }
+  .closing__content { padding-block: 8rem; }                     /* [measured] sm:py-32 */
+
+  .agent__thumbnail img { height: 16rem; }                       /* [measured] sm:h-64 */
+  .panel__thread { min-height: 380px; }                          /* [measured] sm:min-h-[380px] */
+  .phone { width: 300px; }                                       /* [measured] sm:w-[300px] */
+
+  .site-header__pill { padding-inline: 1.5rem; }                 /* [measured] sm:px-6 */
+  .site-footer__columns { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .site-footer__bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 48rem) {
+  .nav { display: flex; }                                        /* [measured] md:flex — no burger */
+  .site-footer__top { grid-template-columns: 1fr 2fr; }          /* [measured] md:grid-cols-[1fr_2fr] */
+}
+
+@media (min-width: 64rem) {
+  .site-header__pill { margin-inline: auto; }                    /* [measured] lg:mx-auto */
+  .hero__content { padding-inline: 4rem; }                       /* [measured] lg:px-16 */
+  .hero__title { font-size: var(--t-7xl); }                      /* [measured] lg:text-7xl */
+
+  .duo { grid-template-columns: repeat(2, minmax(0, 1fr)); }     /* [measured] lg:grid-cols-2 */
+  .ios__content { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .faq__layout { flex-direction: row; }                          /* [measured] lg:flex-row */
+  .faq__column { width: 18rem; }                                 /* [measured] lg:w-72 */
+}

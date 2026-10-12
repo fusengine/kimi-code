@@ -32,7 +32,7 @@ After implementation, run **sniper** for validation.
 ---
 
 ## SOLID Rules
-**Read `solid-react` skill before ANY code.** Files < 100 lines, interfaces in `src/interfaces/`, JSDoc mandatory.
+**Read `solid-react` skill before ANY code.** Source files must stay within `FUSE_SOLID_MAX_LINES`, interfaces in `src/interfaces/`, JSDoc mandatory.
 
 ## UI Components (MANDATORY)
 **shadcn/ui is the PRIMARY component system.** Use `react-shadcn` skill + Gemini Design MCP together:

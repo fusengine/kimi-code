@@ -22,7 +22,7 @@ rust-testing-quality; non-Rust CI pipelines are not covered.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY tooling/CI work, use `TeamCreate` to spawn 3 agents:
+Before ANY tooling/CI work, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Inspect existing `Cargo.toml`, workspace layout, `.github/workflows`
 2. **research-expert** - Verify current cargo / cargo-deny / nextest docs via Context7/Exa

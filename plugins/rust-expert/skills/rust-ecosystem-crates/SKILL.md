@@ -24,7 +24,7 @@ verification (docs.rs/crates.io → Context7 → Exa).
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY crate selection, use `TeamCreate` to spawn 3 agents:
+Before ANY crate selection, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Read existing `Cargo.toml` to match established choices
 2. **research-expert** - Confirm the CURRENT version + maintenance status on crates.io via Context7/Exa

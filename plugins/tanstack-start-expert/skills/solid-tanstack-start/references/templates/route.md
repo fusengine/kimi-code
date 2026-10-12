@@ -1,10 +1,10 @@
 ---
 name: route-template
 applies-to: "**/src/routes/**/*.tsx"
-description: TanStack Start route template - orchestrator only, loader calls server functions (< 50 lines)
+description: TanStack Start route template - orchestrator only, loader calls server functions
 ---
 
-# Route (< 50 lines)
+# Route
 
 A route file is an **orchestrator**: declare the route, fetch via a server
 function in the `loader`, render a module component. No types, no DB, no logic.
@@ -105,7 +105,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 ## Rules
 
-- Max 50 lines (root route: 60).
+- Keep each route within `FUSE_SOLID_MAX_LINES`; orchestrator only.
 - Loader calls a `createServerFn` — never raw DB/secret access.
 - No type declarations here (→ `src/interfaces/`).
 - `<Scripts />` and `<HeadContent />` mandatory in `__root.tsx`.

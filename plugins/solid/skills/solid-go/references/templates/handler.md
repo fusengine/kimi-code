@@ -1,7 +1,7 @@
 ---
 name: handler
 applies-to: "**/*.go"
-description: HTTP handler template - net/http or chi/echo, copy-paste ready, < 50 lines
+description: HTTP handler template - net/http or chi/echo, copy-paste ready, thin handler
 when-to-use: creating HTTP handlers, REST endpoints, request/response handling, HTTP I/O layer
 keywords: handler, HTTP, template, handler function, middleware, REST
 ---
@@ -394,9 +394,9 @@ handlers/
 └── handlers_test.go
 ```
 
-### Maximum 50 lines
+### Keep handlers thin
 ```go
-// Keep handlers < 50 lines - delegate to service
+// Keep handlers thin - delegate to service
 ```
 
 ---
@@ -411,5 +411,5 @@ handlers/
 - [ ] Proper HTTP status codes
 - [ ] Error responses formatted consistently
 - [ ] One file per handler action
-- [ ] < 50 lines per handler
+- [ ] Handler file within `FUSE_SOLID_MAX_LINES`
 - [ ] All exported functions documented

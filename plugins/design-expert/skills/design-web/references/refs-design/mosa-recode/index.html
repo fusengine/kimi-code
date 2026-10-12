@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" class="page-html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sylva AI, a grounded layer for calmer AI assistants</title>
+<meta name="description" content="Design, ship, and grow AI assistants on one quiet layer for memory, reasoning, retrieval, automation, and live conversation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="page">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="page-frame">
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="header" data-header>
+    <div class="container header__inner">
+      <a class="brand" href="#main" aria-label="Sylva AI, home">
+        <span class="brand__dot" aria-hidden="true"></span>
+        <span class="brand__word">SYLVA AI</span>
+      </a>
+
+      <nav class="nav-group" aria-label="Primary">
+        <a class="nav-group__link" href="#overview">Overview</a>
+        <a class="nav-group__link" href="#use-cases">Our Story</a>
+        <a class="nav-group__link" href="#faq">Contact</a>
+        <a class="nav-group__link" href="#pricing">Pricing</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="button button--solid button--compact" href="#pricing">Signup <span class="chevron" aria-hidden="true">›</span></a>
+        <a class="login-link" href="#pricing">LOGIN</a>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+      <div class="container mobile-menu__inner">
+        <a href="#overview">Overview</a>
+        <a href="#use-cases">Our Story</a>
+        <a href="#faq">Contact</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================ 1. HERO ============================ -->
+    <section class="hero">
+      <img class="hero__image" src="img/hero.webp" alt="Mountain ridges emerging from a sea of mist at dawn, forest green slopes under a brass horizon" width="1920" height="824" fetchpriority="high" decoding="async">
+      <div class="hero__veil" aria-hidden="true"></div>
+
+      <div class="container hero__grid">
+        <div class="hero__text" data-reveal>
+          <h1 class="hero-title">A Grounded Layer for Calmer AI Assistants</h1>
+          <p class="hero-subtitle">Design, ship, and grow AI assistants on one quiet layer for memory, reasoning, retrieval, automation, and live conversation.</p>
+          <div class="action-row">
+            <a class="button button--solid" href="#overview">START CHATTING <span class="chevron" aria-hidden="true">›</span></a>
+            <a class="button button--outline" href="#steps">LEARN MORE <span class="chevron" aria-hidden="true">›</span></a>
+          </div>
+        </div>
+
+        <div class="hero__backers" data-reveal>
+          <p class="hero__backers-title">Backed by</p>
+          <ul class="hero__backers-list">
+            <li>Understory Fund</li>
+            <li aria-hidden="true">/</li>
+            <li>Northline</li>
+            <li aria-hidden="true">/</li>
+            <li>Meridian Labs</li>
+            <li aria-hidden="true">/</li>
+            <li>Halcyon Ventures</li>
+            <li aria-hidden="true">/</li>
+            <li>Foundry North</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 2. OVERVIEW ============================ -->
+    <section class="section" id="overview">
+      <div class="container">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Introducing Sylva</p>
+        <h2 class="section-title" data-reveal>Experience the calm of <span>a grounded assistant.</span></h2>
+
+        <div class="grid-three" data-reveal-group>
+          <!-- card 1 -->
+          <article class="overview-card" data-reveal>
+            <div class="scene">
+              <img class="scene__bg" src="img/ridge.webp" alt="" width="1920" height="1283" loading="lazy" decoding="async" aria-hidden="true">
+              <div class="scene__content">
+                <p class="chip chip--light">7:30 AM Trigger</p>
+                <span class="connector" aria-hidden="true"></span>
+                <p class="chip"><span class="chip__icon" aria-hidden="true">◫</span>Pull overnight metrics</p>
+                <span class="connector" aria-hidden="true"></span>
+                <p class="chip"><span class="chip__icon" aria-hidden="true">✦</span>Sylva drafts the digest</p>
+                <span class="connector" aria-hidden="true"></span>
+                <p class="chip"><span class="chip__icon" aria-hidden="true">◷</span>Send to the team</p>
+              </div>
+            </div>
+            <h3 class="card-title">Hours Reclaimed</h3>
+            <p class="card-body">Automate the repeat work and take back your morning, your assistant turns routine into seconds so you can think.</p>
+          </article>
+
+          <!-- card 2 -->
+          <article class="overview-card" data-reveal>
+            <div class="scene">
+              <img class="scene__bg" src="img/valley.webp" alt="" width="1920" height="1280" loading="lazy" decoding="async" aria-hidden="true">
+              <div class="scene__content scene__content--left">
+                <div class="chat-panel">
+                  <p class="chat-panel__author"><span class="avatar-dot" aria-hidden="true"></span>Sylva</p>
+                  <p class="chat-panel__line">Here is a first pass at the opening of your field notes:</p>
+                  <p class="chat-panel__body">In a season of loud tools, a quiet one earns its place slowly. Whether you are keeping records, shaping a brief, or thinking out loud, the right words carry further than the fast ones.</p>
+                  <p class="chat-panel__body chat-panel__body--faded">But writing does not have to feel…</p>
+                  <div class="chat-panel__bar" aria-hidden="true">
+                    <span>↻</span><span>⧉</span><span>↗</span><span>▭</span><span>···</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="card-title">Words That Carry</h3>
+            <p class="card-body">Notes, posts, and letters written with clarity and speed, the ease of language without the friction.</p>
+          </article>
+
+          <!-- card 3 -->
+          <article class="overview-card" data-reveal>
+            <div class="scene">
+              <img class="scene__bg" src="img/ridge.webp" alt="" width="1920" height="1283" loading="lazy" decoding="async" aria-hidden="true">
+              <div class="scene__content scene__content--stack">
+                <p class="chip chip--large"><span class="chip__icon" aria-hidden="true">✎</span>Draft tomorrow's update in<span class="chip__action">Unfold</span></p>
+                <p class="chip chip--large"><span class="chip__icon" aria-hidden="true">◌</span>Ready to turn thoughts<span class="chip__action">Illuminate</span></p>
+                <p class="chip chip--large"><span class="chip__icon" aria-hidden="true">❍</span>Would you like to keep this moment?<span class="chip__action">Capture</span></p>
+              </div>
+            </div>
+            <h3 class="card-title">A Quiet Guide</h3>
+            <p class="card-body">Always nearby to keep you steady, prompts, reminders, and small insights right when they help.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 3. USE CASES ============================ -->
+    <section class="section" id="use-cases">
+      <div class="container">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Use cases</p>
+        <h2 class="section-title" data-reveal>One grounded assistant, <span>limitless ways to work.</span></h2>
+
+        <div class="tabs" role="tablist" aria-label="Use cases" data-reveal>
+          <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" type="button">Writing &amp; Drafts</button>
+          <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1" type="button">Code Assist</button>
+          <button class="tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1" type="button">Research &amp; Insight</button>
+          <button class="tab" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" tabindex="-1" type="button">Focus &amp; Flow</button>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" data-reveal>
+          <div class="scene scene--tall">
+            <img class="scene__bg" src="img/valley.webp" alt="A wooded valley at dusk, a river running between forested slopes under the last gold light" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="scene__content scene__content--left">
+              <div class="chat-panel chat-panel--large">
+                <p class="chat-panel__author"><span class="avatar-dot" aria-hidden="true"></span>Sylva</p>
+                <p class="chat-panel__line">Here is a first pass at the opening of your field notes:</p>
+                <p class="chat-panel__body">In a season of loud tools, a quiet one earns its place slowly. Whether you are keeping records, shaping a brief, or thinking out loud in the margins, the right words carry further than the fast ones ever will.</p>
+                <p class="chat-panel__body chat-panel__body--faded">But writing does not have to feel…</p>
+                <div class="chat-panel__bar" aria-hidden="true">
+                  <span>↻</span><span>⧉</span><span>↗</span><span>▭</span><span>···</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel__aside">
+            <p class="label">Writing &amp; Drafts</p>
+            <h3 class="usage-title">Turn notes, drafts, and half-ideas into writing that reads like you.</h3>
+            <a class="button button--solid" href="#pricing">Get started</a>
+          </div>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+          <div class="scene scene--tall">
+            <img class="scene__bg" src="img/ridge.webp" alt="" width="1920" height="1283" loading="lazy" decoding="async" aria-hidden="true">
+            <div class="scene__content scene__content--left">
+              <div class="chat-panel chat-panel--large">
+                <p class="chat-panel__author"><span class="avatar-dot" aria-hidden="true"></span>Sylva</p>
+                <p class="chat-panel__line">The failing case is the empty payload, not the parser:</p>
+                <p class="chat-panel__body">Your handler assumes a body on every request, so the health check falls through to the same branch as a real message. Guard the empty case first, then keep the parser untouched.</p>
+                <p class="chat-panel__body chat-panel__body--faded">Want the patch as a diff…</p>
+                <div class="chat-panel__bar" aria-hidden="true">
+                  <span>↻</span><span>⧉</span><span>↗</span><span>▭</span><span>···</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel__aside">
+            <p class="label">Code Assist</p>
+            <h3 class="usage-title">Read a stack trace, find the branch, and get the patch you would have written.</h3>
+            <a class="button button--solid" href="#pricing">Get started</a>
+          </div>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>
+          <div class="scene scene--tall">
+            <img class="scene__bg" src="img/valley.webp" alt="" width="1920" height="1280" loading="lazy" decoding="async" aria-hidden="true">
+            <div class="scene__content scene__content--left">
+              <div class="chat-panel chat-panel--large">
+                <p class="chat-panel__author"><span class="avatar-dot" aria-hidden="true"></span>Sylva</p>
+                <p class="chat-panel__line">Four of the eleven sources agree on the same figure:</p>
+                <p class="chat-panel__body">The rest quote a single survey from two winters ago, which explains the spread. I kept the four, flagged the reused survey, and left every claim next to the line it came from.</p>
+                <p class="chat-panel__body chat-panel__body--faded">Open the annotated list…</p>
+                <div class="chat-panel__bar" aria-hidden="true">
+                  <span>↻</span><span>⧉</span><span>↗</span><span>▭</span><span>···</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel__aside">
+            <p class="label">Research &amp; Insight</p>
+            <h3 class="usage-title">Read the long way round, then keep only what holds up to a second look.</h3>
+            <a class="button button--solid" href="#pricing">Get started</a>
+          </div>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" hidden>
+          <div class="scene scene--tall">
+            <img class="scene__bg" src="img/ridge.webp" alt="" width="1920" height="1283" loading="lazy" decoding="async" aria-hidden="true">
+            <div class="scene__content scene__content--left">
+              <div class="chat-panel chat-panel--large">
+                <p class="chat-panel__author"><span class="avatar-dot" aria-hidden="true"></span>Sylva</p>
+                <p class="chat-panel__line">Three things are open and only one of them is today:</p>
+                <p class="chat-panel__body">The review is due at five, the two others can wait until the week turns. I have muted everything else until then and left the review at the top of your list.</p>
+                <p class="chat-panel__body chat-panel__body--faded">Hold the quiet hours until…</p>
+                <div class="chat-panel__bar" aria-hidden="true">
+                  <span>↻</span><span>⧉</span><span>↗</span><span>▭</span><span>···</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel__aside">
+            <p class="label">Focus &amp; Flow</p>
+            <h3 class="usage-title">Keep one thing in front of you, and let the rest wait its turn quietly.</h3>
+            <a class="button button--solid" href="#pricing">Get started</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 4. STEPS ============================ -->
+    <section class="section" id="steps">
+      <div class="container">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>How It Works</p>
+        <h2 class="section-title" data-reveal>One prompt to start, <span>three steps to done.</span></h2>
+
+        <div class="steps-grid">
+          <div class="scene scene--tall" data-reveal>
+            <img class="scene__bg" src="img/ridge.webp" alt="A wooded ridge under a low overcast sky, forest green and grey in drifting mist" width="1920" height="1283" loading="lazy" decoding="async">
+            <div class="scene__content">
+              <div class="composer">
+                <p class="composer__prompt">What are we working on?</p>
+                <div class="composer__bar">
+                  <span class="chip chip--mini"><span class="chip__icon" aria-hidden="true">▤</span>Library</span>
+                  <span class="composer__icons" aria-hidden="true"><span>⌘</span><span>▣</span><span>◍</span><span>☺</span></span>
+                  <span class="composer__send">Send message</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ol class="steps-list" data-reveal-group>
+            <li class="step step--active" data-reveal>
+              <p class="step__title"><span class="step__icon" aria-hidden="true">▢</span>1 – Ask</p>
+              <p class="step__body">Type or say what you need, a thought, a task, a question.</p>
+            </li>
+            <li class="step" data-reveal>
+              <p class="step__title"><span class="step__icon" aria-hidden="true">✦</span>2 – Draft</p>
+              <p class="step__body">Sylva weaves the answer, shaping text or insight in seconds.</p>
+            </li>
+            <li class="step" data-reveal>
+              <p class="step__title"><span class="step__icon" aria-hidden="true">◉</span>3 – Apply</p>
+              <p class="step__body">Take what came back, refine it, use it, and carry on with ease.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 5. BENEFITS ============================ -->
+    <section class="section" id="benefits">
+      <div class="container">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Benefits</p>
+        <h2 class="section-title" data-reveal>Your steady companion <span>for everyday work.</span></h2>
+
+        <div class="benefits-grid" data-reveal-group>
+          <article class="benefit-card" data-reveal>
+            <span class="icon-disc" aria-hidden="true">◷</span>
+            <h3 class="benefit-title">Hours Regained</h3>
+            <p class="benefit-body">Automate the routine and take back hours for what actually matters.</p>
+          </article>
+          <article class="benefit-card" data-reveal>
+            <span class="icon-disc" aria-hidden="true">✎</span>
+            <h3 class="benefit-title">Effortless Words</h3>
+            <p class="benefit-body">Turn thoughts into finished writing, clear, natural, and quick.</p>
+          </article>
+          <article class="benefit-card" data-reveal>
+            <span class="icon-disc" aria-hidden="true">◎</span>
+            <h3 class="benefit-title">Gentle Focus</h3>
+            <p class="benefit-body">Stay sharp with quiet nudges that keep distraction at a distance.</p>
+          </article>
+          <article class="benefit-card" data-reveal>
+            <span class="icon-disc" aria-hidden="true">▤</span>
+            <h3 class="benefit-title">Instant Recall</h3>
+            <p class="benefit-body">Condense research and long threads into clarity within seconds.</p>
+          </article>
+          <article class="benefit-card" data-reveal>
+            <span class="icon-disc" aria-hidden="true">☾</span>
+            <h3 class="benefit-title">Always Awake</h3>
+            <p class="benefit-body">Your quiet partner, ready to help at whatever hour you need it.</p>
+          </article>
+          <article class="benefit-card" data-reveal>
+            <span class="icon-disc" aria-hidden="true">⛨</span>
+            <h3 class="benefit-title">Trust by Design</h3>
+            <p class="benefit-body">Protected from the start, your data, your ideas, always yours.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 6. TESTIMONIALS ============================ -->
+    <section class="section" id="testimonials">
+      <div class="container">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Testimonials</p>
+        <h2 class="section-title" data-reveal>What our users say <span>about their new quiet partner</span></h2>
+      </div>
+
+      <div class="rail" data-rail>
+        <div class="rail__track container" data-rail-track>
+          <figure class="review-card">
+            <blockquote>This assistant quietly changed how our team handles research and the daily grind. Fast, dependable, and more thoughtful than we expected.</blockquote>
+            <figcaption>
+              <span class="avatar-dot avatar-dot--initials" aria-hidden="true">ER</span>
+              <span class="review-card__who"><b>Elias R.</b><i>Studio Founder</i></span>
+              <span class="review-card__rank">1/6</span>
+            </figcaption>
+          </figure>
+          <figure class="review-card">
+            <blockquote>It feels less like a chatbot and more like a real working partner that holds context and helps me move a good deal faster.</blockquote>
+            <figcaption>
+              <span class="avatar-dot avatar-dot--initials" aria-hidden="true">NK</span>
+              <span class="review-card__who"><b>Nadia K.</b><i>Product Manager</i></span>
+              <span class="review-card__rank">2/6</span>
+            </figcaption>
+          </figure>
+          <figure class="review-card">
+            <blockquote>From writing copy to untangling technical problems, this assistant has become an ordinary part of my working day.</blockquote>
+            <figcaption>
+              <span class="avatar-dot avatar-dot--initials" aria-hidden="true">TB</span>
+              <span class="review-card__who"><b>Tomas B.</b><i>Software Engineer</i></span>
+              <span class="review-card__rank">3/6</span>
+            </figcaption>
+          </figure>
+          <figure class="review-card">
+            <blockquote>The quality of the answers and the speed of the work genuinely feel like a step change. It saves me hours every single week.</blockquote>
+            <figcaption>
+              <span class="avatar-dot avatar-dot--initials" aria-hidden="true">WA</span>
+              <span class="review-card__who"><b>Wren A.</b><i>Marketing Lead</i></span>
+              <span class="review-card__rank">4/6</span>
+            </figcaption>
+          </figure>
+          <figure class="review-card">
+            <blockquote>I use it daily for planning, drafting, and thinking aloud. It keeps returning ideas that feel clear enough to act on.</blockquote>
+            <figcaption>
+              <span class="avatar-dot avatar-dot--initials" aria-hidden="true">JL</span>
+              <span class="review-card__who"><b>Jonas L.</b><i>Creative Director</i></span>
+              <span class="review-card__rank">5/6</span>
+            </figcaption>
+          </figure>
+          <figure class="review-card">
+            <blockquote>It adapts so naturally from one task to the next that it reads like an extra teammate who is always somewhere nearby.</blockquote>
+            <figcaption>
+              <span class="avatar-dot avatar-dot--initials" aria-hidden="true">MS</span>
+              <span class="review-card__who"><b>Mira S.</b><i>Operations Manager</i></span>
+              <span class="review-card__rank">6/6</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="container rail__controls">
+          <button class="round" type="button" data-rail-prev aria-label="Previous testimonials">←</button>
+          <button class="round" type="button" data-rail-next aria-label="Next testimonials">→</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 7. LOGO WALL ============================ -->
+    <section class="section section--tight" id="partners">
+      <div class="container">
+        <ul class="logo-wall" data-reveal>
+          <li><span class="logo-word">NORTHWIND</span></li>
+          <li><span class="logo-word">CAIRN</span></li>
+          <li><span class="logo-word">ALDER</span></li>
+          <li><span class="logo-word">HOLLOW</span></li>
+          <li><span class="logo-word">PELAGO</span></li>
+          <li><span class="logo-word">TIMBERLINE</span></li>
+          <li><span class="logo-word">QUARRY</span></li>
+          <li><span class="logo-word">MERIDIAN</span></li>
+          <li><span class="logo-word">FOXGLOVE</span></li>
+          <li><span class="logo-word">BASALT</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================ 8. PRICING ============================ -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Pricing</p>
+        <h2 class="section-title" data-reveal>Choose the plan that <span>grows with you.</span></h2>
+
+        <div class="pricing-toggle" data-reveal>
+          <span class="pricing-toggle__word" data-period-month>Monthly</span>
+          <button class="switch" type="button" data-period-toggle role="switch" aria-checked="false" aria-label="Bill yearly"><span aria-hidden="true"></span></button>
+          <span class="pricing-toggle__word pricing-toggle__word--off" data-period-year>Yearly</span>
+          <span class="discount-label">20% OFF</span>
+        </div>
+
+        <div class="pricing-grid" data-reveal-group>
+          <article class="pricing-card" data-reveal>
+            <h3 class="pricing-title">Starter</h3>
+            <p class="price"><b data-price data-month="€0" data-year="€0">€0</b><span>/month</span></p>
+            <p class="pricing-body">Enough to explore the assistant properly, for individuals and small projects.</p>
+            <a class="button button--outline button--block" href="#faq">Start for Free</a>
+            <p class="caption-divider"><span>Features</span></p>
+            <ul class="feature-list">
+              <li>Core assistant access</li>
+              <li>Limited prompts each month</li>
+              <li>Community support</li>
+            </ul>
+          </article>
+
+          <article class="pricing-card pricing-card--featured" data-reveal>
+            <h3 class="pricing-title">Studio <span class="flag">Popular</span></h3>
+            <p class="price"><b data-price data-month="€29" data-year="€23">€29</b><span>/month</span></p>
+            <p class="pricing-body">Room to scale, for people whose day depends on the work getting out.</p>
+            <a class="button button--solid button--block" href="#faq">Upgrade to Studio</a>
+            <p class="caption-divider"><span>Features</span></p>
+            <ul class="feature-list">
+              <li>Unlimited prompts</li>
+              <li>Priority response time</li>
+              <li>Early access to new models</li>
+              <li>Custom integrations and API</li>
+              <li>File and document uploads</li>
+            </ul>
+          </article>
+
+          <article class="pricing-card" data-reveal>
+            <h3 class="pricing-title">Grove</h3>
+            <p class="price price--word"><b>Custom</b></p>
+            <p class="pricing-body">Full reach with custom options, priority support, and a team-ready setup.</p>
+            <a class="button button--outline button--block" href="#faq">Contact Sales</a>
+            <p class="caption-divider"><span>Features</span></p>
+            <ul class="feature-list">
+              <li>Dedicated workspace</li>
+              <li>Advanced model tuning</li>
+              <li>Premium support and SLA</li>
+              <li>Custom onboarding and training</li>
+              <li>White-label and custom branding</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 9. FAQ ============================ -->
+    <section class="section" id="faq">
+      <div class="container faq-grid">
+        <div class="faq__aside" data-reveal>
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>FAQ</p>
+          <h2 class="section-title">Questions answered, <span>clarity delivered.</span></h2>
+          <p class="faq__note">Everything worth knowing before you begin. Still looking for something? <a href="#partners">Reach out</a>.</p>
+        </div>
+
+        <div class="faq__list" data-reveal>
+          <details class="accordion" open>
+            <summary>What exactly does this AI assistant do?<span class="accordion__sign" aria-hidden="true"></span></summary>
+            <div class="accordion__body"><p>It is a quiet companion built to help you write, code, research, and hold your focus. Think of it as a steady collaborator that turns prompts into clear, usable results without the friction of older tools.</p></div>
+          </details>
+          <details class="accordion">
+            <summary>How is it different from other AI tools?<span class="accordion__sign" aria-hidden="true"></span></summary>
+            <div class="accordion__body"><p>Most AI tools feel like software you operate. This one behaves like a guide that anticipates what comes next. The interface steps back so the work, not the tool, holds your attention.</p></div>
+          </details>
+          <details class="accordion">
+            <summary>Is there a free trial?<span class="accordion__sign" aria-hidden="true"></span></summary>
+            <div class="accordion__body"><p>Yes. Every plan opens with a 14-day trial and no card required. Explore all of it, and cancel at any point if the fit is not right.</p></div>
+          </details>
+          <details class="accordion">
+            <summary>How is my data handled and protected?<span class="accordion__sign" aria-hidden="true"></span></summary>
+            <div class="accordion__body"><p>Your data is encrypted in transit and at rest. We never train models on private conversations, and you keep full ownership of everything you make. Team plans add compliance and audit controls.</p></div>
+          </details>
+          <details class="accordion">
+            <summary>Can I cancel or change my plan anytime?<span class="accordion__sign" aria-hidden="true"></span></summary>
+            <div class="accordion__body"><p>Of course. Upgrade, downgrade, or cancel from your dashboard whenever you like. Changes land at the start of the next billing cycle, with nothing hidden in between.</p></div>
+          </details>
+          <details class="accordion">
+            <summary>Do you offer team or enterprise plans?<span class="accordion__sign" aria-hidden="true"></span></summary>
+            <div class="accordion__body"><p>Yes. The Grove plan and our custom enterprise setups include shared workspaces, role-based access, dedicated support, and onboarding shaped around how your team already works.</p></div>
+          </details>
+          <details class="accordion">
+            <summary>What kind of support do you provide?<span class="accordion__sign" aria-hidden="true"></span></summary>
+            <div class="accordion__body"><p>Free accounts get community support. Studio accounts get priority email support answered inside 24 hours. Grove customers get a named account manager and a custom SLA.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 10. FINAL CALL ============================ -->
+    <section class="section section--closing">
+      <div class="container">
+        <div class="closing-band" data-reveal>
+          <img class="closing-band__image" src="img/portal.webp" alt="A luminous monolith standing in an empty landscape, brass light against deep green growth" width="1920" height="1280" loading="lazy" decoding="async">
+          <div class="closing-band__veil" aria-hidden="true"></div>
+          <div class="closing-band__content">
+            <p class="eyebrow eyebrow--center"><span class="eyebrow__dot" aria-hidden="true"></span>Begin Now</p>
+            <h2 class="closing-title">Ready to work <span>with a calmer assistant?</span></h2>
+            <p class="closing-subtitle">Step into a steadier way of working, where quiet assistance meets the day you already have.</p>
+            <div class="action-row action-row--center">
+              <a class="button button--solid" href="#pricing">START CHATTING <span class="chevron" aria-hidden="true">›</span></a>
+              <a class="button button--outline" href="#faq">BOOK A CALL <span class="chevron" aria-hidden="true">›</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="brand" href="#main" aria-label="Sylva AI, home">
+            <span class="brand__dot" aria-hidden="true"></span>
+            <span class="brand__word">SYLVA AI</span>
+          </a>
+          <p class="footer__summary">Your grounded AI assistant. Work steadier, write faster, and finish more of what you start.</p>
+          <form class="footer__newsletter" data-newsletter>
+            <label class="footer__newsletter-title" for="email">STAY IN THE LOOP</label>
+            <div class="footer__newsletter-field">
+              <input id="email" type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
+              <button class="button button--solid button--compact" type="submit">SUBSCRIBE</button>
+            </div>
+            <p class="footer__newsletter-status" data-newsletter-status role="status"></p>
+          </form>
+        </div>
+
+        <nav class="footer__column" aria-label="Pages">
+          <h3>PAGES</h3>
+          <ul>
+            <li><a href="#overview">About</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">Contact</a></li>
+            <li><a href="#steps">Changelog</a></li>
+            <li><a href="#pricing">Login</a></li>
+            <li><a href="#pricing">Sign Up</a></li>
+            <li><a href="#faq">Forgot Password</a></li>
+            <li><a href="#faq">Reset Password</a></li>
+            <li><a href="#faq">Privacy Policy</a></li>
+            <li><a href="#faq">Terms of Service</a></li>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#main">404</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__column" aria-label="Resources">
+          <h3>RESOURCES</h3>
+          <ul>
+            <li><a href="#steps">Documentation</a></li>
+            <li><a href="#steps">API Reference</a></li>
+            <li><a href="#use-cases">Blog</a></li>
+            <li><a href="#use-cases">Guides</a></li>
+            <li><a href="#testimonials">Community</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__column" aria-label="Company">
+          <h3>COMPANY</h3>
+          <ul>
+            <li><a href="#overview">About</a></li>
+            <li><a href="#benefits">Careers</a></li>
+            <li><a href="#partners">Press</a></li>
+            <li><a href="#faq">Contact</a></li>
+            <li><a href="#partners">Partners</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__column" aria-label="Legal">
+          <h3>LEGAL</h3>
+          <ul>
+            <li><a href="#faq">Privacy</a></li>
+            <li><a href="#faq">Terms</a></li>
+            <li><a href="#faq">Security</a></li>
+            <li><a href="#faq">Cookies</a></li>
+            <li><a href="#faq">Trust Center</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__legal">© 2026 Sylva AI. All rights reserved.</p>
+        <p class="footer__status"><span class="footer__status-dot" aria-hidden="true"></span>All systems operational</p>
+        <ul class="footer__social">
+          <li><a href="#main" aria-label="Sylva on X">X</a></li>
+          <li><a href="#main" aria-label="Sylva on GitHub">GH</a></li>
+          <li><a href="#main" aria-label="Sylva on LinkedIn">in</a></li>
+          <li><a href="#main" aria-label="Sylva on YouTube">▶</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="motion.js"></script>
+</body>
+</html>

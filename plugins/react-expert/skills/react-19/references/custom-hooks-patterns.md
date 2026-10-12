@@ -49,7 +49,7 @@ Custom hooks provide:
 
 ## SOLID Compliance
 
-1. **Single Responsibility** - One purpose per hook (max 30 lines)
+1. **Single Responsibility** - One purpose per hook; keep it within `FUSE_SOLID_MAX_LINES`
 2. **Types in interfaces/** - All types in separate interface files
 3. **JSDoc mandatory** - Document every exported hook
 4. **Location:**
@@ -71,7 +71,7 @@ Custom hooks provide:
 ## Anti-Patterns
 
 1. **Multiple responsibilities** - Hook doing too many things
-2. **Files >30 lines** - Split into multiple hooks
+2. **Mixed responsibilities** - Split into multiple hooks
 3. **Types in hook file** - Move to interfaces/
 4. **Missing JSDoc** - All exports must be documented
 
@@ -80,7 +80,7 @@ Custom hooks provide:
 ## Key Points
 
 - Name with `use` prefix
-- Max 30 lines per hook
+- Keep each hook within `FUSE_SOLID_MAX_LINES` and focused on one responsibility
 - Types in `interfaces/`
 - JSDoc on all exports
 - Test with `renderHook` from Testing Library

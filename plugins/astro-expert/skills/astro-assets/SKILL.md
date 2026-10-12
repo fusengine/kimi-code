@@ -16,7 +16,7 @@ Production-ready image optimization and asset management with `astro:assets` in 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing image usage and asset patterns
 2. **research-expert** - Verify astro:assets API via Context7/Exa

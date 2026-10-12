@@ -24,6 +24,6 @@ find . -type f -name "*.go" 2>/dev/null | wc -l
 ## Large Files Detection
 
 ```bash
-# Find files > 100 lines (potential violations)
+# Find the largest files (compare against FUSE_SOLID_MAX_LINES)
 find . -name "*.ts" -o -name "*.tsx" -o -name "*.py" 2>/dev/null | xargs wc -l 2>/dev/null | sort -rn | head -20
 ```

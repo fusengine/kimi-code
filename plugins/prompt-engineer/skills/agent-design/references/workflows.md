@@ -26,7 +26,7 @@ X - eXamine    : Validate the result
 │                     P - PLAN                         │
 ├─────────────────────────────────────────────────────┤
 │ 1. Use TaskCreate to decompose                       │
-│ 2. Estimate file sizes (<100 lines)                 │
+│ 2. Estimate file sizes (FUSE_SOLID_MAX_LINES)       │
 │ 3. Identify necessary modifications                 │
 │ 4. Validate plan (optional: EnterPlanMode)          │
 └─────────────────────────────────────────────────────┘
@@ -37,7 +37,7 @@ X - eXamine    : Validate the result
 ├─────────────────────────────────────────────────────┤
 │ 1. Use the appropriate expert agent                 │
 │ 2. Follow SOLID rules                               │
-│ 3. Split files at 90 lines                          │
+│ 3. Split files before the ceiling                   │
 │ 4. Document each function (JSDoc/PHPDoc)            │
 └─────────────────────────────────────────────────────┘
                          │

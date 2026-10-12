@@ -1,6 +1,6 @@
 ---
 name: service-template
-description: Service template with dependency injection (< 60 lines)
+description: Service template with dependency injection
 when-to-use: creating services, API clients, data access layers
 keywords: service, API, client, data access, dependency injection
 priority: medium
@@ -10,7 +10,7 @@ trigger-on-edit: "services/"
 level: template
 ---
 
-# Service (< 60 lines)
+# Service
 
 ## Basic Service
 
@@ -115,7 +115,7 @@ export function createFileService(basePath: string): FileReader & FileWriter {
 
 ## Rules
 
-- Max 60 lines
+- Service file within `FUSE_SOLID_MAX_LINES`
 - Import feature types from `../interfaces/`, shared from `@/modules/cores/interfaces/`
 - Use dependency injection for testability
 - JSDoc for all exports

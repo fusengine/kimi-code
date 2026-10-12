@@ -16,7 +16,7 @@ Production deployment for Astro 7 across all major platforms — Cloudflare, Ver
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze astro.config.mjs, output mode, and existing adapter
 2. **research-expert** - Verify adapter docs via Context7/Exa for target platform

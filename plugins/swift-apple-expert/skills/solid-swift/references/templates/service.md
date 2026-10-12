@@ -10,7 +10,7 @@ keywords: service, URLSession, API, template, Swift
 
 ## Rules
 
-- Services < 100 lines
+- One domain per service; under the hook ceiling (`FUSE_SOLID_MAX_LINES`)
 - Location: `Features/[Feature]/Services/`
 - Shared services: `Core/Services/`
 - Always conform to protocol

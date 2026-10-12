@@ -9,18 +9,18 @@ applies-to: "**/*.astro"
 
 ```text
 src/
-├── components/              # Reusable UI components (< 60 lines each)
+├── components/              # Reusable UI components (focused, one UI concern each)
 │   ├── common/              # Shared across features (Button, Card, etc.)
 │   ├── home/                # Home page sections
 │   ├── blog/                # Blog-specific components
 │   └── nav/                 # Navigation components
 │
-├── layouts/                 # Page layout wrappers (< 80 lines each)
+├── layouts/                 # Page layout wrappers
 │   ├── BaseLayout.astro     # Root HTML layout
 │   ├── BlogLayout.astro     # Blog post layout
 │   └── DocsLayout.astro     # Documentation layout
 │
-├── pages/                   # Route definitions (< 50 lines each)
+├── pages/                   # Route definitions (composition only)
 │   ├── index.astro
 │   ├── about.astro
 │   ├── blog/

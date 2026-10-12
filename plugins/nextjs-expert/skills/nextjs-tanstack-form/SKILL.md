@@ -16,7 +16,7 @@ Type-safe, performant forms with Server Actions and signal-based reactivity.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing forms and validation patterns
 2. **research-expert** - Verify latest TanStack Form docs via Context7/Exa
@@ -73,12 +73,12 @@ Forms organized by feature module:
 
 ### File Organization
 
-| File | Purpose | Max Lines |
-|------|---------|-----------|
-| `form-options.ts` | Shared formOptions + Zod schema | 50 |
-| `FormComponent.tsx` | Client form UI with fields | 80 |
-| `form.action.ts` | Server Action with validation | 30 |
-| `form.interface.ts` | Types for form values | 30 |
+| File | Purpose |
+|------|---------|
+| `form-options.ts` | Shared formOptions + Zod schema |
+| `FormComponent.tsx` | Client form UI with fields |
+| `form.action.ts` | Server Action with validation |
+| `form.interface.ts` | Types for form values |
 
 ---
 

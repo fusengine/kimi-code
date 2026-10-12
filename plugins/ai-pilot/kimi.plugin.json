@@ -1,6 +1,6 @@
 {
   "name": "fuse-ai-pilot",
-  "version": "1.2.40",
+  "version": "1.2.41",
   "description": "AI Pilot workflow agents: sniper (code quality), research-expert, explore-codebase, websearch",
   "author": {
     "name": "Fusengine",
@@ -38,6 +38,11 @@
     },
     {
       "event": "SubagentStop",
+      "matcher": "",
+      "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" aipilot"
+    },
+    {
+      "event": "Stop",
       "matcher": "",
       "command": "bun \"${KIMI_PLUGIN_ROOT}/scripts/kimi-hook-shim.mjs\" aipilot"
     },

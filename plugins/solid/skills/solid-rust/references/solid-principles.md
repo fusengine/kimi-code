@@ -29,11 +29,11 @@ src/
 ├── modules/
 │   ├── [feature]/
 │   │   ├── mod.rs           # Module declaration
-│   │   ├── handlers.rs      # HTTP handlers (< 50 lines)
-│   │   ├── services.rs      # Business logic (< 100 lines)
-│   │   ├── repository.rs    # Data access (< 100 lines)
-│   │   ├── traits.rs        # Trait definitions ONLY (< 30 lines)
-│   │   └── models.rs        # Domain models (< 50 lines)
+│   │   ├── handlers.rs      # HTTP handlers
+│   │   ├── services.rs      # Business logic
+│   │   ├── repository.rs    # Data access
+│   │   ├── traits.rs        # Trait definitions ONLY
+│   │   └── models.rs        # Domain models
 │   └── core/                # Shared (cross-feature)
 │       ├── services.rs
 │       ├── traits.rs
@@ -48,14 +48,7 @@ src/
 
 ## File Size Limits
 
-| Type | Max Lines | Split At |
-|------|-----------|----------|
-| Handler | 50 | 40 |
-| Service | 100 | 90 |
-| Repository | 100 | 90 |
-| Trait | 30 | 25 |
-| Model | 50 | 40 |
-| **Any file** | **100** | **90** |
+Every file stays within the hook ceiling `FUSE_SOLID_MAX_LINES`. One purpose per file: handlers stay thin, `traits.rs` holds trait definitions only; split mixed responsibilities.
 
 ---
 
@@ -71,7 +64,7 @@ src/
 
 ## Quick Checklist
 
-- [ ] Files < 100 lines
+- [ ] Files within `FUSE_SOLID_MAX_LINES`
 - [ ] Traits in `traits.rs` or `src/core/traits/`
 - [ ] Services use generic trait bounds (not concrete types)
 - [ ] Error handling with `thiserror`

@@ -37,16 +37,18 @@ Detect project type and apply appropriate SOLID rules:
 
 ## Detection Rules
 
-| File | Project Type | File Limit | SOLID Skill |
-|------|--------------|------------|-------------|
-| `package.json` + next | Next.js | 100 | solid-nextjs |
-| `package.json` + react (no next) | React | 100 | solid-react |
-| `package.json` (no react/next) | Generic TS | 100 | solid-generic |
-| `composer.json` + laravel | Laravel | 100 | solid-php |
-| `Package.swift` / `*.xcodeproj` | Swift | 100 | solid-swift |
-| `go.mod` | Go | 100 | - |
-| `Cargo.toml` | Rust | 100 | - |
-| `pyproject.toml` | Python | 100 | - |
+| File | Project Type | SOLID Skill |
+|------|--------------|-------------|
+| `package.json` + next | Next.js | solid-nextjs |
+| `package.json` + react (no next) | React | solid-react |
+| `package.json` (no react/next) | Generic TS | solid-generic |
+| `composer.json` + laravel | Laravel | solid-php |
+| `Package.swift` / `*.xcodeproj` | Swift | solid-swift |
+| `go.mod` | Go | - |
+| `Cargo.toml` | Rust | - |
+| `pyproject.toml` | Python | - |
+
+File size: the hook ceiling `FUSE_SOLID_MAX_LINES` (owner-tunable) for every stack.
 
 ## Capabilities
 
@@ -62,7 +64,7 @@ Detect project type and apply appropriate SOLID rules:
 ## 🎯 SOLID Analysis
 
 **Project**: [type] detected
-**File Limit**: [limit] lines
+**File Limit**: hook ceiling `FUSE_SOLID_MAX_LINES`
 
 ### Violations Found
 - ❌ [file]: [violation]

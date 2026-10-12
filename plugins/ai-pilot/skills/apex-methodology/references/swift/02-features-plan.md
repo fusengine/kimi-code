@@ -11,11 +11,11 @@ next_step: references/swift/03-execution.md
 
 ```text
 Features/UserProfile/
-├── Views/ProfileView.swift        (< 80 lines)
-├── ViewModels/ProfileViewModel.swift  (< 100 lines)
-├── Models/UserProfile.swift       (< 50 lines)
+├── Views/ProfileView.swift        (view only)
+├── ViewModels/ProfileViewModel.swift  (state + actions)
+├── Models/UserProfile.swift       (data model)
 ├── Protocols/ProfileServiceProtocol.swift
-└── Services/ProfileService.swift  (< 100 lines)
+└── Services/ProfileService.swift  (service logic)
 ```
 
 ## Task Breakdown Template
@@ -83,7 +83,7 @@ final class ProfileViewModel {
 - [ ] Research Apple docs for APIs
 - [ ] Check existing code for reusable components
 - [ ] Define protocols before implementations
-- [ ] Plan file splits if > 100 lines expected
+- [ ] Plan file splits if a file is expected to exceed `FUSE_SOLID_MAX_LINES`
 - [ ] Identify localization keys
 
 ## Update Task Phase

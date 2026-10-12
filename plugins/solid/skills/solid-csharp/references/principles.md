@@ -24,7 +24,7 @@ related: patterns.md
 
 ## S - Single Responsibility (SRP)
 
-- Files < 100 lines (split at 90)
+- Files within `FUSE_SOLID_MAX_LINES`; split mixed responsibilities
 - Controllers: HTTP I/O only, delegate to services
 - Services: Business logic, use repositories
 - Repositories: Data access only (EF Core / Dapper)

@@ -14,7 +14,7 @@ related: solid-principles.md, decision-guide.md
 
 | Symptom | Violated Principle | Solution |
 |---------|-------------------|----------|
-| Class > 100 lines | SRP | Split responsibilities |
+| Class above `FUSE_SOLID_MAX_LINES` | SRP | Split responsibilities |
 | Controller with queries | SRP | Extract to Repository |
 | `new ConcreteClass()` | DIP | Inject interface |
 | Interface > 5 methods | ISP | Segregate interfaces |
@@ -104,8 +104,8 @@ public function createUser(Email $email): User
 
 ```
 Code smell detected?
-├── Class > 100 lines → Extract class
-├── Method > 20 lines → Extract method
+├── Class above FUSE_SOLID_MAX_LINES → Extract class
+├── Method doing several things → Extract method
 ├── > 5 dependencies → Split class
 ├── new Concrete() → Inject interface
 ├── Array params → Use DTO
@@ -118,7 +118,7 @@ Code smell detected?
 
 | DO | DON'T |
 |----|-------|
-| Extract early (at 90 lines) | Wait until 100 lines |
+| Extract early, well before `FUSE_SOLID_MAX_LINES` | Wait until the hook blocks the write |
 | One reason to change per class | Multiple responsibilities |
 | Inject interfaces | Instantiate concrete |
 | Use DTOs for data | Pass arrays |

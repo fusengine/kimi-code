@@ -43,7 +43,9 @@ fences, and loaded natively every session. Keep this file project-only.
 4. **Hook commands**: every hook in a `kimi.plugin.json` must invoke
    `kimi-hook-shim.mjs` — enforced by `scripts/lib/validate-checks.ts`.
 5. **Harness floor**: `package.json` `fusengine.harnessMinVersion` (currently
-   0.1.87 — first version with the native UserPromptSubmit rules compaction).
+   0.1.107 — APEX deny lists all missing prerequisites, SOLID detection for
+   react/tanstack-start/astro/java/csharp/ruby/generic per FUSE_SOLID_MAX_LINES;
+   0.1.87 was the first with the native UserPromptSubmit rules compaction).
 6. **Artifacts in English** (docs, comments, commits, skill/agent files);
    conversation follows the user's language.
 7. Validate before declaring done: `bun run validate` + relevant `bun test`.

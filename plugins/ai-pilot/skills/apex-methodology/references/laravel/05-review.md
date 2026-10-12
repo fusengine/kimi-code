@@ -158,10 +158,10 @@ User::chunk(100, function ($users) {
 ### Check All Files
 
 ```text
-[ ] Controllers < 50 lines
-[ ] Models < 80 lines
-[ ] Services < 100 lines
-[ ] ALL files < 100 lines
+[ ] Controllers thin (delegate to services)
+[ ] Models hold relations/scopes only
+[ ] Services single-purpose
+[ ] ALL files within `FUSE_SOLID_MAX_LINES`
 ```
 
 ### Split If Needed

@@ -3,6 +3,11 @@
 All notable changes to this project are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning follows [SemVer](https://semver.org/).
 
+## [1.0.22] - 2026-10-12
+
+### Changed
+- parity: port of the claude-plugins improvements and full skill/agent parity — new `lead-orchestration` skill and `skill-creator` agent; kimi-rules two-speed communication, AUTONOMY block, task-based split, DRY via solid-detection, challenger triggers, owner-correction → rule; commit agent Automatic Mode and conditional release watch; verification "look before done"; design corpus aligned to fifteen references with 5 new recodes (dispatch, mosa, parley, stash, stripe) and multi-platform design-ios; swift-apple-expert HIG references, mcp-tools workflows, tvOS/watchOS/visionOS fixes; invented line caps replaced by the `FUSE_SOLID_MAX_LINES` hook ceiling; `TeamCreate` wording replaced by parallel `Agent` calls; hook shim update across all plugins, new ai-pilot Stop / core-guards PostCompact / fuse-lessons memory hooks, build-root-manifest, hooks e2e tests; deps @clack/prompts ^1.8.1, bun-types ^1.4.3, harnessMinVersion 0.1.107 (ai-pilot 1.2.41, astro-expert 1.0.12, cartographer 1.0.11, changelog-watcher 1.0.13, commit-pro 1.2.25, core-guards 1.1.41, design-expert 2.2.8, fuse-lessons 1.0.5, go-expert 1.0.5, kimi-rules 1.39.20, laravel-expert 1.2.6, nextjs-expert 1.1.22, php-expert 1.0.5, prompt-engineer 1.1.10, react-expert 1.0.19, rust-expert 1.0.5, security-expert 1.0.16, seo 1.0.10, shadcn-expert 1.0.16, solid 1.0.17, swift-apple-expert 1.1.18, tailwindcss 1.1.9, tanstack-start-expert 1.0.4, typescript-expert 1.0.5).
+
 ## [1.0.21] - 2026-09-27
 
 ### Changed

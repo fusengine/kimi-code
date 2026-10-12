@@ -1,10 +1,10 @@
 ---
 name: hook-template
 applies-to: "**/*.tsx, **/*.jsx"
-description: React hook template with TanStack Query (< 30 lines)
+description: React hook template with TanStack Query
 ---
 
-# React Hook (< 30 lines)
+# React Hook
 
 ## Query Hook (TanStack Query)
 
@@ -121,7 +121,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 
 ## Rules
 
-- Max 30 lines
+- Keep each hook within `FUSE_SOLID_MAX_LINES` and focused on one responsibility
 - Use TanStack Query for data fetching (NOT useEffect)
 - Import types from `../interfaces/`
 - JSDoc for all exports

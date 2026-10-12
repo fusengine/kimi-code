@@ -223,4 +223,4 @@ Don't anticipate: start in feature, move if reused.
 - [ ] No imports between features
 - [ ] Sharing via `cores` only
 - [ ] Imports with `@/modules/...` alias
-- [ ] Pages < 50 lines, delegate to modules
+- [ ] Pages stay thin and delegate to modules

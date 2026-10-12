@@ -43,33 +43,44 @@ Button("Item") { }
     .buttonStyle(.card)  // Automatic focus styling
     .hoverEffect(.lift)  // Lift on focus
 
-// Custom focus style
-.focusable()
-.onFocusChange { focused in
-    withAnimation { scale = focused ? 1.1 : 1.0 }
-}
+// Custom focus style: there is no `.onFocusChange` modifier - observe @FocusState
+@FocusState private var isFocused: Bool
+
+PosterView()
+    .focusable()
+    .focused($isFocused)
+    .scaleEffect(isFocused ? 1.1 : 1.0)
+    .animation(.easeOut, value: isFocused)
+
+// Inside a focusable view's subtree: @Environment(\.isFocused) private var isFocused
 ```
 
 ### Focus Sections
 
+`focusSection()` is a View modifier (tvOS 15+, macOS 13+) - not a container view. It uses the view's frame to guide focus movement toward its focusable descendants.
+
 ```swift
 VStack {
-    FocusSection {
-        HStack { /* Top row */ }
-    }
-    FocusSection {
-        HStack { /* Bottom row */ }
-    }
+    HStack { /* Top row */ }
+        .focusSection()
+    HStack { /* Bottom row */ }
+        .focusSection()
 }
 ```
 
-### focusScope
+### focusScope + prefersDefaultFocus
+
+`focusScope(_:)` limits **default focus preferences** to a namespace; it does not trap focus inside the view.
 
 ```swift
+@Namespace private var shelf
+
 VStack {
-    // Focus stays within scope
+    Button("Resume") { }
+        .prefersDefaultFocus(in: shelf)
+    Button("Start Over") { }
 }
-.focusScope(namespace)
+.focusScope(shelf)
 ```
 
 ---
@@ -78,7 +89,10 @@ VStack {
 
 - ✅ Use `@FocusState` for programmatic focus
 - ✅ Provide clear focus indicators
-- ✅ Use `FocusSection` for logical grouping
-- ✅ Animate focus transitions
+- ✅ Use `.focusSection()` to guide focus across uneven rows
+- ✅ Animate focus transitions (fade instead when Reduce Motion is on)
+- ✅ Let buttons/images adopt Liquid Glass on focus automatically - no manual `glassEffect`
 - ❌ Don't make unfocusable interactive elements
-- ❌ Don't use small touch targets
+- ❌ Don't use targets under 66x66 pt (minimum 56x56 pt, HIG /accessibility)
+
+Source: https://developer.apple.com/design/human-interface-guidelines/focus-and-selection

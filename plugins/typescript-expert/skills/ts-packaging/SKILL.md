@@ -21,7 +21,7 @@ Ship a TypeScript library with a correct exports map, on the right registry.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Inspect package.json, build output, targets
 2. **research-expert** - Verify latest JSR / npm / Node exports docs via Context7/Exa

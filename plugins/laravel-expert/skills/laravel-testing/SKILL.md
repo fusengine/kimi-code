@@ -18,7 +18,7 @@ tests; and PHPUnit-attribute-based seeding (#[Seed], #[Seeder]).
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing test patterns
 2. **research-expert** - Verify Pest/PHPUnit docs via Context7

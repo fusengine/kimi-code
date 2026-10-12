@@ -87,7 +87,7 @@ Each technique has specific checks:
 | ID | Technique | Finding | File:Line | Severity |
 |----|-----------|---------|-----------|----------|
 | F1 | SEC-01    | Missing CSRF token | auth.ts:45 | 🔴 Critical |
-| F2 | ARCH-01   | File >100 lines | utils.ts | 🟡 Medium |
+| F2 | ARCH-01   | File over `FUSE_SOLID_MAX_LINES` | utils.ts | 🟡 Medium |
 | F3 | TEST-01   | No null check | handler.ts:23 | 🟡 Medium |
 ```
 
@@ -121,7 +121,7 @@ Each technique has specific checks:
 - [ ] `ARCH-01`: SOLID - All 5 principles checked?
 - [ ] `ARCH-02`: Dependencies - Proper injection?
 - [ ] `ARCH-03`: Coupling - Loose coupling?
-- [ ] `ARCH-04`: File Size - All files <100 LoC?
+- [ ] `ARCH-04`: File Size - All files within `FUSE_SOLID_MAX_LINES`?
 
 ### Testing Techniques
 - [ ] `TEST-01`: Edge Cases - All identified?

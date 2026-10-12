@@ -50,14 +50,7 @@ Sources/
 
 ## File Size Limits
 
-| Type | Max Lines | Split At |
-|------|-----------|----------|
-| View | 80 | 60 |
-| ViewModel | 100 | 80 |
-| Service | 100 | 80 |
-| Model | 50 | 40 |
-| Protocol | 30 | 25 |
-| **Any file** | **100** | **90** |
+Every file stays within the hook ceiling `FUSE_SOLID_MAX_LINES`. One purpose per file: views render UI only, protocols are small and focused; split mixed responsibilities.
 
 ---
 
@@ -73,7 +66,7 @@ Sources/
 
 ## Quick Checklist
 
-- [ ] Files < 100 lines (Views < 80)
+- [ ] One responsibility per file; under the hook ceiling (`FUSE_SOLID_MAX_LINES`)
 - [ ] Protocols in `Features/[Feature]/Protocols/` or `Core/Protocols/`
 - [ ] ViewModels use `@Observable` + `@MainActor`
 - [ ] Dependencies injected via protocols

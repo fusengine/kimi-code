@@ -24,7 +24,7 @@ non-TS build tooling are not covered.
 
 ## Agent Workflow (MANDATORY)
 
-Before writing any tsconfig, use `TeamCreate` to spawn 3 agents:
+Before writing any tsconfig, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Detect runtime (Bun/Node/bundler), existing tsconfig, `package.json` `type`
 2. **research-expert** - Confirm current flags on typescriptlang.org release notes + runtime docs

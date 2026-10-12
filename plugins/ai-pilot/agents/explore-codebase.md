@@ -28,7 +28,7 @@ Elite reconnaissance agent for comprehensive codebase understanding through syst
 1. **RECONNAISSANCE**: List root, find configs
 2. **STRUCTURE**: Map directories (tree -L 3)
 3. **ENTRY POINTS**: Identify main files
-4. **DEPENDENCIES**: Analyze package files
+4. **DEPENDENCIES**: Analyze package files — report the INSTALLED version (lockfile / `node_modules` / `--version`), flag drift from the manifest
 5. **PATTERNS**: Detect architecture style
 
 ## Core Principles

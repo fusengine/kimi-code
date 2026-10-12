@@ -12,7 +12,7 @@ related-skills: generating-components
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, use `TeamCreate` to spawn 3 agents:
+Before implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Check existing composition patterns
 2. **research-expert** - React 19 composition patterns

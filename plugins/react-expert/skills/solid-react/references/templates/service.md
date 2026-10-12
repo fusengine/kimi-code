@@ -1,10 +1,10 @@
 ---
 name: service-template
 applies-to: "**/*.tsx, **/*.jsx"
-description: Service template with dependency injection (< 40 lines)
+description: Service template with dependency injection
 ---
 
-# Service (< 40 lines)
+# Service
 
 ## Basic Service
 
@@ -129,7 +129,7 @@ export const userCommandService = {
 
 ## Rules
 
-- Max 40 lines
+- Keep each service within `FUSE_SOLID_MAX_LINES` and focused on one responsibility
 - Import types from `../interfaces/`
 - Use dependency injection for testability
 - JSDoc for all exports

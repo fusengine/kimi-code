@@ -16,7 +16,7 @@ level: principle
 
 | Principle | Rule | Violation Signal |
 |-----------|------|------------------|
-| **S** - Single Responsibility | One file = one reason to change | File > 90 lines, 15+ imports |
+| **S** - Single Responsibility | One file = one reason to change | File mixing concerns, 15+ imports |
 | **O** - Open/Closed | Extend via composition | Adding feature = modifying existing code |
 | **L** - Liskov Substitution | Implementations honor contracts | Override changes behavior/throws unexpected |
 | **I** - Interface Segregation | Small focused interfaces | Interface has 10+ methods |
@@ -38,16 +38,7 @@ level: principle
 
 ## File Size Limits
 
-| Type | Max Lines | Split Threshold |
-|------|-----------|-----------------|
-| Module (main logic) | 80 | 70 |
-| Service | 60 | 50 |
-| Validator | 40 | 35 |
-| Interface file | no limit | - |
-| Constants | 40 | 35 |
-| Utility/helper | 60 | 50 |
-| Test file | 100 | 90 |
-| Any other file | 100 | 90 |
+Every file (module, service, validator, constants, utility, test) stays within the hook ceiling `FUSE_SOLID_MAX_LINES`. Split well before it: one purpose per file.
 
 ---
 
@@ -70,7 +61,7 @@ level: principle
 - Code review
 
 ### Can Skip
-- One-off scripts (< 30 lines)
+- Trivial one-off scripts
 - Configuration files
 - Type-only files (interfaces)
 - Test fixtures/mocks
@@ -79,7 +70,7 @@ level: principle
 
 ## SOLID Checklist
 
-- [ ] Files under line limits for their type
+- [ ] Files within `FUSE_SOLID_MAX_LINES`
 - [ ] Interfaces in `modules/[feature]/src/interfaces/` or `modules/cores/interfaces/`
 - [ ] Services use dependency injection
 - [ ] No concrete dependencies in business logic

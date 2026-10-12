@@ -622,7 +622,7 @@ keyboard events, and `autofocus` did not produce a usable capture.
 
 ## 8. Note on the two behavior files
 
-A hook in the host repo caps every code file at 200 lines. The drifting
+A hook in the host repo caps every code file at the `FUSE_SOLID_MAX_LINES` ceiling. The drifting
 strip therefore lives in its own module, `motion-bande.js`: it's the only
 behavior big enough to justify one, and the only one that **two** blocks
 depend on (the hero carousel and the footer gallery). It's loaded before

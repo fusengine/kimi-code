@@ -101,7 +101,7 @@ swiftlint --strict && swift-format lint --strict Sources/
 
 - [ ] SwiftLint: zero warnings
 - [ ] swift-format: passes
-- [ ] No file > 150 lines
+- [ ] No file over `FUSE_SOLID_MAX_LINES`
 - [ ] All public APIs: /// docs
 - [ ] No force unwraps
 - [ ] All strings localized

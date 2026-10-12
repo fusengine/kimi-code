@@ -4,7 +4,7 @@
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines |
+| File limit | `FUSE_SOLID_MAX_LINES` |
 | Interface location | `modules/[feature]/src/interfaces/` |
 | Shared interfaces | `modules/cores/interfaces/` |
 | Forbidden | Interfaces in `components/`, `app/` |
@@ -19,7 +19,7 @@
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines |
+| File limit | `FUSE_SOLID_MAX_LINES` |
 | Interface location | `modules/[feature]/src/interfaces/` |
 | Shared interfaces | `modules/cores/interfaces/` |
 | Forbidden | Interfaces in `components/` files |
@@ -34,7 +34,7 @@
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines |
+| File limit | `FUSE_SOLID_MAX_LINES` |
 | Interface location | `modules/[feature]/src/interfaces/` |
 | Shared interfaces | `modules/cores/interfaces/` |
 | Structure | **Modular MANDATORY** |
@@ -50,7 +50,7 @@
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines |
+| File limit | `FUSE_SOLID_MAX_LINES` |
 | Interface location | `FuseCore/[Module]/App/Contracts/` |
 | Shared interfaces | `FuseCore/Core/App/Contracts/` |
 | Structure | **FuseCore Modular MANDATORY** |
@@ -66,7 +66,7 @@
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines |
+| File limit | `FUSE_SOLID_MAX_LINES` |
 | Interface location | `Features/[Feature]/Protocols/` |
 | Shared interfaces | `Core/Protocols/` |
 | Structure | **Features Modular MANDATORY** |
@@ -82,7 +82,7 @@
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines |
+| File limit | `FUSE_SOLID_MAX_LINES` |
 | Interface location | `modules/[feature]/interfaces/` |
 | Shared interfaces | `modules/core/interfaces/` |
 | Structure | **Modular MANDATORY** |
@@ -98,7 +98,7 @@
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines |
+| File limit | `FUSE_SOLID_MAX_LINES` |
 | Interface location | `internal/modules/[feature]/ports/` |
 | Shared interfaces | `internal/core/ports/` |
 | Structure | **Modular MANDATORY** |
@@ -114,7 +114,7 @@
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines |
+| File limit | `FUSE_SOLID_MAX_LINES` |
 | Interface location | `app/modules/[feature]/contracts/` |
 | Shared interfaces | `app/modules/core/contracts/` |
 | Structure | **Modular MANDATORY** |
@@ -130,7 +130,7 @@
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines |
+| File limit | `FUSE_SOLID_MAX_LINES` |
 | Interface location | `src/modules/[feature]/traits.rs` |
 | Shared interfaces | `src/core/traits.rs` |
 | Structure | **Modular MANDATORY** |
@@ -146,9 +146,10 @@
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines |
+| File limit | `FUSE_SOLID_MAX_LINES` |
 | Interface location | `src/interfaces/` |
 | Forbidden | ABC outside interfaces/ |
+| SOLID skill | `solid-python` |
 
 **Pattern detection**:
 ```regex

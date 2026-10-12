@@ -1,7 +1,7 @@
 ---
 name: single-responsibility
 applies-to: "**/src/routes/**/*.tsx, **/src/routes/**/*.ts, **/src/modules/**/*.ts, **/src/modules/**/*.tsx"
-description: SRP for TanStack Start - line limits and split strategy for routes, loaders, server functions
+description: SRP for TanStack Start - size ceiling and split strategy for routes, loaders, server functions
 when-to-use: file too long, route doing too much, refactoring, code organization
 keywords: single responsibility, SRP, splitting, lines, routes, server functions, loaders
 priority: high
@@ -14,22 +14,14 @@ related: architecture-patterns.md, templates/route.md, templates/server-fn.md
 
 ## Symptoms of Violation
 
-1. **File exceeds 90 lines** → trigger a split.
+1. **File approaches `FUSE_SOLID_MAX_LINES`** → split by responsibility.
 2. A route file declares types, runs a DB query, AND renders UI.
 3. More than 15 imports, or more than 5 exports.
 4. `process.env` / DB access sitting directly in a `loader`.
 
-## Line Limits by Type
+## Size Ceiling
 
-| File Type | Max Limit | Split Threshold |
-|-----------|-----------|-----------------|
-| Route component (`src/routes/*.tsx`) | 50 lines | 40 lines |
-| Root route (`__root.tsx`) | 60 lines | 50 lines |
-| Server function (`*.functions.ts`) | 40 lines | 35 lines |
-| Server-only helper (`*.server.ts`) | 80 lines | 70 lines |
-| Hook | 30 lines | 25 lines |
-| Service | 40 lines | 35 lines |
-| Any other file | 100 lines | 90 lines |
+All source-file types (route component, root route, server function, server-only helper, hook, service, other) use `FUSE_SOLID_MAX_LINES` as the only size ceiling. Split by responsibility when cohesion drops.
 
 ---
 
@@ -37,7 +29,7 @@ related: architecture-patterns.md, templates/route.md, templates/server-fn.md
 
 ```text
 src/modules/[feature]/
-├── components/               # UI (< 50 lines each)
+├── components/               # UI (rendering only)
 └── src/
     ├── interfaces/           # Types ONLY  →  xxx.interface.ts
     ├── functions/            # createServerFn wrappers  →  xxx.functions.ts
@@ -50,7 +42,7 @@ src/modules/[feature]/
 
 ### Split Example
 
-Before — one 150-line `src/routes/dashboard.tsx` mixing everything:
+Before — one `src/routes/dashboard.tsx` mixing everything:
 
 ```text
 src/routes/dashboard.tsx → types + DB query in loader + validation + UI

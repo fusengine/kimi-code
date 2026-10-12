@@ -18,7 +18,7 @@ visionOS-specific development for Apple Vision Pro spatial computing.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing visionOS patterns
 2. **research-expert** - Verify latest visionOS 27 docs via Context7/Exa

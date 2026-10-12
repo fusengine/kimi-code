@@ -28,7 +28,7 @@ Elite reconnaissance agent for comprehensive codebase understanding through syst
 1. **RECONNAISSANCE**: List root, find configs
 2. **STRUCTURE**: Map directories (tree -L 3)
 3. **ENTRY POINTS**: Identify main files
-4. **DEPENDENCIES**: Analyze package files
+4. **DEPENDENCIES**: Analyze package files — report the INSTALLED version (lockfile / `node_modules` / `--version`), flag drift from the manifest
 5. **PATTERNS**: Detect architecture style
 
 ## Core Principles
@@ -97,4 +97,6 @@ If the hook-injected context contains "EXPLORATION CACHE INSTRUCTIONS":
 - No assumptions without code evidence
 - No skipping config files, dependencies, or entry points
 
-**Final message = the entire handoff.** Your last message is the only thing the caller sees — make it the complete, self-contained result: deliverables (paths), evidence (commands + output), verdict, open issues.
+## Final Message = Handoff
+
+Your last message is the only thing the lead sees — make it the complete, self-contained result: deliverables (paths), evidence (commands run, output), verdict, open issues.

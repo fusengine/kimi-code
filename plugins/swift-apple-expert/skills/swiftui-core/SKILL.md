@@ -1,15 +1,15 @@
 ---
 name: swiftui-core
-description: Use when building SwiftUI views, navigation, persistence, or state management — shared across iOS, macOS, watchOS, visionOS.
+description: Use when building SwiftUI views, navigation, persistence, or state management, or checking UI against Apple HIG (accessibility, RTL, sheets/alerts, widgets, Live Activities, iPhone Duo) — shared across iOS, macOS, watchOS, visionOS.
 ---
 
 
 <objective>
 Covers SwiftUI fundamentals shared across all Apple platforms: composable views and modifiers, navigation (NavigationStack for stack-based flows, NavigationSplitView for multi-column layouts), data persistence with SwiftData (@Model, replacing Core Data for most cases), state management (@State for local, @Observable for shared, @Environment for injection), Liquid Glass styling, and App Intents for Siri/Shortcuts integration.
 
-References cover views/modifiers, navigation, SwiftData, state management, Liquid Glass across platforms, and App Intents in depth.
+References cover views/modifiers, navigation, SwiftData, state management, Liquid Glass across platforms, and App Intents in depth, plus Apple Human Interface Guidelines (HIG) rules with source URLs: accessibility (Dynamic Type to AX5, VoiceOver, contrast, hit targets, Reduce Motion/Transparency), right-to-left, modality/sheets/alerts/onboarding, system surfaces (widgets, Live Activities, notifications, App Shortcuts/Siri/snippets), and iPhone Duo.
 
-Best practices: extract subviews once a view body exceeds ~30 lines, compose with ViewBuilder and modifiers, always include #Preview, use semantic colors (.primary/.secondary), add accessibility labels to icons, and adapt layout by size class.
+Visual specs come from the design-ios handoff when one exists; this skill implements and verifies them. Best practices: extract subviews once a view body mixes responsibilities or stops reading at a glance, compose with ViewBuilder and modifiers, always include #Preview, use system colors (custom colors need light, dark and increased-contrast variants), label every icon-only control, and adapt layout by size class.
 </objective>
 
 # SwiftUI Core
@@ -18,7 +18,7 @@ SwiftUI fundamentals shared across all Apple platforms.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing SwiftUI patterns
 2. **research-expert** - Verify latest SwiftUI docs via Context7/Exa
@@ -76,6 +76,16 @@ Modern persistence with @Model. Replaces Core Data for most use cases.
 | Liquid Glass all platforms | [liquid-glass.md](references/liquid-glass.md) |
 | Siri, Shortcuts, App Intents | [app-intents.md](references/app-intents.md) |
 
+### HIG Rules (load for any UI task)
+
+| Need | Reference |
+|------|-----------|
+| Dynamic Type AX5, VoiceOver, contrast, targets, Reduce Motion | [hig-accessibility.md](references/hig-accessibility.md) |
+| Arabic/Hebrew mirroring, numerals | [hig-rtl.md](references/hig-rtl.md) |
+| Sheets, alerts, modality, onboarding, launch, permissions | [hig-modality.md](references/hig-modality.md) |
+| Widgets, Live Activities, notifications, App Shortcuts, Siri, snippets | [hig-system-surfaces.md](references/hig-system-surfaces.md) |
+| iPhone Duo (foldable), reserved regions, vertical toolbars | [hig-iphone-duo.md](references/hig-iphone-duo.md) |
+
 ---
 
 ## Best Practices
@@ -83,6 +93,6 @@ Modern persistence with @Model. Replaces Core Data for most use cases.
 1. **Small views** - Extract at 30+ lines
 2. **Composition** - Use ViewBuilder and modifiers
 3. **Preview-driven** - Always include #Preview
-4. **Semantic colors** - Use .primary, .secondary
-5. **Accessibility** - Add labels to icons
-6. **Platform adaptation** - Check sizeClass for responsive layouts
+4. **System colors** - Custom colors ship light, dark and increased-contrast variants ([HIG color](https://developer.apple.com/design/human-interface-guidelines/color))
+5. **Accessibility** - Label icon-only controls, layout survives AX5, targets >= 44 pt on iOS ([hig-accessibility.md](references/hig-accessibility.md))
+6. **Platform adaptation** - Size classes, never fixed widths or device checks ([HIG layout](https://developer.apple.com/design/human-interface-guidelines/layout))

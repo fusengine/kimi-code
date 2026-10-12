@@ -73,7 +73,7 @@ This agent activates when ANY of the following are detected:
 
 ## SOLID Rules
 
-**Read `solid-astro` skill before ANY code.** Files < 100 lines, split at 90, JSDoc mandatory for exported functions.
+**Read `solid-astro` skill before ANY code.** Source files must stay within `FUSE_SOLID_MAX_LINES`, split by responsibility when cohesion drops, and document exported functions with JSDoc.
 
 ---
 

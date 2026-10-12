@@ -98,7 +98,7 @@ interface ButtonProps extends Clickable, Loadable {
 
 | Smell | Fix |
 | --- | --- |
-| Component >50 lines | Extract hook or split |
+| Component mixing logic and JSX | Extract hook or split |
 | Multiple useState | Combine or use reducer |
 | useEffect for fetch | Use TanStack Query |
 | Prop drilling | Use context or store |

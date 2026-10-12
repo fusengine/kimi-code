@@ -4,7 +4,7 @@ applies-to: "**/app/**/*.tsx, **/app/**/*.ts, **/pages/**/*.tsx, **/pages/**/*.t
 description: Service class template with dependency injection and error handling
 ---
 
-# Service (< 80 lines)
+# Service
 
 ```typescript
 // modules/auth/src/services/auth.service.ts

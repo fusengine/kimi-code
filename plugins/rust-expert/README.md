@@ -1,12 +1,12 @@
 # fuse-rust
 
-Expert **safe, idiomatic Rust** development — libraries, CLI tools, async services, and web backends. Targets Rust 1.96+ on the **2024 edition**, with an ownership-first mindset, `clippy`-clean code, and SOLID principles.
+Expert **safe, idiomatic Rust** development — libraries, CLI tools, async services, and web backends. Targets Rust 1.98+ on the **2024 edition**, with an ownership-first mindset, `clippy`-clean code, and SOLID principles.
 
 ## Agent
 
 | Agent | Description |
 |-------|-------------|
-| **rust-expert** | Expert Rust developer (Rust 1.96+, 2024 edition, tokio / axum) |
+| **rust-expert** | Expert Rust developer (Rust 1.98+, 2024 edition, tokio / axum) |
 
 ## Skills
 
@@ -20,7 +20,7 @@ Expert **safe, idiomatic Rust** development — libraries, CLI tools, async serv
 | rust-tooling-cicd | cargo, workspaces, features, `rustfmt`, `cargo clippy`, release profiles, CI pipelines |
 | rust-ecosystem-crates | Crate selection, `serde`, common libraries, dependency boundaries |
 
-SOLID principles are provided by the shared **`solid-rust`** skill (files < 100 lines, traits separated, modular architecture) — no local duplicate.
+SOLID principles are provided by the shared **`solid-rust`** skill (files within `FUSE_SOLID_MAX_LINES`, traits separated, modular architecture) — no local duplicate.
 
 ## Architecture
 

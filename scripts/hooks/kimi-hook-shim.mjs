@@ -8,12 +8,10 @@
  *   {"hookSpecificOutput":{"permissionDecision":"deny","permissionDecisionReason":"..."}}
  *
  * Deny classification (the manchot fix), on permissionDecisionReason:
- *   contains "[CONFIRM]" (git/install/rm — confirmation wanted) → the deny is
- *     SUPPRESSED (not forwarded): Kimi allows the tool and its permission
- *     system prompts the user interactively instead of a dead-end block.
- *   contains "[BLOCKED]" (rm -rf /, force-push — hard danger) → forwarded
- *     verbatim, the block stands.
- * Anything else passes through unchanged. Fail-open on any setup problem.
+ * "[CONFIRM]" (git/install/rm) → the deny is SUPPRESSED so Kimi's permission
+ * system prompts interactively instead of dead-ending; "[BLOCKED]" (rm -rf /,
+ * force-push) → forwarded verbatim. Anything else passes through unchanged.
+ * Fail-open on any setup problem.
  *
  * Env precedence: $KIMI_HOME/.env is overlaid ON TOP of the inherited
  * environment when spawning the harness. The harness's own loadDotenv never
@@ -27,6 +25,13 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 
 const HARNESS_REL = "node_modules/@fusengine/harness/dist/cli/bin.mjs";
+
+/**
+ * Events whose return value Kimi consumes; every other one is observation-only
+ * (fire and forget). CONTEXT_EVENT alone reaches the model — not SessionStart.
+ */
+const BLOCKABLE_EVENTS = new Set(["PreToolUse", "Stop", "UserPromptSubmit"]);
+const CONTEXT_EVENT = "UserPromptSubmit";
 
 /** Strip one matching pair of surrounding quotes from a raw .env value. */
 function unquote(v) {
@@ -58,17 +63,17 @@ function readStdin() {
 	});
 }
 
+/** Parse the harness stdout as JSON; undefined when it is plain text. */
+function asJson(stdout) {
+	try { return stdout.startsWith("{") ? JSON.parse(stdout) : undefined; } catch { return undefined; }
+}
+
 /** True when the harness output is a confirmation-class denial (not a hard block). */
 function isConfirmDeny(stdout) {
-	try {
-		const out = JSON.parse(stdout);
-		const hso = out?.hookSpecificOutput;
-		return hso?.permissionDecision === "deny"
-			&& typeof hso.permissionDecisionReason === "string"
-			&& hso.permissionDecisionReason.includes("[CONFIRM]");
-	} catch {
-		return false;
-	}
+	const hso = asJson(stdout)?.hookSpecificOutput;
+	return hso?.permissionDecision === "deny"
+		&& typeof hso.permissionDecisionReason === "string"
+		&& hso.permissionDecisionReason.includes("[CONFIRM]");
 }
 
 /**
@@ -90,11 +95,10 @@ function eventNameOf(stdin) {
 }
 
 /**
- * Normalize the tool_input field names onto the Claude wire shape the harness
- * was written for: Kimi sends `path`, harness consumers like the lessons
- * write-tracker read `file_path` (Claude's key) and silently no-op without it
- * — the lessons Stop reminder can never arm without this alias. Fail-open:
- * the original payload is returned byte-identical on any parse problem.
+ * Normalize tool_input onto the Claude wire shape the harness expects: Kimi
+ * sends `path`, harness consumers (lessons write-tracker) read `file_path` and
+ * silently no-op without it. Fail-open: payload returned byte-identical on any
+ * parse problem.
  */
 function normalizeToolInput(stdin) {
 	try {
@@ -110,11 +114,10 @@ function normalizeToolInput(stdin) {
 
 /**
  * Parse the project cwd from the stdin payload; "" when unreadable/missing.
- * Kimi runs plugin hooks with the process cwd set to the PLUGIN ROOT, and the
- * harness CLI passes `process.cwd()` (not the payload cwd) to its gates — so
- * without this, cwd-sensitive gates (the pre-commit tsc/eslint/prettier/ruff
- * sweep) evaluate the deployed suite instead of the user's project and block
- * every commit with phantom errors (TS2688 from the suite's own tsconfig).
+ * Kimi runs plugin hooks with the process cwd set to the PLUGIN ROOT and the
+ * harness CLI passes `process.cwd()` to its gates — without this, cwd-sensitive
+ * gates (pre-commit tsc/eslint sweep) evaluate the deployed suite instead of
+ * the user's project and block every commit with phantom errors.
  */
 function payloadCwdOf(stdin) {
 	try {
@@ -123,52 +126,39 @@ function payloadCwdOf(stdin) {
 	} catch { return ""; }
 }
 
+/** "AGENTS.md injected\n" when the natively-loaded instructions file is present. */
+function agentsNote(scope, kimiHome) {
+	const md = scope === "rules" ? join(kimiHome, "AGENTS.md") : "";
+	return md !== "" && existsSync(md) && readFileSync(md, "utf8").trim() !== "" ? "AGENTS.md injected\n" : "";
+}
+
 /**
- * Compact the rules injection on UserPromptSubmit. Kimi renders ONE hook
- * content in BOTH the model context (<hook_result>) and the TUI block
- * (hook.result event) — no model-only channel exists (verified in 0.30.0
- * dist). The full corpus still reaches the model at SessionStart and every
- * SubagentStart; on each prompt the harness's `<corpus>\n\n<notice>` stdout
- * is redundant, so forward only the notices — the user sees one line per
- * injection, the model loses nothing it does not already have from session
- * start. When $KIMI_HOME/AGENTS.md is present (loaded natively into the
- * model's system prompt), an "AGENTS.md injected" line is prepended so the
- * user sees both channels confirmed. Rules scope ONLY: lessons keep their
- * full per-prompt injection — their payload is small and the hook is their
- * only channel to the model. JSON envelopes (deny) pass through untouched.
+ * Adapt the harness stdout to what Kimi actually consumes.
+ *
+ * Kimi never reads `hookSpecificOutput.additionalContext` — that key is Claude
+ * Code's and occurs 0 times in the Kimi bundle (verified on 2.0.0 and 0.43.1).
+ * Context reaches the model on UserPromptSubmit ONLY, as plain stdout text, so:
+ * an additionalContext envelope is UNWRAPPED there instead of being dropped;
+ * deny envelopes are forwarded verbatim; on observation-only events context
+ * payloads are dropped rather than written for nothing (the harness side
+ * effects have already happened by then).
+ * @param stdout - Raw harness stdout.
+ * @param scope - Plugin scope (argv[2]).
+ * @param eventName - `hook_event_name` from the stdin payload.
+ * @param kimiHome - $KIMI_CODE_HOME.
+ * @returns What to write on stdout ("" writes nothing).
  */
-/**
- * Compact the rules/lessons injections on UserPromptSubmit. Kimi renders ONE
- * hook content in BOTH the model context (<hook_result>) and the TUI block
- * (hook.result event) — no model-only channel exists (verified in 0.30.0
- * dist). The full corpus still reaches the model at SessionStart and every
- * SubagentStart; on each prompt the harness's `<corpus>\n\n<notice>` stdout
- * is redundant, so forward only the notices — the user sees one line per
- * injection, the model loses nothing it does not already have from session
- * start. Two output shapes are handled: the long `<corpus>\n\n<notice>` form
- * (trimmed to the notice) and the harness's own short notice (guard true —
- * passed through). When $KIMI_HOME/AGENTS.md is present (loaded natively
- * into the model's system prompt), an "AGENTS.md injected" line is prepended
- * in both cases. rules + lessons scopes ONLY; JSON envelopes (deny) pass
- * through untouched.
- */
-function compactPromptInjection(stdout, scope, eventName, kimiHome) {
-	if ((scope !== "rules" && scope !== "lessons") || eventName !== "UserPromptSubmit") return stdout;
-	if (!stdout || stdout.startsWith("{")) return stdout;
-	let agentsNote = "";
-	if (scope === "rules") {
-		const agentsMd = join(kimiHome, "AGENTS.md");
-		agentsNote = existsSync(agentsMd) && readFileSync(agentsMd, "utf8").trim().length > 0
-			? "AGENTS.md injected\n" : "";
-	}
-	const cut = stdout.lastIndexOf("\n\n");
-	if (cut === -1) {
-		const trimmed = stdout.trim();
-		return trimmed.length > 0 && trimmed.length <= 120 ? `${agentsNote}${trimmed}\n` : stdout;
-	}
-	const notice = stdout.slice(cut + 2).trim();
-	if (notice.length === 0 || notice.length > 120) return stdout;
-	return `${agentsNote}${notice}\n`;
+function renderForKimi(stdout, scope, eventName, kimiHome) {
+	if (!stdout) return "";
+	const isContext = eventName === CONTEXT_EVENT;
+	const parsed = asJson(stdout);
+	const hso = parsed?.hookSpecificOutput;
+	if (hso?.permissionDecision !== undefined) return stdout;
+	const ctx = typeof hso?.additionalContext === "string" ? hso.additionalContext : undefined;
+	const note = isContext ? agentsNote(scope, kimiHome) : "";
+	if (ctx !== undefined) return isContext ? `${note}${ctx.trim()}\n` : "";
+	if (!BLOCKABLE_EVENTS.has(eventName)) return "";
+	return isContext && parsed === undefined ? `${note}${stdout.trimEnd()}\n` : stdout;
 }
 
 async function main() {
@@ -201,7 +191,7 @@ async function main() {
 		process.stderr.write("kimi-hook-shim: confirmation-class deny suppressed — Kimi permission system will prompt instead\n");
 		process.exit(0);
 	}
-	const out = compactPromptInjection(stdout, scope, eventName, kimiHome);
+	const out = renderForKimi(stdout, scope, eventName, kimiHome);
 	if (out) process.stdout.write(out);
 	if (stderr) process.stderr.write(stderr);
 	process.exit(child.status ?? 0);

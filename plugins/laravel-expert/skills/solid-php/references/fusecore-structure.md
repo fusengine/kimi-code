@@ -48,11 +48,11 @@ FuseCore/
 └── [Module]/                          # Feature module (User, Dashboard, etc.)
     ├── App/                           # PHP Backend
     │   ├── Contracts/                 # Module interfaces
-    │   ├── Services/                  # Business logic (< 100 lines)
-    │   ├── Http/Controllers/          # < 50 lines
+    │   ├── Services/                  # Business logic
+    │   ├── Http/Controllers/          # HTTP concerns only
     │   ├── Http/Requests/             # Validation
     │   ├── Http/Resources/            # API transform
-    │   └── Models/                    # Eloquent (< 80 lines)
+    │   └── Models/                    # Eloquent (relations + casts only)
     ├── Resources/react/src/           # React Frontend
     │   ├── components/                # Module components
     │   ├── pages/                     # Module pages
@@ -140,6 +140,6 @@ final class ModuleServiceProvider extends ServiceProvider
 |----|-------|
 | One module per bounded context | One module per model |
 | Communicate via interfaces | Import concrete classes |
-| Keep React components < 100 lines | Fat components |
+| Keep React components within `FUSE_SOLID_MAX_LINES` | Fat components |
 | Use Zustand for state | Prop drilling |
-| Split complex components | Single 500-line file |
+| Split complex components | One giant file |

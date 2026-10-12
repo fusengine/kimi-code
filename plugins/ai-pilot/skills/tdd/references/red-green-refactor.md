@@ -80,7 +80,7 @@ creates_user_with_hashed_password
 2. Run tests after EVERY change — not just at the end
 3. Extract duplication, rename for clarity, simplify logic
 4. Apply SOLID principles where appropriate
-5. Keep files under 100 lines — split if approaching 90
+5. Keep files within `FUSE_SOLID_MAX_LINES` — split by responsibility before reaching it
 
 **What to refactor**:
 - Duplicate code between production and test files

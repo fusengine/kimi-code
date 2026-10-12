@@ -1,6 +1,6 @@
 ---
 name: error-template
-description: Custom error class template (< 40 lines)
+description: Custom error class template
 when-to-use: error handling, custom errors, error boundaries
 keywords: error, exception, handling, boundary, custom error
 priority: medium
@@ -10,7 +10,7 @@ trigger-on-edit: "errors/"
 level: template
 ---
 
-# Error Classes (< 40 lines)
+# Error Classes
 
 ## Base Application Error
 
@@ -103,7 +103,7 @@ export function handleError(error: unknown): { code: string; message: string } {
 
 ## Rules
 
-- Max 40 lines per error file
+- Error file within `FUSE_SOLID_MAX_LINES`
 - Extend `AppError` base class
 - Include `code` for programmatic handling
 - Include `statusCode` for HTTP responses

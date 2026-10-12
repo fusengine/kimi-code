@@ -6,7 +6,7 @@ when-to-use: Extracting business logic from controllers
 keywords: service, PORO, business logic
 ---
 
-# Service Template (< 100 lines)
+# Service Template
 
 ## Basic Service
 
@@ -133,7 +133,7 @@ class ServiceValidationError < ServiceError; end
 
 ## Key Rules
 
-- Max 100 lines
+- File within `FUSE_SOLID_MAX_LINES`
 - One public method: `call`
 - Constructor accepts all dependencies
 - Raise custom errors

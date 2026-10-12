@@ -16,7 +16,7 @@ Complete i18n solution with next-intl or DIY dictionary approach.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each (single message):
 
 1. **explore-codebase** - Analyze existing i18n setup and message files
 2. **research-expert** - Verify latest next-intl docs via Context7/Exa

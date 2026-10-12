@@ -20,21 +20,21 @@ Never use flat `internal/` structure.
 
 ```
 internal/modules/[feature]/
-├── handlers/              # HTTP handlers (< 50 lines each)
+├── handlers/              # HTTP handlers
 │   ├── create.go         # CreateUser handler
 │   ├── get.go            # GetUser handler
 │   └── handlers_test.go  # Handler tests
-├── services/             # Business logic (< 100 lines each)
+├── services/             # Business logic
 │   ├── user_service.go
 │   └── user_service_test.go
-├── repositories/         # Data access (< 100 lines each)
+├── repositories/         # Data access
 │   ├── repository.go
 │   └── repository_test.go
-├── ports/                # Interfaces (< 30 lines each)
+├── ports/                # Interfaces
 │   ├── repository.go     # Repository interface
 │   ├── sender.go         # External service interface
 │   └── logger.go         # Logger interface
-├── models/               # Domain entities (< 50 lines each)
+├── models/               # Domain entities
 │   ├── user.go
 │   └── errors.go
 └── module.go             # Optional: Module orchestrator
@@ -242,14 +242,14 @@ func (h *CreateOrderHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 ## Layer Responsibilities
 
-| Layer | Responsibility | Example | Max Lines |
-|-------|-----------------|---------|-----------|
-| **Handler** | HTTP I/O, request parsing, response formatting | Parse JSON, call service, return HTTP response | 50 |
-| **Service** | Business logic, orchestration, workflows | Calculate order total, update inventory | 100 |
-| **Repository** | Data access, queries, persistence | SELECT, INSERT, UPDATE operations | 100 |
-| **Port** | Interface contract | UserRepository, EmailSender interfaces | 30 |
-| **Model** | Domain entities, value objects | User struct, Order struct | 50 |
-| **Core Service** | Shared business logic (cross-feature) | Email sending, caching, pagination | - |
+| Layer | Responsibility | Example |
+|-------|-----------------|---------|
+| **Handler** | HTTP I/O, request parsing, response formatting | Parse JSON, call service, return HTTP response |
+| **Service** | Business logic, orchestration, workflows | Calculate order total, update inventory |
+| **Repository** | Data access, queries, persistence | SELECT, INSERT, UPDATE operations |
+| **Port** | Interface contract | UserRepository, EmailSender interfaces |
+| **Model** | Domain entities, value objects | User struct, Order struct |
+| **Core Service** | Shared business logic (cross-feature) | Email sending, caching, pagination |
 
 ---
 
@@ -406,9 +406,10 @@ test/
 - [ ] All code in `internal/modules/[feature]/` (never flat `internal/`)
 - [ ] Ports (interfaces) in separate `ports/` directory
 - [ ] No cross-feature dependencies (only → core)
-- [ ] Handler < 50 lines, delegates to Service
-- [ ] Service < 100 lines, uses Repositories/Ports
-- [ ] Repository < 100 lines, data access only
+- [ ] Handler is thin, delegates to Service
+- [ ] Service uses Repositories/Ports
+- [ ] Repository is data access only
+- [ ] Every file within `FUSE_SOLID_MAX_LINES`
 - [ ] Shared code in `internal/core/`
 - [ ] Handlers import ports, not services
 - [ ] Godoc on all exported functions
